@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">GoodLife</string>
+    <string name="s_i_n_tho_i">Số điện thoại</string>
+    <string name="ng_nh_p">Đăng Nhập</string>
+    <string name="ng_y_sinh">Ngày Sinh:</string>
+    <string name="t_n">Tên:</string>
+    <string name="ng_nh_p_t_i_kho_n">Đăng Nhập Tài Khoản</string>
+    <string name="m_t_kh_u">Mật Khẩu</string>
+    <string name="ng_y_sinh_jan_01_2020">Ngày sinh: JAN 01 2020</string>
+    <string name="ng_k_t_i_kho_n">Đăng Ký Tài Khoản</string>
+    <string name="ng_k">Đăng Kí</string>
+</resources>
