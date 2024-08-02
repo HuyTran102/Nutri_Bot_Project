@@ -83,7 +83,8 @@
             android:inputType="textPassword"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:ignore="MissingConstraints"></com.google.android.material.textfield.TextInputEditText>
+            tools:ignore="MissingConstraints">
+        </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -115,13 +116,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đã có tài khoản?"
+            android:text="@string/c_t_i_kho_n"
             android:textSize="16sp"
             android:textStyle="bold"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đăng nhập"
+            android:text="@string/ng_nh_p"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#2196F3"

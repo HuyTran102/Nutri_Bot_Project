@@ -12,7 +12,8 @@ import android.widget.DatePicker;
 
 import java.util.Calendar;
 
-public class RegisterPage extends AppCompatActivity {
+public class RegisterPage extends AppCompatActivity
+{
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
 
@@ -59,7 +60,6 @@ public class RegisterPage extends AppCompatActivity {
 
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
         //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
-
     }
 
     private String makeDateString(int day, int month, int year)
@@ -94,7 +94,6 @@ public class RegisterPage extends AppCompatActivity {
         if(month == 12)
             return "DEC";
 
-        //default should never happen
         return "JAN";
     }
 

@@ -9,4 +9,6 @@
     <string name="ng_y_sinh_jan_01_2020">Ngày sinh: JAN 01 2020</string>
     <string name="ng_k_t_i_kho_n">Đăng Ký Tài Khoản</string>
     <string name="ng_k">Đăng Kí</string>
+    <string name="kh_ng_c_t_i_kho_n">Không có tài khoản?</string>
+    <string name="c_t_i_kho_n">Đã có tài khoản?</string>
 </resources>

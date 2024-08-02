@@ -98,18 +98,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Không có tài khoản?"
+            android:text="@string/kh_ng_c_t_i_kho_n"
             android:textSize="16sp"
             android:textStyle="bold"/>
         <TextView
             android:id="@+id/sign_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đăng kí"
+            android:text="@string/ng_k"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#2196F3"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginStart="10dp"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

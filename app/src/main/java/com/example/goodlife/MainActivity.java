@@ -10,7 +10,8 @@ import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
     TextInputEditText editTextName, editTextPassword;
 
@@ -29,9 +30,11 @@ public class MainActivity extends AppCompatActivity {
         signIn = findViewById(R.id.sign_in);
         signUp = findViewById(R.id.sign_up);
 
-//        signUp.setOnClickListener(new View.OnClickListener() {
+//        signUp.setOnClickListener(new View.OnClickListener()
+//        {
 //            @Override
-//            public void onClick(View view) {
+//            public void onClick(View view)
+//            {
 //                Intent intent  = new Intent(MainActivity.this, RegisterPage.class);
 //                startActivity(intent);
 //                finish();
