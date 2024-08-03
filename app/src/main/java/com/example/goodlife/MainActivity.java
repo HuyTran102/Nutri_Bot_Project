@@ -25,20 +25,20 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        editTextName = findViewById(R.id.name);
-//        editTextPassword = findViewById(R.id.password);
-//        signIn = findViewById(R.id.sign_in);
-//        signUp = findViewById(R.id.sign_up);
+        editTextName = findViewById(R.id.acc_name);
+        editTextPassword = findViewById(R.id.acc_password);
+        signIn = findViewById(R.id.sign_in);
+        signUp = findViewById(R.id.sign_up);
 
-//        signUp.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View view)
-//            {
-//                Intent intent  = new Intent(MainActivity.this, RegisterPage.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
+        signUp.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent  = new Intent(MainActivity.this, RegisterPage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }
