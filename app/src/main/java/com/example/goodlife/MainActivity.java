@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editTextName = findViewById(R.id.name);
-        editTextPassword = findViewById(R.id.password);
-        signIn = findViewById(R.id.sign_in);
-        signUp = findViewById(R.id.sign_up);
+//        editTextName = findViewById(R.id.name);
+//        editTextPassword = findViewById(R.id.password);
+//        signIn = findViewById(R.id.sign_in);
+//        signUp = findViewById(R.id.sign_up);
 
 //        signUp.setOnClickListener(new View.OnClickListener()
 //        {
