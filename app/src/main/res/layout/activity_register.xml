@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.108" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editTextText"
+        android:id="@+id/name"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,15 +60,15 @@
         app:backgroundTint="@null"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText7"
-        app:layout_constraintTop_toTopOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/acc_password"
+        app:layout_constraintTop_toTopOf="@+id/name" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editTextText7"
+        android:id="@+id/acc_password"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/sign_up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/datePickerButton"
@@ -88,7 +88,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -97,10 +97,10 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="@+id/bu"
+        app:layout_constraintBottom_toBottomOf="@+id/sign_in"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText7"
+        app:layout_constraintTop_toBottomOf="@+id/acc_password"
         tools:ignore="MissingConstraints" />
 
     <LinearLayout
@@ -108,11 +108,11 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:id="@+id/bu"
+        android:id="@+id/sign_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button">
+        app:layout_constraintTop_toBottomOf="@+id/sign_up">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

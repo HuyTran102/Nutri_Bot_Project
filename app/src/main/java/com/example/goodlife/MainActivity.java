@@ -6,18 +6,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity
 {
 
-    TextInputEditText editTextName, editTextPassword;
+    TextInputLayout editTextName, editTextPassword;
 
     Button signIn;
 
-    TextView signUp;
+    LinearLayout signUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -25,20 +27,15 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editTextName = findViewById(R.id.acc_name);
+        editTextName = findViewById(R.id.name);
         editTextPassword = findViewById(R.id.acc_password);
         signIn = findViewById(R.id.sign_in);
         signUp = findViewById(R.id.sign_up);
 
-        signUp.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Intent intent = new Intent(MainActivity.this, RegisterPage.class);
-                startActivity(intent);
-                finish();
-            }
+        signUp.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, RegisterPage.class);
+            startActivity(intent);
+            finish();
         });
     }
 }

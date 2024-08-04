@@ -5,10 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
+
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Calendar;
 
@@ -17,15 +21,29 @@ public class RegisterPage extends AppCompatActivity
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
 
-    @SuppressLint("MissingInflatedId")
+    TextInputLayout editTextName, editTextPassword;
+
+    Button signUp;
+
+    LinearLayout signIn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_register);
         initDatePicker();
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
+        editTextName = findViewById(R.id.name);
+        editTextPassword = findViewById(R.id.acc_password);
+        signIn = findViewById(R.id.sign_in);
+        signUp = findViewById(R.id.sign_up);
+        signIn.setOnClickListener(view -> {
+            Intent intent = new Intent(RegisterPage.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
     }
 
     private String getTodaysDate()
