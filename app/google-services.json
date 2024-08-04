@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1079093227370",
+    "project_id": "goodlife-database",
+    "storage_bucket": "goodlife-database.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1079093227370:android:a561a37020a3d0378fbf13",
+        "android_client_info": {
+          "package_name": "com.example.goodlife"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhf9mQL10dnoLNPQgBEr6j9-E70uZIB2M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
