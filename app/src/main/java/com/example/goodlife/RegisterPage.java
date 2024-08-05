@@ -1,6 +1,7 @@
 package com.example.goodlife;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ThemedSpinnerAdapter;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -11,8 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
@@ -27,6 +31,9 @@ public class RegisterPage extends AppCompatActivity
 
     LinearLayout signIn;
 
+    FirebaseDatabase database;
+    DatabaseReference reference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -39,10 +46,31 @@ public class RegisterPage extends AppCompatActivity
         editTextPassword = findViewById(R.id.acc_password);
         signIn = findViewById(R.id.sign_in);
         signUp = findViewById(R.id.sign_up);
-        signIn.setOnClickListener(view -> {
+        signIn.setOnClickListener(view ->
+        {
             Intent intent = new Intent(RegisterPage.this, MainActivity.class);
             startActivity(intent);
             finish();
+        });
+        signUp.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+
+                database = FirebaseDatabase.getInstance();
+                reference = database.getReference("user");
+
+                String name, password;
+                name = String.valueOf(editTextName.getEditText());
+                password = String.valueOf(editTextPassword.getEditText());
+
+                HelperClass helperClass = new HelperClass(name, password);
+                reference.child(name).setValue(helperClass);
+
+                Toast.makeText(RegisterPage.this, "Đăng kí tài khoản thành công!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(RegisterPage.this, HomePage.class);
+                startActivity(intent);
+            }
         });
     }
 
