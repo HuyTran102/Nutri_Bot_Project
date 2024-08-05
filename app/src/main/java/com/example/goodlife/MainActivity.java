@@ -1,5 +1,6 @@
 package com.example.goodlife;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,6 +15,12 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -23,6 +30,7 @@ public class MainActivity extends AppCompatActivity
     Button signIn;
 
     LinearLayout signUp;
+
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     @Override
@@ -41,25 +49,86 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
             finish();
         });
-        signIn.setOnClickListener(new View.OnClickListener()
+
+        signIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(validDataUsername() || !validDataUserPassword())
+                {
+                    checkUserData();
+                }
+            }
+        });
+
+    }
+
+    public Boolean validDataUsername() {
+        String name;
+        name = String.valueOf(editTextName.getEditText());
+        if(name.isEmpty())
+        {
+            editTextName.setError("Vui lòng nhập vào tên người dùng!");
+            return false;
+        } else
+        {
+            editTextName.setError(null);
+            return true;
+        }
+    }
+
+    public Boolean validDataUserPassword() {
+        String password;
+        password = String.valueOf(editTextPassword.getEditText());
+        if(password.isEmpty())
+        {
+            editTextName.setError("Vui lòng nhập vào mật khẩu người dùng!");
+            return false;
+        } else
+        {
+            editTextName.setError(null);
+            return true;
+        }
+    }
+    public void checkUserData()
+    {
+        String name, password;
+        name = String.valueOf(editTextName.getEditText()).trim();
+        password = String.valueOf(editTextPassword.getEditText()).trim();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("user");
+        Query checkUserDatabase = reference.orderByChild("username").equalTo("userUsername");
+
+        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener()
         {
             @Override
-            public void onClick(View view)
+            public void onDataChange(@NonNull DataSnapshot snapshot)
             {
-                String name, password;
-                name = String.valueOf(editTextName.getEditText());
-                password = String.valueOf(editTextPassword.getEditText());
-                if(TextUtils.isEmpty(name))
-                {
-                    Toast.makeText(MainActivity.this, "Nhập vào tên của bạn!", Toast.LENGTH_SHORT).show();
-                    return ;
-                }
-                if(TextUtils.isEmpty(password))
-                {
-                    Toast.makeText(MainActivity.this, "Nhập vào mật khẩu của bạn!", Toast.LENGTH_SHORT).show();
-                    return ;
-                }
 
+                if(snapshot.exists())
+                {
+                    editTextName.setError(null);
+                    String passwordFromDB = snapshot.child(name).child("password").getValue(String.class);
+
+                    if(!passwordFromDB.equals(password))
+                    {
+                        editTextName.setError(null);
+                        Intent intent = new Intent(MainActivity.this, HomePage.class);
+                        startActivity(intent);
+                    } else
+                    {
+                        editTextPassword.setError("Mật khẩu không đúng!");
+                        editTextPassword.requestFocus();
+                    }
+                } else
+                {
+                    editTextName.setError("Tài khoản không tồn tại!");
+                    editTextName.requestFocus();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
 
             }
         });
