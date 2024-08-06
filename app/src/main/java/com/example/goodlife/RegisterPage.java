@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -25,7 +26,7 @@ public class RegisterPage extends AppCompatActivity
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
 
-    TextInputLayout editTextName, editTextPassword;
+    TextInputEditText editTextName, editTextPassword, editTextGender;
 
     Button signUp;
 
@@ -33,6 +34,8 @@ public class RegisterPage extends AppCompatActivity
 
     FirebaseDatabase database;
     DatabaseReference reference;
+
+    String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -42,8 +45,9 @@ public class RegisterPage extends AppCompatActivity
         initDatePicker();
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
-        editTextName = findViewById(R.id.name);
+        editTextName = findViewById(R.id.acc_name);
         editTextPassword = findViewById(R.id.acc_password);
+        editTextGender = findViewById(R.id.acc_gender);
         signIn = findViewById(R.id.sign_in);
         signUp = findViewById(R.id.sign_up);
         signIn.setOnClickListener(view ->
@@ -60,15 +64,16 @@ public class RegisterPage extends AppCompatActivity
                 database = FirebaseDatabase.getInstance();
                 reference = database.getReference("user");
 
-                String name, password;
-                name = String.valueOf(editTextName.getEditText());
-                password = String.valueOf(editTextPassword.getEditText());
+                String name, password, gender;
+                name = String.valueOf(editTextName.getText());
+                password = String.valueOf(editTextPassword.getText());
+                gender = String.valueOf(editTextGender.getText());
 
-                HelperClass helperClass = new HelperClass(name, password);
+                HelperClass helperClass = new HelperClass(name, password, date, gender);
                 reference.child(name).setValue(helperClass);
 
                 Toast.makeText(RegisterPage.this, "Đăng kí tài khoản thành công!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(RegisterPage.this, HomePage.class);
+                Intent intent = new Intent(RegisterPage.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -111,6 +116,7 @@ public class RegisterPage extends AppCompatActivity
 
     private String makeDateString(int day, int month, int year)
     {
+        date = getMonthFormat(month) + "/" + day + "/" + year;
         return "Ngày sinh: " + getMonthFormat(month) + " " + day + " " + year;
     }
 

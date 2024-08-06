@@ -1,19 +1,19 @@
 package com.example.goodlife;
 
 public class HelperClass {
-    String name, password;
-    String date_of_birth;
+    String name, password, date_of_birth, gender;
 
-    public HelperClass(String name, String password) {
-        this.name = name;
-        this.password = password;
-    }
-
-//    public HelperClass(String name, String password, String date_of_birth) {
+//    public HelperClass(String name, String password) {
 //        this.name = name;
 //        this.password = password;
-//        this.date_of_birth = date_of_birth;
 //    }
+
+    public HelperClass(String name, String password, String date_of_birth, String gender) {
+        this.name = name;
+        this.password = password;
+        this.date_of_birth = date_of_birth;
+        this.gender = gender;
+    }
 
     public HelperClass() {
     }
@@ -40,5 +40,13 @@ public class HelperClass {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

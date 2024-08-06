@@ -22,10 +22,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity
 {
 
-    TextInputLayout editTextName, editTextPassword;
+    TextInputEditText editTextName, editTextPassword;
 
     Button signIn;
 
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editTextName = findViewById(R.id.name);
+        editTextName = findViewById(R.id.acc_name);
         editTextPassword = findViewById(R.id.acc_password);
         signIn = findViewById(R.id.sign_in);
         signUp = findViewById(R.id.sign_up);
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity
 
     public Boolean validDataUsername() {
         String name;
-        name = String.valueOf(editTextName.getEditText());
+        name = String.valueOf(editTextName.getText());
         if(name.isEmpty())
         {
             editTextName.setError("Vui lòng nhập vào tên người dùng!");
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity
 
     public Boolean validDataUserPassword() {
         String password;
-        password = String.valueOf(editTextPassword.getEditText());
+        password = String.valueOf(editTextPassword.getText());
         if(password.isEmpty())
         {
             editTextName.setError("Vui lòng nhập vào mật khẩu người dùng!");
@@ -90,11 +92,11 @@ public class MainActivity extends AppCompatActivity
     public void checkUserData()
     {
         String name, password;
-        name = String.valueOf(editTextName.getEditText()).trim();
-        password = String.valueOf(editTextPassword.getEditText()).trim();
+        name = String.valueOf(editTextName.getText()).trim();
+        password = String.valueOf(editTextPassword.getText()).trim();
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("user");
-        Query checkUserDatabase = reference.orderByChild("username").equalTo("userUsername");
+        Query checkUserDatabase = reference.orderByChild("name").equalTo(name);
 
         checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener()
         {
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity
                     editTextName.setError(null);
                     String passwordFromDB = snapshot.child(name).child("password").getValue(String.class);
 
-                    if(!passwordFromDB.equals(password))
+                    if(Objects.equals(passwordFromDB, password))
                     {
                         editTextName.setError(null);
                         Intent intent = new Intent(MainActivity.this, HomePage.class);

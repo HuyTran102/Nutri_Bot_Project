@@ -33,6 +33,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/acc_name"
             android:layout_width="295dp"
             android:layout_height="50dp"
             android:autofillHints=""
@@ -60,21 +61,46 @@
         app:backgroundTint="@null"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/acc_password"
+        app:layout_constraintTop_toBottomOf="@+id/gender"
         app:layout_constraintTop_toTopOf="@+id/name" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/acc_password"
+        android:id="@+id/gender"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datePickerButton">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/acc_gender"
+            android:layout_width="295dp"
+            android:layout_height="50dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/gi_i_t_nh"
+            android:inputType="text"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints">
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/sign_up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datePickerButton"
+        app:layout_constraintTop_toBottomOf="@+id/gender"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/acc_password"
             android:layout_width="295dp"
             android:layout_height="50dp"
             android:autofillHints=""
@@ -100,7 +126,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/sign_in"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/acc_password"
+        app:layout_constraintTop_toBottomOf="@+id/password"
         tools:ignore="MissingConstraints" />
 
     <LinearLayout
