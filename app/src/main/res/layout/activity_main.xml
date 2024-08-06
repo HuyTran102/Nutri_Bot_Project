@@ -35,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="295dp"
-            android:layout_height="48dp"
+            android:layout_height="50dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/t_n"
@@ -58,7 +58,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="295dp"
-            android:layout_height="43dp"
+            android:layout_height="50dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/m_t_kh_u"
