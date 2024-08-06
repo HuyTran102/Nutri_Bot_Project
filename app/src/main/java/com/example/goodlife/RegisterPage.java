@@ -58,7 +58,7 @@ public class RegisterPage extends AppCompatActivity
             public void onClick(View view) {
 
                 database = FirebaseDatabase.getInstance();
-                reference = database.getReference("user");
+                reference = database.getReference();
 
                 String name, password;
                 name = String.valueOf(editTextName.getEditText());
