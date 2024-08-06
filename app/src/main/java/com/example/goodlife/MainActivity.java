@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity
 
     LinearLayout signUp;
 
-    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

@@ -58,7 +58,7 @@ public class RegisterPage extends AppCompatActivity
             public void onClick(View view) {
 
                 database = FirebaseDatabase.getInstance();
-                reference = database.getReference();
+                reference = database.getReference("user");
 
                 String name, password;
                 name = String.valueOf(editTextName.getEditText());
@@ -70,6 +70,7 @@ public class RegisterPage extends AppCompatActivity
                 Toast.makeText(RegisterPage.this, "Đăng kí tài khoản thành công!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(RegisterPage.this, HomePage.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
