@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 public class HomePage extends AppCompatActivity {
@@ -15,22 +16,31 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        nutritionalStatus.setOnClickListener(view -> {
-            Intent intent = new Intent(HomePage.this, CalculateNutritionalStatus.class);
-            startActivity(intent);
-            finish();
+        nutritionalStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomePage.this, CalculateNutritionalStatus.class);
+                startActivity(intent);
+                finish();
+            }
         });
 
-        physicalActivity.setOnClickListener(view -> {
-            Intent intent = new Intent(HomePage.this, PhysicalActivity.class);
-            startActivity(intent);
-            finish();
+        physicalActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomePage.this, PhysicalActivity.class);
+                startActivity(intent);
+                finish();
+            }
         });
 
-        dietary.setOnClickListener(view -> {
-            Intent intent = new Intent(HomePage.this, Dietary.class);
-            startActivity(intent);
-            finish();
+        dietary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomePage.this, Dietary.class);
+                startActivity(intent);
+                finish();
+            }
         });
     }
 }

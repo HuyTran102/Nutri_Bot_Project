@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity
                         editTextName.setError(null);
                         Intent intent = new Intent(MainActivity.this, HomePage.class);
                         startActivity(intent);
+                        finish();
                     } else
                     {
                         editTextPassword.setError("Mật khẩu không đúng!");
