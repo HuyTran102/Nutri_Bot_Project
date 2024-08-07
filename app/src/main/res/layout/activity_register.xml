@@ -31,7 +31,9 @@
         app:layout_constraintBottom_toTopOf="@+id/datePickerButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:endIconMode="clear_text">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/acc_name"
             android:layout_width="295dp"
@@ -72,7 +74,8 @@
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datePickerButton">
+        app:layout_constraintTop_toBottomOf="@+id/datePickerButton"
+        app:endIconMode="clear_text">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/acc_gender"

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.GoodLife"
         tools:targetApi="31">
         <activity
+            android:name=".CalculateNutritionalStatus"
+            android:exported="false" />
+        <activity
             android:name=".HomePage"
             android:exported="false" />
         <activity
@@ -29,8 +32,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
