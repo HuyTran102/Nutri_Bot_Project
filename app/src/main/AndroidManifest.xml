@@ -13,6 +13,12 @@
         android:theme="@style/Theme.GoodLife"
         tools:targetApi="31">
         <activity
+            android:name=".PhysicalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Dietary"
+            android:exported="false" />
+        <activity
             android:name=".CalculateNutritionalStatus"
             android:exported="false" />
         <activity
@@ -32,7 +38,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"
