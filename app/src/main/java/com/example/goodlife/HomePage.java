@@ -16,6 +16,10 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        nutritionalStatus = findViewById(R.id.nutritionalStatusButton);
+        physicalActivity = findViewById(R.id.physicalActivityButton);
+        dietary = findViewById(R.id.dietaryButton);
+
         nutritionalStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
