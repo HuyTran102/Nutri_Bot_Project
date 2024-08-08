@@ -21,4 +21,8 @@
     <string name="ch_t_p_luy_n">Chế độ tập luyện</string>
     <string name="nh_p_chi_u_cao">Nhập chiều cao</string>
     <string name="nh_p_c_n_n_ng">Nhập cân nặng</string>
+    <string name="chi_u_cao">Chiều cao</string>
+    <string name="c_n_n_ng">Cân nặng</string>
+    <string name="k_t_qu">Kết quả</string>
+    <string name="back">Back</string>
 </resources>

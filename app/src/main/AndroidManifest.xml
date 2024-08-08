@@ -13,6 +13,9 @@
         android:theme="@style/Theme.GoodLife"
         tools:targetApi="31">
         <activity
+            android:name=".NutritionalStatusResult"
+            android:exported="false" />
+        <activity
             android:name=".PhysicalActivity"
             android:exported="false" />
         <activity

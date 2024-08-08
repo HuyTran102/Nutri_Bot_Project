@@ -18,8 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
-public class RegisterPage extends AppCompatActivity
-{
+public class RegisterPage extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
 
@@ -35,8 +34,7 @@ public class RegisterPage extends AppCompatActivity
     String date;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         initDatePicker();
@@ -47,14 +45,12 @@ public class RegisterPage extends AppCompatActivity
         editTextGender = findViewById(R.id.acc_gender);
         signIn = findViewById(R.id.sign_in);
         signUp = findViewById(R.id.sign_up);
-        signIn.setOnClickListener(view ->
-        {
+        signIn.setOnClickListener(view -> {
             Intent intent = new Intent(RegisterPage.this, MainActivity.class);
             startActivity(intent);
             finish();
         });
-        signUp.setOnClickListener(new View.OnClickListener()
-        {
+        signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -77,8 +73,7 @@ public class RegisterPage extends AppCompatActivity
         });
     }
 
-    private String getTodaysDate()
-    {
+    private String getTodaysDate() {
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
@@ -87,13 +82,10 @@ public class RegisterPage extends AppCompatActivity
         return makeDateString(day, month, year);
     }
 
-    private void initDatePicker()
-    {
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
-        {
+    private void initDatePicker() {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day)
-            {
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
                 String date = makeDateString(day, month, year);
                 dateButton.setText(date);
@@ -111,14 +103,12 @@ public class RegisterPage extends AppCompatActivity
         //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
     }
 
-    private String makeDateString(int day, int month, int year)
-    {
+    private String makeDateString(int day, int month, int year) {
         date = getMonthFormat(month) + "/" + day + "/" + year;
         return "Ngày sinh: " + getMonthFormat(month) + " " + day + " " + year;
     }
 
-    private String getMonthFormat(int month)
-    {
+    private String getMonthFormat(int month) {
         if(month == 1)
             return "JAN";
         if(month == 2)
@@ -147,8 +137,7 @@ public class RegisterPage extends AppCompatActivity
         return "JAN";
     }
 
-    public void openDatePicker(View view)
-    {
+    public void openDatePicker(View view) {
         datePickerDialog.show();
     }
 }

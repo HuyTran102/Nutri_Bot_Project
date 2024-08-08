@@ -19,8 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity
-{
+public class MainActivity extends AppCompatActivity {
 
     TextInputEditText editTextName, editTextPassword;
 
@@ -29,8 +28,7 @@ public class MainActivity extends AppCompatActivity
     LinearLayout signUp;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -48,8 +46,7 @@ public class MainActivity extends AppCompatActivity
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(validDataUsername() || !validDataUserPassword())
-                {
+                if(validDataUsername() || !validDataUserPassword()) {
                     checkUserData();
                 }
             }
@@ -60,12 +57,10 @@ public class MainActivity extends AppCompatActivity
     public Boolean validDataUsername() {
         String name;
         name = String.valueOf(editTextName.getText());
-        if(name.isEmpty())
-        {
+        if(name.isEmpty()) {
             editTextName.setError("Vui lòng nhập vào tên người dùng!");
             return false;
-        } else
-        {
+        } else {
             editTextName.setError(null);
             return true;
         }
@@ -74,18 +69,15 @@ public class MainActivity extends AppCompatActivity
     public Boolean validDataUserPassword() {
         String password;
         password = String.valueOf(editTextPassword.getText());
-        if(password.isEmpty())
-        {
+        if(password.isEmpty()) {
             editTextName.setError("Vui lòng nhập vào mật khẩu người dùng!");
             return false;
-        } else
-        {
+        } else {
             editTextName.setError(null);
             return true;
         }
     }
-    public void checkUserData()
-    {
+    public void checkUserData() {
         String name, password;
         name = String.valueOf(editTextName.getText()).trim();
         password = String.valueOf(editTextPassword.getText()).trim();
@@ -93,38 +85,31 @@ public class MainActivity extends AppCompatActivity
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("user");
         Query checkUserDatabase = reference.orderByChild("name").equalTo(name);
 
-        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener()
-        {
+        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot)
-            {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if(snapshot.exists())
-                {
+                if(snapshot.exists()) {
                     editTextName.setError(null);
                     String passwordFromDB = snapshot.child(name).child("password").getValue(String.class);
 
-                    if(Objects.equals(passwordFromDB, password))
-                    {
+                    if(Objects.equals(passwordFromDB, password)) {
                         editTextName.setError(null);
                         Intent intent = new Intent(MainActivity.this, HomePage.class);
                         startActivity(intent);
                         finish();
-                    } else
-                    {
+                    } else {
                         editTextPassword.setError("Mật khẩu không đúng!");
                         editTextPassword.requestFocus();
                     }
-                } else
-                {
+                } else {
                     editTextName.setError("Tài khoản không tồn tại!");
                     editTextName.requestFocus();
                 }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error)
-            {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });

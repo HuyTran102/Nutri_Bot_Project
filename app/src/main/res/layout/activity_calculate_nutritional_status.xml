@@ -8,56 +8,76 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="620dp"
+        android:layout_width="297dp"
+        android:layout_height="41dp"
         android:text="@string/t_nh_tr_ng_dinh_d_ng"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#457B06"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/height"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/height" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/height"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/textView5"
+        app:endIconMode="clear_text"
+        app:layout_constraintBottom_toTopOf="@+id/weight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/textView5">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="354dp"
-            android:layout_height="49dp"
-            android:hint="@string/nh_p_chi_u_cao"
-            android:textStyle="bold"
-            android:textSize="18dp">
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/chi_u_cao"
+            android:inputType="textPersonName"
+            android:textSize="18sp"
+            android:textStyle="bold">
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/weight"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/height"
+        app:endIconMode="clear_text"
+        app:layout_constraintBottom_toTopOf="@+id/result_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/height">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="354dp"
-            android:layout_height="49dp"
-            android:hint="@string/nh_p_c_n_n_ng"
-            android:textStyle="bold"
-            android:textSize="18dp">
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/c_n_n_ng"
+            android:inputType="textPersonName"
+            android:textSize="18sp"
+            android:textStyle="bold">
+
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/result_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
+        android:text="@string/k_t_qu"
+        android:textSize="20dp"
+        app:backgroundTint="@null"
+        app:layout_constraintTop_toBottomOf="@id/weight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/back_button"
@@ -66,13 +86,12 @@
         android:layout_marginTop="640dp"
         android:layout_marginEnd="290dp"
         android:background="@drawable/custom_button"
-        android:text="Back"
+        android:text="@string/back"
         android:textSize="20dp"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
