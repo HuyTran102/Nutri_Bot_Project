@@ -58,7 +58,7 @@
         android:layout_marginTop="16dp"
         app:backgroundTint="@null"
         android:background="@drawable/custom_button"
-        android:text="@string/t_p_luy_n"
+        android:text="@string/ch_t_p_luy_n"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
