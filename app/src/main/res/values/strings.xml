@@ -25,4 +25,6 @@
     <string name="c_n_n_ng">Cân nặng</string>
     <string name="k_t_qu">Kết quả</string>
     <string name="back">Back</string>
+    <string name="chi_u_cao_cm">Chiều cao (cm)</string>
+    <string name="c_n_n_ng_kg">Cân nặng (kg)</string>
 </resources>
