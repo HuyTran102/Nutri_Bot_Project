@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     Button signIn;
 
     LinearLayout signUp;
+
+    String signUpDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            signUpDate = extras.getString("Date");
+        }
     }
 
     public Boolean validDataUsername() {
@@ -96,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
                     if(Objects.equals(passwordFromDB, password)) {
                         editTextName.setError(null);
                         Intent intent = new Intent(MainActivity.this, HomePage.class);
+                        intent.putExtra("Date", signUpDate);
+                        intent.putExtra("Name", String.valueOf(editTextName.getText()));
                         startActivity(intent);
                         finish();
                     } else {

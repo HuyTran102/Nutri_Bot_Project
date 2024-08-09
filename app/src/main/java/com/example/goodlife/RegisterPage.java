@@ -31,13 +31,14 @@ public class RegisterPage extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference reference;
 
-    String date;
+    String date, signUpDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         initDatePicker();
+
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
         editTextName = findViewById(R.id.acc_name);
@@ -45,6 +46,8 @@ public class RegisterPage extends AppCompatActivity {
         editTextGender = findViewById(R.id.acc_gender);
         signIn = findViewById(R.id.sign_in);
         signUp = findViewById(R.id.sign_up);
+        signUpDate = getTodaysDate();
+
         signIn.setOnClickListener(view -> {
             Intent intent = new Intent(RegisterPage.this, MainActivity.class);
             startActivity(intent);
@@ -62,15 +65,17 @@ public class RegisterPage extends AppCompatActivity {
                 password = String.valueOf(editTextPassword.getText());
                 gender = String.valueOf(editTextGender.getText());
 
-                HelperClass helperClass = new HelperClass(name, password, date, gender);
+                HelperClass helperClass = new HelperClass(name, password, date, gender, signUpDate);
                 reference.child(name).setValue(helperClass);
 
                 Toast.makeText(RegisterPage.this, "Đăng kí tài khoản thành công!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(RegisterPage.this, MainActivity.class);
+                intent.putExtra("Date", signUpDate);
                 startActivity(intent);
                 finish();
             }
         });
+
     }
 
     private String getTodaysDate() {
