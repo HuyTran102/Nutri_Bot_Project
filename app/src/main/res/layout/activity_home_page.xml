@@ -31,14 +31,14 @@
         android:background="@drawable/custom_button"
         android:textSize="20dp"
         android:text="@string/t_nh_tr_ng_dinh_d_ng"
-        app:layout_constraintBottom_toTopOf="@+id/physicalActivityButton"
+        app:layout_constraintBottom_toTopOf="@+id/dietaryButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"/>
 
     <Button
-        android:id="@+id/physicalActivityButton"
+        android:id="@+id/dietaryButton"
         android:layout_width="330dp"
         android:layout_height="58dp"
         android:layout_marginTop="8dp"
@@ -46,13 +46,13 @@
         android:background="@drawable/custom_button"
         android:text="@string/kh_u_ph_n_n"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/dietaryButton"
+        app:layout_constraintBottom_toTopOf="@+id/physicalActivityButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nutritionalStatusButton"/>
 
     <Button
-        android:id="@+id/dietaryButton"
+        android:id="@+id/physicalActivityButton"
         android:layout_width="330dp"
         android:layout_height="58dp"
         android:layout_marginTop="16dp"
@@ -63,7 +63,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/physicalActivityButton"/>
+        app:layout_constraintTop_toBottomOf="@+id/dietaryButton"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

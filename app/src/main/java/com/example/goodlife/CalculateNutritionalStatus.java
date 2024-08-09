@@ -6,12 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class CalculateNutritionalStatus extends AppCompatActivity {
 
     Button backButton, resultButton;
 
-    String name, signUpDate;
+    String name, signInDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,15 +28,13 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
         }
 
         if(extras != null) {
-            signUpDate = extras.getString("Date");
+            signInDate = extras.getString("Date");
         }
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CalculateNutritionalStatus.this, HomePage.class);
-                intent.putExtra("Date", signUpDate);
-                intent.putExtra("Name", name);
                 startActivity(intent);
                 finish();
             }
@@ -45,6 +44,8 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CalculateNutritionalStatus.this, NutritionalStatusResult.class);
+                intent.putExtra("Date", signInDate);
+                intent.putExtra("Name", name);
                 startActivity(intent);
                 finish();
             }

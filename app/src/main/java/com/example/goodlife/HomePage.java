@@ -11,7 +11,7 @@ public class HomePage extends AppCompatActivity {
 
     Button nutritionalStatus, physicalActivity, dietary;
 
-    String name, signUpDate;
+    String name, signInDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +28,14 @@ public class HomePage extends AppCompatActivity {
         }
 
         if(extras != null) {
-            signUpDate = extras.getString("Date");
+            signInDate = extras.getString("Date");
         }
 
         nutritionalStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomePage.this, CalculateNutritionalStatus.class);
-                intent.putExtra("Date", signUpDate);
+                intent.putExtra("Date", signInDate);
                 intent.putExtra("Name", name);
                 startActivity(intent);
                 finish();

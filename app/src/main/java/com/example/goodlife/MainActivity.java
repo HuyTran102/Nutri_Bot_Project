@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     LinearLayout signUp;
 
-    String signUpDate;
+    String signInDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.acc_password);
         signIn = findViewById(R.id.sign_in);
         signUp = findViewById(R.id.sign_up);
+        signInDate = getTodaysDate();
 
         signUp.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, RegisterPage.class);
@@ -54,11 +55,48 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-            signUpDate = extras.getString("Date");
-        }
+    private String getTodaysDate() {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month + 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month, year);
+    }
+
+    private String makeDateString(int day, int month, int year) {
+        return getMonthFormat(month) + " " + day + " " + year;
+    }
+
+    private String getMonthFormat(int month) {
+        if(month == 1)
+            return "JAN";
+        if(month == 2)
+            return "FEB";
+        if(month == 3)
+            return "MAR";
+        if(month == 4)
+            return "APR";
+        if(month == 5)
+            return "MAY";
+        if(month == 6)
+            return "JUN";
+        if(month == 7)
+            return "JUL";
+        if(month == 8)
+            return "AUG";
+        if(month == 9)
+            return "SEP";
+        if(month == 10)
+            return "OCT";
+        if(month == 11)
+            return "NOV";
+        if(month == 12)
+            return "DEC";
+
+        return "JAN";
     }
 
     public Boolean validDataUsername() {
@@ -103,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
                     if(Objects.equals(passwordFromDB, password)) {
                         editTextName.setError(null);
                         Intent intent = new Intent(MainActivity.this, HomePage.class);
-                        intent.putExtra("Date", signUpDate);
+                        intent.putExtra("Date", signInDate);
                         intent.putExtra("Name", String.valueOf(editTextName.getText()));
                         startActivity(intent);
                         finish();

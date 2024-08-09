@@ -70,7 +70,6 @@ public class RegisterPage extends AppCompatActivity {
 
                 Toast.makeText(RegisterPage.this, "Đăng kí tài khoản thành công!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(RegisterPage.this, MainActivity.class);
-                intent.putExtra("Date", signUpDate);
                 startActivity(intent);
                 finish();
             }
