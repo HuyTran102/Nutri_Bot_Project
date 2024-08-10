@@ -3,7 +3,9 @@ package com.example.goodlife;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,14 +32,9 @@ public class NutritionalStatusResult extends AppCompatActivity {
 
         backButton = findViewById(R.id.back_button);
 
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-            name = extras.getString("Name");
-        }
-
-        if(extras != null) {
-            signInDate = extras.getString("Date");
-        }
+        SharedPreferences sharedPreferences = getSharedPreferences("Data", Context.MODE_PRIVATE);
+        name = sharedPreferences.getString("Name",null);
+        signInDate = sharedPreferences.getString("SignInDate", null);
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("user");
         Query userDatabase = reference.orderByChild("name").equalTo(name);
@@ -49,7 +46,7 @@ public class NutritionalStatusResult extends AppCompatActivity {
                 password = snapshot.child(name).child("password").getValue(String.class);
                 date = snapshot.child(name).child("date_of_birth").getValue(String.class);
 
-                Toast.makeText(NutritionalStatusResult.this, name + " " + signInDate + " " + gender + " " + password + " " + date, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(NutritionalStatusResult.this, name + " " + signInDate + " " + gender + " " + password + " " + date, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -66,5 +63,23 @@ public class NutritionalStatusResult extends AppCompatActivity {
                 finish();
             }
         });
+
+        calculateMonthAge();
+    }
+
+    void calculateMonthAge() {
+        String tempSignInDate = signInDate;
+        String tempDateOfBirth = date;
+
+        String[] signIn = tempSignInDate.split("/");
+
+        String[] birth = tempDateOfBirth.split("/");
+
+        String signInDay = signIn[1], signInMonth = signIn[0], signInYear = signIn[2];
+
+        String birthDay = birth[1], birthMonth = birth[0], birthYear = birth[2];
+
+
+        Toast.makeText(NutritionalStatusResult.this, signInDay + " " + signInMonth + " " + signInYear, Toast.LENGTH_SHORT).show();
     }
 }

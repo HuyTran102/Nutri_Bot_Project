@@ -12,8 +12,6 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
 
     Button backButton, resultButton;
 
-    String name, signInDate;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,15 +19,6 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
 
         backButton = findViewById(R.id.back_button);
         resultButton = findViewById(R.id.result_button);
-
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-            name = extras.getString("Name");
-        }
-
-        if(extras != null) {
-            signInDate = extras.getString("Date");
-        }
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,8 +33,6 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CalculateNutritionalStatus.this, NutritionalStatusResult.class);
-                intent.putExtra("Date", signInDate);
-                intent.putExtra("Name", name);
                 startActivity(intent);
                 finish();
             }
