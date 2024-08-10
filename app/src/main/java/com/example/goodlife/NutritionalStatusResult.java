@@ -14,7 +14,7 @@ public class NutritionalStatusResult extends AppCompatActivity {
 
     Button backButton;
 
-    String name, signInDate;
+    String name, signInDate, gender, password, date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,10 @@ public class NutritionalStatusResult extends AppCompatActivity {
         if(extras != null) {
             signInDate = extras.getString("Date");
         }
-        Toast.makeText(NutritionalStatusResult.this, name + " " + signInDate, Toast.LENGTH_SHORT).show();
+
+
+
+        Toast.makeText(NutritionalStatusResult.this, name + " " + signInDate + " " + gender + " " + password + " " + date, Toast.LENGTH_SHORT).show();
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
