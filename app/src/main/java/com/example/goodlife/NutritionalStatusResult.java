@@ -19,6 +19,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class NutritionalStatusResult extends AppCompatActivity {
 
     Button backButton;
@@ -46,7 +48,8 @@ public class NutritionalStatusResult extends AppCompatActivity {
                 password = snapshot.child(name).child("password").getValue(String.class);
                 date = snapshot.child(name).child("date_of_birth").getValue(String.class);
 
-//                Toast.makeText(NutritionalStatusResult.this, name + " " + signInDate + " " + gender + " " + password + " " + date, Toast.LENGTH_SHORT).show();
+                calculateMonthAge();
+//                Toast.makeText(NutritionalStatusResult.this,signInDate + " " +  date , Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -64,7 +67,35 @@ public class NutritionalStatusResult extends AppCompatActivity {
             }
         });
 
-        calculateMonthAge();
+    }
+
+    String getNumberMonthFormat(String month) {
+        if(Objects.equals(month, "JAN"))
+            return "1";
+        if(Objects.equals(month, "FEB"))
+            return "2";
+        if(Objects.equals(month, "MAR"))
+            return "3";
+        if(Objects.equals(month, "APR"))
+            return "4";
+        if(Objects.equals(month, "MAY"))
+            return "5";
+        if(Objects.equals(month, "JUN"))
+            return "6";
+        if(Objects.equals(month, "JUL"))
+            return "7";
+        if(Objects.equals(month, "AUG"))
+            return "8";
+        if(Objects.equals(month, "SEP"))
+            return "9";
+        if(Objects.equals(month, "OCT"))
+            return "10";
+        if(Objects.equals(month, "NOV"))
+            return "11";
+        if(Objects.equals(month, "DEC"))
+            return "11";
+
+        return "1";
     }
 
     void calculateMonthAge() {
@@ -72,14 +103,16 @@ public class NutritionalStatusResult extends AppCompatActivity {
         String tempDateOfBirth = date;
 
         String[] signIn = tempSignInDate.split("/");
-
         String[] birth = tempDateOfBirth.split("/");
 
-        String signInDay = signIn[1], signInMonth = signIn[0], signInYear = signIn[2];
+        String signInMonth = getNumberMonthFormat(signIn[0]);
+        String signInDay = signIn[1];
+        String signInYear = signIn[2];
 
-        String birthDay = birth[1], birthMonth = birth[0], birthYear = birth[2];
+        String birthMonth = getNumberMonthFormat(birth[0]);
+        String birthDay = birth[1];
+        String birthYear = birth[2];
 
-
-        Toast.makeText(NutritionalStatusResult.this, signInDay + " " + signInMonth + " " + signInYear, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(NutritionalStatusResult.this,signInMonth + " " +  signInDay + " " + signInYear, Toast.LENGTH_SHORT).show();
     }
 }
