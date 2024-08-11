@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
@@ -156,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if(Objects.equals(passwordFromDB, password)) {
                         editTextName.setError(null);
+                        Toast.makeText(MainActivity.this, "Đăng nhập tài khoản thành công!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, HomePage.class);
                         startActivity(intent);
                         finish();

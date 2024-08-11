@@ -50,7 +50,9 @@ public class NutritionalStatusResult extends AppCompatActivity {
                 password = snapshot.child(name).child("password").getValue(String.class);
                 date = snapshot.child(name).child("date_of_birth").getValue(String.class);
 
-                calculateMonthAge();
+                int monthAge = calculateMonthAge();
+
+                Toast.makeText(NutritionalStatusResult.this, String.valueOf(monthAge), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -99,7 +101,7 @@ public class NutritionalStatusResult extends AppCompatActivity {
         return "1";
     }
 
-    void calculateMonthAge() {
+    int calculateMonthAge() {
         String tempSignInDate = signInDate;
         String tempDateOfBirth = date;
 
@@ -123,6 +125,6 @@ public class NutritionalStatusResult extends AppCompatActivity {
             monthAge -= 1;
         }
 
-        Toast.makeText(NutritionalStatusResult.this, monthAge , Toast.LENGTH_SHORT).show();
+        return monthAge;
     }
 }
