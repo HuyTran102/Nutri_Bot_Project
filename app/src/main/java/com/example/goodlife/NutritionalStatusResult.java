@@ -127,4 +127,10 @@ public class NutritionalStatusResult extends AppCompatActivity {
 
         return monthAge;
     }
+
+    int calculateBMI() {
+
+        
+        return  0;
+    }
 }
