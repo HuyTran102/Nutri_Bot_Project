@@ -19,6 +19,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 public class NutritionalStatusResult extends AppCompatActivity {
@@ -49,7 +51,6 @@ public class NutritionalStatusResult extends AppCompatActivity {
                 date = snapshot.child(name).child("date_of_birth").getValue(String.class);
 
                 calculateMonthAge();
-//                Toast.makeText(NutritionalStatusResult.this,signInDate + " " +  date , Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -70,29 +71,29 @@ public class NutritionalStatusResult extends AppCompatActivity {
     }
 
     String getNumberMonthFormat(String month) {
-        if(Objects.equals(month, "JAN"))
+        if (Objects.equals(month, "JAN"))
             return "1";
-        if(Objects.equals(month, "FEB"))
+        if (Objects.equals(month, "FEB"))
             return "2";
-        if(Objects.equals(month, "MAR"))
+        if (Objects.equals(month, "MAR"))
             return "3";
-        if(Objects.equals(month, "APR"))
+        if (Objects.equals(month, "APR"))
             return "4";
-        if(Objects.equals(month, "MAY"))
+        if (Objects.equals(month, "MAY"))
             return "5";
-        if(Objects.equals(month, "JUN"))
+        if (Objects.equals(month, "JUN"))
             return "6";
-        if(Objects.equals(month, "JUL"))
+        if (Objects.equals(month, "JUL"))
             return "7";
-        if(Objects.equals(month, "AUG"))
+        if (Objects.equals(month, "AUG"))
             return "8";
-        if(Objects.equals(month, "SEP"))
+        if (Objects.equals(month, "SEP"))
             return "9";
-        if(Objects.equals(month, "OCT"))
+        if (Objects.equals(month, "OCT"))
             return "10";
-        if(Objects.equals(month, "NOV"))
+        if (Objects.equals(month, "NOV"))
             return "11";
-        if(Objects.equals(month, "DEC"))
+        if (Objects.equals(month, "DEC"))
             return "11";
 
         return "1";
@@ -105,14 +106,23 @@ public class NutritionalStatusResult extends AppCompatActivity {
         String[] signIn = tempSignInDate.split("/");
         String[] birth = tempDateOfBirth.split("/");
 
-        String signInMonth = getNumberMonthFormat(signIn[0]);
-        String signInDay = signIn[1];
-        String signInYear = signIn[2];
+        int signInMonth = Integer.parseInt(getNumberMonthFormat(signIn[0]));
+        int signInDay = Integer.parseInt(signIn[1]);
+        int signInYear = Integer.parseInt(signIn[2]);
 
-        String birthMonth = getNumberMonthFormat(birth[0]);
-        String birthDay = birth[1];
-        String birthYear = birth[2];
+        int birthMonth = Integer.parseInt(getNumberMonthFormat(birth[0]));
+        int birthDay = Integer.parseInt(birth[1]);
+        int birthYear = Integer.parseInt(birth[2]);
 
-        //Toast.makeText(NutritionalStatusResult.this,signInMonth + " " +  signInDay + " " + signInYear, Toast.LENGTH_SHORT).show();
+        int yearDifferent = signInYear - birthYear;
+        int monthDifferent = signInMonth - birthMonth;
+
+        int monthAge = yearDifferent * 12 + monthDifferent;
+
+        if(signInDay < birthDay) {
+            monthAge -= 1;
+        }
+
+        Toast.makeText(NutritionalStatusResult.this, monthAge , Toast.LENGTH_SHORT).show();
     }
 }
