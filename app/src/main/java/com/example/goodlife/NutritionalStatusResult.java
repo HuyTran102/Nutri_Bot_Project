@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
@@ -27,7 +28,7 @@ public class NutritionalStatusResult extends AppCompatActivity {
 
     Button backButton;
 
-    String name, signInDate, gender, password, date;
+    String name, signInDate, gender, password, date, height, weight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,8 @@ public class NutritionalStatusResult extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Data", Context.MODE_PRIVATE);
         name = sharedPreferences.getString("Name",null);
         signInDate = sharedPreferences.getString("SignInDate", null);
+        height = sharedPreferences.getString("Height", null);
+        weight = sharedPreferences.getString("Weight", null);
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("user");
         Query userDatabase = reference.orderByChild("name").equalTo(name);
@@ -52,7 +55,9 @@ public class NutritionalStatusResult extends AppCompatActivity {
 
                 int monthAge = calculateMonthAge();
 
-                Toast.makeText(NutritionalStatusResult.this, String.valueOf(monthAge), Toast.LENGTH_SHORT).show();
+                double BMI = calculateBMI();
+
+//                Toast.makeText(NutritionalStatusResult.this, String.valueOf(BMI), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -128,9 +133,12 @@ public class NutritionalStatusResult extends AppCompatActivity {
         return monthAge;
     }
 
-    int calculateBMI() {
+    double calculateBMI() {
+        double userHeight, userWeight;
 
-        
-        return  0;
+        userHeight = Double.parseDouble(height);
+        userWeight = Double.parseDouble(weight);;
+
+        return userWeight / (userHeight * userHeight);
     }
 }

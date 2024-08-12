@@ -27,4 +27,5 @@
     <string name="back">Back</string>
     <string name="chi_u_cao_cm">Chiều cao (cm)</string>
     <string name="c_n_n_ng_kg">Cân nặng (kg)</string>
+    <string name="chi_u_cao_m">Chiều cao (m)</string>
 </resources>
