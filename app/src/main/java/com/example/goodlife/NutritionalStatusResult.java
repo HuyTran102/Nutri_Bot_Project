@@ -82,7 +82,7 @@ public class NutritionalStatusResult extends AppCompatActivity {
                     workbook.close();
                     inputStream.close();
                 } catch (Exception e) {
-                    Log.e(TAG, "Error reading Excel file", e);
+                    e.printStackTrace();
                 }
 
 //                Toast.makeText(NutritionalStatusResult.this, String.valueOf(BMI), Toast.LENGTH_SHORT).show();
