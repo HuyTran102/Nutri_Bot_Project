@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +25,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.InputStream;
 import java.util.Objects;
@@ -65,25 +65,28 @@ public class NutritionalStatusResult extends AppCompatActivity {
 
                 double BMI = calculateBMI();
 
+                String firstRowCell = null;
 
                 try {
-                    AssetManager assetManager = getAssets();
-                    InputStream inputStream = assetManager.open("bmiBoys.xlsx");
+                    InputStream inputStream = getAssets().open("bmiBoys.xlsx");
 
-                    Workbook workbook = WorkbookFactory.create(inputStream);
+                    Workbook workbook = new XSSFWorkbook(inputStream);
                     Sheet sheet = workbook.getSheetAt(0);
 
-                    for (Row row : sheet) {
-                        for (Cell cell : row) {
-                            Toast.makeText(NutritionalStatusResult.this, cell.getStringCellValue(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
+                    Row firstRow = sheet.getRow(0);
+                    Cell firstCell = firstRow.getCell(0);
+
+                    firstRowCell = firstCell.getStringCellValue();
+
+//                    Log.d(TAG, firstCell.getStringCellValue());
 
                     workbook.close();
                     inputStream.close();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Log.d(TAG, Objects.requireNonNull(e.getMessage()));
                 }
+
+                Toast.makeText(NutritionalStatusResult.this, " " + firstRowCell + " ", Toast.LENGTH_SHORT).show();
 
 //                Toast.makeText(NutritionalStatusResult.this, String.valueOf(BMI), Toast.LENGTH_SHORT).show();
             }

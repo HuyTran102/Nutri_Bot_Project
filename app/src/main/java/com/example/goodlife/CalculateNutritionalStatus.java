@@ -42,14 +42,40 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
         resultButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("Height", String.valueOf(userHeight.getText()));
-                editor.putString("Weight", String.valueOf(userWeight.getText()));
-                editor.apply();
-                Intent intent = new Intent(CalculateNutritionalStatus.this, NutritionalStatusResult.class);
-                startActivity(intent);
-                finish();
+                if(validUserHeight() && validUserWeight()) {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("Height", String.valueOf(userHeight.getText()));
+                    editor.putString("Weight", String.valueOf(userWeight.getText()));
+                    editor.apply();
+                    Intent intent = new Intent(CalculateNutritionalStatus.this, NutritionalStatusResult.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
+    }
+
+    public Boolean validUserHeight() {
+        String height;
+        height = String.valueOf(userHeight.getText());
+        if(height.isEmpty()) {
+            userHeight.setError("Vui lòng nhập vào chiều cao người dùng!");
+            return false;
+        } else {
+            userHeight.setError(null);
+            return true;
+        }
+    }
+
+    public Boolean validUserWeight() {
+        String weight;
+        weight = String.valueOf(userWeight.getText());
+        if(weight.isEmpty()) {
+            userWeight.setError("Vui lòng nhập vào cân nặng người dùng!");
+            return false;
+        } else {
+            userWeight.setError(null);
+            return true;
+        }
     }
 }
