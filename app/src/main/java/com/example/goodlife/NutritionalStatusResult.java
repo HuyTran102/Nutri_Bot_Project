@@ -54,7 +54,7 @@ public class NutritionalStatusResult extends AppCompatActivity {
 
                 double BMI = calculateBMI();
 
-//                Toast.makeText(NutritionalStatusResult.this, String.valueOf(BMI), Toast.LENGTH_SHORT).show();
+                Toast.makeText(NutritionalStatusResult.this, String.valueOf(BMI), Toast.LENGTH_SHORT).show();
             }
 
             @Override
