@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -19,6 +21,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+import java.io.InputStream;
 import java.util.Objects;
 
 public class NutritionalStatusResult extends AppCompatActivity {
@@ -26,6 +35,8 @@ public class NutritionalStatusResult extends AppCompatActivity {
     Button backButton;
 
     String name, signInDate, gender, password, date, height, weight;
+
+    private static final String TAG = "ExcelRead";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +65,27 @@ public class NutritionalStatusResult extends AppCompatActivity {
 
                 double BMI = calculateBMI();
 
-                Toast.makeText(NutritionalStatusResult.this, String.valueOf(BMI), Toast.LENGTH_SHORT).show();
+
+                try {
+                    AssetManager assetManager = getAssets();
+                    InputStream inputStream = assetManager.open("bmiBoys.xlsx");
+
+                    Workbook workbook = WorkbookFactory.create(inputStream);
+                    Sheet sheet = workbook.getSheetAt(0);
+
+                    for (Row row : sheet) {
+                        for (Cell cell : row) {
+                            Toast.makeText(NutritionalStatusResult.this, cell.getStringCellValue(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    workbook.close();
+                    inputStream.close();
+                } catch (Exception e) {
+                    Log.e(TAG, "Error reading Excel file", e);
+                }
+
+//                Toast.makeText(NutritionalStatusResult.this, String.valueOf(BMI), Toast.LENGTH_SHORT).show();
             }
 
             @Override
