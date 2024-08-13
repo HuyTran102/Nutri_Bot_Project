@@ -83,6 +83,7 @@ public class NutritionalStatusResult extends AppCompatActivity {
                     workbook.close();
                     inputStream.close();
                 } catch (Exception e) {
+                    e.printStackTrace();
                     Log.d(TAG, Objects.requireNonNull(e.getMessage()));
                 }
 
