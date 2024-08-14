@@ -27,6 +27,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Objects;
 
@@ -65,12 +67,12 @@ public class NutritionalStatusResult extends AppCompatActivity {
 
                 double BMI = calculateBMI();
 
-                String firstRowCell = null;
+                String firstRowCell = "";
 
                 try {
-                    InputStream inputStream = getAssets().open("bmiBoys.xlsx");
+                    FileInputStream fileInputStream = new FileInputStream(new File("bmiBoys.xlsx"));
 
-                    Workbook workbook = new XSSFWorkbook(inputStream);
+                    Workbook workbook = new XSSFWorkbook(fileInputStream);
                     Sheet sheet = workbook.getSheetAt(0);
 
                     Row firstRow = sheet.getRow(0);
@@ -81,7 +83,7 @@ public class NutritionalStatusResult extends AppCompatActivity {
 //                    Log.d(TAG, firstCell.getStringCellValue());
 
                     workbook.close();
-                    inputStream.close();
+                    fileInputStream.close();
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.d(TAG, Objects.requireNonNull(e.getMessage()));
