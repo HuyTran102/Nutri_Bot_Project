@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +29,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Objects;
 
 public class NutritionalStatusResult extends AppCompatActivity {
@@ -57,10 +59,10 @@ public class NutritionalStatusResult extends AppCompatActivity {
         String firstRowCell = "";
 
         try {
-            File file = new File("/GoodLife/app/src/main/java/com/example/goodlife/hfaGirls.xlsx");
-            FileInputStream fileInputStream = new FileInputStream(file);
+            AssetManager am=getAssets();
+            InputStream is = am.open("hfaGirls.xlsx");
 
-            Workbook workbook = new XSSFWorkbook(fileInputStream);
+            Workbook workbook = new XSSFWorkbook(is);
             Sheet sheet = workbook.getSheetAt(0);
 
             Row firstRow = sheet.getRow(0);
@@ -71,7 +73,6 @@ public class NutritionalStatusResult extends AppCompatActivity {
             Log.i(TAG, firstCell.getStringCellValue());
 
             workbook.close();
-            fileInputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
             Log.e(TAG, Objects.requireNonNull(e.getMessage()));
