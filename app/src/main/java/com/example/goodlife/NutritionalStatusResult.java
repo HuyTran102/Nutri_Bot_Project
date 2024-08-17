@@ -56,30 +56,6 @@ public class NutritionalStatusResult extends AppCompatActivity {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("user");
         Query userDatabase = reference.orderByChild("name").equalTo(name);
 
-        String firstRowCell = "";
-
-        try {
-            AssetManager am=getAssets();
-            InputStream is = am.open("hfaGirls.xlsx");
-
-            Workbook workbook = new XSSFWorkbook(is);
-            Sheet sheet = workbook.getSheetAt(0);
-
-            Row firstRow = sheet.getRow(0);
-            Cell firstCell = firstRow.getCell(0);
-
-            firstRowCell = firstCell.getStringCellValue();
-
-            Log.i(TAG, firstCell.getStringCellValue());
-
-            workbook.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e(TAG, Objects.requireNonNull(e.getMessage()));
-        }
-
-        Toast.makeText(NutritionalStatusResult.this, " " + firstRowCell + " ", Toast.LENGTH_SHORT).show();
-
         userDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -91,31 +67,9 @@ public class NutritionalStatusResult extends AppCompatActivity {
 
                 double BMI = calculateBMI();
 
-//                String firstRowCell = "";
-//
-//                try {
-//                    FileInputStream fileInputStream = new FileInputStream(new File("bmiBoys.xlsx"));
-//
-//                    Workbook workbook = new XSSFWorkbook(fileInputStream);
-//                    Sheet sheet = workbook.getSheetAt(0);
-//
-//                    Row firstRow = sheet.getRow(0);
-//                    Cell firstCell = firstRow.getCell(0);
-//
-//                    firstRowCell = firstCell.getStringCellValue();
-//
-////                    Log.d(TAG, firstCell.getStringCellValue());
-//
-//                    workbook.close();
-//                    fileInputStream.close();
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                    Log.d(TAG, Objects.requireNonNull(e.getMessage()));
-//                }
-//
-//                Toast.makeText(NutritionalStatusResult.this, " " + firstRowCell + " ", Toast.LENGTH_SHORT).show();
+                bmiStatusWarning(gender, BMI, monthAge);
 
-//                Toast.makeText(NutritionalStatusResult.this, String.valueOf(BMI), Toast.LENGTH_SHORT).show();
+                heightForAgeStatusWarning(gender, Double.parseDouble(height), monthAge);
             }
 
             @Override
@@ -195,8 +149,137 @@ public class NutritionalStatusResult extends AppCompatActivity {
         double userHeight, userWeight;
 
         userHeight = Double.parseDouble(height);
-        userWeight = Double.parseDouble(weight);;
+        userWeight = Double.parseDouble(weight);
 
         return userWeight / (userHeight * userHeight);
+    }
+    
+    void bmiStatusWarning(String gender, double bmi, int monthAge) {
+        String path;
+        if(gender.equals("nam")) {
+            path = "bmiBoys.xlsx";
+        } else if(gender.equals("nữ")) {
+            path = "bmiGirls.xlsx";
+        } else {
+            Toast.makeText(NutritionalStatusResult.this, "Không thể cảnh báo tình trạng BMI do giới tính không hợp lệ !", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            AssetManager am = getAssets();
+            InputStream is = am.open(path);
+
+            Workbook workbook = new XSSFWorkbook(is);
+            Sheet sheet = workbook.getSheetAt(0);
+
+            for(int rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex ++) {
+                Row row = sheet.getRow(rowIndex);
+                Cell cell = row.getCell(0);
+                int value = (int) cell.getNumericCellValue();
+                if(value == monthAge) {
+//                    Toast.makeText(NutritionalStatusResult.this, "Đã tìm thấy giá trị tháng tuổi !", Toast.LENGTH_SHORT).show();
+                    cell = row.getCell(1);
+                    double negativeSD3 = (double) cell.getNumericCellValue();
+                    cell = row.getCell(2);
+                    double negativeSD2 = (double) cell.getNumericCellValue();
+                    cell = row.getCell(3);
+                    double negativeSD1 = (double) cell.getNumericCellValue();
+                    cell = row.getCell(4);
+                    double positiveSD0 = (double) cell.getNumericCellValue();
+                    cell = row.getCell(5);
+                    double positiveSD1 = (double) cell.getNumericCellValue();
+                    cell = row.getCell(6);
+                    double positiveSD2 = (double) cell.getNumericCellValue();
+                    cell = row.getCell(7);
+                    double positiveSD3 = (double) cell.getNumericCellValue();
+
+                    if(bmi > positiveSD3) {
+                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Béo phì !", Toast.LENGTH_SHORT).show();
+                    } else if(positiveSD2 <= bmi && bmi <= positiveSD3) {
+                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Béo phì !", Toast.LENGTH_SHORT).show();
+                    } else if(positiveSD1 <= bmi && bmi <= positiveSD2) {
+                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Thừa cân !", Toast.LENGTH_SHORT).show();
+                    } else if(negativeSD2 <= bmi && bmi <= positiveSD1) {
+                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Bình thường !", Toast.LENGTH_SHORT).show();
+                    } else if(negativeSD3 <= bmi && bmi <= negativeSD2) {
+                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Gầy còm vừa !", Toast.LENGTH_SHORT).show();
+                    } else if(bmi < negativeSD3){
+                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Gầy còm nặng !", Toast.LENGTH_SHORT).show();
+                    }
+
+//                    Toast.makeText(NutritionalStatusResult.this, " " + negativeSD3 + " " + negativeSD2 + " " + negativeSD1 + " " + positiveSD0 + " " + positiveSD1 + " " + positiveSD2 + " " + positiveSD3 + " ", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            workbook.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e(TAG, Objects.requireNonNull(e.getMessage()));
+        }
+    }
+
+    void heightForAgeStatusWarning(String gender, double height, int monthAge) {
+        height *= 100;
+        String path;
+        if(gender.equals("nam")) {
+            path = "hfaBoys.xlsx";
+        } else if(gender.equals("nữ")) {
+            path = "hfaGirls.xlsx";
+        } else {
+            Toast.makeText(NutritionalStatusResult.this, "Không thể cảnh báo tình trạng BMI do giới tính không hợp lệ !", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            AssetManager am = getAssets();
+            InputStream is = am.open(path);
+
+            Workbook workbook = new XSSFWorkbook(is);
+            Sheet sheet = workbook.getSheetAt(0);
+
+            for(int rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex ++) {
+                Row row = sheet.getRow(rowIndex);
+                Cell cell = row.getCell(0);
+                int value = (int) cell.getNumericCellValue();
+                if(value == monthAge) {
+//                    Toast.makeText(NutritionalStatusResult.this, "Đã tìm thấy giá trị tháng tuổi !", Toast.LENGTH_SHORT).show();
+                    cell = row.getCell(1);
+                    double negativeSD3 = (double) cell.getNumericCellValue();
+                    cell = row.getCell(2);
+                    double negativeSD2 = (double) cell.getNumericCellValue();
+                    cell = row.getCell(3);
+                    double negativeSD1 = (double) cell.getNumericCellValue();
+                    cell = row.getCell(4);
+                    double positiveSD0 = (double) cell.getNumericCellValue();
+                    cell = row.getCell(5);
+                    double positiveSD1 = (double) cell.getNumericCellValue();
+                    cell = row.getCell(6);
+                    double positiveSD2 = (double) cell.getNumericCellValue();
+                    cell = row.getCell(7);
+                    double positiveSD3 = (double) cell.getNumericCellValue();
+
+                    if(height > positiveSD3) {
+                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Béo phì !", Toast.LENGTH_SHORT).show();
+                    } else if(positiveSD2 <= height && height <= positiveSD3) {
+                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Bình thường !", Toast.LENGTH_SHORT).show();
+                    } else if(positiveSD1 <= height && height <= positiveSD2) {
+                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Bình thường !", Toast.LENGTH_SHORT).show();
+                    } else if(negativeSD2 <= height && height <= positiveSD1) {
+                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Bình thường !", Toast.LENGTH_SHORT).show();
+                    } else if(negativeSD3 <= height && height <= negativeSD2) {
+                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Thấp còi vừa !", Toast.LENGTH_SHORT).show();
+                    } else if(height < negativeSD3){
+                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Thấp còi nặng !", Toast.LENGTH_SHORT).show();
+                    }
+
+//                    Toast.makeText(NutritionalStatusResult.this, " " + negativeSD3 + " " + negativeSD2 + " " + negativeSD1 + " " + positiveSD0 + " " + positiveSD1 + " " + positiveSD2 + " " + positiveSD3 + " ", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            workbook.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e(TAG, Objects.requireNonNull(e.getMessage()));
+        }
     }
 }
