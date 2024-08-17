@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -38,6 +39,8 @@ public class NutritionalStatusResult extends AppCompatActivity {
 
     String name, signInDate, gender, password, date, height, weight;
 
+    TextView bmiStatusView, hfaStatusView;
+
     private static final String TAG = "ExcelRead";
 
     @Override
@@ -46,6 +49,8 @@ public class NutritionalStatusResult extends AppCompatActivity {
         setContentView(R.layout.activity_nutritional_status_result);
 
         backButton = findViewById(R.id.back_button);
+        bmiStatusView = findViewById(R.id.bmiView);
+        hfaStatusView = findViewById(R.id.hfaView);
 
         SharedPreferences sharedPreferences = getSharedPreferences("Data", Context.MODE_PRIVATE);
         name = sharedPreferences.getString("Name",null);
@@ -194,17 +199,23 @@ public class NutritionalStatusResult extends AppCompatActivity {
                     double positiveSD3 = (double) cell.getNumericCellValue();
 
                     if(bmi > positiveSD3) {
-                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Béo phì !", Toast.LENGTH_SHORT).show();
+                        bmiStatusView.setText("  Béo phì !");
+//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Béo phì !", Toast.LENGTH_SHORT).show();
                     } else if(positiveSD2 <= bmi && bmi <= positiveSD3) {
-                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Béo phì !", Toast.LENGTH_SHORT).show();
+                        bmiStatusView.setText("  Béo phì !");
+//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Béo phì !", Toast.LENGTH_SHORT).show();
                     } else if(positiveSD1 <= bmi && bmi <= positiveSD2) {
-                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Thừa cân !", Toast.LENGTH_SHORT).show();
+                        bmiStatusView.setText("  Thừa cân !");
+//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Thừa cân !", Toast.LENGTH_SHORT).show();
                     } else if(negativeSD2 <= bmi && bmi <= positiveSD1) {
-                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Bình thường !", Toast.LENGTH_SHORT).show();
+                        bmiStatusView.setText("  Bình thường !");
+//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Bình thường !", Toast.LENGTH_SHORT).show();
                     } else if(negativeSD3 <= bmi && bmi <= negativeSD2) {
-                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Gầy còm vừa !", Toast.LENGTH_SHORT).show();
+                        bmiStatusView.setText("  Gầy còm vừa !");
+//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Gầy còm vừa !", Toast.LENGTH_SHORT).show();
                     } else if(bmi < negativeSD3){
-                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Gầy còm nặng !", Toast.LENGTH_SHORT).show();
+                        bmiStatusView.setText("  Gầy còm nặng !");
+//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Gầy còm nặng !", Toast.LENGTH_SHORT).show();
                     }
 
 //                    Toast.makeText(NutritionalStatusResult.this, " " + negativeSD3 + " " + negativeSD2 + " " + negativeSD1 + " " + positiveSD0 + " " + positiveSD1 + " " + positiveSD2 + " " + positiveSD3 + " ", Toast.LENGTH_SHORT).show();
@@ -259,17 +270,23 @@ public class NutritionalStatusResult extends AppCompatActivity {
                     double positiveSD3 = (double) cell.getNumericCellValue();
 
                     if(height > positiveSD3) {
-                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Béo phì !", Toast.LENGTH_SHORT).show();
+                        hfaStatusView.setText("  Béo phì !");
+//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Béo phì !", Toast.LENGTH_SHORT).show();
                     } else if(positiveSD2 <= height && height <= positiveSD3) {
-                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Bình thường !", Toast.LENGTH_SHORT).show();
+                        hfaStatusView.setText("  Bình thường !");
+//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Bình thường !", Toast.LENGTH_SHORT).show();
                     } else if(positiveSD1 <= height && height <= positiveSD2) {
-                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Bình thường !", Toast.LENGTH_SHORT).show();
+                        hfaStatusView.setText("  Bình thường !");
+//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Bình thường !", Toast.LENGTH_SHORT).show();
                     } else if(negativeSD2 <= height && height <= positiveSD1) {
-                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Bình thường !", Toast.LENGTH_SHORT).show();
+                        hfaStatusView.setText("  Bình thường !");
+//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Bình thường !", Toast.LENGTH_SHORT).show();
                     } else if(negativeSD3 <= height && height <= negativeSD2) {
-                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Thấp còi vừa !", Toast.LENGTH_SHORT).show();
+                        hfaStatusView.setText("  Thấp còi vừa !");
+//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Thấp còi vừa !", Toast.LENGTH_SHORT).show();
                     } else if(height < negativeSD3){
-                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Thấp còi nặng !", Toast.LENGTH_SHORT).show();
+                        hfaStatusView.setText("  Thấp còi nặng !");
+//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Thấp còi nặng !", Toast.LENGTH_SHORT).show();
                     }
 
 //                    Toast.makeText(NutritionalStatusResult.this, " " + negativeSD3 + " " + negativeSD2 + " " + negativeSD1 + " " + positiveSD0 + " " + positiveSD1 + " " + positiveSD2 + " " + positiveSD3 + " ", Toast.LENGTH_SHORT).show();
