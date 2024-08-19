@@ -32,4 +32,14 @@
     <string name="k_t_qu_t_nh_tr_ng_dinh_d_ng">Kết quả tình trạng dinh dưỡng</string>
     <string name="ch_s_bmi_theo_tu_i">Chỉ số BMI theo tuổi:</string>
     <string name="ch_s_chi_u_cao_theo_tu_i">Chỉ số chiều cao theo tuổi:</string>
+    <string name="m_n_n">Món ăn</string>
+    <string name="th_c_ph_m">Thực phẩm</string>
+    <string name="s_a_u_ng">Sữa / Đồ uống</string>
+    <string name="nh_t_k">Nhật ký</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tab_1">TAB_1</string>
+    <string name="tab_2">TAB_2</string>
+    <string name="tab_3">TAB_3</string>
+    <string name="tab_4">TAB_4</string>
 </resources>
