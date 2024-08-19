@@ -43,10 +43,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.209">
+        app:layout_constraintVertical_bias="0.218">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -79,14 +78,14 @@
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pageViewer"
-        android:layout_width="match_parent"
-        android:layout_height="540dp"
+        android:layout_width="395dp"
+        android:layout_height="574dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.99">
 
     </androidx.viewpager.widget.ViewPager>
 
