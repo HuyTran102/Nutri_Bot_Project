@@ -18,10 +18,10 @@ import java.util.List;
 public class FragmentGroceries extends Fragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_groceries, container, false);
+
     }
 
     @Override
@@ -35,6 +35,7 @@ public class FragmentGroceries extends Fragment {
         items.add(new Item("Hiếu"));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(new ViewAdapter(getContext(), items));
 
     }
