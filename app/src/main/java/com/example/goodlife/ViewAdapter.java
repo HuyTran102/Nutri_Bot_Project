@@ -33,12 +33,12 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //holder.image.setImageResource(items.get(position).getImage());
         holder.text.setText(items.get(position).getName());
-        holder.back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("demo", "Success");
-            }
-        });
+//        holder.back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.d("demo", "Success");
+//            }
+//        });
     }
 
     @Override

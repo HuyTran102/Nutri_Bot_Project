@@ -33,9 +33,17 @@ public class FragmentGroceries extends Fragment {
         List<Item> items = new ArrayList<>();
         items.add(new Item("Huy"));
         items.add(new Item("Hiếu"));
+        items.add(new Item("Nam"));
+        items.add(new Item("Hiếu"));
+        items.add(new Item("Hằng"));
+        items.add(new Item("Hiền"));
+        items.add(new Item("Hằng"));
+        items.add(new Item("Thảo"));
+        items.add(new Item("Hằng"));
+        items.add(new Item("Linh"));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setHasFixedSize(true);
+//        recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(new ViewAdapter(getContext(), items));
 
     }
