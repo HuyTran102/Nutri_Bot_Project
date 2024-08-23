@@ -4,25 +4,17 @@ public class Item {
 
     String name;
 
-    int image, button;
+    int image;
 
-    public Item(String name) {
-        this.name = name;
-    }
-
-//    public Item(String name, int image, int button) {
+//    public Item(String name) {
 //        this.name = name;
-//        this.image = image;
-//        this.button = button;
 //    }
 
-    public int getButton() {
-        return button;
+    public Item(String name, int image) {
+        this.name = name;
+        this.image = image;
     }
 
-    public void setButton(int button) {
-        this.button = button;
-    }
 
     public int getImage() {
         return image;

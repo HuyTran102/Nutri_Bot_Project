@@ -21,11 +21,13 @@
         app:searchHintIcon="@null">
     </androidx.appcompat.widget.SearchView>
 
+    <!--        android:layout_marginTop="8dp"-->
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recycleView"
-        android:layout_marginTop="8dp"
+
         android:scrollbars="vertical"
         android:layout_below="@id/search_bar">
     </androidx.recyclerview.widget.RecyclerView>

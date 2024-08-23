@@ -31,16 +31,16 @@ public class FragmentGroceries extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recycleView);
 
         List<Item> items = new ArrayList<>();
-        items.add(new Item("Huy"));
-        items.add(new Item("Hiếu"));
-        items.add(new Item("Nam"));
-        items.add(new Item("Hiếu"));
-        items.add(new Item("Hằng"));
-        items.add(new Item("Hiền"));
-        items.add(new Item("Hằng"));
-        items.add(new Item("Thảo"));
-        items.add(new Item("Hằng"));
-        items.add(new Item("Linh"));
+        items.add(new Item("Huy", R.drawable.images));
+        items.add(new Item("Hiếu", R.drawable.images));
+        items.add(new Item("Nam", R.drawable.images));
+        items.add(new Item("Hiếu", R.drawable.images));
+        items.add(new Item("Hằng", R.drawable.images));
+        items.add(new Item("Hiền", R.drawable.images));
+        items.add(new Item("Hằng", R.drawable.images));
+        items.add(new Item("Thảo", R.drawable.images));
+        items.add(new Item("Hằng", R.drawable.images));
+        items.add(new Item("Linh", R.drawable.images));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 //        recyclerView.setHasFixedSize(true);

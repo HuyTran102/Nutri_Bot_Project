@@ -51,28 +51,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/m_n_n"
-            android:textSize="18sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/th_c_ph_m"
-            android:textSize="18sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/s_a_u_ng"
-            android:textSize="18sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/nh_t_k"
-            android:textSize="18sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
     </com.google.android.material.tabs.TabLayout>
 

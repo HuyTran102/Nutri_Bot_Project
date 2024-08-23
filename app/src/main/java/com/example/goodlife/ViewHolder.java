@@ -15,14 +15,11 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
     TextView text;
 
-    Button back;
-
     public ViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        // image = itemView.findViewById(R.id.imageview);
+        image = itemView.findViewById(R.id.imageview);
         text = itemView.findViewById(R.id.name);
-        // back = itemView.findViewById(R.id.back);
     }
 
 }
