@@ -20,6 +20,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -58,10 +60,11 @@ public class FragmentGroceries extends Fragment {
         String path = "Groceries.xlsx";
 
         try {
-            AssetManager am = requireContext().getAssets();
-            InputStream is = am.open(path);
+//            AssetManager am = requireContext().getAssets();
+//            InputStream is = am.open(path);
+            FileInputStream fileInputStream = new FileInputStream(path);
 
-            Workbook workbook = new XSSFWorkbook(is);
+            Workbook workbook = new XSSFWorkbook(fileInputStream);
             Sheet sheet = workbook.getSheetAt(0);
 
             for(int rowIndex = 0; rowIndex <= sheet.getLastRowNum(); rowIndex ++) {
@@ -70,6 +73,7 @@ public class FragmentGroceries extends Fragment {
                 String value = cell.getStringCellValue();
                 items.add(new Item(String.valueOf(value), R.drawable.images));
             }
+            fileInputStream.close();
             workbook.close();
         } catch (IOException e) {
             e.printStackTrace();
