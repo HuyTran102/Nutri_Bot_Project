@@ -58,13 +58,13 @@ public class FragmentGroceries extends Fragment {
         String path = "Groceries.xlsx";
 
         try {
-            AssetManager am = getContext().getAssets();
+            AssetManager am = requireContext().getAssets();
             InputStream is = am.open(path);
 
             Workbook workbook = new XSSFWorkbook(is);
             Sheet sheet = workbook.getSheetAt(0);
 
-            for(int rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex ++) {
+            for(int rowIndex = 3; rowIndex <= sheet.getLastRowNum(); rowIndex ++) {
                 Row row = sheet.getRow(rowIndex);
                 Cell cell = row.getCell(1);
                 String value = cell.getStringCellValue();
