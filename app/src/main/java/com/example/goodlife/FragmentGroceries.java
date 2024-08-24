@@ -1,5 +1,7 @@
 package com.example.goodlife;
 
+import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 
@@ -62,8 +64,12 @@ public class FragmentGroceries extends Fragment {
         try {
 //            AssetManager am = requireContext().getAssets();
 //            InputStream is = am.open(path);
-            FileInputStream fileInputStream = new FileInputStream(path);
 
+
+                AssetManager am = getContext().getAssets();
+                InputStream fileInputStream = am.open(path);
+
+            //FileInputStream fileInputStream = new FileInputStream();
             Workbook workbook = new XSSFWorkbook(fileInputStream);
             Sheet sheet = workbook.getSheetAt(0);
 
@@ -74,7 +80,8 @@ public class FragmentGroceries extends Fragment {
                 items.add(new Item(String.valueOf(value), R.drawable.images));
             }
             fileInputStream.close();
-            workbook.close();
+
+           workbook.close();
         } catch (IOException e) {
             e.printStackTrace();
             Log.e(TAG, Objects.requireNonNull(e.getMessage()));
