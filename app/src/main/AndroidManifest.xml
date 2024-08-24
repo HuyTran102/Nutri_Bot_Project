@@ -48,8 +48,6 @@
             android:resource="@array/preloaded_fonts" />
     </application>
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
-        tools:ignore="ManifestOrder"
-        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
 </manifest>

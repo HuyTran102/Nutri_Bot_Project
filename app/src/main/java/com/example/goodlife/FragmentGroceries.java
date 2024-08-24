@@ -64,11 +64,11 @@ public class FragmentGroceries extends Fragment {
             Workbook workbook = new XSSFWorkbook(is);
             Sheet sheet = workbook.getSheetAt(0);
 
-            for(int rowIndex = 3; rowIndex <= sheet.getLastRowNum(); rowIndex ++) {
+            for(int rowIndex = 0; rowIndex <= sheet.getLastRowNum(); rowIndex ++) {
                 Row row = sheet.getRow(rowIndex);
                 Cell cell = row.getCell(1);
                 String value = cell.getStringCellValue();
-                items.add(new Item(value, R.drawable.images));
+                items.add(new Item(String.valueOf(value), R.drawable.images));
             }
             workbook.close();
         } catch (IOException e) {
