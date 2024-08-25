@@ -55,7 +55,7 @@ public class FragmentGroceries extends Fragment {
             Workbook workbook = new XSSFWorkbook(fileInputStream);
             Sheet sheet = workbook.getSheetAt(0);
 
-            for(int rowIndex = 1; rowIndex <= sheet.getPhysicalNumberOfRows(); rowIndex ++) {
+            for(int rowIndex = 1; rowIndex < sheet.getPhysicalNumberOfRows(); rowIndex ++) {
                 Row row = sheet.getRow(rowIndex);
                 Cell cell = row.getCell(0);
 //                String value = cell.getStringCellValue();
