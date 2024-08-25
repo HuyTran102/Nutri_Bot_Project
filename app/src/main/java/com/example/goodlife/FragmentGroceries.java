@@ -62,14 +62,12 @@ public class FragmentGroceries extends Fragment {
         String path = "Groceries.xlsx";
 
         try {
-//            AssetManager am = requireContext().getAssets();
-//            InputStream is = am.open(path);
 
+            AssetManager am = getContext().getAssets();
+            InputStream fileInputStream = am.open(path);
 
-                AssetManager am = getContext().getAssets();
-                InputStream fileInputStream = am.open(path);
+//            FileInputStream fileInputStream = new FileInputStream(path);
 
-            //FileInputStream fileInputStream = new FileInputStream();
             Workbook workbook = new XSSFWorkbook(fileInputStream);
             Sheet sheet = workbook.getSheetAt(0);
 
