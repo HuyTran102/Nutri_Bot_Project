@@ -37,29 +37,13 @@ public class FragmentGroceries extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_groceries, container, false);
-
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_groceries, container, false);
 
         RecyclerView recyclerView = view.findViewById(R.id.recycleView);
 
         List<Item> items = new ArrayList<>();
-//        items.add(new Item("Huy", R.drawable.images));
-//        items.add(new Item("Hiếu", R.drawable.images));
-//        items.add(new Item("Nam", R.drawable.images));
-//        items.add(new Item("Hiếu", R.drawable.images));
-//        items.add(new Item("Hằng", R.drawable.images));
-//        items.add(new Item("Hiền", R.drawable.images));
-//        items.add(new Item("Hằng", R.drawable.images));
-//        items.add(new Item("Thảo", R.drawable.images));
-//        items.add(new Item("Hằng", R.drawable.images));
-//        items.add(new Item("Linh", R.drawable.images));
 
-        String path = "Groceries.xlsx";
+        String path = "bmiBoys.xlsx";
 
         try {
 
@@ -71,15 +55,16 @@ public class FragmentGroceries extends Fragment {
             Workbook workbook = new XSSFWorkbook(fileInputStream);
             Sheet sheet = workbook.getSheetAt(0);
 
-            for(int rowIndex = 0; rowIndex <= sheet.getLastRowNum(); rowIndex ++) {
+            for(int rowIndex = 1; rowIndex <= sheet.getPhysicalNumberOfRows(); rowIndex ++) {
                 Row row = sheet.getRow(rowIndex);
-                Cell cell = row.getCell(1);
-                String value = cell.getStringCellValue();
+                Cell cell = row.getCell(0);
+//                String value = cell.getStringCellValue();
+                int value = (int) cell.getNumericCellValue();
                 items.add(new Item(String.valueOf(value), R.drawable.images));
             }
             fileInputStream.close();
 
-           workbook.close();
+            workbook.close();
         } catch (IOException e) {
             e.printStackTrace();
             Log.e(TAG, Objects.requireNonNull(e.getMessage()));
@@ -89,6 +74,59 @@ public class FragmentGroceries extends Fragment {
 //        recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(new ViewAdapter(getContext(), items));
 
+        return view;
+
     }
+
+//    @Override
+//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//
+//        RecyclerView recyclerView = view.findViewById(R.id.recycleView);
+//
+//        List<Item> items = new ArrayList<>();
+////        items.add(new Item("Huy", R.drawable.images));
+////        items.add(new Item("Hiếu", R.drawable.images));
+////        items.add(new Item("Nam", R.drawable.images));
+////        items.add(new Item("Hiếu", R.drawable.images));
+////        items.add(new Item("Hằng", R.drawable.images));
+////        items.add(new Item("Hiền", R.drawable.images));
+////        items.add(new Item("Hằng", R.drawable.images));
+////        items.add(new Item("Thảo", R.drawable.images));
+////        items.add(new Item("Hằng", R.drawable.images));
+////        items.add(new Item("Linh", R.drawable.images));
+//
+//        String path = "bmiBoys.xlsx";
+//
+//        try {
+//
+//            AssetManager am = getContext().getAssets();
+//            InputStream fileInputStream = am.open(path);
+//
+////            FileInputStream fileInputStream = new FileInputStream(path);
+//
+//            Workbook workbook = new XSSFWorkbook(fileInputStream);
+//            Sheet sheet = workbook.getSheetAt(0);
+//
+//            for(int rowIndex = 1; rowIndex <= sheet.getPhysicalNumberOfRows(); rowIndex ++) {
+//                Row row = sheet.getRow(rowIndex);
+//                Cell cell = row.getCell(0);
+////                String value = cell.getStringCellValue();
+//                int value = (int) cell.getNumericCellValue();
+//                items.add(new Item(String.valueOf(value), R.drawable.images));
+//            }
+//            fileInputStream.close();
+//
+//           workbook.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            Log.e(TAG, Objects.requireNonNull(e.getMessage()));
+//        }
+//
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+////        recyclerView.setHasFixedSize(true);
+//        recyclerView.setAdapter(new ViewAdapter(getContext(), items));
+//
+//    }
 
 }
