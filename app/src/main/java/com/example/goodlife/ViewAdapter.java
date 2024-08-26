@@ -36,12 +36,16 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.image.setImageResource(items.get(position).getImage());
         holder.text.setText(items.get(position).getName());
-        String itemName = items.get(position).getName();
+        Item itemAtPosition = items.get(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, ItemData.class);
-                intent.putExtra("Name", itemName);
+                intent.putExtra("Name", itemAtPosition.name);
+                intent.putExtra("Kcal", itemAtPosition.kcal);
+                intent.putExtra("Protein", itemAtPosition.protein);
+                intent.putExtra("Lipid", itemAtPosition.lipid);
+                intent.putExtra("Glucid", itemAtPosition.glucid);
                 context.startActivity(intent);
             }
         });

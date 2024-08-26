@@ -59,7 +59,15 @@ public class FragmentDrinks extends Fragment {
                 Row row = sheet.getRow(rowIndex);
                 Cell cell = row.getCell(1);
                 String value = cell.getStringCellValue();
-                items.add(new Item(String.valueOf(value), R.drawable.images));
+                cell = row.getCell(2);
+                int kcal = (int) cell.getNumericCellValue();
+                cell = row.getCell(3);
+                double protein = cell.getNumericCellValue();
+                cell = row.getCell(4);
+                double lipid = cell.getNumericCellValue();
+                cell = row.getCell(5);
+                double glucid = cell.getNumericCellValue();
+                items.add(new Item(String.valueOf(value), R.drawable.images, kcal, protein, lipid, glucid));
             }
             fileInputStream.close();
 
