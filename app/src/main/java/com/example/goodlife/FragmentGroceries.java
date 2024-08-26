@@ -55,11 +55,11 @@ public class FragmentGroceries extends Fragment {
             Workbook workbook = new XSSFWorkbook(fileInputStream);
             Sheet sheet = workbook.getSheetAt(0);
 
-            for(int rowIndex = 1; rowIndex < sheet.getPhysicalNumberOfRows(); rowIndex ++) {
+            for(int rowIndex = 0; rowIndex < sheet.getPhysicalNumberOfRows() - 1; rowIndex ++) {
                 Row row = sheet.getRow(rowIndex);
-                Cell cell = row.getCell(0);
-//                String value = cell.getStringCellValue();
-                int value = (int) cell.getNumericCellValue();
+                Cell cell = row.getCell(1);
+                String value = cell.getStringCellValue();
+//                int value = (int) cell.getNumericCellValue();
                 items.add(new Item(String.valueOf(value), R.drawable.images));
             }
             fileInputStream.close();
