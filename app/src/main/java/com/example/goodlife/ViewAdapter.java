@@ -46,6 +46,7 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewHolder> {
                 intent.putExtra("Protein", itemAtPosition.protein);
                 intent.putExtra("Lipid", itemAtPosition.lipid);
                 intent.putExtra("Glucid", itemAtPosition.glucid);
+                intent.putExtra("Image", itemAtPosition.getImage());
                 context.startActivity(intent);
             }
         });
