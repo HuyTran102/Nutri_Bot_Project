@@ -61,12 +61,12 @@ public class ItemData extends AppCompatActivity {
         itemImage.setImageResource(imageId);
 
         String stringAmount = String.valueOf(itemAmount.getText());
-//        Double amount = Double.parseDouble(String.valueOf(itemAmount.getText()));
-//
-//        kcal = (int) ((kcal * amount) / 100);
-//        protein = (protein * amount) / 100;
-//        lipid = (lipid * amount) / 100;
-//        glucid = (glucid * amount) / 100;
+        Double amount = Double.parseDouble(String.valueOf(itemAmount.getText()));
+
+        kcal = (int) ((kcal * amount) / 100);
+        protein = (protein * amount) / 100;
+        lipid = (lipid * amount) / 100;
+        glucid = (glucid * amount) / 100;
 
         viewItemName.setText(itemName);
         itemKcalo.setText(String.valueOf(kcal));
