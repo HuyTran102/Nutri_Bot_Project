@@ -94,7 +94,8 @@
                     android:ems="10"
                     android:inputType="numberDecimal"
                     android:textSize="18sp"
-                    android:textStyle="bold">
+                    android:textStyle="bold"
+                    >
 
                 </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
