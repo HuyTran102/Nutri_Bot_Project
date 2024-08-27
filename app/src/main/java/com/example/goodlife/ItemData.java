@@ -60,8 +60,8 @@ public class ItemData extends AppCompatActivity {
 
         itemImage.setImageResource(imageId);
 
-        String stringAmount = String.valueOf(itemAmount.getText().toString());
-        Double amount = Double.parseDouble(String.valueOf(itemAmount.getText().toString()));
+        String stringAmount = String.valueOf(itemAmount.getText());
+        Double amount = Double.parseDouble(String.valueOf(itemAmount.getText()));
 
         kcal = (int) ((kcal * amount) / 100);
         protein = (protein * amount) / 100;
