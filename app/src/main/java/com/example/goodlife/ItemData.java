@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import org.apache.poi.ss.formula.functions.T;
+
 public class ItemData extends AppCompatActivity {
 
     TextView viewItemName, itemKcalo, itemProtein, itemLipid, itemGlucid;
@@ -59,21 +61,20 @@ public class ItemData extends AppCompatActivity {
         itemImage.setImageResource(imageId);
 
         String stringAmount = String.valueOf(itemAmount.getText());
-        Double amount = Double.parseDouble(String.valueOf(itemAmount.getText()));
-
-        kcal = (int) ((kcal * amount) / 100);
-        protein = (protein * amount) / 100;
-        lipid = (lipid * amount) / 100;
-        glucid = (glucid * amount) / 100;
-
-//        viewItemName.setText(itemName);
-//        itemKcalo.setText(String.valueOf(kcal));
-//        itemProtein.setText(String.valueOf(protein));
-//        itemLipid.setText(String.valueOf(lipid));
-//        itemGlucid.setText(String.valueOf(glucid));
+//        Double amount = Double.parseDouble(String.valueOf(itemAmount.getText()));
 //
-//        itemImage.setImageResource(imageId);
+//        kcal = (int) ((kcal * amount) / 100);
+//        protein = (protein * amount) / 100;
+//        lipid = (lipid * amount) / 100;
+//        glucid = (glucid * amount) / 100;
 
+        viewItemName.setText(itemName);
+        itemKcalo.setText(String.valueOf(kcal));
+        itemProtein.setText(String.valueOf(protein));
+        itemLipid.setText(String.valueOf(lipid));
+        itemGlucid.setText(String.valueOf(glucid));
+
+        itemImage.setImageResource(imageId);
 
 //        Toast.makeText(ItemData.this, kcal + " " + protein + " " + lipid + " " + glucid, Toast.LENGTH_SHORT).show();
 
