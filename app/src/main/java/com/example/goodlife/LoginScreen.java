@@ -4,15 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,37 +24,31 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Calendar;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginScreen extends AppCompatActivity {
 
-    TextInputEditText editTextName, editTextPassword;
-
-    Button signIn;
-
-    LinearLayout signUp;
-
+    EditText editTextName, editTextPassword;
+    Button loginButton;
     String signInDate;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Layout sceen
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ContextWrapper contextWrapper = new ContextWrapper(
+                getApplicationContext());
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+        setContentView(R.layout.activity_login);
 
-        editTextName = findViewById(R.id.acc_name);
-        editTextPassword = findViewById(R.id.acc_password);
-        signIn = findViewById(R.id.sign_in);
-        signUp = findViewById(R.id.sign_up);
+        // Set value for object zone
+        editTextName = findViewById(R.id.editEditTextMail);
+        editTextPassword = findViewById(R.id.editTextPassword);
+        loginButton = findViewById(R.id.loginButton);
         signInDate = getTodaysDate();
 
+        // Login zone
         SharedPreferences sharedPreferences = getSharedPreferences("Data", Context.MODE_PRIVATE);
-
-
-        signUp.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, RegisterPage.class);
-            startActivity(intent);
-            finish();
-        });
-
-        signIn.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(validDataUsername() || !validDataUserPassword()) {
@@ -66,7 +61,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    public void onLoginClick(View view){
+        startActivity(new Intent(this,RegisterPage.class));
+        overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+    }
 
+    // use to get Date
     private String getTodaysDate() {
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
@@ -75,11 +75,11 @@ public class MainActivity extends AppCompatActivity {
         int day = cal.get(Calendar.DAY_OF_MONTH);
         return makeDateString(day, month, year);
     }
-
+    // Convert to string day
     private String makeDateString(int day, int month, int year) {
         return getMonthFormat(month) + "/" + day + "/" + year;
     }
-
+    // Format  month
     private String getMonthFormat(int month) {
         if(month == 1)
             return "JAN";
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
         return "JAN";
     }
-
+    // Check is UserName correct
     public Boolean validDataUsername() {
         String name;
         name = String.valueOf(editTextName.getText());
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     }
-
+    // Check is Password correct
     public Boolean validDataUserPassword() {
         String password;
         password = String.valueOf(editTextPassword.getText());
@@ -132,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     }
+    // Login function
     public void checkUserData() {
         String name, password;
         name = String.valueOf(editTextName.getText()).trim();
@@ -150,8 +151,8 @@ public class MainActivity extends AppCompatActivity {
 
                     if(Objects.equals(passwordFromDB, password)) {
                         editTextName.setError(null);
-                        Toast.makeText(MainActivity.this, "Đăng nhập tài khoản thành công!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(MainActivity.this, HomePage.class);
+                        Toast.makeText(LoginScreen.this, "Đăng nhập tài khoản thành công!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginScreen.this, HomePage.class);
                         startActivity(intent);
                         finish();
                     } else {
