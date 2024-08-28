@@ -46,13 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("Data", Context.MODE_PRIVATE);
 
-//        String name = sharedPreferences.getString("Name", null);
-//
-//        if(name != null) {
-//            Intent intent = new Intent(MainActivity.this, HomePage.class);
-//            startActivity(intent);
-//            finish();
-//        }
 
         signUp.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, RegisterPage.class);
