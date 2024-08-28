@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Calendar;
 import java.util.Objects;
 
-public class HomeScreen extends AppCompatActivity {
+public class LoginScreen extends AppCompatActivity {
 
     EditText editTextName, editTextPassword;
     Button loginButton;
@@ -151,8 +151,8 @@ public class HomeScreen extends AppCompatActivity {
 
                     if(Objects.equals(passwordFromDB, password)) {
                         editTextName.setError(null);
-                        Toast.makeText(HomeScreen.this, "Đăng nhập tài khoản thành công!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(HomeScreen.this, HomePage.class);
+                        Toast.makeText(LoginScreen.this, "Đăng nhập tài khoản thành công!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginScreen.this, HomePage.class);
                         startActivity(intent);
                         finish();
                     } else {
