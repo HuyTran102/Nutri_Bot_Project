@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
+import com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -22,15 +24,14 @@ public class RegisterPage extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
 
-    TextInputEditText editTextName, editTextPassword, editTextGender;
-
-    Button signUp;
+    EditText editTextName, editTextPassword, editTextGender;
+    CircularProgressButton signUp;
 
     LinearLayout signIn;
 
     FirebaseDatabase database;
     DatabaseReference reference;
-
+    RadioButton chosse_boy, chose_girl;
     String date, signUpDate;
 
     @Override
@@ -42,17 +43,10 @@ public class RegisterPage extends AppCompatActivity {
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
         editTextName = findViewById(R.id.acc_name);
-        editTextPassword = findViewById(R.id.acc_password);
-        editTextGender = findViewById(R.id.acc_gender);
-        signIn = findViewById(R.id.sign_in);
-        signUp = findViewById(R.id.sign_up);
+        editTextPassword = findViewById(R.id.editTextPassword);
+        signUp = findViewById(R.id.RegisterButton);
         signUpDate = getTodaysDate();
-
-        signIn.setOnClickListener(view -> {
-            Intent intent = new Intent(RegisterPage.this, LoginScreen.class);
-            startActivity(intent);
-            finish();
-        });
+        // User click sign up button
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,20 +57,19 @@ public class RegisterPage extends AppCompatActivity {
                 String name, password, gender;
                 name = String.valueOf(editTextName.getText());
                 password = String.valueOf(editTextPassword.getText());
-                gender = String.valueOf(editTextGender.getText());
-
+                if(chosse_boy.isChecked()) gender = "Nam"; else gender = "Nữ";
                 HelperClass helperClass = new HelperClass(name, password, date, gender, signUpDate);
                 reference.child(name).setValue(helperClass);
 
                 Toast.makeText(RegisterPage.this, "Đăng kí tài khoản thành công!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(RegisterPage.this, LoginScreen.class);
+                Intent intent = new Intent(RegisterPage.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
 
     }
-
+    // Get today information
     private String getTodaysDate() {
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
@@ -85,7 +78,7 @@ public class RegisterPage extends AppCompatActivity {
         int day = cal.get(Calendar.DAY_OF_MONTH);
         return makeDateString(day, month, year);
     }
-
+    // Date Picker
     private void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -106,12 +99,12 @@ public class RegisterPage extends AppCompatActivity {
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
         //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
     }
-
+    // Convert from date to String
     private String makeDateString(int day, int month, int year) {
         date = getMonthFormat(month) + "/" + day + "/" + year;
         return "Ngày sinh: " + getMonthFormat(month) + " " + day + " " + year;
     }
-
+    // Get Month Format
     private String getMonthFormat(int month) {
         if(month == 1)
             return "JAN";
@@ -140,8 +133,13 @@ public class RegisterPage extends AppCompatActivity {
 
         return "JAN";
     }
-
+    // open Date picker
     public void openDatePicker(View view) {
         datePickerDialog.show();
+    }
+
+    public void onLoginClick(View view){
+        startActivity(new Intent(this, LoginScreen.class));
+        overridePendingTransition(R.anim.slide_in_left,android.R.anim.slide_out_right);
     }
 }
