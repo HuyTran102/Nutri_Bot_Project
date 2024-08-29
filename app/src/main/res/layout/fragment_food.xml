@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".FragmentFood">
-
     <!-- TODO: Update blank fragment layout -->
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_bar"
@@ -18,14 +17,16 @@
         app:queryHint="Search"
         app:searchHintIcon="@null">
     </androidx.appcompat.widget.SearchView>
-
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/recycleView"
         android:layout_marginTop="8dp"
         android:scrollbars="vertical"
-        android:layout_below="@id/search_bar">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:padding="12dp"
+        android:clipToPadding="false"
+        android:scrollbarStyle="outsideOverlay"
+        android:layout_below="@+id/search_bar">
 
+    </androidx.recyclerview.widget.RecyclerView>
 </RelativeLayout>

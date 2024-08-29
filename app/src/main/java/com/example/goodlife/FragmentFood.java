@@ -42,7 +42,6 @@ public class FragmentFood extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         RecyclerView recyclerView = view.findViewById(R.id.recycleView);
-
         List<Item> items = new ArrayList<>();
 
         String path = "Groceries.xlsx";
@@ -54,7 +53,6 @@ public class FragmentFood extends Fragment {
 
             Workbook workbook = new XSSFWorkbook(fileInputStream);
             Sheet sheet = workbook.getSheetAt(0);
-
             for(int rowIndex = 0; rowIndex < sheet.getPhysicalNumberOfRows() - 1; rowIndex ++) {
                 Row row = sheet.getRow(rowIndex);
                 Cell cell = row.getCell(1);
@@ -79,6 +77,5 @@ public class FragmentFood extends Fragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new ViewAdapter(getContext(), items));
-
     }
 }

@@ -35,7 +35,7 @@
         app:endIconMode="clear_text">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/acc_name"
+            android:id="@+id/acc_name1"
             android:layout_width="295dp"
             android:layout_height="50dp"
             android:autofillHints=""

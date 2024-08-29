@@ -35,7 +35,7 @@
                     style="@style/viewParent.headerText.NoMode"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="Đã có\ntài khoản\ntrước đó" />
+                    android:text="Đăng nhập" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
                 <EditText
                     android:id="@+id/editEditTextMail"
                     style="@style/modifiedEditText"
-                    android:hint="@string/login_email_hint"
+                    android:hint="Tên"
                     android:inputType="textEmailAddress"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -67,7 +67,7 @@
                 <EditText
                     android:id="@+id/editTextPassword"
                     style="@style/modifiedEditText"
-                    android:hint="@string/login_password_hint"
+                    android:hint="Mật khẩu"
                     android:inputType="textPassword"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
