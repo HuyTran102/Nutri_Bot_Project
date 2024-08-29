@@ -197,18 +197,31 @@
         </LinearLayout>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/calc_button"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/custom_button"
-        android:text="Tính"
-        android:textSize="20dp"
-        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.838" />
+        app:layout_constraintVertical_bias="0.838" >
+        <Button
+            android:id="@+id/calc_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:text="Tính"
+            android:textSize="20dp"
+            app:backgroundTint="@null" />
+        <Button
+            android:id="@+id/add_to_diary_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:text="Lưu"
+            android:textSize="20dp"
+            app:backgroundTint="@null"/>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

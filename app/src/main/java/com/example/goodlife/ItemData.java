@@ -20,7 +20,7 @@ public class ItemData extends AppCompatActivity {
 
     TextInputEditText itemAmount;
 
-    Button backButton, calculateButton;
+    Button backButton, calculateButton, addToDiaryButton;
 
     ImageView itemImage;
 
@@ -31,6 +31,7 @@ public class ItemData extends AppCompatActivity {
 
         backButton = findViewById(R.id.back_button);
         calculateButton = findViewById(R.id.calc_button);
+        addToDiaryButton = findViewById(R.id.add_to_diary_button);
         viewItemName = findViewById(R.id.item_name);
         itemKcalo = findViewById(R.id.item_kcalo);
         itemProtein = findViewById(R.id.item_protein);
