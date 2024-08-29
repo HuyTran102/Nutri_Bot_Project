@@ -49,7 +49,7 @@ public class RegisterPage extends AppCompatActivity {
         signUpDate = getTodaysDate();
 
         signIn.setOnClickListener(view -> {
-            Intent intent = new Intent(RegisterPage.this, MainActivity.class);
+            Intent intent = new Intent(RegisterPage.this, LoginScreen.class);
             startActivity(intent);
             finish();
         });
@@ -69,7 +69,7 @@ public class RegisterPage extends AppCompatActivity {
                 reference.child(name).setValue(helperClass);
 
                 Toast.makeText(RegisterPage.this, "Đăng kí tài khoản thành công!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(RegisterPage.this, MainActivity.class);
+                Intent intent = new Intent(RegisterPage.this, LoginScreen.class);
                 startActivity(intent);
                 finish();
             }

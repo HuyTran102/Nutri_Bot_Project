@@ -62,7 +62,8 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputPassword"
                 style="@style/parent"
-                android:layout_marginTop="@dimen/loginViewsMargin">
+                android:layout_marginTop="@dimen/loginViewsMargin"
+                app:passwordToggleEnabled="true">
 
                 <EditText
                     android:id="@+id/editTextPassword"
@@ -109,7 +110,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:gravity="center"
-                android:weightSum="12"></LinearLayout>
+                android:weightSum="12">
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
