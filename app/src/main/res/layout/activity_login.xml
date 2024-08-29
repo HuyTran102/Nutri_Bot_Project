@@ -35,7 +35,7 @@
                     style="@style/viewParent.headerText.NoMode"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="Đăng nhập" />
+                    android:text="Đăng nhập \n tài khoản" />
 
                 <ImageView
                     android:layout_width="wrap_content"
