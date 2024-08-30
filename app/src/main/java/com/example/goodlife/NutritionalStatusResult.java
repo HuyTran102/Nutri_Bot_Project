@@ -29,6 +29,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 public class NutritionalStatusResult extends AppCompatActivity {
@@ -37,7 +38,7 @@ public class NutritionalStatusResult extends AppCompatActivity {
 
     String name, signInDate, gender, password, date, height, weight;
 
-    TextView bmiStatusView, hfaStatusView;
+    TextView bmiStatusView, hfaStatusView, heightView, weightView;
 
     private static final String TAG = "ExcelRead";
 
@@ -49,6 +50,8 @@ public class NutritionalStatusResult extends AppCompatActivity {
         backButton = findViewById(R.id.back_button);
         bmiStatusView = findViewById(R.id.bmiView);
         hfaStatusView = findViewById(R.id.hfaView);
+        heightView = findViewById(R.id.height_view);
+        weightView = findViewById(R.id.weight_view);
 
         SharedPreferences sharedPreferences = getSharedPreferences("Data", Context.MODE_PRIVATE);
         name = sharedPreferences.getString("Name",null);
@@ -217,6 +220,32 @@ public class NutritionalStatusResult extends AppCompatActivity {
                     }
 
 //                    Toast.makeText(NutritionalStatusResult.this, " " + negativeSD3 + " " + negativeSD2 + " " + negativeSD1 + " " + positiveSD0 + " " + positiveSD1 + " " + positiveSD2 + " " + positiveSD3 + " ", Toast.LENGTH_SHORT).show();
+                    
+                    DecimalFormat decimalFormat = new DecimalFormat("0.0");
+
+                    String result = "";
+
+                    if(bmi < positiveSD3 && bmi >= positiveSD1) {
+                        result += "Thừa ";
+
+                        double recommendWeight = positiveSD1 * Double.parseDouble(height) * Double.parseDouble(height);
+
+                        double subtrac = Double.parseDouble(weight) - recommendWeight;
+
+                        result += decimalFormat.format(subtrac) + " (kg)";
+                        weightView.setText(result);
+                    }  else if(negativeSD2 <= bmi && bmi <= positiveSD1) {
+                        result += "Bình thường 0.0 (kg)";
+                    } else {
+                        result += "Thiếu ";
+
+                        double recommendWeight = negativeSD1 * Double.parseDouble(height) * Double.parseDouble(height);
+
+                        double add = Math.abs(Double.parseDouble(weight) - recommendWeight);
+
+                        result += decimalFormat.format(add) + " (kg)";
+                        weightView.setText(result);
+                    }
                 }
             }
 
@@ -288,6 +317,28 @@ public class NutritionalStatusResult extends AppCompatActivity {
                     }
 
 //                    Toast.makeText(NutritionalStatusResult.this, " " + negativeSD3 + " " + negativeSD2 + " " + negativeSD1 + " " + positiveSD0 + " " + positiveSD1 + " " + positiveSD2 + " " + positiveSD3 + " ", Toast.LENGTH_SHORT).show();
+
+                    DecimalFormat decimalFormat = new DecimalFormat("0.0");
+
+                    String result = "";
+
+                    if(height < positiveSD3 && height >= positiveSD1) {
+                        result += "Thừa ";
+
+                        double subtrac = height - positiveSD1;
+
+                        result += decimalFormat.format(subtrac) + " (cm)";
+                        heightView.setText(result);
+                    }  else if(negativeSD2 <= height && height <= negativeSD2) {
+                        result += "Bình thường 0.0 (cm)";
+                    } else {
+                        result += "Thiếu ";
+
+                        double add = Math.abs(height - negativeSD1);
+
+                        result += decimalFormat.format(add) + " (cm)";
+                        heightView.setText(result);
+                    }
                 }
             }
 
