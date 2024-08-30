@@ -236,6 +236,7 @@ public class NutritionalStatusResult extends AppCompatActivity {
                         weightView.setText(result);
                     }  else if(negativeSD2 <= bmi && bmi <= positiveSD1) {
                         result += "Bình thường 0.0 (kg)";
+                        weightView.setText(result);
                     } else {
                         result += "Thiếu ";
 
@@ -322,15 +323,16 @@ public class NutritionalStatusResult extends AppCompatActivity {
 
                     String result = "";
 
-                    if(height < positiveSD3 && height >= positiveSD1) {
+                    if(height > positiveSD3 && height >= positiveSD1) {
                         result += "Thừa ";
 
                         double subtrac = height - positiveSD1;
 
                         result += decimalFormat.format(subtrac) + " (cm)";
                         heightView.setText(result);
-                    }  else if(negativeSD2 <= height && height <= negativeSD2) {
+                    }  else if(negativeSD2 <= height && height <= positiveSD3) {
                         result += "Bình thường 0.0 (cm)";
+                        heightView.setText(result);
                     } else {
                         result += "Thiếu ";
 
