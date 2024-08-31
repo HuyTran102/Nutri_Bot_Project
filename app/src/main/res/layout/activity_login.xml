@@ -55,6 +55,8 @@
                     android:id="@+id/editEditTextMail"
                     style="@style/modifiedEditText"
                     android:hint="Tên"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
                     android:inputType="textEmailAddress"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -69,6 +71,8 @@
                     android:id="@+id/editTextPassword"
                     style="@style/modifiedEditText"
                     android:hint="Mật khẩu"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
                     android:inputType="textPassword"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>

@@ -65,7 +65,16 @@ public class FragmentFood extends Fragment {
                 double lipid = (double) cell.getNumericCellValue();
                 cell = row.getCell(5);
                 double glucid = (double) cell.getNumericCellValue();
-                items.add(new Item(String.valueOf(value), R.drawable.images, kcal, protein, lipid, glucid));
+                cell = row.getCell(6);
+                int unit = (int) cell.getNumericCellValue();
+
+                String unit_type;
+                if(unit == 0) {
+                    unit_type = "(g)";
+                } else {
+                    unit_type = "(ml)";
+                }
+                items.add(new Item(String.valueOf(value), R.drawable.images, kcal, protein, lipid, glucid, unit_type));
             }
             fileInputStream.close();
 

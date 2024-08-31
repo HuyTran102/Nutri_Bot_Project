@@ -54,7 +54,6 @@ public class FragmentDrinks extends Fragment {
 
             Workbook workbook = new XSSFWorkbook(fileInputStream);
             Sheet sheet = workbook.getSheetAt(0);
-
             for(int rowIndex = 0; rowIndex < sheet.getPhysicalNumberOfRows() - 1; rowIndex ++) {
                 Row row = sheet.getRow(rowIndex);
                 Cell cell = row.getCell(1);
@@ -62,12 +61,21 @@ public class FragmentDrinks extends Fragment {
                 cell = row.getCell(2);
                 int kcal = (int) cell.getNumericCellValue();
                 cell = row.getCell(3);
-                double protein = cell.getNumericCellValue();
+                double protein = (double) cell.getNumericCellValue();
                 cell = row.getCell(4);
-                double lipid = cell.getNumericCellValue();
+                double lipid = (double) cell.getNumericCellValue();
                 cell = row.getCell(5);
-                double glucid = cell.getNumericCellValue();
-                items.add(new Item(String.valueOf(value), R.drawable.images, kcal, protein, lipid, glucid));
+                double glucid = (double) cell.getNumericCellValue();
+                cell = row.getCell(6);
+                int unit = (int) cell.getNumericCellValue();
+
+                String unit_type;
+                if(unit == 0) {
+                    unit_type = "(g)";
+                } else {
+                    unit_type = "(ml)";
+                }
+                items.add(new Item(String.valueOf(value), R.drawable.images, kcal, protein, lipid, glucid, unit_type));
             }
             fileInputStream.close();
 

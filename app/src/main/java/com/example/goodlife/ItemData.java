@@ -13,10 +13,11 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.DecimalFormat;
+import java.util.Objects;
 
 public class ItemData extends AppCompatActivity {
 
-    TextView viewItemName, itemKcalo, itemProtein, itemLipid, itemGlucid;
+    TextView viewItemName, itemKcalo, itemProtein, itemLipid, itemGlucid, itemUnitType, itemUnitName;
 
     TextInputEditText itemAmount;
 
@@ -33,6 +34,8 @@ public class ItemData extends AppCompatActivity {
         calculateButton = findViewById(R.id.calc_button);
         addToDiaryButton = findViewById(R.id.add_to_diary_button);
         viewItemName = findViewById(R.id.item_name);
+        itemUnitType = findViewById(R.id.unit_type);
+        itemUnitName = findViewById(R.id.unit_name);
         itemKcalo = findViewById(R.id.item_kcalo);
         itemProtein = findViewById(R.id.item_protein);
         itemLipid = findViewById(R.id.item_lipid);
@@ -42,7 +45,7 @@ public class ItemData extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        String itemName = "";
+        String itemName = "", unitType = "", unitName;
         final int[] kcal = {0};
         int imageId = 0;
         final double[] protein = {0};
@@ -55,16 +58,21 @@ public class ItemData extends AppCompatActivity {
             lipid[0] = intent.getDoubleExtra("Lipid", 0);
             glucid[0] = intent.getDoubleExtra("Glucid", 0);
             imageId = intent.getIntExtra("Image", 0);
+            unitType = intent.getStringExtra("UnitType");
         }
 
         viewItemName.setText(itemName);
 
-//        itemKcalo.setText(String.valueOf(kcal));
-//        itemProtein.setText(String.valueOf(protein));
-//        itemLipid.setText(String.valueOf(lipid));
-//        itemGlucid.setText(String.valueOf(glucid));
-
         itemImage.setImageResource(imageId);
+        
+        if(Objects.equals(unitType, "(g)")) {
+            unitName = "Khối lượng";
+        } else {
+            unitName = "Thể tích";
+        }
+
+        itemUnitType.setText(unitType);
+        itemUnitName.setText(unitName);
 
         final Double[] amount = new Double[1];
 
@@ -98,15 +106,6 @@ public class ItemData extends AppCompatActivity {
                 itemGlucid.setText(glucidValue);
             }
         });
-
-        viewItemName.setText(itemName);
-
-//        itemKcalo.setText(String.valueOf(kcal[0]));
-//        itemProtein.setText(String.valueOf(protein[0]));
-//        itemLipid.setText(String.valueOf(lipid[0]));
-//        itemGlucid.setText(String.valueOf(glucid[0]));
-
-        itemImage.setImageResource(imageId);
 
 //        Toast.makeText(ItemData.this, kcal + " " + protein + " " + lipid + " " + glucid, Toast.LENGTH_SHORT).show();
 

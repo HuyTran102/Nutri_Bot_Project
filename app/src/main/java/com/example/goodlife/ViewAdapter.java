@@ -47,6 +47,7 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewHolder> {
                 intent.putExtra("Lipid", itemAtPosition.lipid);
                 intent.putExtra("Glucid", itemAtPosition.glucid);
                 intent.putExtra("Image", itemAtPosition.getImage());
+                intent.putExtra("UnitType", itemAtPosition.unit_type);
                 context.startActivity(intent);
             }
         });

@@ -2,7 +2,7 @@ package com.example.goodlife;
 
 public class Item {
 
-    String name;
+    String name, unit_type;
 
     int image, kcal;
 
@@ -12,13 +12,14 @@ public class Item {
 //        this.name = name;
 //    }
 
-    public Item(String name, int image, int kcal, double protein, double lipid, double glucid) {
+    public Item(String name, int image, int kcal, double protein, double lipid, double glucid, String unit_type) {
         this.name = name;
         this.image = image;
         this.kcal = kcal;
         this.protein = protein;
         this.lipid = lipid;
         this.glucid = glucid;
+        this.unit_type = unit_type;
     }
 
 
