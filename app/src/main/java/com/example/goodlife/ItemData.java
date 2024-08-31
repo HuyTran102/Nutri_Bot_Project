@@ -45,7 +45,7 @@ public class ItemData extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        String itemName = "", unitType = "", unitName;
+        String itemName = "", unitType = "", unitName = "";
         final int[] kcal = {0};
         int imageId = 0;
         final double[] protein = {0};
@@ -108,6 +108,22 @@ public class ItemData extends AppCompatActivity {
         });
 
 //        Toast.makeText(ItemData.this, kcal + " " + protein + " " + lipid + " " + glucid, Toast.LENGTH_SHORT).show();
+
+        String finalItemName = itemName;
+        String finalUnitType = unitType;
+        addToDiaryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ItemData.this, FragmentDiary.class);
+                intent.putExtra("Name", finalItemName);
+                intent.putExtra("Kcal", kcal);
+                intent.putExtra("Protein", protein);
+                intent.putExtra("Lipid", lipid);
+                intent.putExtra("Glucid", glucid);
+                intent.putExtra("UnitType", finalUnitType);
+                startActivity(intent);
+            }
+        });
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
