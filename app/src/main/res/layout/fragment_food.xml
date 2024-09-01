@@ -17,6 +17,7 @@
         app:queryHint="Search"
         app:searchHintIcon="@null">
     </androidx.appcompat.widget.SearchView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,6 +28,5 @@
         android:clipToPadding="false"
         android:scrollbarStyle="outsideOverlay"
         android:layout_below="@+id/search_bar">
-
     </androidx.recyclerview.widget.RecyclerView>
 </RelativeLayout>

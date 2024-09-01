@@ -17,7 +17,8 @@
         android:scrollbars="vertical"
         android:padding="12dp"
         android:clipToPadding="false"
-        android:scrollbarStyle="outsideOverlay">
+        android:scrollbarStyle="outsideOverlay"
+        android:layout_below="@+id/search_bar">
     </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

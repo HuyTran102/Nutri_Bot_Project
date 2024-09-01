@@ -39,5 +39,20 @@ public class FragmentDiary extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        RecyclerView recyclerView = view.findViewById(R.id.recycleView);
+
+        List<DiaryItem> items = new ArrayList<>();
+
+        items.add(new DiaryItem("Sữa chưa TH việt quất", 100, 64, 11, 1.6, 1.6, "(g)", "Khối lượng"));
+        items.add(new DiaryItem("Sữa chưa TH việt quất", 100, 64, 11, 1.6, 1.6, "(g)", "Khối lượng"));
+        items.add(new DiaryItem("Sữa chưa TH việt quất", 100, 64, 11, 1.6, 1.6, "(g)", "Khối lượng"));
+        items.add(new DiaryItem("Sữa chưa TH việt quất", 100, 64, 11, 1.6, 1.6, "(g)", "Khối lượng"));
+        items.add(new DiaryItem("Sữa chưa TH việt quất", 100, 64, 11, 1.6, 1.6, "(g)", "Khối lượng"));
+        items.add(new DiaryItem("Sữa chưa TH việt quất", 100, 64, 11, 1.6, 1.6, "(g)", "Khối lượng"));
+
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(new DiaryViewAdapter(getContext(), items));
+
     }
 }
