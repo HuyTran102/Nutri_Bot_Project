@@ -45,10 +45,14 @@ public class DiaryViewAdapter extends RecyclerView.Adapter<DiaryViewHolder> {
             @Override
             public void onClick(View view) {
                 items.remove(position);
+
+                notifyDataSetChanged();
                 Intent intent = new Intent(context, Dietary.class);
                 context.startActivity(intent);
             }
         });
+
+
     }
 
     @Override
