@@ -1,7 +1,10 @@
 package com.example.goodlife;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -27,7 +30,7 @@ public class DiaryViewAdapter extends RecyclerView.Adapter<DiaryViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DiaryViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DiaryViewHolder holder, @SuppressLint("RecyclerView") int position) {
         DiaryItem itemAtPosition = items.get(position);
         holder.name.setText(itemAtPosition.getName());
         holder.unit_type.setText(itemAtPosition.getUnit_type());
@@ -37,6 +40,15 @@ public class DiaryViewAdapter extends RecyclerView.Adapter<DiaryViewHolder> {
         holder.protein.setText(String.valueOf(itemAtPosition.getProtein()));
         holder.lipid.setText(String.valueOf(itemAtPosition.getLipid()));
         holder.glucid.setText(String.valueOf(itemAtPosition.getGlucid()));
+
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                items.remove(position);
+                Intent intent = new Intent(context, Dietary.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
