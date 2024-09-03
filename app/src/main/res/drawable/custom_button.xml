@@ -6,15 +6,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Gray shadow. -->
-    <item android:left="2dp" android:top="2dp">
+    <item android:left="2.5dp" android:top="2.5dp">
         <shape>
-            <solid android:color="#D3B3B2B2" />
+            <solid android:color="#72B3B2B2" />
             <corners android:radius="6dp" />
         </shape>
     </item>
 
     <!-- White foreground. -->
-    <item android:bottom="2dp" android:right="2dp">
+    <item android:bottom="2.5dp" android:right="2.5dp">
         <shape>
             <size android:width="100dp"
                 android:height="50dp"/>
