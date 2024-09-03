@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape
+<layer-list
 
     android:shape="rectangle"
 
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <size android:width="100dp"
-        android:height="50dp"/>
-    <gradient android:startColor="#025706"
-        android:endColor="#457B06"/>
-    <corners android:radius="10dp"/>
-    <stroke android:color="#4E12B7"
-        android:width="1dp"/>
+    <!-- Gray shadow. -->
+    <item android:left="2dp" android:top="2dp">
+        <shape>
+            <solid android:color="#D3B3B2B2" />
+            <corners android:radius="6dp" />
+        </shape>
+    </item>
 
-</shape>
+    <!-- White foreground. -->
+    <item android:bottom="2dp" android:right="2dp">
+        <shape>
+            <size android:width="100dp"
+                android:height="50dp"/>
+            <solid android:color="@color/white"/>
+            <corners android:radius="6dp"/>
+<!--            <stroke android:color="#A6A6A7"-->
+<!--                android:width="1.1dp"/>-->
+        </shape>
+    </item>
+
+</layer-list>
