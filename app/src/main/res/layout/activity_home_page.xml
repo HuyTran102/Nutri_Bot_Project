@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomePage">
+    tools:context=".HomePage"
+    android:gravity="center">
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="203dp"
-        android:layout_height="33dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:text="@string/home_page"
         android:textAlignment="center"
-        android:textColor="#457B06"
+        android:textColor="#11A8EC"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/nutritionalStatusButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/nutritionalStatusButton"
@@ -56,14 +56,15 @@
         android:layout_width="330dp"
         android:layout_height="58dp"
         android:layout_marginTop="16dp"
-        app:backgroundTint="@null"
         android:background="@drawable/custom_button"
         android:text="@string/ch_t_p_luy_n"
         android:textSize="20dp"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dietaryButton"/>
+        app:layout_constraintTop_toBottomOf="@+id/dietaryButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

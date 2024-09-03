@@ -35,7 +35,9 @@
                     style="@style/viewParent.headerText.NoMode"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="Đăng nhập \n tài khoản" />
+                    android:text="Đăng nhập \n tài khoản"
+                    android:textStyle="bold"
+                    android:textColor="#02539B"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -56,7 +58,8 @@
                     style="@style/modifiedEditText"
                     android:hint="Tên"
                     android:textStyle="bold"
-                    android:textSize="14dp"
+                    android:textSize="16dp"
+                    android:textColor="#9E9D9D"
                     android:inputType="textEmailAddress"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -72,7 +75,8 @@
                     style="@style/modifiedEditText"
                     android:hint="Mật khẩu"
                     android:textStyle="bold"
-                    android:textSize="14dp"
+                    android:textSize="16dp"
+                    android:textColor="#9E9D9D"
                     android:inputType="textPassword"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
