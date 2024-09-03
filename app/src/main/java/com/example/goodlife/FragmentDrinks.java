@@ -45,7 +45,7 @@ public class FragmentDrinks extends Fragment {
 
         List<Item> items = new ArrayList<>();
 
-        String path = "Groceries.xlsx";
+        String path = "Diary.xlsx";
 
         try {
 
@@ -53,7 +53,7 @@ public class FragmentDrinks extends Fragment {
             InputStream fileInputStream = am.open(path);
 
             Workbook workbook = new XSSFWorkbook(fileInputStream);
-            Sheet sheet = workbook.getSheetAt(0);
+            Sheet sheet = workbook.getSheetAt(2);
             for(int rowIndex = 0; rowIndex < sheet.getPhysicalNumberOfRows() - 1; rowIndex ++) {
                 Row row = sheet.getRow(rowIndex);
                 Cell cell = row.getCell(1);
