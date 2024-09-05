@@ -24,16 +24,26 @@ public class FragmentDiary extends Fragment {
 
     List<DiaryItem> items = new ArrayList<>();
 
+    String itemName, unitName, unitType;
+
+    int kcal;
+
+    double amount, protein, lipid, glucid;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        
+        return inflater.inflate(R.layout.fragment_diary, container, false);
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        RecyclerView recyclerView = view.findViewById(R.id.recycleView);
 
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("DiaryData", Context.MODE_PRIVATE);
-
-        String itemName, unitName, unitType;
-
-        int kcal;
-
-        double amount, protein, lipid, glucid;
 
         itemName = sharedPreferences.getString("Name", null);
         unitName = sharedPreferences.getString("UnitName", null);
@@ -48,17 +58,6 @@ public class FragmentDiary extends Fragment {
 
         DiaryItem diaryItem = new DiaryItem(itemName, amount, kcal, protein, lipid, glucid, unitType, unitName);
         items.add(diaryItem);
-        
-        return inflater.inflate(R.layout.fragment_diary, container, false);
-
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        RecyclerView recyclerView = view.findViewById(R.id.recycleView);
-
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

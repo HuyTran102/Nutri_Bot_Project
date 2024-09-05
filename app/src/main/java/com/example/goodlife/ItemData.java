@@ -83,18 +83,7 @@ public class ItemData extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-//                if(!itemAmount.getText().toString().equals("")) {
-//                    amount[0] = Double.parseDouble(itemAmount.getText().toString());
-//                } else {
-//                    amount[0] = 0.0;
-//                }
-
                 amount[0] = Double.parseDouble(itemAmount.getText().toString());
-
-//                kcal[0] = (int) ((kcal[0] * amount[0]) / 100);
-//                protein[0] = (protein[0] * amount[0]) / 100;
-//                lipid[0] = (lipid[0] * amount[0]) / 100;
-//                glucid[0] = (glucid[0] * amount[0]) / 100;
 
                 DecimalFormat decimalFormat = new DecimalFormat("0.0");
 
