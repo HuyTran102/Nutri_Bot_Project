@@ -116,7 +116,7 @@ public class ItemData extends AppCompatActivity {
         String finalUnitType = unitType;
         String finalUnitName = unitName;
 
-        SharedPreferences sharedPreferences = getSharedPreferences("Data", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("DiaryData", Context.MODE_PRIVATE);
 
         addToDiaryButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,7 +132,7 @@ public class ItemData extends AppCompatActivity {
                 editor.putString("UnitName", finalUnitName);
                 editor.apply();
 
-                Intent intent = new Intent(ItemData.this, FragmentDiary.class);
+                Intent intent = new Intent(ItemData.this, Dietary.class);
                 startActivity(intent);
             }
         });

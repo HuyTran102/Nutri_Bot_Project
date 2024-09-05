@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +27,7 @@ public class FragmentDiary extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("Data", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("DiaryData", Context.MODE_PRIVATE);
 
         String itemName, unitName, unitType;
 
@@ -39,12 +40,12 @@ public class FragmentDiary extends Fragment {
         unitType = sharedPreferences.getString("UnitType", null);
 
         kcal = sharedPreferences.getInt("Kcal", 0);
-        
+
         amount = sharedPreferences.getFloat("Amount", 0);
         protein = sharedPreferences.getFloat("Protein", 0);
         lipid = sharedPreferences.getFloat("Lipid", 0);
         glucid = sharedPreferences.getFloat("GLucid", 0);
-        
+
         DiaryItem diaryItem = new DiaryItem(itemName, amount, kcal, protein, lipid, glucid, unitType, unitName);
         items.add(diaryItem);
         
@@ -63,5 +64,7 @@ public class FragmentDiary extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new DiaryViewAdapter(getContext(), items));
 
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(itemDecoration);
     }
 }

@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CalculateNutritionalStatus">
+    tools:context=".CalculateNutritionalStatus"
+    android:background="#F7FFFFFF"
+    android:focusableInTouchMode="true"
+    android:layout_gravity="center"
+    android:keepScreenOn="true">
 
     <TextView
         android:id="@+id/textView5"
@@ -13,7 +17,7 @@
         android:text="@string/t_nh_tr_ng_dinh_d_ng"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#457B06"
+        android:textColor="#1781C7"
         android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/height"
@@ -83,12 +87,11 @@
 
     <Button
         android:id="@+id/back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginTop="640dp"
         android:layout_marginEnd="290dp"
-        android:background="@drawable/custom_button"
-        android:text="@string/back"
+        android:background="@drawable/back_to_home_button"
         android:textSize="20dp"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
