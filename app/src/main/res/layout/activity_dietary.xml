@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dietary">
+    tools:context=".Dietary"
+    android:background="#F7FFFFFF"
+    android:focusableInTouchMode="true"
+    android:layout_gravity="center"
+    android:keepScreenOn="true">
 
 
     <TextView
@@ -39,8 +43,9 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#F7FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,28 +57,32 @@
             android:layout_height="wrap_content"
             android:text="@string/m_n_n"
             android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/th_c_ph_m"
             android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/s_a_u_ng"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/nh_t_k"
             android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
