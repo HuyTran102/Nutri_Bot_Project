@@ -62,6 +62,14 @@ public class NutritionalStatusResult extends AppCompatActivity {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("user");
         Query userDatabase = reference.orderByChild("name").equalTo(name);
 
+        final double[] userRecommendWeight = new double[1];
+        final double[] userRecommendHeight = new double[1];
+        final double[] userActualWeight = new double[1];
+        final double[] userActualHeight = new double[1];
+
+        userActualHeight[0] = Double.parseDouble(height);
+        userActualWeight[0] = Double.parseDouble(weight);
+
         userDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -73,9 +81,9 @@ public class NutritionalStatusResult extends AppCompatActivity {
 
                 double BMI = calculateBMI();
 
-                bmiStatusWarning(gender, BMI, monthAge);
+                userRecommendWeight[0] = bmiStatusWarning(gender, BMI, monthAge);
 
-                heightForAgeStatusWarning(gender, Double.parseDouble(height), monthAge);
+                userRecommendHeight[0] = heightForAgeStatusWarning(gender, Double.parseDouble(height), monthAge);
             }
 
             @Override
@@ -87,6 +95,12 @@ public class NutritionalStatusResult extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("Height", String.valueOf(userActualHeight[0]));
+                editor.putString("Weight", String.valueOf(userActualWeight[0]));
+                editor.putString("RecommendHeight", String.valueOf( userRecommendHeight[0]));
+                editor.putString("RecommendWeight", String.valueOf( userRecommendWeight[0]));
+                editor.apply();
                 Intent intent = new Intent(NutritionalStatusResult.this, HomePage.class);
                 startActivity(intent);
                 finish();
@@ -160,7 +174,7 @@ public class NutritionalStatusResult extends AppCompatActivity {
         return userWeight / (userHeight * userHeight);
     }
     
-    void bmiStatusWarning(String gender, double bmi, int monthAge) {
+    double bmiStatusWarning(String gender, double bmi, int monthAge) {
         String path;
         if(gender.equals("nam")) {
             path = "bmiBoys.xlsx";
@@ -168,7 +182,7 @@ public class NutritionalStatusResult extends AppCompatActivity {
             path = "bmiGirls.xlsx";
         } else {
             Toast.makeText(NutritionalStatusResult.this, "Không thể cảnh báo tình trạng BMI do giới tính không hợp lệ !", Toast.LENGTH_SHORT).show();
-            return;
+            return 0;
         }
 
         try {
@@ -178,6 +192,7 @@ public class NutritionalStatusResult extends AppCompatActivity {
             Workbook workbook = new XSSFWorkbook(is);
             Sheet sheet = workbook.getSheetAt(0);
 
+            double userRecommendWeight = 0;
             for(int rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex ++) {
                 Row row = sheet.getRow(rowIndex);
                 Cell cell = row.getCell(0);
@@ -230,17 +245,24 @@ public class NutritionalStatusResult extends AppCompatActivity {
 
                         double recommendWeight = positiveSD1 * Double.parseDouble(height) * Double.parseDouble(height);
 
+                        userRecommendWeight = recommendWeight;
+
                         double subtrac = Double.parseDouble(weight) - recommendWeight;
 
                         result += decimalFormat.format(subtrac) + " (kg)";
                         weightView.setText(result);
                     }  else if(negativeSD2 <= bmi && bmi <= positiveSD1) {
                         result += "Bình thường 0.0 (kg)";
+
+                        userRecommendWeight = 0;
+
                         weightView.setText(result);
                     } else {
                         result += "Thiếu ";
 
                         double recommendWeight = negativeSD1 * Double.parseDouble(height) * Double.parseDouble(height);
+
+                        userRecommendWeight = recommendWeight;
 
                         double add = Math.abs(Double.parseDouble(weight) - recommendWeight);
 
@@ -251,13 +273,16 @@ public class NutritionalStatusResult extends AppCompatActivity {
             }
 
             workbook.close();
+
+            return userRecommendWeight;
         } catch (IOException e) {
             e.printStackTrace();
             Log.e(TAG, Objects.requireNonNull(e.getMessage()));
         }
+        return 0;
     }
 
-    void heightForAgeStatusWarning(String gender, double height, int monthAge) {
+    double heightForAgeStatusWarning(String gender, double height, int monthAge) {
         height *= 100;
         String path;
         if(gender.equals("nam")) {
@@ -266,7 +291,7 @@ public class NutritionalStatusResult extends AppCompatActivity {
             path = "hfaGirls.xlsx";
         } else {
             Toast.makeText(NutritionalStatusResult.this, "Không thể cảnh báo tình trạng BMI do giới tính không hợp lệ !", Toast.LENGTH_SHORT).show();
-            return;
+             return 0;
         }
 
         try {
@@ -276,6 +301,7 @@ public class NutritionalStatusResult extends AppCompatActivity {
             Workbook workbook = new XSSFWorkbook(is);
             Sheet sheet = workbook.getSheetAt(0);
 
+            double userRecommendHeight = 0;
             for(int rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex ++) {
                 Row row = sheet.getRow(rowIndex);
                 Cell cell = row.getCell(0);
@@ -328,15 +354,22 @@ public class NutritionalStatusResult extends AppCompatActivity {
 
                         double subtrac = height - positiveSD1;
 
+                        userRecommendHeight = positiveSD1;
+
                         result += decimalFormat.format(subtrac) + " (cm)";
                         heightView.setText(result);
                     }  else if(negativeSD2 <= height && height <= positiveSD3) {
                         result += "Bình thường 0.0 (cm)";
+
+                        userRecommendHeight = 0;
+
                         heightView.setText(result);
                     } else {
                         result += "Thiếu ";
 
                         double add = Math.abs(height - negativeSD1);
+
+                        userRecommendHeight = negativeSD1;
 
                         result += decimalFormat.format(add) + " (cm)";
                         heightView.setText(result);
@@ -345,9 +378,12 @@ public class NutritionalStatusResult extends AppCompatActivity {
             }
 
             workbook.close();
+
+            return userRecommendHeight;
         } catch (IOException e) {
             e.printStackTrace();
             Log.e(TAG, Objects.requireNonNull(e.getMessage()));
         }
+        return 0;
     }
 }
