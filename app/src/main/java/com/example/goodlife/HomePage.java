@@ -77,55 +77,63 @@ public class HomePage extends AppCompatActivity {
             height_status = "Thừa " + decimalFormat.format(statusHeight) + " (cm)";
         } else if(actualHeight < recommendHeight){
             statusHeight = (recommendHeight - actualHeight);
-            height_status = "Thừa " + decimalFormat.format(statusHeight) + " (cm)";
+            height_status = "Thiếu " + decimalFormat.format(statusHeight) + " (cm)";
         }
 
-        final Handler handler = new Handler();
+        final Handler weight_handler = new Handler();
 
         weightProgressBar.setMax((int) recommendWeight);
 
-        handler.postDelayed(new Runnable() {
+        weight_handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if(weight <= actualWeight) {
                     weightProgressText.setText(String.valueOf(weight));
                     weightProgressBar.setProgress(weight);
                     weight++;
-                    handler.postDelayed(this, 0);
+                    weight_handler.postDelayed(this, 0);
                 } else {
-                    handler.removeCallbacks(this);
+                    weight_handler.removeCallbacks(this);
                 }
             }
         }, 0);
 
         weightView.setText(weight_status);
 
-        handler.postDelayed(new Runnable() {
+        final Handler height_handler = new Handler();
+
+        heightProgressBar.setMax((int) recommendHeight + 1);
+
+        height_handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if(height <= actualHeight) {
                     heightProgressText.setText(String.valueOf(height));
                     heightProgressBar.setProgress(height);
                     height++;
-                    handler.postDelayed(this, 0);
+                    height_handler.postDelayed(this, 0);
                 } else {
-                    handler.removeCallbacks(this);
+                    height_handler.removeCallbacks(this);
                 }
             }
         }, 0);
 
         heightView.setText(height_status);
 
-        handler.postDelayed(new Runnable() {
+        final Handler kcalo_handler = new Handler();
+
+        kcaloProgressBar.setMax(1);
+
+        kcalo_handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(kcalo <= 50) {
+                if(kcalo <= 1) {
                     kcaloProgressText.setText(String.valueOf(kcalo));
                     kcaloProgressBar.setProgress(kcalo);
                     kcalo++;
-                    handler.postDelayed(this, 0);
+                    kcalo_handler.postDelayed(this, 0);
                 } else {
-                    handler.removeCallbacks(this);
+                    kcalo_handler.removeCallbacks(this);
                 }
             }
         }, 0);
