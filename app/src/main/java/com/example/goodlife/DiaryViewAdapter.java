@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class DiaryViewAdapter extends RecyclerView.Adapter<DiaryViewHolder> {
@@ -32,14 +33,16 @@ public class DiaryViewAdapter extends RecyclerView.Adapter<DiaryViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull DiaryViewHolder holder, @SuppressLint("RecyclerView") int position) {
         DiaryItem itemAtPosition = items.get(position);
+        DecimalFormat decimalFormat = new DecimalFormat("0.0");
+
         holder.name.setText(itemAtPosition.getName());
         holder.unit_type.setText(itemAtPosition.getUnit_type());
         holder.unit_name.setText(itemAtPosition.getUnit_name());
-        holder.amount.setText(String.valueOf(itemAtPosition.getAmount()));
-        holder.kcal.setText(String.valueOf(itemAtPosition.getKcal()));
-        holder.protein.setText(String.valueOf(itemAtPosition.getProtein()));
-        holder.lipid.setText(String.valueOf(itemAtPosition.getLipid()));
-        holder.glucid.setText(String.valueOf(itemAtPosition.getGlucid()));
+        holder.amount.setText(String.valueOf(decimalFormat.format(itemAtPosition.getAmount())));
+        holder.kcal.setText(String.valueOf(decimalFormat.format(itemAtPosition.getKcal())));
+        holder.protein.setText(String.valueOf(decimalFormat.format(itemAtPosition.getProtein())));
+        holder.lipid.setText(String.valueOf(decimalFormat.format(itemAtPosition.getLipid())));
+        holder.glucid.setText(String.valueOf(decimalFormat.format(itemAtPosition.getGlucid())));
 
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
