@@ -82,7 +82,7 @@ public class HomePage extends AppCompatActivity {
 
         final Handler handler = new Handler();
 
-//        weightProgressBar.setMax((int) recommendWeight);
+        weightProgressBar.setMax((int) recommendWeight);
 
         handler.postDelayed(new Runnable() {
             @Override
