@@ -338,6 +338,7 @@
             android:background="@drawable/custom_button"
             android:text="Tính"
             android:textSize="20dp"
+            android:textColor="@color/black"
             app:backgroundTint="@null" />
         <Button
             android:id="@+id/add_to_diary_button"
@@ -345,6 +346,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button"
             android:text="Lưu"
+            android:textColor="@color/black"
             android:textSize="20dp"
             app:backgroundTint="@null"/>
 
