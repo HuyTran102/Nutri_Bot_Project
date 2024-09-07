@@ -8,10 +8,6 @@ public class Item {
 
     double amount, protein, lipid, glucid;
 
-//    public Item(String name) {
-//        this.name = name;
-//    }
-
     public Item(String name, int image, int kcal, double protein, double lipid, double glucid, String unit_type) {
         this.name = name;
         this.image = image;

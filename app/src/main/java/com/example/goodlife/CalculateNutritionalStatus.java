@@ -74,13 +74,6 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(validUserHeight() && validUserWeight()) {
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.putString("Height", String.valueOf(userHeight.getText()));
-//                    editor.putString("Weight", String.valueOf(userWeight.getText()));
-//                    editor.apply();
-//                    Intent intent = new Intent(CalculateNutritionalStatus.this, NutritionalStatusResult.class);
-//                    startActivity(intent);
-//                    finish();
                     height = String.valueOf(userHeight.getText());
                     weight = String.valueOf(userWeight.getText());
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("user");
@@ -243,7 +236,6 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
                 Cell cell = row.getCell(0);
                 int value = (int) cell.getNumericCellValue();
                 if(value == monthAge) {
-//                    Toast.makeText(NutritionalStatusResult.this, "Đã tìm thấy giá trị tháng tuổi !", Toast.LENGTH_SHORT).show();
                     cell = row.getCell(1);
                     double negativeSD3 = (double) cell.getNumericCellValue();
                     cell = row.getCell(2);
@@ -261,25 +253,17 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
 
                     if(bmi > positiveSD3) {
                         bmiStatusView.setText("  Béo phì !");
-//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Béo phì !", Toast.LENGTH_SHORT).show();
                     } else if(positiveSD2 <= bmi && bmi <= positiveSD3) {
                         bmiStatusView.setText("  Béo phì !");
-//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Béo phì !", Toast.LENGTH_SHORT).show();
                     } else if(positiveSD1 <= bmi && bmi <= positiveSD2) {
                         bmiStatusView.setText("  Thừa cân !");
-//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Thừa cân !", Toast.LENGTH_SHORT).show();
                     } else if(negativeSD2 <= bmi && bmi <= positiveSD1) {
                         bmiStatusView.setText("  Bình thường !");
-//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Bình thường !", Toast.LENGTH_SHORT).show();
                     } else if(negativeSD3 <= bmi && bmi <= negativeSD2) {
                         bmiStatusView.setText("  Gầy còm vừa !");
-//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Gầy còm vừa !", Toast.LENGTH_SHORT).show();
                     } else if(bmi < negativeSD3){
                         bmiStatusView.setText("  Gầy còm nặng !");
-//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng BMI: Gầy còm nặng !", Toast.LENGTH_SHORT).show();
                     }
-
-//                    Toast.makeText(NutritionalStatusResult.this, " " + negativeSD3 + " " + negativeSD2 + " " + negativeSD1 + " " + positiveSD0 + " " + positiveSD1 + " " + positiveSD2 + " " + positiveSD3 + " ", Toast.LENGTH_SHORT).show();
 
                     DecimalFormat decimalFormat = new DecimalFormat("0.0");
 
@@ -352,7 +336,6 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
                 Cell cell = row.getCell(0);
                 int value = (int) cell.getNumericCellValue();
                 if(value == monthAge) {
-//                    Toast.makeText(NutritionalStatusResult.this, "Đã tìm thấy giá trị tháng tuổi !", Toast.LENGTH_SHORT).show();
                     cell = row.getCell(1);
                     double negativeSD3 = (double) cell.getNumericCellValue();
                     cell = row.getCell(2);
@@ -370,25 +353,17 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
 
                     if(height > positiveSD3) {
                         hfaStatusView.setText("  Béo phì !");
-//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Béo phì !", Toast.LENGTH_SHORT).show();
                     } else if(positiveSD2 <= height && height <= positiveSD3) {
                         hfaStatusView.setText("  Bình thường !");
-//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Bình thường !", Toast.LENGTH_SHORT).show();
                     } else if(positiveSD1 <= height && height <= positiveSD2) {
                         hfaStatusView.setText("  Bình thường !");
-//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Bình thường !", Toast.LENGTH_SHORT).show();
                     } else if(negativeSD2 <= height && height <= positiveSD1) {
                         hfaStatusView.setText("  Bình thường !");
-//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Bình thường !", Toast.LENGTH_SHORT).show();
                     } else if(negativeSD3 <= height && height <= negativeSD2) {
                         hfaStatusView.setText("  Thấp còi vừa !");
-//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Thấp còi vừa !", Toast.LENGTH_SHORT).show();
                     } else if(height < negativeSD3){
                         hfaStatusView.setText("  Thấp còi nặng !");
-//                        Toast.makeText(NutritionalStatusResult.this, "Tình trạng chiều cao theo tuổi: Thấp còi nặng !", Toast.LENGTH_SHORT).show();
                     }
-
-//                    Toast.makeText(NutritionalStatusResult.this, " " + negativeSD3 + " " + negativeSD2 + " " + negativeSD1 + " " + positiveSD0 + " " + positiveSD1 + " " + positiveSD2 + " " + positiveSD3 + " ", Toast.LENGTH_SHORT).show();
 
                     DecimalFormat decimalFormat = new DecimalFormat("0.0");
 

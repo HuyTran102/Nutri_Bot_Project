@@ -10,12 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class ItemData extends AppCompatActivity {
