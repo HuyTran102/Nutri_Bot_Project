@@ -66,8 +66,4 @@ public class FragmentDiary extends Fragment {
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(itemDecoration);
     }
-
-    public void reloadData() {
-        
-    }
 }
