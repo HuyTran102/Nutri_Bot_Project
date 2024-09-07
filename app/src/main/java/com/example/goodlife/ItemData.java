@@ -48,12 +48,13 @@ public class ItemData extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        String itemName = "", unitType = "", unitName = "";
+        String itemName = "", unitType = "", unitName;
         final int[] kcal = {0};
         int imageId = 0;
         final double[] protein = {0};
-        final double[] lipid = { 0 };
-        final double[] glucid = { 0 };
+        final double[] lipid = {0};
+        final double[] glucid = {0};
+
         if(bundle != null) {
             itemName = intent.getStringExtra("Name");
             kcal[0] = intent.getIntExtra("Kcal", 0);
@@ -112,13 +113,16 @@ public class ItemData extends AppCompatActivity {
             public void onClick(View view) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("Name", finalItemName);
-                editor.putFloat("Amount", (float) amount[0]);
+                editor.putString("UnitType", finalUnitType);
+                editor.putString("UnitName", finalUnitName);
+
                 editor.putInt("Kcal", kcal[0]);
+
+                editor.putFloat("Amount", (float) amount[0]);
                 editor.putFloat("Protein", (float) protein[0]);
                 editor.putFloat("Lipid", (float) lipid[0]);
                 editor.putFloat("Glucid", (float) glucid[0]);
-                editor.putString("UnitType", finalUnitType);
-                editor.putString("UnitName", finalUnitName);
+
                 editor.apply();
 
                 Intent intent = new Intent(ItemData.this, Dietary.class);
