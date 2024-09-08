@@ -56,7 +56,7 @@ public class FragmentDiary extends Fragment {
 
         DiaryItem diaryItem = new DiaryItem(itemName, amount, kcal, protein, lipid, glucid, unitType, unitName);
         items.add(diaryItem);
-
+        items.add(diaryItem);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new DiaryViewAdapter(getContext(), items));
