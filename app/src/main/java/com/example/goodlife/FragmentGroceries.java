@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,6 +29,14 @@ import java.util.Objects;
 
 public class FragmentGroceries extends Fragment {
 
+    RecyclerView recyclerView;
+
+    List<Item> items = new ArrayList<>();
+
+    SearchView searchView;
+
+    ViewAdapter viewAdapter;
+
     private static final String TAG = "ExcelRead";
 
     @Override
@@ -43,9 +52,8 @@ public class FragmentGroceries extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView recyclerView = view.findViewById(R.id.recycleView);
-
-        List<Item> items = new ArrayList<>();
+        recyclerView = view.findViewById(R.id.recycleView);
+        searchView = view.findViewById(R.id.search_bar);
 
         String path = "Diary.xlsx";
 
@@ -87,9 +95,33 @@ public class FragmentGroceries extends Fragment {
             Log.e(TAG, Objects.requireNonNull(e.getMessage()));
         }
 
+        viewAdapter = new ViewAdapter(getContext(), items);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new ViewAdapter(getContext(), items));
+        recyclerView.setAdapter(viewAdapter);
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                findData(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                findData(newText);
+                return true;
+            }
+        });
+    }
+
+    void findData(String name) {
+        List<Item> list = new ArrayList<>();
+        for(Item data : items) {
+            if(data.getName().toLowerCase().contains(name.toLowerCase())) {
+                list.add(data);
+            }
+        }
+        viewAdapter.updateList(list);
     }
 
 }
