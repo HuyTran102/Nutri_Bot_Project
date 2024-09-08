@@ -1,3 +1,5 @@
+/* unused acitvity */
+
 package com.example.goodlife;
 
 import androidx.annotation.NonNull;
