@@ -332,6 +332,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.838" >
         <Button
+            android:id="@+id/calc_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:text="Tính"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            app:backgroundTint="@null" />
+        <Button
             android:id="@+id/add_to_diary_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

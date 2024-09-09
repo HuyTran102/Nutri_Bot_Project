@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,16 +22,17 @@ public class ItemData extends AppCompatActivity {
 
     TextInputEditText itemAmount;
 
-    Button backButton, addToDiaryButton;
+    Button backButton, calculateButton, addToDiaryButton;
 
     ImageView itemImage;
-    String glucidValue , lipidValue, proteinValue, kcalValue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_data);
 
         backButton = findViewById(R.id.back_button);
+        calculateButton = findViewById(R.id.calc_button);
         addToDiaryButton = findViewById(R.id.add_to_diary_button);
         viewItemName = findViewById(R.id.item_name);
         itemUnitType = findViewById(R.id.unit_type);
@@ -78,34 +77,19 @@ public class ItemData extends AppCompatActivity {
         itemUnitName.setText(unitName);
 
         final double[] amount = new double[1];
-        itemAmount.addTextChangedListener(new TextWatcher() {
+
+        calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void onClick(View view) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if(itemAmount.getText().toString().equals("") && Double.parseDouble(itemAmount.getText().toString()) > 0.0){
-                    itemKcalo.setText("0");
-                    itemGlucid.setText("0");
-                    itemProtein.setText("0");
-                    itemLipid.setText("0");
-                    return;
-                }
                 amount[0] = Double.parseDouble(itemAmount.getText().toString());
 
                 DecimalFormat decimalFormat = new DecimalFormat("0.0");
 
-                kcalValue = String.valueOf((int) ((kcal[0] * amount[0]) / 100));
-                proteinValue = decimalFormat.format((protein[0] * amount[0]) / 100);
-                lipidValue = decimalFormat.format((lipid[0] * amount[0]) / 100);
-                glucidValue = decimalFormat.format((glucid[0] * amount[0]) / 100);
+                String kcalValue = String.valueOf((int) ((kcal[0] * amount[0]) / 100));
+                String proteinValue = decimalFormat.format((protein[0] * amount[0]) / 100);
+                String lipidValue = decimalFormat.format((lipid[0] * amount[0]) / 100);
+                String glucidValue = decimalFormat.format((glucid[0] * amount[0]) / 100);
 
                 itemKcalo.setText(kcalValue);
                 itemProtein.setText(proteinValue);
@@ -114,7 +98,6 @@ public class ItemData extends AppCompatActivity {
             }
         });
 
-
 //        Toast.makeText(ItemData.this, kcal + " " + protein + " " + lipid + " " + glucid, Toast.LENGTH_SHORT).show();
 
         String finalItemName = itemName;
@@ -122,6 +105,7 @@ public class ItemData extends AppCompatActivity {
         String finalUnitName = unitName;
 
         SharedPreferences sharedPreferences = getSharedPreferences("DiaryData", Context.MODE_PRIVATE);
+
         addToDiaryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,14 +114,15 @@ public class ItemData extends AppCompatActivity {
                 editor.putString("UnitType", finalUnitType);
                 editor.putString("UnitName", finalUnitName);
 
-                editor.putInt("Kcal", Integer.parseInt(kcalValue));
+                editor.putInt("Kcal", kcal[0]);
 
                 editor.putFloat("Amount", (float) amount[0]);
-                editor.putFloat("Protein",Float.parseFloat(proteinValue));
-                editor.putFloat("Lipid", Float.parseFloat(lipidValue));
-                editor.putFloat("Glucid", Float.parseFloat(glucidValue));
+                editor.putFloat("Protein", (float) protein[0]);
+                editor.putFloat("Lipid", (float) lipid[0]);
+                editor.putFloat("Glucid", (float) glucid[0]);
 
                 editor.apply();
+
                 Intent intent = new Intent(ItemData.this, Dietary.class);
                 startActivity(intent);
             }

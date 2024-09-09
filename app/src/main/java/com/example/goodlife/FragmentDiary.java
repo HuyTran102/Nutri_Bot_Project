@@ -1,9 +1,6 @@
 package com.example.goodlife;
 
-import static android.content.Intent.getIntent;
-
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -44,7 +41,6 @@ public class FragmentDiary extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.recycleView);
 
-
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("DiaryData", Context.MODE_PRIVATE);
 
         itemName = sharedPreferences.getString("Name", null);
@@ -56,9 +52,10 @@ public class FragmentDiary extends Fragment {
         amount = sharedPreferences.getFloat("Amount", 0);
         protein = sharedPreferences.getFloat("Protein", 0);
         lipid = sharedPreferences.getFloat("Lipid", 0);
-        glucid = sharedPreferences.getFloat("Glucid", 0);
+        glucid = sharedPreferences.getFloat("GLucid", 0);
 
         DiaryItem diaryItem = new DiaryItem(itemName, amount, kcal, protein, lipid, glucid, unitType, unitName);
+        items.add(diaryItem);
         items.add(diaryItem);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
