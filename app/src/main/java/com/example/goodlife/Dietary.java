@@ -1,6 +1,7 @@
 package com.example.goodlife;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -18,6 +19,16 @@ public class Dietary extends AppCompatActivity {
     TabLayout tabLayout;
 
     ViewPager viewPager;
+    
+    FragmentGroceries fragmentGroceries;
+    
+    FragmentDiary fragmentDiary;
+    
+    FragmentDrinks fragmentDrinks;
+    
+    FragmentFood fragmentFood;
+    
+    FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +46,6 @@ public class Dietary extends AppCompatActivity {
         vpAdapter.addFragment(new FragmentGroceries(), "Thực phẩm");
         vpAdapter.addFragment(new FragmentDrinks(), "Sữa / Đồ uống");
         vpAdapter.addFragment(new FragmentDiary(), "Nhật ký");
-
-        viewPager.setAdapter(vpAdapter);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
