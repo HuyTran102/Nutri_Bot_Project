@@ -38,6 +38,7 @@ public class Dietary extends AppCompatActivity {
         vpAdapter.addFragment(new FragmentDiary(), "Nhật ký");
 
         viewPager.setAdapter(vpAdapter);
+        tabLayout.setupWithViewPager(viewPager);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
