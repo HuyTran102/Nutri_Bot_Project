@@ -19,16 +19,6 @@ public class Dietary extends AppCompatActivity {
     TabLayout tabLayout;
 
     ViewPager viewPager;
-    
-    FragmentGroceries fragmentGroceries;
-    
-    FragmentDiary fragmentDiary;
-    
-    FragmentDrinks fragmentDrinks;
-    
-    FragmentFood fragmentFood;
-    
-    FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
