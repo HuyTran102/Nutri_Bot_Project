@@ -91,7 +91,7 @@ public class ItemData extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(itemAmount.getText().toString().equals("") && Double.parseDouble(itemAmount.getText().toString()) > 0.0){
+                if(itemAmount.getText().toString().equals("") && Double.parseDouble(itemAmount.getText().toString()) <= 0.0){
                     itemKcalo.setText("0");
                     itemGlucid.setText("0");
                     itemProtein.setText("0");
@@ -114,9 +114,6 @@ public class ItemData extends AppCompatActivity {
             }
         });
 
-
-//        Toast.makeText(ItemData.this, kcal + " " + protein + " " + lipid + " " + glucid, Toast.LENGTH_SHORT).show();
-
         String finalItemName = itemName;
         String finalUnitType = unitType;
         String finalUnitName = unitName;
@@ -132,7 +129,13 @@ public class ItemData extends AppCompatActivity {
 
                 editor.putInt("Kcal", Integer.parseInt(kcalValue));
 
-                editor.putFloat("Amount", (float) amount[0]);
+                DecimalFormat decimalFormat = new DecimalFormat("0.0");
+
+                proteinValue = proteinValue.replace(",", ".");
+                lipidValue = lipidValue.replace(",", ".");
+                glucidValue = glucidValue.replace(",", ".");
+
+                editor.putFloat("Amount", Float.parseFloat(String.valueOf(amount[0])));
                 editor.putFloat("Protein",Float.parseFloat(proteinValue));
                 editor.putFloat("Lipid", Float.parseFloat(lipidValue));
                 editor.putFloat("Glucid", Float.parseFloat(glucidValue));
