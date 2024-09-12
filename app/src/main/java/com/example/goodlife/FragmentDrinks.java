@@ -65,7 +65,7 @@ public class FragmentDrinks extends Fragment {
             for(int rowIndex = 0; rowIndex < sheet.getPhysicalNumberOfRows() - 1; rowIndex ++) {
                 Row row = sheet.getRow(rowIndex);
                 Cell cell = row.getCell(1);
-                String value = cell.getStringCellValue();
+                String name = cell.getStringCellValue();
                 cell = row.getCell(2);
                 int kcal = (int) cell.getNumericCellValue();
                 cell = row.getCell(3);
@@ -83,7 +83,7 @@ public class FragmentDrinks extends Fragment {
                 } else {
                     unit_type = "(ml)";
                 }
-                items.add(new Item(String.valueOf(value), R.drawable.images, kcal, protein, lipid, glucid, unit_type));
+                items.add(new Item(String.valueOf(name), R.drawable.images, kcal, protein, lipid, glucid, unit_type));
             }
             fileInputStream.close();
 
