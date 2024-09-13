@@ -39,7 +39,7 @@ public class Dietary extends AppCompatActivity {
 
         viewPager.setAdapter(vpAdapter);
         tabLayout.setupWithViewPager(viewPager);
-
+        viewPager.setOffscreenPageLimit(5);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
