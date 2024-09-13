@@ -142,7 +142,6 @@ public class ItemData extends AppCompatActivity {
 
                 editor.apply();
                 Intent intent = new Intent(ItemData.this, Dietary.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }
         });

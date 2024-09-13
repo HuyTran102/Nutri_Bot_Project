@@ -38,7 +38,6 @@ public class Dietary extends AppCompatActivity {
         vpAdapter.addFragment(new FragmentDiary(), "Nhật ký");
 
         viewPager.setAdapter(vpAdapter);
-        viewPager.setOffscreenPageLimit(5);
         tabLayout.setupWithViewPager(viewPager);
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -49,22 +48,5 @@ public class Dietary extends AppCompatActivity {
                 finish();
             }
         });
-
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
     }
 }
