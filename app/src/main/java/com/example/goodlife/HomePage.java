@@ -80,15 +80,22 @@ public class HomePage extends AppCompatActivity {
             height_status = "Thiếu " + decimalFormat.format(statusHeight) + " (cm)";
         }
 
+        decimalFormat = new DecimalFormat("0");
+        
         final Handler weight_handler = new Handler();
 
         weightProgressBar.setMax((int) recommendWeight + 1);
 
+        DecimalFormat finalDecimalFormat = decimalFormat;
         weight_handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if(weight <= actualWeight) {
-                    weightProgressText.setText(String.valueOf(weight));
+                    if(recommendWeight == 0) {
+                        weightProgressText.setText(String.valueOf(weight + "\n" + finalDecimalFormat.format(actualWeight)));
+                    } else {
+                        weightProgressText.setText(String.valueOf(weight + "\n" + finalDecimalFormat.format(recommendWeight)));
+                    }
                     weightProgressBar.setProgress(weight);
                     weight++;
                     weight_handler.postDelayed(this, 35);
@@ -104,12 +111,16 @@ public class HomePage extends AppCompatActivity {
 
         heightProgressBar.setMax((int) recommendHeight + 1);
 
+        DecimalFormat finalDecimalFormat1 = decimalFormat;
         height_handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if(height <= actualHeight) {
-
-                    heightProgressText.setText(String.valueOf(height));
+                    if(recommendHeight == 0) {
+                        heightProgressText.setText(String.valueOf(height + "\n" + finalDecimalFormat.format(actualHeight)));
+                    } else {
+                        heightProgressText.setText(String.valueOf(height + "\n" + finalDecimalFormat.format(recommendHeight)));
+                    }
                     heightProgressBar.setProgress(height);
                     height++;
                     height_handler.postDelayed(this, 35);
