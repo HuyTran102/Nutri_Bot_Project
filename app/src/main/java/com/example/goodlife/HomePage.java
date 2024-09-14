@@ -91,12 +91,12 @@ public class HomePage extends AppCompatActivity {
                     weightProgressText.setText(String.valueOf(weight));
                     weightProgressBar.setProgress(weight);
                     weight++;
-                    weight_handler.postDelayed(this, 30);
+                    weight_handler.postDelayed(this, 35);
                 } else {
                     weight_handler.removeCallbacks(this);
                 }
             }
-        }, 30);
+        }, 35);
 
         weightView.setText(weight_status);
 
@@ -112,12 +112,12 @@ public class HomePage extends AppCompatActivity {
                     heightProgressText.setText(String.valueOf(height));
                     heightProgressBar.setProgress(height);
                     height++;
-                    height_handler.postDelayed(this, 30);
+                    height_handler.postDelayed(this, 35);
                 } else {
                     height_handler.removeCallbacks(this);
                 }
             }
-        }, 30);
+        }, 35);
 
         heightView.setText(height_status);
 
@@ -132,12 +132,12 @@ public class HomePage extends AppCompatActivity {
                     kcaloProgressText.setText(String.valueOf(kcalo));
                     kcaloProgressBar.setProgress(kcalo);
                     kcalo++;
-                    kcalo_handler.postDelayed(this, 30);
+                    kcalo_handler.postDelayed(this, 35);
                 } else {
                     kcalo_handler.removeCallbacks(this);
                 }
             }
-        }, 30);
+        }, 35);
 
         nutritionalStatus.setOnClickListener(new View.OnClickListener() {
             @Override
