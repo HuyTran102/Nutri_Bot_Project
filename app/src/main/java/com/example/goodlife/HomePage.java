@@ -22,13 +22,11 @@ public class HomePage extends AppCompatActivity {
 
     TextView weightProgressText, heightProgressText, kcaloProgressText, weightView, heightView;
 
-    double actualWeight = 0, actualHeight = 0, recommendWeight = 0, recommendHeight = 0;
+    double actualWeight = 0, actualHeight = 0, recommendWeight = 0, recommendHeight = 0, statusWeight = 0, statusHeight = 0;
 
     int weight = 0, height = 0, kcalo = 0;
 
     String weight_status = "", height_status = "";
-
-    double statusWeight = 0, statusHeight = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
