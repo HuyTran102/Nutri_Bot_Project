@@ -57,6 +57,7 @@
                     android:id="@+id/editEditTextMail"
                     style="@style/modifiedEditText"
                     android:hint="Tên"
+                    android:textColorHint="#9E9D9D"
                     android:textStyle="bold"
                     android:textSize="16dp"
                     android:textColor="#9E9D9D"
@@ -73,6 +74,7 @@
                 <EditText
                     android:id="@+id/editTextPassword"
                     style="@style/modifiedEditText"
+                    android:textColorHint="#9E9D9D"
                     android:hint="Mật khẩu"
                     android:textStyle="bold"
                     android:textSize="16dp"
