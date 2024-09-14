@@ -13,7 +13,7 @@
         android:background="@drawable/item_name_background"
         android:gravity="center_vertical"
         android:text=""
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
