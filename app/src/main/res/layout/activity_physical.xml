@@ -10,19 +10,30 @@
     android:layout_gravity="center"
     android:keepScreenOn="true">
 
+    <ImageView
+        android:layout_width="592dp"
+        android:layout_height="389dp"
+        android:background="@drawable/wave"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/ch_t_p_luy_n"
-        android:textColor="#0293A5"
-        android:textSize="25dp"
+        android:textColor="#FFFFFF"
+        android:textSize="27sp"
         android:textStyle="bold"
-        android:layout_marginBottom="620dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.138"/>
 
     <Button
         android:id="@+id/back_button"
