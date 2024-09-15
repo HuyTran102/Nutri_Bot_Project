@@ -10,6 +10,16 @@
     android:layout_gravity="center"
     android:keepScreenOn="true">
 
+    <ImageView
+        android:layout_width="592dp"
+        android:layout_height="389dp"
+        android:background="@drawable/wave"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView4"
@@ -17,14 +27,15 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="620dp"
         android:text="@string/kh_u_ph_n_n"
-        android:textColor="#0293A5"
-        android:textSize="25dp"
+        android:textColor="#FFFFFF"
+        android:textSize="27dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.782" />
+        app:layout_constraintVertical_bias="0.768" />
 
     <Button
         android:id="@+id/back_button"
