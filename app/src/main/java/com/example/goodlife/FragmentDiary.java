@@ -18,17 +18,22 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentDiary extends Fragment {
 
+    TextView viewItemName, itemKcalo, itemProtein, itemLipid, itemGlucid, itemUnitType, itemUnitName;
     List<DiaryItem> items = new ArrayList<>();
 
     String itemName, unitName, unitType;
     RecyclerView recyclerView;
-    int kcal;
+
+    int kcal = 0 , calories_val = 0;
+    double protein_val = 0, lipid_val = 0, glucid_val = 0, amount_val = 0;
 
     double amount, protein, lipid, glucid;
 
@@ -44,7 +49,13 @@ public class FragmentDiary extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.recycleView);
-
+        viewItemName = getView().findViewById(R.id.item_name);
+        itemUnitType = getView().findViewById(R.id.unit_type);
+        itemUnitName = getView().findViewById(R.id.unit_name);
+        itemKcalo = getView().findViewById(R.id.item_kcalo);
+        itemProtein = getView().findViewById(R.id.item_protein);
+        itemLipid = getView().findViewById(R.id.item_lipid);
+        itemGlucid = getView().findViewById(R.id.item_glucid);
 
     }
 
@@ -67,6 +78,20 @@ public class FragmentDiary extends Fragment {
         protein = sharedPreferences.getFloat("Protein", 0);
         lipid = sharedPreferences.getFloat("Lipid", 0);
         glucid = sharedPreferences.getFloat("Glucid", 0);
+
+        // set total value
+        calories_val += kcal;
+        amount_val += amount;
+        protein_val += protein;
+        lipid_val += lipid;
+        glucid_val += glucid;
+
+        itemKcalo.setText(String.valueOf(calories_val));
+        DecimalFormat df = new DecimalFormat("###.#");
+        itemGlucid.setText(df.format(glucid_val));
+        itemLipid.setText(df.format(lipid_val));
+        itemProtein.setText(df.format(protein_val));
+
 
         DiaryItem diaryItem = new DiaryItem(itemName, amount, kcal, protein, lipid, glucid, unitType, unitName);
         items.add(diaryItem);
