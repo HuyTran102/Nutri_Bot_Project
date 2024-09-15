@@ -3,7 +3,7 @@
     <style name="Base.Theme.GoodLife" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="android:statusBarColor">#01AAC0</item>
+        <item name="android:statusBarColor">#00BCD4</item>
     </style>
 
     <style name="Theme.GoodLife" parent="Base.Theme.GoodLife" />
