@@ -37,7 +37,7 @@
                     android:layout_centerVertical="true"
                     android:text="Đăng nhập \n tài khoản"
                     android:textStyle="bold"
-                    android:textColor="#02539B"/>
+                    android:textColor="#0293A5"/>
 
                 <ImageView
                     android:layout_width="wrap_content"

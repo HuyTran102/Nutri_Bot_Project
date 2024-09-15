@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/ch_t_p_luy_n"
-        android:textColor="#1781C7"
+        android:textColor="#0293A5"
         android:textSize="25dp"
         android:textStyle="bold"
         android:layout_marginBottom="620dp"

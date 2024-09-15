@@ -149,7 +149,7 @@
             android:text="@string/k_t_qu_t_nh_tr_ng_dinh_d_ng"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="#1781C7"
+            android:textColor="#0293A5"
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="620dp"
         android:text="@string/kh_u_ph_n_n"
-        android:textColor="#1781C7"
+        android:textColor="#0293A5"
         android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
