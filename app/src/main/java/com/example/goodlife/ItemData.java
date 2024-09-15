@@ -91,7 +91,7 @@ public class ItemData extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(itemAmount.getText().toString().equals("") && Double.parseDouble(itemAmount.getText().toString()) <= 0.0){
+                if(itemAmount.getText().toString().equals("") || Double.parseDouble(itemAmount.getText().toString()) <= 0.0){
                     itemKcalo.setText("0");
                     itemGlucid.setText("0");
                     itemProtein.setText("0");
@@ -142,6 +142,7 @@ public class ItemData extends AppCompatActivity {
 
                 editor.apply();
                 Intent intent = new Intent(ItemData.this, Dietary.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }
         });

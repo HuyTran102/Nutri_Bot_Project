@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,7 @@ public class FragmentDiary extends Fragment {
     List<DiaryItem> items = new ArrayList<>();
 
     String itemName, unitName, unitType;
-
+    RecyclerView recyclerView;
     int kcal;
 
     double amount, protein, lipid, glucid;
@@ -42,8 +43,17 @@ public class FragmentDiary extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView recyclerView = view.findViewById(R.id.recycleView);
+        recyclerView = view.findViewById(R.id.recycleView);
 
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
 
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("DiaryData", Context.MODE_PRIVATE);
 
