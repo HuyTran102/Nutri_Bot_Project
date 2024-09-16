@@ -62,6 +62,9 @@ public class FragmentFood extends Fragment {
 
             Workbook workbook = new XSSFWorkbook(fileInputStream);
             Sheet sheet = workbook.getSheetAt(1);
+
+            int imageNameIndex1 = 3000, imageNameIndex2 = 1002;
+
             for(int rowIndex = 0; rowIndex < sheet.getPhysicalNumberOfRows() - 1; rowIndex ++) {
                 Row row = sheet.getRow(rowIndex);
                 Cell cell = row.getCell(1);
@@ -83,7 +86,28 @@ public class FragmentFood extends Fragment {
                 } else {
                     unit_type = "(ml)";
                 }
-                items.add(new Item(String.valueOf(name), R.drawable.images, kcal, protein, lipid, glucid, unit_type));
+
+                String i_name;
+
+                if(rowIndex >= 343) {
+
+                    imageNameIndex1++;
+
+                    i_name = "n" + imageNameIndex1;
+
+                    items.add(new Item(String.valueOf(name), this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()), kcal, protein, lipid, glucid, unit_type));
+                } else if(rowIndex >= 270 && rowIndex <= 315) {
+
+                    imageNameIndex2++;
+
+                    i_name = "n" + imageNameIndex2;
+
+                    items.add(new Item(String.valueOf(name), this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()), kcal, protein, lipid, glucid, unit_type));
+                } else {
+                    items.add(new Item(String.valueOf(name), R.drawable.images, kcal, protein, lipid, glucid, unit_type));
+                }
+
+//                items.add(new Item(String.valueOf(name), R.drawable.images, kcal, protein, lipid, glucid, unit_type));
             }
             fileInputStream.close();
 

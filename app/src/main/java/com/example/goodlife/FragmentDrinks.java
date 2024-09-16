@@ -84,7 +84,7 @@ public class FragmentDrinks extends Fragment {
                     imageNameIndex ++;
                 }
 
-                String i_name = "n" + String.valueOf(imageNameIndex);
+                String i_name = "n" + imageNameIndex;
 
                 String unit_type;
                 if(unit == 0) {
