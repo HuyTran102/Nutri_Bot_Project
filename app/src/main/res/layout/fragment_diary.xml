@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:gravity="center"
-                android:id="@+id/item_unit"
+                android:id="@+id/item_amount"
                 android:text="0"
                 android:textColor="#FAED7D7D"
                 android:textSize="20sp"

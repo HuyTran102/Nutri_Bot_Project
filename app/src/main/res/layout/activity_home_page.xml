@@ -290,7 +290,7 @@
         android:layout_width="330dp"
         android:layout_height="58dp"
         android:background="@drawable/custom_button"
-        android:text="@string/kh_u_ph_n_n"
+        android:text="Khẩu phần"
         android:textColor="#0293A5"
         android:textSize="20dp"
         android:textStyle="bold"

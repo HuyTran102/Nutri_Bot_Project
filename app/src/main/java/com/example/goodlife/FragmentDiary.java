@@ -26,7 +26,7 @@ import java.util.List;
 
 public class FragmentDiary extends Fragment {
 
-    TextView viewItemName, itemKcalo, itemProtein, itemLipid, itemGlucid, itemUnitType, itemUnitName;
+    TextView viewItemName, itemKcalo, itemProtein, itemLipid, itemGlucid, itemUnitType, itemUnitName, itemAmount;
     List<DiaryItem> items = new ArrayList<>();
 
     String itemName, unitName, unitType;
@@ -50,6 +50,7 @@ public class FragmentDiary extends Fragment {
 
         recyclerView = view.findViewById(R.id.recycleView);
         viewItemName = getView().findViewById(R.id.item_name);
+        itemAmount = getView().findViewById(R.id.item_amount);
         itemUnitType = getView().findViewById(R.id.unit_type);
         itemUnitName = getView().findViewById(R.id.unit_name);
         itemKcalo = getView().findViewById(R.id.item_kcalo);
@@ -88,6 +89,7 @@ public class FragmentDiary extends Fragment {
 
         itemKcalo.setText(String.valueOf(calories_val));
         DecimalFormat df = new DecimalFormat("###.#");
+        itemAmount.setText(df.format(amount_val));
         itemGlucid.setText(df.format(glucid_val));
         itemLipid.setText(df.format(lipid_val));
         itemProtein.setText(df.format(protein_val));
