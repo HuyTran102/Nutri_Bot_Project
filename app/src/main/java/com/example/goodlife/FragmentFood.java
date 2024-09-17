@@ -63,7 +63,7 @@ public class FragmentFood extends Fragment {
             Workbook workbook = new XSSFWorkbook(fileInputStream);
             Sheet sheet = workbook.getSheetAt(1);
 
-            int imageNameIndex1 = 3000, imageNameIndex2 = 1002;
+            int imageNameIndex1 = 3000, imageNameIndex2 = 1000;
 
             for(int rowIndex = 0; rowIndex < sheet.getPhysicalNumberOfRows() - 1; rowIndex ++) {
                 Row row = sheet.getRow(rowIndex);
