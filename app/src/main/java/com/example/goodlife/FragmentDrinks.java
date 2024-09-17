@@ -53,6 +53,25 @@ public class FragmentDrinks extends Fragment {
         recyclerView = view.findViewById(R.id.recycleView);
         searchView = view.findViewById(R.id.search_bar);
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                findData(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                findData(newText);
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
         String path = "Diary.xlsx";
 
         try {
@@ -105,20 +124,6 @@ public class FragmentDrinks extends Fragment {
         viewAdapter = new ViewAdapter(getContext(), items);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(viewAdapter);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                findData(query);
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                findData(newText);
-                return true;
-            }
-        });
     }
 
     void findData(String name) {
