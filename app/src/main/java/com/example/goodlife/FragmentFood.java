@@ -63,7 +63,7 @@ public class FragmentFood extends Fragment {
             Workbook workbook = new XSSFWorkbook(fileInputStream);
             Sheet sheet = workbook.getSheetAt(1);
 
-            int imageNameIndex1 = 3000, imageNameIndex2 = 1000;
+            int imageNameIndex1 = 3000, imageNameIndex2 = 1000, imageNameIndex3 = 2000;
 
             for(int rowIndex = 0; rowIndex < sheet.getPhysicalNumberOfRows() - 1; rowIndex ++) {
                 Row row = sheet.getRow(rowIndex);
@@ -101,6 +101,13 @@ public class FragmentFood extends Fragment {
                     imageNameIndex2++;
 
                     i_name = "n" + imageNameIndex2;
+
+                    items.add(new Item(String.valueOf(name), this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()), kcal, protein, lipid, glucid, unit_type));
+                } else if(rowIndex >= 316 && rowIndex <= 342) {
+
+                    imageNameIndex3++;
+
+                    i_name = "n" + imageNameIndex3;
 
                     items.add(new Item(String.valueOf(name), this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()), kcal, protein, lipid, glucid, unit_type));
                 } else {
