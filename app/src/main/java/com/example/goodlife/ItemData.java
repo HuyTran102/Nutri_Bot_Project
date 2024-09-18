@@ -14,8 +14,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class ItemData extends AppCompatActivity {
@@ -24,6 +27,8 @@ public class ItemData extends AppCompatActivity {
     private Button backButton, addToDiaryButton;
     private ImageView itemImage;
     private String glucidValue , lipidValue, proteinValue, kcalValue;
+    private FirebaseFirestore firebaseFirestore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +112,7 @@ public class ItemData extends AppCompatActivity {
                 itemProtein.setText(proteinValue);
                 itemLipid.setText(lipidValue);
                 itemGlucid.setText(glucidValue);
+
             }
         });
 
