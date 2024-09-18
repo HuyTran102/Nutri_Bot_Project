@@ -1,12 +1,9 @@
 package com.example.goodlife;
 
 public class Item {
-
-    String name, unit_type;
-
-    int image, kcal;
-
-    double amount, protein, lipid, glucid;
+    public String name, unit_type;
+    public int image, kcal;
+    public double amount, protein, lipid, glucid;
 
     public Item(String name, int image, int kcal, double protein, double lipid, double glucid, String unit_type) {
         this.name = name;

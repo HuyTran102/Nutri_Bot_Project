@@ -19,15 +19,11 @@ import java.text.DecimalFormat;
 import java.util.Objects;
 
 public class ItemData extends AppCompatActivity {
-
-    TextView viewItemName, itemKcalo, itemProtein, itemLipid, itemGlucid, itemUnitType, itemUnitName;
-
-    TextInputEditText itemAmount;
-
-    Button backButton, addToDiaryButton;
-
-    ImageView itemImage;
-    String glucidValue , lipidValue, proteinValue, kcalValue;
+    private TextView viewItemName, itemKcalo, itemProtein, itemLipid, itemGlucid, itemUnitType, itemUnitName;
+    private TextInputEditText itemAmount;
+    private Button backButton, addToDiaryButton;
+    private ImageView itemImage;
+    private String glucidValue , lipidValue, proteinValue, kcalValue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
