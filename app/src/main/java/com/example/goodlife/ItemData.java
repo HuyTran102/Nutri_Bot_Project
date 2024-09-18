@@ -1,5 +1,6 @@
 package com.example.goodlife;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -8,12 +9,16 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DecimalFormat;
@@ -26,7 +31,7 @@ public class ItemData extends AppCompatActivity {
     private TextInputEditText itemAmount;
     private Button backButton, addToDiaryButton;
     private ImageView itemImage;
-    private String glucidValue , lipidValue, proteinValue, kcalValue;
+    private String glucidValue , lipidValue, proteinValue, kcalValue, name;
     private FirebaseFirestore firebaseFirestore;
 
     @Override
@@ -45,6 +50,12 @@ public class ItemData extends AppCompatActivity {
         itemGlucid = findViewById(R.id.item_glucid);
         itemAmount = findViewById(R.id.item_amount);
         itemImage = findViewById(R.id.item_image);
+        
+        firebaseFirestore = FirebaseFirestore.getInstance();
+
+        SharedPreferences sp = getSharedPreferences("Data", Context.MODE_PRIVATE);
+
+        name = sp.getString("Name",null);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -138,9 +149,27 @@ public class ItemData extends AppCompatActivity {
                 glucidValue = glucidValue.replace(",", ".");
 
                 editor.putFloat("Amount", Float.parseFloat(String.valueOf(amount[0])));
-                editor.putFloat("Protein",Float.parseFloat(proteinValue));
+                editor.putFloat("Protein", Float.parseFloat(proteinValue));
                 editor.putFloat("Lipid", Float.parseFloat(lipidValue));
                 editor.putFloat("Glucid", Float.parseFloat(glucidValue));
+
+                firebaseFirestore.collection(name)
+                                .add(new DiaryItem(finalItemName, Float.parseFloat(String.valueOf(amount[0]))
+                                        , Integer.parseInt(kcalValue), Float.parseFloat(proteinValue)
+                                        , Float.parseFloat(lipidValue), Float.parseFloat(glucidValue)
+                                        , finalUnitType, finalUnitName))
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                                Log.d("Firestore", "DocumentSnapshot added with id: " + documentReference.getId());
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w("Firestore", "Error adding document", e);
+                                            }
+                                        });
 
                 editor.apply();
                 Intent intent = new Intent(ItemData.this, Dietary.class);
