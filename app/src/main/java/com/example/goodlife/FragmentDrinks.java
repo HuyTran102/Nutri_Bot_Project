@@ -111,6 +111,7 @@ public class FragmentDrinks extends Fragment {
                 } else {
                     unit_type = "(ml)";
                 }
+
                 items.add(new Item(String.valueOf(name), this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()), kcal, protein, lipid, glucid, unit_type));
             }
             fileInputStream.close();
