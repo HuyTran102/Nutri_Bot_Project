@@ -18,9 +18,6 @@
             android:name=".ItemData"
             android:exported="false" />
         <activity
-            android:name=".NutritionalStatusResult"
-            android:exported="false" />
-        <activity
             android:name=".PhysicalActivity"
             android:exported="false" />
         <activity
