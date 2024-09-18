@@ -111,31 +111,46 @@ public class FragmentFood extends Fragment {
                     imageNameIndex4++;
 
                     i_name = "n" + imageNameIndex4;
-
-                    items.add(new Item(String.valueOf(name), this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()), kcal, protein, lipid, glucid, unit_type));
+                    if(this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()) == 0) {
+                        items.add(new Item(String.valueOf(name), R.drawable.noimageavailable, kcal, protein, lipid, glucid, unit_type));
+                    } else {
+                        items.add(new Item(String.valueOf(name), this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()), kcal, protein, lipid, glucid, unit_type));
+                    }
                 } else if(rowIndex >= 270 && rowIndex <= 315) {
 
                     imageNameIndex2++;
 
                     i_name = "n" + imageNameIndex2;
 
-                    items.add(new Item(String.valueOf(name), this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()), kcal, protein, lipid, glucid, unit_type));
+                    if(this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()) == 0) {
+                        items.add(new Item(String.valueOf(name), R.drawable.noimageavailable, kcal, protein, lipid, glucid, unit_type));
+                    } else {
+                        items.add(new Item(String.valueOf(name), this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()), kcal, protein, lipid, glucid, unit_type));
+                    }
                 } else if(rowIndex >= 316 && rowIndex <= 342) {
 
                     imageNameIndex3++;
 
                     i_name = "n" + imageNameIndex3;
 
-                    items.add(new Item(String.valueOf(name), this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()), kcal, protein, lipid, glucid, unit_type));
+                    if(this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()) == 0) {
+                        items.add(new Item(String.valueOf(name), R.drawable.noimageavailable, kcal, protein, lipid, glucid, unit_type));
+                    } else {
+                        items.add(new Item(String.valueOf(name), this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()), kcal, protein, lipid, glucid, unit_type));
+                    }
                 } else if(rowIndex >= 343) {
 
                     imageNameIndex1++;
 
                     i_name = "n" + imageNameIndex1;
 
-                    items.add(new Item(String.valueOf(name), this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()), kcal, protein, lipid, glucid, unit_type));
+                    if(this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()) == 0) {
+                        items.add(new Item(String.valueOf(name), R.drawable.noimageavailable, kcal, protein, lipid, glucid, unit_type));
+                    } else {
+                        items.add(new Item(String.valueOf(name), this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()), kcal, protein, lipid, glucid, unit_type));
+                    }
                 } else {
-                    items.add(new Item(String.valueOf(name), R.drawable.images, kcal, protein, lipid, glucid, unit_type));
+                    items.add(new Item(String.valueOf(name), R.drawable.noimageavailable, kcal, protein, lipid, glucid, unit_type));
                 }
 
 //                items.add(new Item(String.valueOf(name), R.drawable.images, kcal, protein, lipid, glucid, unit_type));

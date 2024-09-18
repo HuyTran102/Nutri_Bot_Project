@@ -80,7 +80,7 @@ public class FragmentGroceries extends Fragment {
                 } else {
                     unit_type = "(ml)";
                 }
-                items.add(new Item(String.valueOf(name), R.drawable.images, kcal, protein, lipid, glucid, unit_type));
+                items.add(new Item(String.valueOf(name), R.drawable.noimageavailable, kcal, protein, lipid, glucid, unit_type));
             }
             fileInputStream.close();
 
