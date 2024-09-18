@@ -111,11 +111,11 @@ public class FragmentFood extends Fragment {
 
                 String i_name;
 
-                if(rowIndex >= 343) {
+                if(rowIndex >= 0 && rowIndex <= 205) {
 
-                    imageNameIndex1++;
+                    imageNameIndex4++;
 
-                    i_name = "n" + imageNameIndex1;
+                    i_name = "n" + imageNameIndex4;
 
                     items.add(new Item(String.valueOf(name), this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()), kcal, protein, lipid, glucid, unit_type));
                 } else if(rowIndex >= 270 && rowIndex <= 315) {
@@ -132,11 +132,11 @@ public class FragmentFood extends Fragment {
                     i_name = "n" + imageNameIndex3;
 
                     items.add(new Item(String.valueOf(name), this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()), kcal, protein, lipid, glucid, unit_type));
-                } else if(rowIndex >= 0 && rowIndex <= 205) {
+                } else if(rowIndex >= 343) {
 
-                    imageNameIndex4++;
+                    imageNameIndex1++;
 
-                    i_name = "n" + imageNameIndex4;
+                    i_name = "n" + imageNameIndex1;
 
                     items.add(new Item(String.valueOf(name), this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()), kcal, protein, lipid, glucid, unit_type));
                 } else {
