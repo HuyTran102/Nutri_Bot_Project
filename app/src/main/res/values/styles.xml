@@ -43,6 +43,19 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="deleteButton" parent="viewParent">
+        <item name="android:background">@drawable/button_background_red</item>
+        <item name="android:textColor">@color/whiteTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="infomationButton" parent="viewParent">
+        <item name="android:background">@drawable/button_background_green</item>
+        <item name="android:textColor">@color/whiteTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
     <style name="xnButton" parent="viewParent">
         <item name="android:background">@drawable/button_background_blue</item>
         <item name="android:textColor">@color/whiteTextColor</item>

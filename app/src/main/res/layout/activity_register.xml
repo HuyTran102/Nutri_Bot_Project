@@ -167,6 +167,7 @@
                             android:background="@drawable/chose_button"
                             />
                     </RadioGroup>
+
                     <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
                         android:id="@+id/RegisterButton"
                         style="@style/loginButton"
