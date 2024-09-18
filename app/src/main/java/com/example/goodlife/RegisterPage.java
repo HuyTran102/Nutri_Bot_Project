@@ -22,17 +22,17 @@ import java.util.Calendar;
 
 public class RegisterPage extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
+
     private Button dateButton;
 
-    EditText editTextName, editTextPassword, editTextGender;
-    CircularProgressButton signUp;
+    private EditText editTextName, editTextPassword;
 
-    LinearLayout signIn;
+    private CircularProgressButton signUp;
 
-    FirebaseDatabase database;
-    DatabaseReference reference;
-    RadioButton chosse_boy, chose_girl;
-    String date, signUpDate;
+    private FirebaseDatabase database;
+    private DatabaseReference reference;
+    private RadioButton chosse_boy, chose_girl;
+    private String date, signUpDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class RegisterPage extends AppCompatActivity {
         editTextPassword = findViewById(R.id.editTextPassword);
         signUp = findViewById(R.id.RegisterButton);
         signUpDate = getTodaysDate();
+
         // User click sign up button
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +70,8 @@ public class RegisterPage extends AppCompatActivity {
         });
 
     }
-    // Get today information
+
+    // Get today date information: day / month / year
     private String getTodaysDate() {
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
@@ -78,7 +80,8 @@ public class RegisterPage extends AppCompatActivity {
         int day = cal.get(Calendar.DAY_OF_MONTH);
         return makeDateString(day, month, year);
     }
-    // Date Picker
+
+    // Date Picker for user to select their date of birht
     private void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -99,12 +102,14 @@ public class RegisterPage extends AppCompatActivity {
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
         //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
     }
-    // Convert from date to String
+
+    // Convert and format from date to String
     private String makeDateString(int day, int month, int year) {
         date = getMonthFormat(month) + "/" + day + "/" + year;
         return "Ngày sinh: " + getMonthFormat(month) + " " + day + " " + year;
     }
-    // Get Month Format
+
+    // Get Month Format from number to String
     private String getMonthFormat(int month) {
         if(month == 1)
             return "JAN";
@@ -133,11 +138,13 @@ public class RegisterPage extends AppCompatActivity {
 
         return "JAN";
     }
+
     // open Date picker
     public void openDatePicker(View view) {
         datePickerDialog.show();
     }
 
+    // when user click on login button
     public void onLoginClick(View view){
         startActivity(new Intent(this, LoginScreen.class));
         overridePendingTransition(R.anim.slide_in_left,android.R.anim.slide_out_right);

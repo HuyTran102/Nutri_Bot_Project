@@ -26,9 +26,9 @@ import java.util.Objects;
 
 public class LoginScreen extends AppCompatActivity {
 
-    EditText editTextName, editTextPassword;
-    Button loginButton;
-    String signInDate;
+    private EditText editTextName, editTextPassword;
+    private Button loginButton;
+    private String signInDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Layout sceen
@@ -61,6 +61,7 @@ public class LoginScreen extends AppCompatActivity {
             }
         });
     }
+
     public void onLoginClick(View view){
         startActivity(new Intent(this,RegisterPage.class));
         overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
@@ -75,11 +76,13 @@ public class LoginScreen extends AppCompatActivity {
         int day = cal.get(Calendar.DAY_OF_MONTH);
         return makeDateString(day, month, year);
     }
+
     // Convert to string day
     private String makeDateString(int day, int month, int year) {
         return getMonthFormat(month) + "/" + day + "/" + year;
     }
-    // Format  month
+
+    // Format month from number to String
     private String getMonthFormat(int month) {
         if(month == 1)
             return "JAN";
@@ -108,7 +111,8 @@ public class LoginScreen extends AppCompatActivity {
 
         return "JAN";
     }
-    // Check is UserName correct
+
+    // Check if UserName is correct
     public Boolean validDataUsername() {
         String name;
         name = String.valueOf(editTextName.getText());

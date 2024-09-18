@@ -13,12 +13,9 @@ import android.widget.Button;
 import com.google.android.material.tabs.TabLayout;
 
 public class Dietary extends AppCompatActivity {
-
-    Button backButton;
-    
-    TabLayout tabLayout;
-
-    ViewPager viewPager;
+    private Button backButton;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

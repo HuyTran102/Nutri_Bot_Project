@@ -28,15 +28,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class FragmentFood extends Fragment {
-
-    RecyclerView recyclerView;
-
-    List<Item> items = new ArrayList<>();
-
-    SearchView searchView;
-    
-    ViewAdapter viewAdapter;
-
+    private RecyclerView recyclerView;
+    private List<Item> items = new ArrayList<>();
+    private SearchView searchView;
+    private ViewAdapter viewAdapter;
     private static final String TAG = "ExcelRead";
 
     @Override

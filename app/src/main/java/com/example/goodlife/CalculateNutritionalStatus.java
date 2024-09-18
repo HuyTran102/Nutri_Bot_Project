@@ -34,17 +34,11 @@ import java.text.DecimalFormat;
 import java.util.Objects;
 
 public class CalculateNutritionalStatus extends AppCompatActivity {
-
-    Button backButton, resultButton;
-
-    TextInputEditText userHeight, userWeight;
-
-    String name, signInDate, gender, password, date, height, weight;
-
-    TextView bmiStatusView, hfaStatusView, heightView, weightView;
-
+    private Button backButton, resultButton;
+    private TextInputEditText userHeight, userWeight;
+    private String name, signInDate, gender, password, date, height, weight;
+    private TextView bmiStatusView, hfaStatusView, heightView, weightView;
     private static final String TAG = "ExcelRead";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
