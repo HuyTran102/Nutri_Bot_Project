@@ -80,7 +80,7 @@ public class FragmentFood extends Fragment {
             Workbook workbook = new XSSFWorkbook(fileInputStream);
             Sheet sheet = workbook.getSheetAt(1);
 
-            int imageNameIndex1 = 3000, imageNameIndex2 = 1000, imageNameIndex3 = 2000, imageNameIndex4 = 5000;
+            int imageNameIndex1 = 3000, imageNameIndex2 = 1000, imageNameIndex3 = 2000, imageNameIndex4 = 5000, imageNameIndex5 = 15000;
 
             for(int rowIndex = 0; rowIndex < sheet.getPhysicalNumberOfRows() - 1; rowIndex ++) {
                 Row row = sheet.getRow(rowIndex);
@@ -111,6 +111,16 @@ public class FragmentFood extends Fragment {
                     imageNameIndex4++;
 
                     i_name = "n" + imageNameIndex4;
+                    if(this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()) == 0) {
+                        items.add(new Item(String.valueOf(name), R.drawable.noimageavailable, kcal, protein, lipid, glucid, unit_type));
+                    } else {
+                        items.add(new Item(String.valueOf(name), this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()), kcal, protein, lipid, glucid, unit_type));
+                    }
+                } else if(rowIndex >= 206 && rowIndex <= 269) {
+
+                    imageNameIndex5++;
+
+                    i_name = "a" + imageNameIndex5;
                     if(this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()) == 0) {
                         items.add(new Item(String.valueOf(name), R.drawable.noimageavailable, kcal, protein, lipid, glucid, unit_type));
                     } else {
