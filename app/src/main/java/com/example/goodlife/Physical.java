@@ -45,16 +45,22 @@ public class Physical extends AppCompatActivity {
 
     // Time Picker for user to select their practice time
     private void initTimePicker() {
+        // Get the current time
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+
         // Create a TimePickerDialog with Holo theme
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog,
+        timePickerDialog = new TimePickerDialog(
+                Physical.this,
+                android.R.style.Theme_Holo_Light_Dialog,  // Use Holo theme here
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        // Do something with the time chosen by the user
-                        pickTimeButton.setText(hourOfDay + "giờ : " + minute + "phút");
+                        // Display the selected time
+                        pickTimeButton.setText(String.format("%02d giờ : %02d phút", hourOfDay, minute));
                     }
-                }, 0, 0, true);
-
+                }, hour, minute, true); // true for 24-hour format
     }
 
     // open Time picker
