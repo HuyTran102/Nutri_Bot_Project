@@ -44,6 +44,8 @@
         android:background="@drawable/custom_date"
         android:layout_marginTop="20dp"
         app:backgroundTint="@null"
+        android:gravity="center_vertical"
+        android:onClick="openTimePicker"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
