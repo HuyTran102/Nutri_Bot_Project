@@ -78,7 +78,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="20dp"
-                        android:background="@drawable/custom_date"
+                        android:background="@drawable/date_background_button"
                         android:ems="10"
                         android:text="Ngày sinh"
                         android:textStyle="bold"

@@ -25,8 +25,10 @@ public class Physical extends AppCompatActivity {
         setContentView(R.layout.activity_physical);
 
         backButton = findViewById(R.id.back_button);
-        pickTimeButton = findViewById(R.id.pickTimeButton);
-        pickTimeButton.setText(getTodaysTime());
+        pickTimeButton = findViewById(R.id.pick_time_button);
+
+        // Set current time for both time picker button
+        pickTimeButton.setText("0 giờ : 0 phút");
 
         // use to open the dialog to select the user practice time
         initTimePicker();
@@ -41,32 +43,18 @@ public class Physical extends AppCompatActivity {
         });
     }
 
-    // Get today time information: hour - minute
-    private String getTodaysTime() {
-        Calendar calendar = Calendar.getInstance();
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int minute = calendar.get(Calendar.MINUTE);
-        return hour + ":" + minute;
-    }
-
     // Time Picker for user to select their practice time
     private void initTimePicker() {
-        // Get the current time
-        Calendar calendar = Calendar.getInstance();
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int minute = calendar.get(Calendar.MINUTE);
-
         // Create a TimePickerDialog with Holo theme
-        timePickerDialog = new TimePickerDialog(
-                Physical.this,
-                android.R.style.Theme_Holo_Light_Dialog,  // Use Holo theme here
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog,
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        // Display the selected time
-                        pickTimeButton.setText(String.format("%02d:%02d", hourOfDay, minute));
+                        // Do something with the time chosen by the user
+                        pickTimeButton.setText(hourOfDay + "giờ : " + minute + "phút");
                     }
-                }, hour, minute, true); // true for 24-hour format
+                }, 0, 0, true);
+
     }
 
     // open Time picker
