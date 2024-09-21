@@ -54,15 +54,15 @@ public class Physical extends AppCompatActivity {
             }
         };
 
-        // Get the current time
-        Calendar calendar = Calendar.getInstance();
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int minute = calendar.get(Calendar.MINUTE);
+//        // Get the current time
+//        Calendar calendar = Calendar.getInstance();
+//        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+//        int minute = calendar.get(Calendar.MINUTE);
 
         // Use Holo theme here
         int style = AlertDialog.THEME_HOLO_LIGHT;
 
-        timePickerDialog = new TimePickerDialog(this, style, timeSetListener, hour, minute, true);
+        timePickerDialog = new TimePickerDialog(this, style, timeSetListener, 0, 0, true);
     }
 
     // open Time picker
