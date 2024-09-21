@@ -9,7 +9,8 @@
     android:background="@color/login_bk_color"
     android:focusableInTouchMode="true"
     android:gravity="center"
-    android:keepScreenOn="true">
+    android:keepScreenOn="true"
+    style="@style/AppTheme">
 
     <ScrollView
         android:layout_width="match_parent"
