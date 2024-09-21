@@ -38,21 +38,39 @@
         app:layout_constraintVertical_bias="0.138" />
 
     <LinearLayout
-        android:layout_width="347dp"
-        android:layout_height="211dp"
+        android:id="@+id/weight_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/custom_button"
         android:orientation="vertical"
-        android:id="@+id/weight_height"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.341">
+        app:layout_constraintVertical_bias="0.315">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="Nhập chỉ số chiều cao cân nặng"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#0293A5"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -63,53 +81,53 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/height"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/user_height"
-                    android:layout_marginStart="2dp"
                     android:layout_width="339dp"
                     android:layout_height="50dp"
+                    android:layout_marginStart="2dp"
                     android:autofillHints=""
                     android:ems="10"
                     android:hint="@string/chi_u_cao_m"
-                    android:textColorHint="#9E9D9D"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
+                    android:inputType="numberDecimal"
                     android:textColor="#9E9D9D"
-                    android:inputType="numberDecimal">
+                    android:textColorHint="#9E9D9D"
+                    android:textSize="18sp"
+                    android:textStyle="bold">
 
                 </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/weight"
-                android:layout_gravity="center"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/loginViewsMargin"
+                android:layout_gravity="center"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="2dp"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/user_weight"
-                    android:layout_marginStart="2dp"
                     android:layout_width="339dp"
                     android:layout_height="50dp"
+                    android:layout_marginStart="2dp"
                     android:autofillHints=""
                     android:ems="10"
                     android:hint="@string/c_n_n_ng_kg"
-                    android:textColorHint="#9E9D9D"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
+                    android:inputType="numberDecimal"
                     android:textColor="#9E9D9D"
-                    android:inputType="numberDecimal">
+                    android:textColorHint="#9E9D9D"
+                    android:textSize="18sp"
+                    android:textStyle="bold">
 
                 </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
@@ -121,7 +139,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/custom_button"
             android:text="@string/k_t_qu"
             android:textColor="@color/black"
@@ -136,10 +155,11 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="350dp"
-        android:layout_height="227dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/custom_button"
         android:orientation="vertical"
+        android:layout_marginBottom="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.511"
@@ -152,6 +172,7 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="5dp"
             android:text="@string/k_t_qu_t_nh_tr_ng_dinh_d_ng"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -161,15 +182,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.601" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="25dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -28,7 +28,7 @@ public class Physical extends AppCompatActivity {
         pickTimeButton = findViewById(R.id.pick_time_button);
 
         // Set current time for both time picker button
-        pickTimeButton.setText("0 giờ : 0 phút");
+        pickTimeButton.setText(" Thời gian luyện tập: 0 giờ : 0 phút");
 
         // use to open the dialog to select the user practice time
         initTimePicker();
@@ -50,7 +50,7 @@ public class Physical extends AppCompatActivity {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 // Display the selected time
-                pickTimeButton.setText(String.format("%02d giờ : %02d phút", hourOfDay, minute));
+                pickTimeButton.setText(String.format(" Thời gian luyện tập: %02d giờ : %02d phút", hourOfDay, minute));
             }
         };
 

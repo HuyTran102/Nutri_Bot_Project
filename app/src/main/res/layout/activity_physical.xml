@@ -37,35 +37,26 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/pick_time_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text=" Thời gian luyện tập: "
+        android:textSize="18sp"
         android:background="@drawable/time_background_button"
+        android:textColor="@color/black"
+        app:backgroundTint="@null"
+        android:gravity="center"
+        android:onClick="openTimePicker"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" Thời gian luyện tập: "
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:gravity="center"/>
-
-        <Button
-            android:id="@+id/pick_time_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="18sp"
-            android:background="@drawable/time_background_button"
-            android:textColor="@color/black"
-            app:backgroundTint="@null"
-            android:gravity="center"
-            android:onClick="openTimePicker"/>
-
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/back_button"
