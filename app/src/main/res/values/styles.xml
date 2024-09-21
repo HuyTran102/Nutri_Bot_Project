@@ -34,6 +34,7 @@
     <style name="modifiedEditText" parent="parent">
         <item name="android:textSize">@dimen/newsMoreTextSize</item>
         <item name="android:textColor">#EAEAEA</item>
+        <item name="android:textColorHint">#9E9D9D</item>
         <item name="android:backgroundTint">@color/primaryTextColor</item>
     </style>
 
@@ -49,7 +50,7 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="infomationButton" parent="viewParent">
+    <style name="informationButton" parent="viewParent">
         <item name="android:background">@drawable/button_background_green</item>
         <item name="android:textColor">@color/whiteTextColor</item>
         <item name="android:textStyle">bold</item>
