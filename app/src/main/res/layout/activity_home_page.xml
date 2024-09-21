@@ -295,7 +295,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toTopOf="@id/physicalActivityButton"
+        app:layout_constraintBottom_toTopOf="@id/physical_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"

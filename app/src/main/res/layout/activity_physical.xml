@@ -36,6 +36,26 @@
         app:layout_constraintVertical_bias="0.138"/>
 
     <Button
+        android:id="@+id/datePickerButton"
+        style="?android:spinnerStyle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_date"
+        android:ems="10"
+        android:text="Ngày sinh"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:textColor="#585757"
+        android:onClick="openDatePicker"
+        android:gravity="center_vertical"
+        app:backgroundTint="@null"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gender"
+        app:layout_constraintTop_toTopOf="@+id/name" />
+
+    <Button
         android:id="@+id/back_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
