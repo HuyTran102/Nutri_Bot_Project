@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class PhysicalActivity extends AppCompatActivity {
+public class Physical extends AppCompatActivity {
     private Button backButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,7 @@ public class PhysicalActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PhysicalActivity.this, HomePage.class);
+                Intent intent = new Intent(Physical.this, HomePage.class);
                 startActivity(intent);
                 finish();
             }

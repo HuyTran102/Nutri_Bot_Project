@@ -18,7 +18,7 @@
             android:name=".ItemData"
             android:exported="false" />
         <activity
-            android:name=".PhysicalActivity"
+            android:name=".Physical"
             android:exported="false" />
         <activity
             android:name=".Dietary"

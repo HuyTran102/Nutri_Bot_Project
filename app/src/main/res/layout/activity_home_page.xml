@@ -269,7 +269,7 @@
         app:layout_constraintVertical_bias="0.069" />
 
     <Button
-        android:id="@+id/nutritionalStatusButton"
+        android:id="@+id/nutritional_status_button"
         android:layout_width="330dp"
         android:layout_height="58dp"
         android:background="@drawable/custom_button"
@@ -286,7 +286,7 @@
         app:layout_constraintVertical_bias="0.615" />
 
     <Button
-        android:id="@+id/dietaryButton"
+        android:id="@+id/dietary_button"
         android:layout_width="330dp"
         android:layout_height="58dp"
         android:background="@drawable/custom_button"
@@ -299,10 +299,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nutritionalStatusButton" />
+        app:layout_constraintTop_toBottomOf="@id/nutritional_status_button" />
 
     <Button
-        android:id="@+id/physicalActivityButton"
+        android:id="@+id/physical_button"
         android:layout_width="330dp"
         android:layout_height="58dp"
         android:background="@drawable/custom_button"
@@ -314,6 +314,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dietaryButton" />
+        app:layout_constraintTop_toBottomOf="@+id/dietary_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

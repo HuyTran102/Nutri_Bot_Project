@@ -16,7 +16,7 @@ import java.text.DecimalFormat;
 
 public class HomePage extends AppCompatActivity {
 
-    private Button nutritionalStatus, physicalActivity, dietary;
+    private Button nutritionalStatusButton, physicalButton, dietaryButton;
     private ProgressBar weightProgressBar, heightProgressBar, kcaloProgressBar;
     private TextView weightProgressText, heightProgressText, kcaloProgressText, weightView, heightView;
     private double actualWeight = 0, actualHeight = 0, recommendWeight = 0, recommendHeight = 0, statusWeight = 0, statusHeight = 0;
@@ -28,9 +28,9 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        nutritionalStatus = findViewById(R.id.nutritionalStatusButton);
-        physicalActivity = findViewById(R.id.physicalActivityButton);
-        dietary = findViewById(R.id.dietaryButton);
+        nutritionalStatusButton = findViewById(R.id.nutritional_status_button);
+        physicalButton = findViewById(R.id.physical_button);
+        dietaryButton = findViewById(R.id.dietary_button);
         weightView = findViewById(R.id.weight_view);
         heightView = findViewById(R.id.height_view);
         weightProgressBar = findViewById(R.id.weight_progres_bar);
@@ -143,7 +143,7 @@ public class HomePage extends AppCompatActivity {
             }
         }, 35);
 
-        nutritionalStatus.setOnClickListener(new View.OnClickListener() {
+        nutritionalStatusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomePage.this, CalculateNutritionalStatus.class);
@@ -152,16 +152,16 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        physicalActivity.setOnClickListener(new View.OnClickListener() {
+        physicalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomePage.this, PhysicalActivity.class);
+                Intent intent = new Intent(HomePage.this, Physical.class);
                 startActivity(intent);
                 finish();
             }
         });
 
-        dietary.setOnClickListener(new View.OnClickListener() {
+        dietaryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomePage.this, Dietary.class);
