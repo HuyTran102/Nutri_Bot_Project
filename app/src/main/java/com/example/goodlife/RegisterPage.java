@@ -22,13 +22,9 @@ import java.util.Calendar;
 
 public class RegisterPage extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
-
     private Button dateButton;
-
     private EditText editTextName, editTextPassword;
-
     private CircularProgressButton signUp;
-
     private FirebaseDatabase database;
     private DatabaseReference reference;
     private RadioButton chosse_boy, chose_girl;
