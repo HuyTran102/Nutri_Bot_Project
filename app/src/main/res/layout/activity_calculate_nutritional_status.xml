@@ -63,7 +63,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/height"
-                android:layout_marginStart="1dp"
+                android:layout_marginStart="2dp"
                 android:layout_marginEnd="2dp"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
@@ -72,14 +72,17 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/user_height"
-                    android:layout_width="349dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_width="339dp"
                     android:layout_height="50dp"
                     android:autofillHints=""
                     android:ems="10"
                     android:hint="@string/chi_u_cao_m"
-                    android:inputType="numberDecimal"
+                    android:textColorHint="#9E9D9D"
+                    android:textStyle="bold"
                     android:textSize="18sp"
-                    android:textStyle="bold">
+                    android:textColor="#9E9D9D"
+                    android:inputType="numberDecimal">
 
                 </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
@@ -87,7 +90,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/weight"
                 android:layout_gravity="center"
-                android:layout_marginStart="1dp"
+                android:layout_marginStart="2dp"
                 android:layout_marginEnd="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -96,14 +99,17 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/user_weight"
-                    android:layout_width="349dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_width="339dp"
                     android:layout_height="50dp"
                     android:autofillHints=""
                     android:ems="10"
                     android:hint="@string/c_n_n_ng_kg"
-                    android:inputType="numberDecimal"
+                    android:textColorHint="#9E9D9D"
+                    android:textStyle="bold"
                     android:textSize="18sp"
-                    android:textStyle="bold">
+                    android:textColor="#9E9D9D"
+                    android:inputType="numberDecimal">
 
                 </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
