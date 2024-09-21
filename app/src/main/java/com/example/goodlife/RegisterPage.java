@@ -79,7 +79,7 @@ public class RegisterPage extends AppCompatActivity {
 
     // Date Picker for user to select their date of birth
     private void initDatePicker() {
-        // Create a TimePickerDialog with Holo theme
+        // Create a DatePickerDialog with Holo theme
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
