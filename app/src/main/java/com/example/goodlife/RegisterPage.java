@@ -77,7 +77,7 @@ public class RegisterPage extends AppCompatActivity {
         return makeDateString(day, month, year);
     }
 
-    // Date Picker for user to select their date of birht
+    // Date Picker for user to select their date of birth
     private void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
