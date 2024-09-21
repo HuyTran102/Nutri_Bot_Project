@@ -79,6 +79,7 @@ public class RegisterPage extends AppCompatActivity {
 
     // Date Picker for user to select their date of birth
     private void initDatePicker() {
+        // Create a TimePickerDialog with Holo theme
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -88,11 +89,13 @@ public class RegisterPage extends AppCompatActivity {
             }
         };
 
+        // Get the current date
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
         int day = cal.get(Calendar.DAY_OF_MONTH);
 
+        // Use Holo theme here
         int style = AlertDialog.THEME_HOLO_LIGHT;
 
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
