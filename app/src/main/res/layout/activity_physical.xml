@@ -84,7 +84,7 @@
             android:background="@color/white"
             android:textColor="@color/black"
             app:backgroundTint="@null"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:onClick="openTimePicker"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
