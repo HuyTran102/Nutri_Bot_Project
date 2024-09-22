@@ -1,5 +1,6 @@
 package com.example.goodlife;
 
+import static android.content.ContentValues.TAG;
 import static android.content.Intent.getIntent;
 
 import android.content.Context;
@@ -14,18 +15,28 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FragmentDiary extends Fragment {
-
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     TextView viewItemName, itemKcalo, itemProtein, itemLipid, itemGlucid, itemUnitType, itemUnitName, itemAmount;
     List<DiaryItem> items = new ArrayList<>();
 
@@ -57,7 +68,7 @@ public class FragmentDiary extends Fragment {
         itemProtein = getView().findViewById(R.id.item_protein);
         itemLipid = getView().findViewById(R.id.item_lipid);
         itemGlucid = getView().findViewById(R.id.item_glucid);
-
+        WriteDataFireBase();
     }
 
     @Override
@@ -103,5 +114,49 @@ public class FragmentDiary extends Fragment {
 
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(itemDecoration);
+    }
+
+
+    // Write Data to Cloud Firestone
+    public void WriteDataFireBase(){
+        // Create a new user with a first, middle, and last name
+        Map<String, Object> city = new HashMap<>();
+        city.put("Bánh mì nhân thịt", 100);
+        city.put("Coca-cola", 100);
+        city.put("Bún bò Huế", 100);
+
+
+        DocumentReference messageRef = db
+                .collection("GoodLife").document("huy")
+                .collection("Nhật kí").document("Snack");
+
+        messageRef.set(city).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Log.i("DONEEE","DOBNEEEEEEEEEEEEEEEE");
+            }
+        });
+    }
+
+    // Load Data to Recycle Item
+    public  void LoadDataFireBase(){
+
+        db.collection("GoodLife")
+                .document("huy")
+                .collection("Nhật kí")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String myString = document.getId() + " => " + document.getData();
+
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
 }
