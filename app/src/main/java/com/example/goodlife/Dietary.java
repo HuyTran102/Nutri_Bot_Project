@@ -41,6 +41,7 @@ public class Dietary extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Dietary.this, HomePage.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 finish();
             }
