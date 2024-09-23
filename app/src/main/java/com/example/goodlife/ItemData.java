@@ -15,12 +15,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DecimalFormat;
@@ -136,37 +133,25 @@ public class ItemData extends AppCompatActivity {
         String finalUnitType = unitType;
         String finalUnitName = unitName;
 
-        SharedPreferences sharedPreferences = getSharedPreferences("DiaryData", Context.MODE_PRIVATE);
+        // write item to database when click on the addToDiaryButton
         addToDiaryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("Name", finalItemName);
-                editor.putString("UnitType", finalUnitType);
-                editor.putString("UnitName", finalUnitName);
-
-                editor.putInt("Kcal", Integer.parseInt(kcalValue));
-
-                DecimalFormat decimalFormat = new DecimalFormat("0.0");
-
+                // change the "," in number to "."
                 proteinValue = proteinValue.replace(",", ".");
                 lipidValue = lipidValue.replace(",", ".");
                 glucidValue = glucidValue.replace(",", ".");
 
-                editor.putFloat("Amount", Float.parseFloat(String.valueOf(amount[0])));
-                editor.putFloat("Protein", Float.parseFloat(proteinValue));
-                editor.putFloat("Lipid", Float.parseFloat(lipidValue));
-                editor.putFloat("Glucid", Float.parseFloat(glucidValue));
-
+                // write the data to the database
                 WriteDataFireBase(finalItemName, amount[0], kcalValue, proteinValue, lipidValue, glucidValue, finalUnitType, finalUnitName);
 
-                editor.apply();
                 Intent intent = new Intent(ItemData.this, Dietary.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }
         });
 
+        // set when click on the back button to went back to Dietary.Java
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -179,14 +164,22 @@ public class ItemData extends AppCompatActivity {
 
     // Write Data to Cloud Firestone
     public void WriteDataFireBase(String itemName, double itemAmount, String itemKcalValue, String itemProteinValue,String itemLipidValue, String itemGlucidValue, String itemUnitType, String itemUnitName){
-        firebaseFirestore.collection(name)
-                .add(new DiaryItem(itemName, Float.parseFloat(String.valueOf(itemAmount))
-                        , Integer.parseInt(itemKcalValue), Float.parseFloat(itemProteinValue)
-                        , Float.parseFloat(itemLipidValue), Float.parseFloat(itemGlucidValue)
-                        , itemUnitType, itemUnitName))
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        // Create a new item with all of the data like name, amount, ...
+        Map<String, Object> item = new HashMap<>();
+        item.put("name", itemName);
+        item.put("amount", String.valueOf(itemAmount));
+        item.put("kcal", itemKcalValue);
+        item.put("protein", itemProteinValue);
+        item.put("lipid", itemLipidValue);
+        item.put("glucid", itemGlucidValue);
+        item.put("unit_name", itemUnitName);
+        item.put("unit_type", itemUnitType);
+
+        firebaseFirestore.collection(name).document(itemName)
+                .set(item)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
+                    public void onSuccess(Void aVoid) {
                         Log.d("Firestore", "Adding item to database successfully");
                     }
                 })
