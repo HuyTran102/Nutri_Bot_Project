@@ -36,11 +36,11 @@ import java.util.List;
 import java.util.Map;
 
 public class FragmentDiary extends Fragment {
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     TextView viewItemName, itemKcalo, itemProtein, itemLipid, itemGlucid, itemUnitType, itemUnitName, itemAmount;
     List<DiaryItem> items = new ArrayList<>();
 
-    String itemName, unitName, unitType;
+    String itemName, unitName, unitType, name;
     RecyclerView recyclerView;
 
     int kcal = 0 , calories_val = 0;
@@ -68,7 +68,11 @@ public class FragmentDiary extends Fragment {
         itemProtein = getView().findViewById(R.id.item_protein);
         itemLipid = getView().findViewById(R.id.item_lipid);
         itemGlucid = getView().findViewById(R.id.item_glucid);
-        WriteDataFireBase();
+
+        SharedPreferences sp = getContext().getSharedPreferences("Data", Context.MODE_PRIVATE);
+
+        name = sp.getString("Name",null);
+
     }
 
     @Override
@@ -80,34 +84,36 @@ public class FragmentDiary extends Fragment {
 
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("DiaryData", Context.MODE_PRIVATE);
 
-        itemName = sharedPreferences.getString("Name", null);
-        unitName = sharedPreferences.getString("UnitName", null);
-        unitType = sharedPreferences.getString("UnitType", null);
+//        itemName = sharedPreferences.getString("Name", null);
+//        unitName = sharedPreferences.getString("UnitName", null);
+//        unitType = sharedPreferences.getString("UnitType", null);
+//
+//        kcal = sharedPreferences.getInt("Kcal", 0);
+//
+//        amount = sharedPreferences.getFloat("Amount", 0);
+//        protein = sharedPreferences.getFloat("Protein", 0);
+//        lipid = sharedPreferences.getFloat("Lipid", 0);
+//        glucid = sharedPreferences.getFloat("Glucid", 0);
+//
+//        // set total value
+//        calories_val += kcal;
+//        amount_val += amount;
+//        protein_val += protein;
+//        lipid_val += lipid;
+//        glucid_val += glucid;
+//
+//        itemKcalo.setText(String.valueOf(calories_val));
+//        DecimalFormat df = new DecimalFormat("###.#");
+//        itemAmount.setText(df.format(amount_val));
+//        itemGlucid.setText(df.format(glucid_val));
+//        itemLipid.setText(df.format(lipid_val));
+//        itemProtein.setText(df.format(protein_val));
 
-        kcal = sharedPreferences.getInt("Kcal", 0);
 
-        amount = sharedPreferences.getFloat("Amount", 0);
-        protein = sharedPreferences.getFloat("Protein", 0);
-        lipid = sharedPreferences.getFloat("Lipid", 0);
-        glucid = sharedPreferences.getFloat("Glucid", 0);
+//        DiaryItem diaryItem = new DiaryItem(itemName, amount, kcal, protein, lipid, glucid, unitType, unitName);
+//        items.add(diaryItem);
 
-        // set total value
-        calories_val += kcal;
-        amount_val += amount;
-        protein_val += protein;
-        lipid_val += lipid;
-        glucid_val += glucid;
-
-        itemKcalo.setText(String.valueOf(calories_val));
-        DecimalFormat df = new DecimalFormat("###.#");
-        itemAmount.setText(df.format(amount_val));
-        itemGlucid.setText(df.format(glucid_val));
-        itemLipid.setText(df.format(lipid_val));
-        itemProtein.setText(df.format(protein_val));
-
-
-        DiaryItem diaryItem = new DiaryItem(itemName, amount, kcal, protein, lipid, glucid, unitType, unitName);
-        items.add(diaryItem);
+        LoadDataFireBase();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new DiaryViewAdapter(getContext(), items));
@@ -116,45 +122,20 @@ public class FragmentDiary extends Fragment {
         recyclerView.addItemDecoration(itemDecoration);
     }
 
-
-    // Write Data to Cloud Firestone
-    public void WriteDataFireBase(){
-        // Create a new user with a first, middle, and last name
-        Map<String, Object> city = new HashMap<>();
-        city.put("Bánh mì nhân thịt", 100);
-        city.put("Coca-cola", 100);
-        city.put("Bún bò Huế", 100);
-
-
-        DocumentReference messageRef = db
-                .collection("GoodLife").document("huy")
-                .collection("Nhật kí").document("Snack");
-
-        messageRef.set(city).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Log.i("DONEEE","DOBNEEEEEEEEEEEEEEEE");
-            }
-        });
-    }
-
     // Load Data to Recycle Item
     public  void LoadDataFireBase(){
 
-        db.collection("GoodLife")
-                .document("huy")
-                .collection("Nhật kí")
+        firebaseFirestore.collection(name)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String myString = document.getId() + " => " + document.getData();
-
+                        if(task.isSuccessful()) {
+                            // Loop through all documents
+                            for(QueryDocumentSnapshot document : task.getResult()) {
+                                DiaryItem diaryItem = (DiaryItem) document.getData();
+                                items.add(diaryItem);
                             }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
                 });

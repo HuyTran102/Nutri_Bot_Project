@@ -15,8 +15,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -79,7 +81,8 @@ public class ItemData extends AppCompatActivity {
         viewItemName.setText(itemName);
 
         itemImage.setImageResource(imageId);
-        
+
+        // Transfer the unit type to the uint name
         if(Objects.equals(unitType, "(g)")) {
             unitName = "Khối lượng";
         } else {
@@ -89,6 +92,7 @@ public class ItemData extends AppCompatActivity {
         itemUnitType.setText(unitType);
         itemUnitName.setText(unitName);
 
+        // Make other value change along with the item amount
         final double[] amount = new double[1];
         itemAmount.addTextChangedListener(new TextWatcher() {
             @Override
@@ -112,6 +116,7 @@ public class ItemData extends AppCompatActivity {
                 }
                 amount[0] = Double.parseDouble(itemAmount.getText().toString());
 
+                // Calculate all value with the user item amount
                 DecimalFormat decimalFormat = new DecimalFormat("0.0");
 
                 kcalValue = String.valueOf((int) ((kcal[0] * amount[0]) / 100));
@@ -153,23 +158,7 @@ public class ItemData extends AppCompatActivity {
                 editor.putFloat("Lipid", Float.parseFloat(lipidValue));
                 editor.putFloat("Glucid", Float.parseFloat(glucidValue));
 
-                firebaseFirestore.collection(name)
-                                .add(new DiaryItem(finalItemName, Float.parseFloat(String.valueOf(amount[0]))
-                                        , Integer.parseInt(kcalValue), Float.parseFloat(proteinValue)
-                                        , Float.parseFloat(lipidValue), Float.parseFloat(glucidValue)
-                                        , finalUnitType, finalUnitName))
-                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                            @Override
-                                            public void onSuccess(DocumentReference documentReference) {
-                                                Log.d("Firestore", "DocumentSnapshot added with id: " + documentReference.getId());
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Log.w("Firestore", "Error adding document", e);
-                                            }
-                                        });
+                WriteDataFireBase(finalItemName, amount[0], kcalValue, proteinValue, lipidValue, glucidValue, finalUnitType, finalUnitName);
 
                 editor.apply();
                 Intent intent = new Intent(ItemData.this, Dietary.class);
@@ -186,5 +175,26 @@ public class ItemData extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    // Write Data to Cloud Firestone
+    public void WriteDataFireBase(String itemName, double itemAmount, String itemKcalValue, String itemProteinValue,String itemLipidValue, String itemGlucidValue, String itemUnitType, String itemUnitName){
+        firebaseFirestore.collection(name)
+                .add(new DiaryItem(itemName, Float.parseFloat(String.valueOf(itemAmount))
+                        , Integer.parseInt(itemKcalValue), Float.parseFloat(itemProteinValue)
+                        , Float.parseFloat(itemLipidValue), Float.parseFloat(itemGlucidValue)
+                        , itemUnitType, itemUnitName))
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d("Firestore", "Adding item to database successfully");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Firestore", "Error adding item to database: ", e);
+                    }
+                });
     }
 }
