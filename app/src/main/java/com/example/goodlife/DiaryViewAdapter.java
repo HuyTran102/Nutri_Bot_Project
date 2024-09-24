@@ -53,16 +53,16 @@ public class DiaryViewAdapter extends RecyclerView.Adapter<DiaryViewHolder> {
         holder.lipid.setText(decimalFormat.format(itemAtPosition.getLipid()));
         holder.glucid.setText(decimalFormat.format(itemAtPosition.getGlucid()));
 
+        // set when click on delete button to delete item from database
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                items.remove(position);
-//
-//                notifyDataSetChanged();
                 FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
+                // get the document to delete
                 DocumentReference documentReference = firebaseFirestore.collection(user_name).document(itemAtPosition.getName());
 
+                // delete document from database
                 documentReference.delete()
                         .addOnSuccessListener(aVoid -> {
                             Log.d("Firestore", "Deleting item successfully");
@@ -75,7 +75,21 @@ public class DiaryViewAdapter extends RecyclerView.Adapter<DiaryViewHolder> {
             }
         });
 
-
+        holder.infomation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DiaryItemData.class);
+                intent.putExtra("Name", itemAtPosition.name);
+                intent.putExtra("Amount", itemAtPosition.amount);
+                intent.putExtra("Kcal", itemAtPosition.kcal);
+                intent.putExtra("Protein", itemAtPosition.protein);
+                intent.putExtra("Lipid", itemAtPosition.lipid);
+                intent.putExtra("Glucid", itemAtPosition.glucid);
+                intent.putExtra("Image", itemAtPosition.getImage());
+                intent.putExtra("UnitType", itemAtPosition.unit_type);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

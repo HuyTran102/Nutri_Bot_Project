@@ -25,10 +25,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class ItemData extends AppCompatActivity {
+public class DiaryItemData extends AppCompatActivity {
     private TextView viewItemName, itemKcalo, itemProtein, itemLipid, itemGlucid, itemUnitType, itemUnitName;
     private TextInputEditText itemAmount;
-    private Button backButton, addToDiaryButton;
+    private Button backButton, saveButton;
     private ImageView itemImage;
     private String glucidValue , lipidValue, proteinValue, kcalValue, name;
     private FirebaseFirestore firebaseFirestore;
@@ -36,10 +36,11 @@ public class ItemData extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_data);
+        setContentView(R.layout.activity_diary_item_data);
 
         backButton = findViewById(R.id.back_button);
-        addToDiaryButton = findViewById(R.id.add_to_diary_button);
+        itemAmount = findViewById(R.id.item_amount);
+        saveButton = findViewById(R.id.save_button);
         viewItemName = findViewById(R.id.item_name);
         itemUnitType = findViewById(R.id.unit_type);
         itemUnitName = findViewById(R.id.unit_name);
@@ -49,7 +50,7 @@ public class ItemData extends AppCompatActivity {
         itemGlucid = findViewById(R.id.item_glucid);
         itemAmount = findViewById(R.id.item_amount);
         itemImage = findViewById(R.id.item_image);
-        
+
         firebaseFirestore = FirebaseFirestore.getInstance();
 
         SharedPreferences sp = getSharedPreferences("Data", Context.MODE_PRIVATE);
@@ -64,9 +65,11 @@ public class ItemData extends AppCompatActivity {
         final double[] protein = {0};
         final double[] lipid = {0};
         final double[] glucid = {0};
+        final double[] item_amount = new double[1];
 
         if(bundle != null) {
             itemName = intent.getStringExtra("Name");
+            item_amount[0] = intent.getDoubleExtra("Amount", 0);
             kcal[0] = intent.getIntExtra("Kcal", 0);
             protein[0] = intent.getDoubleExtra("Protein", 0);
             lipid[0] = intent.getDoubleExtra("Lipid", 0);
@@ -86,8 +89,15 @@ public class ItemData extends AppCompatActivity {
             unitName = "Thể tích";
         }
 
+        itemAmount.setText(String.valueOf(item_amount[0]));
+
         itemUnitType.setText(unitType);
         itemUnitName.setText(unitName);
+
+        itemKcalo.setText(String.valueOf(kcal[0]));
+        itemProtein.setText(String.valueOf(protein[0]));
+        itemLipid.setText(String.valueOf(lipid[0]));
+        itemGlucid.setText(String.valueOf(glucid[0]));
 
         // Make other value change along with the item amount
         final double[] amount = new double[1];
@@ -125,7 +135,6 @@ public class ItemData extends AppCompatActivity {
                 itemProtein.setText(proteinValue);
                 itemLipid.setText(lipidValue);
                 itemGlucid.setText(glucidValue);
-
             }
         });
 
@@ -133,9 +142,10 @@ public class ItemData extends AppCompatActivity {
         String finalUnitType = unitType;
         String finalUnitName = unitName;
 
-        // write item to database when click on the addToDiaryButton
+        // save item to database when click on the saveButton
         int finalImageId = imageId;
-        addToDiaryButton.setOnClickListener(new View.OnClickListener() {
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // change the "," in number to "."
@@ -144,10 +154,11 @@ public class ItemData extends AppCompatActivity {
                 glucidValue = glucidValue.replace(",", ".");
 
                 // write the data to the database
-                WriteDataFireBase(finalItemName, amount[0], kcalValue, proteinValue, lipidValue, glucidValue
+                WriteDataFireBase(finalItemName, amount[0]
+                        , kcalValue, proteinValue, lipidValue, glucidValue
                         , finalUnitType, finalUnitName, String.valueOf(finalImageId));
 
-                Intent intent = new Intent(ItemData.this, Dietary.class);
+                Intent intent = new Intent(DiaryItemData.this, Dietary.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }
@@ -157,14 +168,13 @@ public class ItemData extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ItemData.this, Dietary.class);
+                Intent intent = new Intent(DiaryItemData.this, Dietary.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
-                finish();
             }
         });
     }
 
-    // Write Data to Cloud Firestone
     public void WriteDataFireBase(String itemName, double itemAmount, String itemKcalValue
             , String itemProteinValue,String itemLipidValue, String itemGlucidValue
             , String itemUnitType, String itemUnitName, String itemImageId){

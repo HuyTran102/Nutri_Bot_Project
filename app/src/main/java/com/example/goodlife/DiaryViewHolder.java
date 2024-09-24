@@ -11,7 +11,7 @@ public class DiaryViewHolder extends RecyclerView.ViewHolder {
 
     TextView name, unit_type, unit_name, kcal, amount, protein, lipid, glucid;
 
-    Button delete;
+    Button delete, infomation;
 
     public DiaryViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -26,5 +26,6 @@ public class DiaryViewHolder extends RecyclerView.ViewHolder {
         glucid = itemView.findViewById(R.id.item_glucid);
 
         delete = itemView.findViewById(R.id.delete_item_button);
+        infomation = itemView.findViewById(R.id.item_info_button);
     }
 }

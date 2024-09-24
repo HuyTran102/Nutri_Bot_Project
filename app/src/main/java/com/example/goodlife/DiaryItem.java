@@ -2,10 +2,10 @@ package com.example.goodlife;
 
 public class DiaryItem {
     public String name, unit_type, unit_name;
-    public int kcal;
+    public int image,  kcal;
     public double amount, protein, lipid, glucid;
 
-    public DiaryItem(String name, double amount, int kcal,  double protein, double lipid, double glucid, String unit_type, String unit_name) {
+    public DiaryItem(String name, double amount, int kcal,  double protein, double lipid, double glucid, String unit_type, String unit_name, int image) {
         this.name = name;
         this.amount = amount;
         this.kcal = kcal;
@@ -14,6 +14,15 @@ public class DiaryItem {
         this.glucid = glucid;
         this.unit_type = unit_type;
         this.unit_name = unit_name;
+        this.image = image;
+    }
+
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
     }
 
     public String getUnit_name() {

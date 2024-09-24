@@ -15,6 +15,9 @@
         android:theme="@style/Theme.GoodLife"
         tools:targetApi="31">
         <activity
+            android:name=".DiaryItemData"
+            android:exported="false" />
+        <activity
             android:name=".ItemData"
             android:exported="false" />
         <activity

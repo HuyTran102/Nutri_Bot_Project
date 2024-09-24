@@ -109,7 +109,7 @@ public class FragmentDiary extends Fragment {
                                 DiaryItem diaryItem = new DiaryItem(document.getString("name"), Double.parseDouble(document.getString("amount"))
                                         , Integer.parseInt(document.getString("kcal")), Double.parseDouble(document.getString("protein"))
                                         , Double.parseDouble(document.getString("lipid")), Double.parseDouble(document.getString("glucid"))
-                                        , document.getString("unit_type"), document.getString("unit_name"));
+                                        , document.getString("unit_type"), document.getString("unit_name"), Integer.parseInt(document.getString("image_id")));
                                 items.add(diaryItem);
 //                                Toast.makeText(getContext(), document.getString("kcal"), Toast.LENGTH_SHORT).show();
                             }
