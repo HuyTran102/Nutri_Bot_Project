@@ -56,14 +56,13 @@ public class ItemData extends AppCompatActivity {
 
         name = sp.getString("Name",null);
 
+        // get item value fromm intent
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         String itemName = "", unitType = "", unitName;
         final int[] kcal = {0};
         int imageId = 0;
-        final double[] protein = {0};
-        final double[] lipid = {0};
-        final double[] glucid = {0};
+        final double[] protein = {0}, lipid = {0}, glucid = {0};
 
         if(bundle != null) {
             itemName = intent.getStringExtra("Name");
@@ -75,16 +74,17 @@ public class ItemData extends AppCompatActivity {
             unitType = intent.getStringExtra("UnitType");
         }
 
-        viewItemName.setText(itemName);
-
-        itemImage.setImageResource(imageId);
-
         // Transfer the unit type to the uint name
         if(Objects.equals(unitType, "(g)")) {
             unitName = "Khối lượng";
         } else {
             unitName = "Thể tích";
         }
+
+        // set item name, image, unit name and unit type
+        viewItemName.setText(itemName);
+
+        itemImage.setImageResource(imageId);
 
         itemUnitType.setText(unitType);
         itemUnitName.setText(unitName);
@@ -104,7 +104,7 @@ public class ItemData extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(itemAmount.getText().toString().equals("") || Double.parseDouble(itemAmount.getText().toString()) <= 0.0){
+                if(itemAmount.getText().toString().equals("") || Double.parseDouble(itemAmount.getText().toString()) < 0.0){
                     itemKcalo.setText("0");
                     itemGlucid.setText("0");
                     itemProtein.setText("0");
@@ -121,6 +121,7 @@ public class ItemData extends AppCompatActivity {
                 lipidValue = decimalFormat.format((lipid[0] * amount[0]) / 100);
                 glucidValue = decimalFormat.format((glucid[0] * amount[0]) / 100);
 
+                // set item kcalo, protein, lipid, glucid value
                 itemKcalo.setText(kcalValue);
                 itemProtein.setText(proteinValue);
                 itemLipid.setText(lipidValue);
@@ -129,12 +130,12 @@ public class ItemData extends AppCompatActivity {
             }
         });
 
+        int finalImageId = imageId;
         String finalItemName = itemName;
         String finalUnitType = unitType;
         String finalUnitName = unitName;
 
-        // write item to database when click on the addToDiaryButton
-        int finalImageId = imageId;
+        // write item to database when click on the saveButton
         addToDiaryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,6 +160,7 @@ public class ItemData extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ItemData.this, Dietary.class);
                 startActivity(intent);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 finish();
             }
         });
