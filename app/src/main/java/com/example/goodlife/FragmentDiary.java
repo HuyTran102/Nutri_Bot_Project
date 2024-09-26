@@ -95,6 +95,11 @@ public class FragmentDiary extends Fragment {
         recyclerView.addItemDecoration(itemDecoration);
     }
 
+    // Convert and format from date to String
+    private String makeDateString(int day, int month, int year) {
+        return " " + month + "/" + day + "/" + year + " ";
+    }
+
     // Load Data to Recycle Item
     public  void LoadDataFireBase(){
 
