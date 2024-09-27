@@ -306,7 +306,7 @@
         android:layout_width="330dp"
         android:layout_height="58dp"
         android:background="@drawable/custom_button"
-        android:text="@string/ch_t_p_luy_n"
+        android:text="Hoạt động thể chất"
         android:textColor="#0293A5"
         android:textSize="20dp"
         android:textStyle="bold"
