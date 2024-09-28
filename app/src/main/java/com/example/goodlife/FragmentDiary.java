@@ -38,7 +38,7 @@ public class FragmentDiary extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        
+
         return inflater.inflate(R.layout.fragment_diary, container, false);
 
     }
@@ -70,7 +70,17 @@ public class FragmentDiary extends Fragment {
         getView().setFocusableInTouchMode(true);
         getView().requestFocus();
 
+        items.clear();
         LoadDataFireBase();
+
+    }
+
+    // Convert and format from date to String
+    private String makeDateString(int day, int month, int year) {
+        return " " + month + "/" + day + "/" + year + " ";
+    }
+
+    public void setDataUI(){
 
         // set total value
         for(DiaryItem diaryItem : items) {
@@ -95,15 +105,12 @@ public class FragmentDiary extends Fragment {
         recyclerView.addItemDecoration(itemDecoration);
     }
 
-    // Convert and format from date to String
-    private String makeDateString(int day, int month, int year) {
-        return " " + month + "/" + day + "/" + year + " ";
-    }
-
     // Load Data to Recycle Item
     public  void LoadDataFireBase(){
 
-        firebaseFirestore.collection(name)
+        firebaseFirestore.collection("GoodLife")
+                .document(name)
+                .collection("Nhật kí")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -118,6 +125,7 @@ public class FragmentDiary extends Fragment {
                                 items.add(diaryItem);
 //                                Toast.makeText(getContext(), document.getString("kcal"), Toast.LENGTH_SHORT).show();
                             }
+                            setDataUI();
                         } else {
                             Log.w("Firestore", "Error getting documents", task.getException());
                         }

@@ -73,6 +73,7 @@ public class DiaryItem {
         this.kcal = kcal;
     }
 
+
     public String getUnit_type() {
         return unit_type;
     }

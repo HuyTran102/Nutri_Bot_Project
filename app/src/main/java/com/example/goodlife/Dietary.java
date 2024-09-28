@@ -30,6 +30,7 @@ public class Dietary extends AppCompatActivity {
 
         VPAdapter vpAdapter = new VPAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         vpAdapter.addFragment(new FragmentFood(), "Món ăn");
+
         vpAdapter.addFragment(new FragmentGroceries(), "Thực phẩm");
         vpAdapter.addFragment(new FragmentDrinks(), "Sữa / Đồ  uống");
         vpAdapter.addFragment(new FragmentDiary(), "Nhật ký");

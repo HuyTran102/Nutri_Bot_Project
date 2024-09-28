@@ -194,7 +194,7 @@ public class ItemData extends AppCompatActivity {
         item.put("month", itemAddingMonth);
         item.put("day", itemAddingDay);
 
-        firebaseFirestore.collection(name).document(itemName)
+        firebaseFirestore.collection("GoodLife").document(name).collection("Nhật kí").document(itemName)
                 .set(item)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
