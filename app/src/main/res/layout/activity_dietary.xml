@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dietary"
+    android:layout_gravity="center"
     android:background="#F7FFFFFF"
     android:focusableInTouchMode="true"
-    android:layout_gravity="center"
-    android:keepScreenOn="true">
+    android:keepScreenOn="true"
+    tools:context=".Dietary">
 
     <ImageView
+        android:id="@+id/imageView4"
         android:layout_width="592dp"
         android:layout_height="389dp"
         android:background="@drawable/wave"
@@ -33,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.138"/>
+        app:layout_constraintVertical_bias="0.138" />
 
     <Button
         android:id="@+id/back_button"
@@ -50,6 +51,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
@@ -65,39 +67,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/m_n_n"
+            android:textColor="@color/black"
             android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:textStyle="bold" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/th_c_ph_m"
+            android:textColor="@color/black"
             android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:textStyle="bold" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/s_a_u_ng"
+            android:textColor="@color/black"
             android:textSize="25sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:textStyle="bold" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/nh_t_k"
+            android:textColor="@color/black"
             android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:textStyle="bold" />
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pageViewer"
         android:layout_width="394dp"
-        android:layout_height="418dp"
+        android:layout_height="494dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"

@@ -1,105 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context=".FragmentDiary"
+    android:layout_gravity="center"
     android:background="#F7FFFFFF"
     android:focusableInTouchMode="true"
-    android:layout_gravity="center"
-    android:keepScreenOn="true">
+    android:keepScreenOn="true"
+    android:orientation="vertical"
+    tools:context=".FragmentDiary">
 
     <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
+        android:id="@+id/item_data_diary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="vertical"
-        android:layout_gravity="center">
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/recycleView"
-            android:layout_marginTop="8dp"
-            android:scrollbars="vertical"
-            android:padding="12dp"
-            android:clipToPadding="false"
-            android:scrollbarStyle="outsideOverlay">
-        </androidx.recyclerview.widget.RecyclerView>
-
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/recycleView"
-            android:layout_gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tổng"
-                android:textColor="#FAED7D7D"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:gravity="center"
-                android:id="@+id/item_amount"
-                android:text="0"
-                android:textColor="#FAED7D7D"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:gravity="center"
-                android:id="@+id/item_kcalo"
-                android:text="0"
-                android:textColor="#FAED7D7D"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:id="@+id/item_protein"
-                android:gravity="center"
-                android:text="0"
-                android:textColor="#FAED7D7D"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:id="@+id/item_lipid"
-                android:gravity="center"
-                android:text="0"
-                android:textColor="#FAED7D7D"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:id="@+id/item_glucid"
-                android:gravity="center"
-                android:text="0"
-                android:textColor="#FAED7D7D"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
+            android:layout_marginTop="8dp"
+            android:clipToPadding="false"
+            android:padding="12dp"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbars="vertical"></androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_data_diary"
+        android:layout_gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_data_diary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tổng"
+            android:textColor="#FAED7D7D"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/item_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="#FAED7D7D"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/item_kcalo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="#FAED7D7D"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/item_protein"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="#FAED7D7D"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/item_lipid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="#FAED7D7D"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/item_glucid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="#FAED7D7D"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
