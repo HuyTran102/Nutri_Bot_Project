@@ -60,7 +60,7 @@ public class DiaryViewAdapter extends RecyclerView.Adapter<DiaryViewHolder> {
                 FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
                 // get the document to delete
-                DocumentReference documentReference = firebaseFirestore.collection(user_name).document(itemAtPosition.getName());
+                DocumentReference documentReference = firebaseFirestore.collection("GoodLife").document(user_name).collection("Nhật kí").document(itemAtPosition.getName());
 
                 // delete document from database
                 documentReference.delete()

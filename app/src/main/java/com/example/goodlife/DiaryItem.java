@@ -2,10 +2,14 @@ package com.example.goodlife;
 
 public class DiaryItem {
     public String name, unit_type, unit_name;
-    public int image,  kcal;
+    public int image;
+    public int kcal;
+    public int adding_year, adding_month, adding_day;
     public double amount, protein, lipid, glucid;
 
-    public DiaryItem(String name, double amount, int kcal,  double protein, double lipid, double glucid, String unit_type, String unit_name, int image) {
+    public DiaryItem(String name, double amount, int kcal,  double protein
+            , double lipid, double glucid, String unit_type, String unit_name
+            , int image, int adding_year, int adding_month, int adding_day) {
         this.name = name;
         this.amount = amount;
         this.kcal = kcal;
@@ -15,6 +19,33 @@ public class DiaryItem {
         this.unit_type = unit_type;
         this.unit_name = unit_name;
         this.image = image;
+        this.adding_year = adding_year;
+        this.adding_month = adding_month;
+        this.adding_day = adding_day;
+    }
+
+    public int getAdding_month() {
+        return adding_month;
+    }
+
+    public void setAdding_month(int adding_month) {
+        this.adding_month = adding_month;
+    }
+
+    public int getAdding_year() {
+        return adding_year;
+    }
+
+    public void setAdding_year(int adding_year) {
+        this.adding_year = adding_year;
+    }
+
+    public int getAdding_day() {
+        return adding_day;
+    }
+
+    public void setAdding_day(int adding_day) {
+        this.adding_day = adding_day;
     }
 
     public int getImage() {

@@ -21,6 +21,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -162,10 +163,16 @@ public class DiaryItemData extends AppCompatActivity {
                 lipidValue = lipidValue.replace(",", ".");
                 glucidValue = glucidValue.replace(",", ".");
 
+                // Get the current date
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
                 // write the data to the database
-                WriteDataFireBase(finalItemName, amount[0]
-                        , kcalValue, proteinValue, lipidValue, glucidValue
-                        , finalUnitType, finalUnitName, String.valueOf(finalImageId));
+                WriteDataFireBase(finalItemName, amount[0], kcalValue, proteinValue, lipidValue, glucidValue
+                        , finalUnitType, finalUnitName, String.valueOf(finalImageId)
+                        , year, month, day);
 
                 Intent intent = new Intent(DiaryItemData.this, Dietary.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -184,9 +191,11 @@ public class DiaryItemData extends AppCompatActivity {
         });
     }
 
+    // Write Data to Cloud Firestone
     public void WriteDataFireBase(String itemName, double itemAmount, String itemKcalValue
             , String itemProteinValue,String itemLipidValue, String itemGlucidValue
-            , String itemUnitType, String itemUnitName, String itemImageId){
+            , String itemUnitType, String itemUnitName, String itemImageId
+            , int itemAddingYear, int itemAddingMonth, int itemAddingDay){
         // Create a new item with all of the data like name, amount, ...
         Map<String, Object> item = new HashMap<>();
         item.put("name", itemName);
@@ -198,8 +207,11 @@ public class DiaryItemData extends AppCompatActivity {
         item.put("unit_name", itemUnitName);
         item.put("unit_type", itemUnitType);
         item.put("image_id", itemImageId);
+        item.put("year", itemAddingYear);
+        item.put("month", itemAddingMonth);
+        item.put("day", itemAddingDay);
 
-        firebaseFirestore.collection(name).document(itemName)
+        firebaseFirestore.collection("GoodLife").document(name).collection("Nhật kí").document(itemName)
                 .set(item)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

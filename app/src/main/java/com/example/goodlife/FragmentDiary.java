@@ -61,6 +61,29 @@ public class FragmentDiary extends Fragment {
 
         name = sp.getString("Name",null);
 
+        List<DiaryItem> items = LoadDataFireBase();
+
+        // set total value
+        for(DiaryItem diaryItem : items) {
+            calories_val += diaryItem.getKcal();
+            amount_val += diaryItem.getAmount();
+            protein_val += diaryItem.getProtein();
+            lipid_val += diaryItem.getLipid();
+            glucid_val += diaryItem.getGlucid();
+        }
+
+        itemKcalo.setText(String.valueOf(calories_val));
+        DecimalFormat df = new DecimalFormat("###.#");
+        itemAmount.setText(df.format(amount_val));
+        itemGlucid.setText(df.format(glucid_val));
+        itemLipid.setText(df.format(lipid_val));
+        itemProtein.setText(df.format(protein_val));
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(new DiaryViewAdapter(getContext(), items));
+
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(itemDecoration);
     }
 
     @Override
@@ -71,8 +94,13 @@ public class FragmentDiary extends Fragment {
         getView().requestFocus();
 
         items.clear();
-        LoadDataFireBase();
+        items = LoadDataFireBase();
 
+        calories_val = 0;
+        amount_val = 0;
+        protein_val = 0;
+        lipid_val = 0;
+        glucid_val = 0;
     }
 
     // Convert and format from date to String
@@ -106,8 +134,8 @@ public class FragmentDiary extends Fragment {
     }
 
     // Load Data to Recycle Item
-    public  void LoadDataFireBase(){
-
+    public List<DiaryItem> LoadDataFireBase(){
+        List<DiaryItem> items = new ArrayList<>();
         firebaseFirestore.collection("GoodLife")
                 .document(name)
                 .collection("Nhật kí")
@@ -121,7 +149,8 @@ public class FragmentDiary extends Fragment {
                                 DiaryItem diaryItem = new DiaryItem(document.getString("name"), Double.parseDouble(document.getString("amount"))
                                         , Integer.parseInt(document.getString("kcal")), Double.parseDouble(document.getString("protein"))
                                         , Double.parseDouble(document.getString("lipid")), Double.parseDouble(document.getString("glucid"))
-                                        , document.getString("unit_type"), document.getString("unit_name"), Integer.parseInt(document.getString("image_id")));
+                                        , document.getString("unit_type"), document.getString("unit_name"), Integer.parseInt(document.getString("image_id"))
+                                        , Integer.parseInt(document.getString("year")), Integer.parseInt(document.getString("month")), Integer.parseInt(document.getString("day")));
                                 items.add(diaryItem);
 //                                Toast.makeText(getContext(), document.getString("kcal"), Toast.LENGTH_SHORT).show();
                             }
@@ -131,5 +160,7 @@ public class FragmentDiary extends Fragment {
                         }
                     }
                 });
+        return items;
     }
+
 }

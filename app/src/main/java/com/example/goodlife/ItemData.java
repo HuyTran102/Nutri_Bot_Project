@@ -154,7 +154,7 @@ public class ItemData extends AppCompatActivity {
                 // write the data to the database
                 WriteDataFireBase(finalItemName, amount[0], kcalValue, proteinValue, lipidValue, glucidValue
                         , finalUnitType, finalUnitName, String.valueOf(finalImageId)
-                        , year, month, day);
+                        , String.valueOf(year), String.valueOf(month), String.valueOf(day));
 
                 Intent intent = new Intent(ItemData.this, Dietary.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -178,7 +178,7 @@ public class ItemData extends AppCompatActivity {
     public void WriteDataFireBase(String itemName, double itemAmount, String itemKcalValue
             , String itemProteinValue,String itemLipidValue, String itemGlucidValue
             , String itemUnitType, String itemUnitName, String itemImageId
-            , int itemAddingYear, int itemAddingMonth, int itemAddingDay){
+            , String itemAddingYear, String itemAddingMonth, String itemAddingDay){
         // Create a new item with all of the data like name, amount, ...
         Map<String, Object> item = new HashMap<>();
         item.put("name", itemName);
