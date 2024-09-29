@@ -1,5 +1,6 @@
 package com.example.goodlife;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -84,6 +86,7 @@ public class FragmentDiary extends Fragment {
 
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(itemDecoration);
+
     }
 
     @Override
@@ -169,4 +172,23 @@ public class FragmentDiary extends Fragment {
         return items;
     }
 
+
+    private void showDatePickerDialog() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                requireContext(),
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        // Handle the selected date (e.g., update the TextView)
+                        String selectedDate = String.format("%02d/%02d/%04d", month + 1, dayOfMonth, year);
+                        //selectedDateTextView.setText(selectedDate);
+                        Log.d("DATE",selectedDate);
+                    }
+
+                },
+                // Initial date (optional, set to today's date)
+                2024, 8, 29
+        );
+        datePickerDialog.show();
+    }
 }
