@@ -1,6 +1,5 @@
 package com.example.goodlife;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -15,14 +14,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HomePage extends AppCompatActivity {
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
@@ -197,7 +194,9 @@ public class HomePage extends AppCompatActivity {
                     if(task.isSuccessful()) {
                         // Loop through all documents
                         for(QueryDocumentSnapshot document : task.getResult()) {
-                            if(document.getString("useHeight") == null) {
+                            if(document.getString("useHeight") == null && document.getString("userWeight") == null
+                                    && document.getString("userRecommendHeight") == null
+                                    && document.getString("userRecommendWeight") == null) {
                                 return;
                             }
                             actualHeight = Double.parseDouble(document.getString("userHeight"));
