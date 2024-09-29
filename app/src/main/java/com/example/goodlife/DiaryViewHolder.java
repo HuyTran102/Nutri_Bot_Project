@@ -8,13 +8,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class DiaryViewHolder extends RecyclerView.ViewHolder {
-
     TextView name, unit_type, unit_name, kcal, amount, protein, lipid, glucid;
-
     Button delete, infomation;
 
-    public DiaryViewHolder(@NonNull View itemView) {
+    private final int viewType;
+
+    public DiaryViewHolder(@NonNull View itemView, int viewType) {
         super(itemView);
+
+        this.viewType = viewType;
 
         name = itemView.findViewById(R.id.item_view);
         unit_type = itemView.findViewById(R.id.unit_type);
@@ -27,5 +29,9 @@ public class DiaryViewHolder extends RecyclerView.ViewHolder {
 
         delete = itemView.findViewById(R.id.delete_item_button);
         infomation = itemView.findViewById(R.id.item_info_button);
+    }
+
+    public int getViewType() {
+        return viewType;
     }
 }

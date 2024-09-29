@@ -110,6 +110,12 @@ public class FragmentDiary extends Fragment {
 
     public void setDataUI(){
 
+        calories_val = 0;
+        amount_val = 0;
+        protein_val = 0;
+        lipid_val = 0;
+        glucid_val = 0;
+
         // set total value
         for(DiaryItem diaryItem : items) {
             calories_val += diaryItem.getKcal();
