@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -31,6 +34,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class CalculateNutritionalStatus extends AppCompatActivity {
@@ -38,6 +43,7 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
     private TextInputEditText userHeight, userWeight;
     private String name, signInDate, gender, password, date, height, weight;
     private TextView bmiStatusView, hfaStatusView, heightView, weightView;
+    private FirebaseFirestore firebaseFirestore;
     private static final String TAG = "ExcelRead";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +96,9 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
                             userRecommendWeight[0] = bmiStatusWarning(gender, BMI, monthAge);
 
                             userRecommendHeight[0] = heightForAgeStatusWarning(gender, Double.parseDouble(height), monthAge);
+
+                            WriteDataFireBase(String.valueOf(userActualHeight[0]), String.valueOf(userActualWeight[0])
+                                    , String.valueOf(userRecommendHeight[0]), String.valueOf(userRecommendWeight[0]));
                         }
 
                         @Override
@@ -104,17 +113,44 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("Height", String.valueOf(userActualHeight[0]));
-                editor.putString("Weight", String.valueOf(userActualWeight[0]));
-                editor.putString("RecommendHeight", String.valueOf( userRecommendHeight[0]));
-                editor.putString("RecommendWeight", String.valueOf( userRecommendWeight[0]));
-                editor.apply();
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                editor.putString("Height", String.valueOf(userActualHeight[0]));
+//                editor.putString("Weight", String.valueOf(userActualWeight[0]));
+//                editor.putString("RecommendHeight", String.valueOf(userRecommendHeight[0]));
+//                editor.putString("RecommendWeight", String.valueOf(userRecommendWeight[0]));
+//                editor.apply();
                 Intent intent = new Intent(CalculateNutritionalStatus.this, HomePage.class);
                 startActivity(intent);
                 finish();
             }
         });
+    }
+
+    // Write Data to Cloud Firestone
+    public void WriteDataFireBase(String userHeight, String userWeight, String userRecommendHeight, String userRecommendWeight){
+        // Create a new item with all of the value
+        Map<String, Object> item = new HashMap<>();
+        item.put("userHeight", userHeight);
+        item.put("userHeight", userWeight);
+        item.put("userRecommendHeight", userRecommendHeight);
+        item.put("userRecommendHeight", userRecommendWeight);
+
+        firebaseFirestore.collection("GoodLife")
+                .document(name).collection("Dinh dưỡng")
+                .document("Value")
+                .set(item)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Firestore", "Adding value to database successfully");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Firestore", "Error adding value to database: ", e);
+                    }
+                });
     }
 
     public Boolean validUserHeight() {

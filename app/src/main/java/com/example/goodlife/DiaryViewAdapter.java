@@ -30,11 +30,11 @@ public class DiaryViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public int getItemViewType(int position) {
-        if(position == 0) { 
-            return LAYOUT_ONE;
-        } else {
+//        if(position == 0) {
+//            return LAYOUT_ONE;
+//        } else {
             return LAYOUT_TWO;
-        }
+//        }
     }
 
     @NonNull

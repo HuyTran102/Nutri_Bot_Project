@@ -1,5 +1,6 @@
 package com.example.goodlife;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -7,21 +8,31 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomePage extends AppCompatActivity {
-
+    private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private Button nutritionalStatusButton, physicalButton, dietaryButton;
     private ProgressBar weightProgressBar, heightProgressBar, kcaloProgressBar;
     private TextView weightProgressText, heightProgressText, kcaloProgressText, weightView, heightView;
     private double actualWeight = 0, actualHeight = 0, recommendWeight = 0, recommendHeight = 0, statusWeight = 0, statusHeight = 0;
     private int weight = 0, height = 0, kcalo = 0;
     private String weight_status = "", height_status = "";
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +51,17 @@ public class HomePage extends AppCompatActivity {
         kcaloProgressBar = findViewById(R.id.kcalo_progres_bar);
         kcaloProgressText = findViewById(R.id.kcalo_progres_text);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("Data", Context.MODE_PRIVATE);
-        actualHeight = Double.parseDouble(sharedPreferences.getString("Height", "0"));
-        actualWeight = Double.parseDouble(sharedPreferences.getString("Weight", "0"));
-        recommendHeight = Double.parseDouble(sharedPreferences.getString("RecommendHeight", "0"));
-        recommendWeight = Double.parseDouble(sharedPreferences.getString("RecommendWeight", "0"));
+//        SharedPreferences sharedPreferences = getSharedPreferences("Data", Context.MODE_PRIVATE);
+//        actualHeight = Double.parseDouble(sharedPreferences.getString("Height", "0"));
+//        actualWeight = Double.parseDouble(sharedPreferences.getString("Weight", "0"));
+//        recommendHeight = Double.parseDouble(sharedPreferences.getString("RecommendHeight", "0"));
+//        recommendWeight = Double.parseDouble(sharedPreferences.getString("RecommendWeight", "0"));
+
+        SharedPreferences sp = getSharedPreferences("Data", Context.MODE_PRIVATE);
+
+        name = sp.getString("Name",null);
+
+        LoadDataFireBase();
 
         actualHeight *= 100;
 
@@ -169,5 +186,28 @@ public class HomePage extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    // Load Data to Recycle Item
+    public void LoadDataFireBase(){
+        firebaseFirestore.collection("GoodLife")
+                .document(name).collection("Dinh dưỡng")
+                .get()
+                .addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
+                    if(task.isSuccessful()) {
+                        // Loop through all documents
+                        for(QueryDocumentSnapshot document : task.getResult()) {
+                            if(document.getString("useHeight") == null) {
+                                return;
+                            }
+                            actualHeight = Double.parseDouble(document.getString("userHeight"));
+                            actualWeight = Double.parseDouble(document.getString("userWeight"));
+                            recommendHeight = Double.parseDouble(document.getString("userRecommendHeight"));
+                            recommendWeight = Double.parseDouble(document.getString("userRecommendWeight"));
+                        }
+                    } else {
+                        Log.w("Firestore", "Error getting documents", task.getException());
+                    }
+                });
     }
 }
