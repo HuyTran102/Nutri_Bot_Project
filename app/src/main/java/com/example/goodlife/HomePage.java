@@ -199,21 +199,31 @@ public class HomePage extends AppCompatActivity {
                                     && document.getString("userRecommendWeight") == null) {
                                 return;
                             }
-                            if(document.getString("userHeight") != ""){
+
+                            try{
                                 actualHeight = Double.parseDouble(document.getString("userHeight"));
-                            } else actualHeight = 0;
+                            }catch (Exception e){
+                                actualHeight = 0.0;
+                            }
 
-                            if(document.getString("userWeight") != ""){
+                            try {
                                 actualWeight = Double.parseDouble(document.getString("userWeight"));
-                            } else actualWeight = 0;
+                            }catch (Exception e){
+                                actualWeight = 0.0;
+                            }
 
-                            if(document.getString("userRecommendHeight") != ""){
+                            try {
                                 recommendHeight = Double.parseDouble(document.getString("userRecommendHeight"));
-                            } else recommendHeight = 0;
+                            }catch (Exception e){
+                                recommendHeight = 0.0;
+                            }
 
-                            if(document.getString("userRecommendWeight") != ""){
+                            try {
                                 recommendWeight = Double.parseDouble(document.getString("userRecommendWeight"));
-                            } else recommendWeight = 0;
+                            }catch (Exception e){
+                                recommendWeight = 0.0;
+                            }
+
 
                         }
                     } else {
