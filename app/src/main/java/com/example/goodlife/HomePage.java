@@ -199,10 +199,22 @@ public class HomePage extends AppCompatActivity {
                                     && document.getString("userRecommendWeight") == null) {
                                 return;
                             }
-                            actualHeight = Double.parseDouble(document.getString("userHeight"));
-                            actualWeight = Double.parseDouble(document.getString("userWeight"));
-                            recommendHeight = Double.parseDouble(document.getString("userRecommendHeight"));
-                            recommendWeight = Double.parseDouble(document.getString("userRecommendWeight"));
+                            if(document.getString("userHeight") != ""){
+                                actualHeight = Double.parseDouble(document.getString("userHeight"));
+                            } else actualHeight = 0;
+
+                            if(document.getString("userWeight") != ""){
+                                actualWeight = Double.parseDouble(document.getString("userWeight"));
+                            } else actualWeight = 0;
+
+                            if(document.getString("userRecommendHeight") != ""){
+                                recommendHeight = Double.parseDouble(document.getString("userRecommendHeight"));
+                            } else recommendHeight = 0;
+
+                            if(document.getString("userRecommendWeight") != ""){
+                                recommendWeight = Double.parseDouble(document.getString("userRecommendWeight"));
+                            } else recommendWeight = 0;
+
                         }
                     } else {
                         Log.w("Firestore", "Error getting documents", task.getException());
