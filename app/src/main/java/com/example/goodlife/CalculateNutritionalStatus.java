@@ -131,9 +131,9 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
         // Create a new item with all of the value
         Map<String, Object> item = new HashMap<>();
         item.put("userHeight", userHeight);
-        item.put("userHeight", userWeight);
+        item.put("userWeight", userWeight);
         item.put("userRecommendHeight", userRecommendHeight);
-        item.put("userRecommendHeight", userRecommendWeight);
+        item.put("userRecommendWeight", userRecommendWeight);
 
         firebaseFirestore.collection("GoodLife")
                 .document(name).collection("Dinh dưỡng")
