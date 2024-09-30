@@ -43,7 +43,7 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
     private TextInputEditText userHeight, userWeight;
     private String name, signInDate, gender, password, date, height, weight;
     private TextView bmiStatusView, hfaStatusView, heightView, weightView;
-    private FirebaseFirestore firebaseFirestore;
+    private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private static final String TAG = "ExcelRead";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
