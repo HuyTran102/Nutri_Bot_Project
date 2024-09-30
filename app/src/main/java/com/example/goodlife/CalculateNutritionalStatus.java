@@ -244,9 +244,9 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
 
     double bmiStatusWarning(String gender, double bmi, int monthAge) {
         String path;
-        if(gender.equals("nam")) {
+        if(gender.equals("Nam")) {
             path = "bmiBoys.xlsx";
-        } else if(gender.equals("nữ")) {
+        } else if(gender.equals("Nữ")) {
             path = "bmiGirls.xlsx";
         } else {
             Toast.makeText(CalculateNutritionalStatus.this, "Không thể cảnh báo tình trạng BMI do giới tính không hợp lệ !", Toast.LENGTH_SHORT).show();
@@ -344,9 +344,9 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
     double heightForAgeStatusWarning(String gender, double height, int monthAge) {
         height *= 100;
         String path;
-        if(gender.equals("nam")) {
+        if(gender.equals("Nam")) {
             path = "hfaBoys.xlsx";
-        } else if(gender.equals("nữ")) {
+        } else if(gender.equals("Nữ")) {
             path = "hfaGirls.xlsx";
         } else {
             Toast.makeText(CalculateNutritionalStatus.this, "Không thể cảnh báo tình trạng BMI do giới tính không hợp lệ !", Toast.LENGTH_SHORT).show();

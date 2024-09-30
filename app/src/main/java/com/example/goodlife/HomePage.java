@@ -1,5 +1,7 @@
 package com.example.goodlife;
 
+import static java.security.AccessController.getContext;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,9 +29,9 @@ public class HomePage extends AppCompatActivity {
     private Button nutritionalStatusButton, physicalButton, dietaryButton;
     private ProgressBar weightProgressBar, heightProgressBar, kcaloProgressBar;
     private TextView weightProgressText, heightProgressText, kcaloProgressText, weightView, heightView;
-    private double actualWeight = 0, actualHeight = 0, recommendWeight = 0, recommendHeight = 0, statusWeight = 0, statusHeight = 0;
-    private int weight = 0, height = 0, kcalo = 0;
-    private String weight_status = "", height_status = "";
+    private double actualWeight, actualHeight, recommendWeight, recommendHeight, statusWeight, statusHeight;
+    private int weight, height, kcalo;
+    private String weight_status, height_status;
     String name;
 
     @Override
@@ -58,50 +61,16 @@ public class HomePage extends AppCompatActivity {
 
         name = sp.getString("Name",null);
 
-        LoadDataFireBase();
-
-        actualHeight *= 100;
-
-        DecimalFormat decimalFormat = new DecimalFormat("0.0");
-
-        if(recommendWeight == 0){
-            statusWeight = 0;
-            weight_status = "Bình thường";
-        } else if(actualWeight > recommendWeight) {
-            statusWeight = (actualWeight - recommendWeight);
-            weight_status = "Thừa " + decimalFormat.format(statusWeight) + " (kg)";
-
-        } else if(actualWeight < recommendWeight){
-            statusWeight = (recommendWeight - actualWeight);
-            weight_status = "Thiếu " + decimalFormat.format(statusWeight) + " (kg)";
-        }
-
-        if (recommendHeight == 0){
-            statusHeight = 0;
-            height_status = "Bình thường";
-        } else if(actualHeight > recommendHeight) {
-            statusHeight = (actualHeight - recommendHeight);
-            height_status = "Thừa " + decimalFormat.format(statusHeight) + " (cm)";
-        } else if(actualHeight < recommendHeight){
-            statusHeight = (recommendHeight - actualHeight);
-            height_status = "Thiếu " + decimalFormat.format(statusHeight) + " (cm)";
-        }
-
-        decimalFormat = new DecimalFormat("0");
-        
         final Handler weight_handler = new Handler();
 
-        weightProgressBar.setMax((int) recommendWeight + 1);
-
-        DecimalFormat finalDecimalFormat = decimalFormat;
         weight_handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if(weight <= actualWeight) {
                     if(recommendWeight == 0) {
-                        weightProgressText.setText(String.valueOf(weight + "\n" + finalDecimalFormat.format(actualWeight)));
+                        weightProgressText.setText(String.valueOf(weight + "\n" + 0));
                     } else {
-                        weightProgressText.setText(String.valueOf(weight + "\n" + finalDecimalFormat.format(recommendWeight)));
+                        weightProgressText.setText(String.valueOf(weight + "\n" + 0));
                     }
                     weightProgressBar.setProgress(weight);
                     weight++;
@@ -115,18 +84,14 @@ public class HomePage extends AppCompatActivity {
         weightView.setText(weight_status);
 
         final Handler height_handler = new Handler();
-
-        heightProgressBar.setMax((int) recommendHeight + 1);
-
-        DecimalFormat finalDecimalFormat1 = decimalFormat;
         height_handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(height <= actualHeight) {
+                if(height <= 0) {
                     if(recommendHeight == 0) {
-                        heightProgressText.setText(String.valueOf(height + "\n" + finalDecimalFormat.format(actualHeight)));
+                        heightProgressText.setText(String.valueOf(height + "\n" + 0));
                     } else {
-                        heightProgressText.setText(String.valueOf(height + "\n" + finalDecimalFormat.format(recommendHeight)));
+                        heightProgressText.setText(String.valueOf(height + "\n" + 0));
                     }
                     heightProgressBar.setProgress(height);
                     height++;
@@ -137,7 +102,7 @@ public class HomePage extends AppCompatActivity {
             }
         }, 35);
 
-        heightView.setText(height_status);
+        LoadDataFireBase();
 
         final Handler kcalo_handler = new Handler();
 
@@ -194,41 +159,124 @@ public class HomePage extends AppCompatActivity {
                     if(task.isSuccessful()) {
                         // Loop through all documents
                         for(QueryDocumentSnapshot document : task.getResult()) {
-                            if(document.getString("useHeight") == null && document.getString("userWeight") == null
-                                    && document.getString("userRecommendHeight") == null
-                                    && document.getString("userRecommendWeight") == null) {
+                            if(document.getString("useHeight") == "" && document.getString("userWeight") == ""
+                                    && document.getString("userRecommendHeight") == ""
+                                    && document.getString("userRecommendWeight") == "") {
                                 return;
-                            }
+                            } else {
+                                try{
+                                    actualHeight = Double.parseDouble(document.getString("userHeight"));
+                                }catch (Exception e){
+                                    actualHeight = 0.0;
+                                }
 
-                            try{
-                                actualHeight = Double.parseDouble(document.getString("userHeight"));
-                            }catch (Exception e){
-                                actualHeight = 0.0;
-                            }
+                                try {
+                                    actualWeight = Double.parseDouble(document.getString("userWeight"));
+                                }catch (Exception e){
+                                    actualWeight = 0.0;
+                                }
 
-                            try {
-                                actualWeight = Double.parseDouble(document.getString("userWeight"));
-                            }catch (Exception e){
-                                actualWeight = 0.0;
-                            }
+                                try {
+                                    recommendHeight = Double.parseDouble(document.getString("userRecommendHeight"));
+                                }catch (Exception e){
+                                    recommendHeight = 0.0;
+                                }
 
-                            try {
-                                recommendHeight = Double.parseDouble(document.getString("userRecommendHeight"));
-                            }catch (Exception e){
-                                recommendHeight = 0.0;
-                            }
+                                try {
+                                    recommendWeight = Double.parseDouble(document.getString("userRecommendWeight"));
+                                }catch (Exception e){
+                                    recommendWeight = 0.0;
+                                }
 
-                            try {
-                                recommendWeight = Double.parseDouble(document.getString("userRecommendWeight"));
-                            }catch (Exception e){
-                                recommendWeight = 0.0;
+                                setWeightAndHeight();
                             }
-
 
                         }
                     } else {
                         Log.w("Firestore", "Error getting documents", task.getException());
                     }
                 });
+    }
+
+    public void setWeightAndHeight() {
+        actualHeight *= 100;
+
+        DecimalFormat decimalFormat = new DecimalFormat("0.0");
+
+        if(recommendWeight == 0){
+            statusWeight = 0;
+            weight_status = "Bình thường";
+        } else if(actualWeight > recommendWeight) {
+            statusWeight = (actualWeight - recommendWeight);
+            weight_status = "Thừa " + decimalFormat.format(statusWeight) + " (kg)";
+
+        } else if(actualWeight < recommendWeight){
+            statusWeight = (recommendWeight - actualWeight);
+            weight_status = "Thiếu " + decimalFormat.format(statusWeight) + " (kg)";
+        }
+
+        if (recommendHeight == 0){
+            statusHeight = 0;
+            height_status = "Bình thường";
+        } else if(actualHeight > recommendHeight) {
+            statusHeight = (actualHeight - recommendHeight);
+            height_status = "Thừa " + decimalFormat.format(statusHeight) + " (cm)";
+        } else if(actualHeight < recommendHeight){
+            statusHeight = (recommendHeight - actualHeight);
+            height_status = "Thiếu " + decimalFormat.format(statusHeight) + " (cm)";
+        }
+
+        decimalFormat = new DecimalFormat("0");
+
+        final Handler weight_handler = new Handler();
+
+        weightProgressBar.setMax((int) recommendWeight + 1);
+
+        DecimalFormat finalDecimalFormat = decimalFormat;
+        weight_handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(weight <= actualWeight) {
+                    if(recommendWeight == 0) {
+                        weightProgressText.setText(String.valueOf(weight + "\n" + finalDecimalFormat.format(actualWeight)));
+                    } else {
+                        weightProgressText.setText(String.valueOf(weight + "\n" + finalDecimalFormat.format(recommendWeight)));
+                    }
+                    weightProgressBar.setProgress(weight);
+                    weight++;
+                    weight_handler.postDelayed(this, 35);
+                } else {
+                    weight_handler.removeCallbacks(this);
+                }
+            }
+        }, 35);
+
+        weightView.setText(weight_status);
+
+        final Handler height_handler = new Handler();
+
+        heightProgressBar.setMax((int) recommendHeight + 1);
+
+        DecimalFormat finalDecimalFormat1 = decimalFormat;
+        height_handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(height <= actualHeight) {
+                    if(recommendHeight == 0) {
+                        heightProgressText.setText(String.valueOf(height + "\n" + finalDecimalFormat.format(actualHeight)));
+                    } else {
+                        heightProgressText.setText(String.valueOf(height + "\n" + finalDecimalFormat.format(recommendHeight)));
+                    }
+                    heightProgressBar.setProgress(height);
+                    height++;
+                    height_handler.postDelayed(this, 35);
+                } else {
+                    height_handler.removeCallbacks(this);
+                }
+            }
+        }, 35);
+
+        heightView.setText(height_status);
+
     }
 }
