@@ -62,7 +62,7 @@
                     android:textStyle="bold"
                     android:textSize="16dp"
                     android:textColor="#9E9D9D"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPersonName"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 

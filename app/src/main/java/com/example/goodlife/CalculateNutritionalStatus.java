@@ -91,16 +91,28 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
 
                             int monthAge = calculateMonthAge();
 
-                            double BMI = calculateBMI();
+                            if(monthAge >= 120 && monthAge <= 228) {
 
-                            userRecommendWeight[0] = bmiStatusWarning(gender, BMI, monthAge);
+                                double BMI = calculateBMI();
 
-                            userRecommendHeight[0] = heightForAgeStatusWarning(gender, Double.parseDouble(height), monthAge);
+                                userRecommendWeight[0] = bmiStatusWarning(gender, BMI, monthAge);
 
-                            WriteDataFireBase(String.valueOf(userActualHeight[0]), String.valueOf(userActualWeight[0])
-                                    , String.valueOf(userRecommendHeight[0]), String.valueOf(userRecommendWeight[0]));
+                                userRecommendHeight[0] = heightForAgeStatusWarning(gender, Double.parseDouble(height), monthAge);
 
-                            Toast.makeText(CalculateNutritionalStatus.this, " " + monthAge, Toast.LENGTH_SHORT).show();
+                                WriteDataFireBase(String.valueOf(userActualHeight[0]), String.valueOf(userActualWeight[0])
+                                        , String.valueOf(userRecommendHeight[0]), String.valueOf(userRecommendWeight[0]));
+                            } else {
+                                Toast.makeText(CalculateNutritionalStatus.this, "Ngày tháng năm sinh không hợp lệ!", Toast.LENGTH_SHORT).show();
+                                
+                                bmiStatusView.setText("null");
+                                hfaStatusView.setText("null");
+                                heightView.setText("null");
+                                weightView.setText("null");
+
+                                WriteDataFireBase(String.valueOf(1), String.valueOf(1), String.valueOf(1), String.valueOf(1));
+                            }
+                            
+//                            Toast.makeText(CalculateNutritionalStatus.this, " " + monthAge, Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
@@ -115,12 +127,6 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                SharedPreferences.Editor editor = sharedPreferences.edit();
-//                editor.putString("Height", String.valueOf(userActualHeight[0]));
-//                editor.putString("Weight", String.valueOf(userActualWeight[0]));
-//                editor.putString("RecommendHeight", String.valueOf(userRecommendHeight[0]));
-//                editor.putString("RecommendWeight", String.valueOf(userRecommendWeight[0]));
-//                editor.apply();
                 Intent intent = new Intent(CalculateNutritionalStatus.this, HomePage.class);
                 startActivity(intent);
                 finish();

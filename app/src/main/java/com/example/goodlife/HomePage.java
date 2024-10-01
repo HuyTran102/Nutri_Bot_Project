@@ -51,56 +51,11 @@ public class HomePage extends AppCompatActivity {
         kcaloProgressBar = findViewById(R.id.kcalo_progres_bar);
         kcaloProgressText = findViewById(R.id.kcalo_progres_text);
 
-//        SharedPreferences sharedPreferences = getSharedPreferences("Data", Context.MODE_PRIVATE);
-//        actualHeight = Double.parseDouble(sharedPreferences.getString("Height", "0"));
-//        actualWeight = Double.parseDouble(sharedPreferences.getString("Weight", "0"));
-//        recommendHeight = Double.parseDouble(sharedPreferences.getString("RecommendHeight", "0"));
-//        recommendWeight = Double.parseDouble(sharedPreferences.getString("RecommendWeight", "0"));
-
         SharedPreferences sp = getSharedPreferences("Data", Context.MODE_PRIVATE);
 
         name = sp.getString("Name",null);
 
-        final Handler weight_handler = new Handler();
-
-        weight_handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if(weight <= actualWeight) {
-                    if(recommendWeight == 0) {
-                        weightProgressText.setText(String.valueOf(weight + "\n" + 0));
-                    } else {
-                        weightProgressText.setText(String.valueOf(weight + "\n" + 0));
-                    }
-                    weightProgressBar.setProgress(weight);
-                    weight++;
-                    weight_handler.postDelayed(this, 35);
-                } else {
-                    weight_handler.removeCallbacks(this);
-                }
-            }
-        }, 35);
-
-        weightView.setText(weight_status);
-
-        final Handler height_handler = new Handler();
-        height_handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if(height <= 0) {
-                    if(recommendHeight == 0) {
-                        heightProgressText.setText(String.valueOf(height + "\n" + 0));
-                    } else {
-                        heightProgressText.setText(String.valueOf(height + "\n" + 0));
-                    }
-                    heightProgressBar.setProgress(height);
-                    height++;
-                    height_handler.postDelayed(this, 35);
-                } else {
-                    height_handler.removeCallbacks(this);
-                }
-            }
-        }, 35);
+        setNullValue();
 
         LoadDataFireBase();
 
@@ -206,13 +161,18 @@ public class HomePage extends AppCompatActivity {
         if(recommendWeight == 0){
             statusWeight = 0;
             weight_status = "Bình thường";
-        } else if(actualWeight > recommendWeight) {
+        }else if(actualWeight > recommendWeight) {
             statusWeight = (actualWeight - recommendWeight);
             weight_status = "Thừa " + decimalFormat.format(statusWeight) + " (kg)";
 
         } else if(actualWeight < recommendWeight){
             statusWeight = (recommendWeight - actualWeight);
             weight_status = "Thiếu " + decimalFormat.format(statusWeight) + " (kg)";
+        } else {
+            recommendWeight = -1;
+            actualWeight = 0;
+            statusWeight = 0;
+            weight_status = "";
         }
 
         if (recommendHeight == 0){
@@ -224,6 +184,11 @@ public class HomePage extends AppCompatActivity {
         } else if(actualHeight < recommendHeight){
             statusHeight = (recommendHeight - actualHeight);
             height_status = "Thiếu " + decimalFormat.format(statusHeight) + " (cm)";
+        } else {
+            recommendHeight = -1;
+            actualHeight = 0;
+            statusHeight = 0;
+            height_status = "";
         }
 
         decimalFormat = new DecimalFormat("0");
@@ -277,6 +242,49 @@ public class HomePage extends AppCompatActivity {
         }, 35);
 
         heightView.setText(height_status);
+    }
 
+    public void setNullValue() {
+
+        final Handler weight_handler = new Handler();
+
+        weight_handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(weight <= actualWeight) {
+                    if(recommendWeight == 0) {
+                        weightProgressText.setText(String.valueOf(weight + "\n" + 0));
+                    } else {
+                        weightProgressText.setText(String.valueOf(weight + "\n" + 0));
+                    }
+                    weightProgressBar.setProgress(weight);
+                    weight++;
+                    weight_handler.postDelayed(this, 35);
+                } else {
+                    weight_handler.removeCallbacks(this);
+                }
+            }
+        }, 35);
+
+        weightView.setText(weight_status);
+
+        final Handler height_handler = new Handler();
+        height_handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(height <= 0) {
+                    if(recommendHeight == 0) {
+                        heightProgressText.setText(String.valueOf(height + "\n" + 0));
+                    } else {
+                        heightProgressText.setText(String.valueOf(height + "\n" + 0));
+                    }
+                    heightProgressBar.setProgress(height);
+                    height++;
+                    height_handler.postDelayed(this, 35);
+                } else {
+                    height_handler.removeCallbacks(this);
+                }
+            }
+        }, 35);
     }
 }
