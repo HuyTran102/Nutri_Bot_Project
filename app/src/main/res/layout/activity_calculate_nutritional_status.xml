@@ -73,7 +73,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/user_height"
-                    android:layout_width="339dp"
+                    android:layout_width="332dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="2dp"
                     android:autofillHints=""
@@ -100,7 +100,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/user_weight"
-                    android:layout_width="339dp"
+                    android:layout_width="332dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="2dp"
                     android:autofillHints=""

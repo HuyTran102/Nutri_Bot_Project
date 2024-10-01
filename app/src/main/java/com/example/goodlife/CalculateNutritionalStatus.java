@@ -99,6 +99,8 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
 
                             WriteDataFireBase(String.valueOf(userActualHeight[0]), String.valueOf(userActualWeight[0])
                                     , String.valueOf(userRecommendHeight[0]), String.valueOf(userRecommendWeight[0]));
+
+                            Toast.makeText(CalculateNutritionalStatus.this, " " + monthAge, Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
