@@ -42,7 +42,7 @@
         android:layout_below="@id/item_data_diary"
         android:layout_gravity="center"
         android:clipToPadding="false"
-        android:paddingStart="15dp"
+        android:paddingStart="20dp"
         android:background="#F7FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
