@@ -55,7 +55,7 @@ public class FragmentFood extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                findData(query);
+//                findData(query);
                 return true;
             }
 
