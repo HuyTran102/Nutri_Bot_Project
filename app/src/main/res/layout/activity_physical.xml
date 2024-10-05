@@ -45,31 +45,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/height"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="2dp"
-            app:endIconMode="clear_text">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/user_height"
-                android:layout_width="339dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="2dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/chi_u_cao_m"
-                android:inputType="numberDecimal"
-                android:textColor="#9E9D9D"
-                android:textColorHint="#9E9D9D"
-                android:textSize="18sp"
-                android:textStyle="bold">
-
-            </com.google.android.material.textfield.TextInputEditText>
-        </com.google.android.material.textfield.TextInputLayout>
+            android:id="@+id/activity_level"
+            android:hint="Chọn hoạt động"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:dropDownHeight="wrap_content"/>
 
         <Button
             android:id="@+id/pick_time_button"

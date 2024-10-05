@@ -4,12 +4,13 @@ public class DiaryItem {
     public String name, unit_type, unit_name;
     public int image;
     public int kcal;
-    public int adding_year, adding_month, adding_day;
+    public int adding_year, adding_month, adding_day, adding_hour, adding_minute, adding_second;
     public double amount, protein, lipid, glucid;
 
     public DiaryItem(String name, double amount, int kcal,  double protein
             , double lipid, double glucid, String unit_type, String unit_name
-            , int image, int adding_year, int adding_month, int adding_day) {
+            , int image, int adding_year, int adding_month, int adding_day
+            , int adding_hour, int adding_minute, int adding_second) {
         this.name = name;
         this.amount = amount;
         this.kcal = kcal;
@@ -22,6 +23,33 @@ public class DiaryItem {
         this.adding_year = adding_year;
         this.adding_month = adding_month;
         this.adding_day = adding_day;
+        this.adding_hour = adding_hour;
+        this.adding_minute = adding_minute;
+        this.adding_second = adding_second;
+    }
+
+    public int getAdding_second() {
+        return adding_second;
+    }
+
+    public void setAdding_second(int adding_second) {
+        this.adding_second = adding_second;
+    }
+
+    public int getAdding_minute() {
+        return adding_minute;
+    }
+
+    public void setAdding_minute(int adding_minute) {
+        this.adding_minute = adding_minute;
+    }
+
+    public int getAdding_hour() {
+        return adding_hour;
+    }
+
+    public void setAdding_hour(int adding_hour) {
+        this.adding_hour = adding_hour;
     }
 
     public int getAdding_month() {

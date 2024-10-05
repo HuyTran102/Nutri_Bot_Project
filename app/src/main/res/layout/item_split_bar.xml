@@ -11,24 +11,14 @@
         android:layout_alignParentRight="true"
         android:gravity="center">
 
-        <View
-            android:layout_width="145dp"
-            android:layout_height="9dp"
-            android:background="@drawable/ic_split_bar_left" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/date"
             android:text=" 25/9/2024 "
-            android:background="@drawable/ic_split_text_background"
+            android:textColor="@color/primaryTextColor"
             android:textStyle="bold"
             android:textSize="18sp"/>
-
-        <View
-            android:layout_width="145dp"
-            android:layout_height="9dp"
-            android:background="@drawable/ic_split_bar_right" />
 
     </LinearLayout>
 

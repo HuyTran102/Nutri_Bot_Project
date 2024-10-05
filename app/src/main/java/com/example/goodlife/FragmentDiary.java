@@ -1,5 +1,6 @@
 package com.example.goodlife;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
@@ -26,15 +28,22 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DecimalFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class FragmentDiary extends Fragment {
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-    TextView viewItemName, itemKcalo, itemProtein, itemLipid, itemGlucid, itemUnitType, itemUnitName, itemAmount;
-    List<DiaryItem> items = new ArrayList<>();
-    String name;
-    RecyclerView recyclerView;
+    private DatePickerDialog datePickerDialog;
+    private Button dateButton;
+    private TextView viewItemName, itemKcalo, itemProtein, itemLipid, itemGlucid, itemUnitType, itemUnitName, itemAmount;
+    private List<DiaryItem> items = new ArrayList<>();
+    private String name;
+    private RecyclerView recyclerView;
     int calories_val = 0;
     double protein_val = 0, lipid_val = 0, glucid_val = 0, amount_val = 0;
 
@@ -50,6 +59,7 @@ public class FragmentDiary extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.recycleView);
+        dateButton = view.findViewById(R.id.datePickerButton);
         viewItemName = getView().findViewById(R.id.item_name);
         itemAmount = getView().findViewById(R.id.item_amount);
         itemUnitType = getView().findViewById(R.id.unit_type);
@@ -63,7 +73,22 @@ public class FragmentDiary extends Fragment {
 
         name = sp.getString("Name",null);
 
-        List<DiaryItem> items = LoadDataFireBase();
+        List<DiaryItem> items = new ArrayList<>();
+
+        // Get the current date
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        month = month + 1;
+        // Handle the selected date (e.g., update the TextView)
+        String selectedDate = makeDateString(day, month, year);
+        items = showListData(selectedDate);
+        DiaryItem startItem = new DiaryItem("", 0, 0, 0, 0, 0
+                , "", "", 0, year, month, day, 0, 0, 0);
+
+        items.add(0, startItem);
 
         // set total value
         for(DiaryItem diaryItem : items) {
@@ -97,7 +122,7 @@ public class FragmentDiary extends Fragment {
         getView().requestFocus();
 
         items.clear();
-        items = LoadDataFireBase();
+        LoadDataFireBase();
 
         calories_val = 0;
         amount_val = 0;
@@ -142,8 +167,54 @@ public class FragmentDiary extends Fragment {
         recyclerView.addItemDecoration(itemDecoration);
     }
 
+    // Date Picker for user to select their date of birth
+    public void LoadDataFireBase () {
+        // Create a DatePickerDialog with Holo theme
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                // Handle the selected date (e.g., update the TextView)
+                String selectedDate = makeDateString(day, month, year);
+                //selectedDateTextView.setText(selectedDate);
+                Log.d("DATE",selectedDate);
+                items = showListData(selectedDate);
+                DiaryItem startItem = new DiaryItem("", 0, 0, 0, 0, 0
+                        , "", "", 0, year, month, day, 0, 0, 0);
+                items.add(0, startItem);
+                Collections.sort(items, new Comparator<DiaryItem>() {
+                    @Override
+                    public int compare(DiaryItem item1, DiaryItem item2) {
+                        LocalTime item1_time = LocalTime.of(item1.getAdding_hour(), item1.getAdding_minute(), item1.getAdding_second());
+                        LocalTime item2_time = LocalTime.of(item2.getAdding_hour(), item2.getAdding_minute(), item2.getAdding_second());
+                        return item1_time.compareTo(item2_time);
+                    }
+                });
+            }
+        };
+
+        // Get the current date
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        // Use Holo theme here
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+
+        datePickerDialog = new DatePickerDialog(getActivity(), style, dateSetListener, year, month, day);
+        //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+
+        dateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                datePickerDialog.show();
+            }
+        });
+    }
+
     // Load Data to Recycle Item
-    public List<DiaryItem> LoadDataFireBase(){
+    public List<DiaryItem> showListData(String selectedDate){
         List<DiaryItem> items = new ArrayList<>();
         firebaseFirestore.collection("GoodLife")
                 .document(name)
@@ -159,8 +230,12 @@ public class FragmentDiary extends Fragment {
                                         , Integer.parseInt(document.getString("kcal")), Double.parseDouble(document.getString("protein"))
                                         , Double.parseDouble(document.getString("lipid")), Double.parseDouble(document.getString("glucid"))
                                         , document.getString("unit_type"), document.getString("unit_name"), Integer.parseInt(document.getString("image_id"))
-                                        , Integer.parseInt(document.getString("year")), Integer.parseInt(document.getString("month")), Integer.parseInt(document.getString("day")));
-                                items.add(diaryItem);
+                                        , Integer.parseInt(document.getString("year")), Integer.parseInt(document.getString("month")), Integer.parseInt(document.getString("day"))
+                                        , Integer.parseInt(document.getString("hour")), Integer.parseInt(document.getString("minute")), Integer.parseInt(document.getString("second")));
+                                String date = makeDateString(Integer.parseInt(document.getString("day")), Integer.parseInt(document.getString("month")), Integer.parseInt(document.getString("year")));
+                                if(date.equals(selectedDate)) {
+                                    items.add(diaryItem);
+                                }
 //                                Toast.makeText(getContext(), document.getString("kcal"), Toast.LENGTH_SHORT).show();
                             }
                             setDataUI();
@@ -170,25 +245,5 @@ public class FragmentDiary extends Fragment {
                     }
                 });
         return items;
-    }
-
-
-    private void showDatePickerDialog() {
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                requireContext(),
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        // Handle the selected date (e.g., update the TextView)
-                        String selectedDate = String.format("%02d/%02d/%04d", month + 1, dayOfMonth, year);
-                        //selectedDateTextView.setText(selectedDate);
-                        Log.d("DATE",selectedDate);
-                    }
-
-                },
-                // Initial date (optional, set to today's date)
-                2024, 8, 29
-        );
-        datePickerDialog.show();
     }
 }
