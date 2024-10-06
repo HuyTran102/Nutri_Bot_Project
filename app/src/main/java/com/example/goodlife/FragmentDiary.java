@@ -45,6 +45,7 @@ public class FragmentDiary extends Fragment {
     private String name;
     private RecyclerView recyclerView;
     int calories_val = 0;
+    int year,month,day;
     double protein_val = 0, lipid_val = 0, glucid_val = 0, amount_val = 0;
 
     @Override
@@ -179,25 +180,15 @@ public class FragmentDiary extends Fragment {
                 //selectedDateTextView.setText(selectedDate);
                 Log.d("DATE",selectedDate);
                 items = showListData(selectedDate);
-                DiaryItem startItem = new DiaryItem("", 0, 0, 0, 0, 0
-                        , "", "", 0, year, month, day, 0, 0, 0);
-                items.add(0, startItem);
-                Collections.sort(items, new Comparator<DiaryItem>() {
-                    @Override
-                    public int compare(DiaryItem item1, DiaryItem item2) {
-                        LocalTime item1_time = LocalTime.of(item1.getAdding_hour(), item1.getAdding_minute(), item1.getAdding_second());
-                        LocalTime item2_time = LocalTime.of(item2.getAdding_hour(), item2.getAdding_minute(), item2.getAdding_second());
-                        return item1_time.compareTo(item2_time);
-                    }
-                });
+
             }
         };
 
         // Get the current date
         Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
+        year = cal.get(Calendar.YEAR);
+        month = cal.get(Calendar.MONTH);
+        day = cal.get(Calendar.DAY_OF_MONTH);
 
         // Use Holo theme here
         int style = AlertDialog.THEME_HOLO_LIGHT;
@@ -238,6 +229,17 @@ public class FragmentDiary extends Fragment {
                                 }
 //                                Toast.makeText(getContext(), document.getString("kcal"), Toast.LENGTH_SHORT).show();
                             }
+                            DiaryItem startItem = new DiaryItem("", 0, 0, 0, 0, 0
+                                    , "", "", 0, year, month, day, 0, 0, 0);
+                            items.add(0, startItem);
+                            Collections.sort(items, new Comparator<DiaryItem>() {
+                                @Override
+                                public int compare(DiaryItem item1, DiaryItem item2) {
+                                    LocalTime item1_time = LocalTime.of(item1.getAdding_hour(), item1.getAdding_minute(), item1.getAdding_second());
+                                    LocalTime item2_time = LocalTime.of(item2.getAdding_hour(), item2.getAdding_minute(), item2.getAdding_second());
+                                    return item1_time.compareTo(item2_time);
+                                }
+                            });
                             setDataUI();
                         } else {
                             Log.w("Firestore", "Error getting documents", task.getException());
