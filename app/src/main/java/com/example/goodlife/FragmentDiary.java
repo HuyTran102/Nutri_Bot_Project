@@ -44,9 +44,9 @@ public class FragmentDiary extends Fragment {
     private List<DiaryItem> items = new ArrayList<>();
     private String name;
     private RecyclerView recyclerView;
-    int calories_val = 0;
-    int year,month,day;
-    double protein_val = 0, lipid_val = 0, glucid_val = 0, amount_val = 0;
+    private int calories_val = 0;
+    private int year, month, day;
+    private double protein_val = 0, lipid_val = 0, glucid_val = 0, amount_val = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -230,7 +230,7 @@ public class FragmentDiary extends Fragment {
 //                                Toast.makeText(getContext(), document.getString("kcal"), Toast.LENGTH_SHORT).show();
                             }
                             DiaryItem startItem = new DiaryItem("", 0, 0, 0, 0, 0
-                                    , "", "", 0, year, month, day, 0, 0, 0);
+                                    , "", "", 0, items.get(0).adding_year, items.get(0).adding_month, items.get(0).adding_day, 0, 0, 0);
                             items.add(0, startItem);
                             Collections.sort(items, new Comparator<DiaryItem>() {
                                 @Override
