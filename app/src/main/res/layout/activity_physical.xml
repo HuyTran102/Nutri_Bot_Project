@@ -60,8 +60,7 @@
                 android:background="@color/white"
                 android:textColor="@color/black"
                 app:backgroundTint="@null"
-                android:gravity="center"
-                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
                 android:dropDownHeight="wrap_content"/>
 
             <Button
@@ -74,8 +73,7 @@
                 android:background="@color/white"
                 android:textColor="@color/black"
                 app:backgroundTint="@null"
-                android:gravity="center"
-                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
                 android:dropDownHeight="wrap_content"/>
 
         </LinearLayout>
@@ -89,8 +87,7 @@
             android:background="@drawable/custom_button"
             android:textColor="@color/black"
             app:backgroundTint="@null"
-            android:gravity="center"
-            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
             android:onClick="openTimePicker"/>
 
     </LinearLayout>

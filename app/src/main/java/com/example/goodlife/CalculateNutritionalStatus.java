@@ -67,7 +67,7 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("Data", Context.MODE_PRIVATE);
 
-        name = sharedPreferences.getString("Name",null);
+        name = sharedPreferences.getString("Name", null);
         signInDate = sharedPreferences.getString("SignInDate", null);
 
         resultButton.setOnClickListener(new View.OnClickListener() {
