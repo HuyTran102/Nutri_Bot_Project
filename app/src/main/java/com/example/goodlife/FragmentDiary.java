@@ -134,7 +134,7 @@ public class FragmentDiary extends Fragment {
 
     // Convert and format from date to String
     private String makeDateString(int day, int month, int year) {
-        return " " + month + "/" + day + "/" + year + " ";
+        return month + "/" + day + "/" + year;
     }
 
     public void setDataUI(){
@@ -224,14 +224,19 @@ public class FragmentDiary extends Fragment {
                                         , Integer.parseInt(document.getString("year")), Integer.parseInt(document.getString("month")), Integer.parseInt(document.getString("day"))
                                         , Integer.parseInt(document.getString("hour")), Integer.parseInt(document.getString("minute")), Integer.parseInt(document.getString("second")));
                                 String date = makeDateString(Integer.parseInt(document.getString("day")), Integer.parseInt(document.getString("month")), Integer.parseInt(document.getString("year")));
-                                if(date.equals(selectedDate)) {
+                                if (date.equals(selectedDate)) {
                                     items.add(diaryItem);
                                 }
 //                                Toast.makeText(getContext(), document.getString("kcal"), Toast.LENGTH_SHORT).show();
                             }
+
+                            String[] date = selectedDate.split("/");
+
                             DiaryItem startItem = new DiaryItem("", 0, 0, 0, 0, 0
-                                    , "", "", 0, items.get(0).adding_year, items.get(0).adding_month, items.get(0).adding_day, 0, 0, 0);
+                                    , "", "", 0, Integer.parseInt(date[2]), Integer.parseInt(date[0]), Integer.parseInt(date[1]), 0, 0, 0);
+
                             items.add(0, startItem);
+                            
                             Collections.sort(items, new Comparator<DiaryItem>() {
                                 @Override
                                 public int compare(DiaryItem item1, DiaryItem item2) {
