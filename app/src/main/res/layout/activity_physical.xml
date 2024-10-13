@@ -90,6 +90,17 @@
             android:layout_marginStart="10dp"
             android:onClick="openTimePicker"/>
 
+       <Button
+           android:id="@+id/add_activity"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="center"
+           android:background="@drawable/custom_button"
+           android:text="Lưu"
+           android:textColor="@color/black"
+           android:textSize="18sp"
+           app:backgroundTint="@null" />
+
     </LinearLayout>
 
     <Button

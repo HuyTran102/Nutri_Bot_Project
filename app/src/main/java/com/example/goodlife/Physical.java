@@ -34,7 +34,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class Physical extends AppCompatActivity {
     private TimePickerDialog timePickerDialog;
-    private Button pickTimeButton, backButton, activityLevel, activitiesOfLevel;
+    private Button pickTimeButton, backButton, activityLevel, activitiesOfLevel, addActivity;
     private Dialog dialog;
     private ArrayList<String> items = new ArrayList<>();
     private ArrayList<PairItem> activities = new ArrayList<>();
@@ -49,6 +49,7 @@ public class Physical extends AppCompatActivity {
         pickTimeButton = findViewById(R.id.pick_time_button);
         activityLevel = findViewById(R.id.activity_level);
         activitiesOfLevel = findViewById(R.id.activities_of_level);
+        addActivity = findViewById(R.id.add_activity);
 
         SharedPreferences sharedPreferences = getSharedPreferences("Data", Context.MODE_PRIVATE);
 
@@ -80,9 +81,12 @@ public class Physical extends AppCompatActivity {
         // use to open the dialog to select the user practice time
         initTimePicker();
 
-        String practiceTime = pickTimeButton.toString();
-
-        Toast.makeText(Physical.this, " " + practiceTime, Toast.LENGTH_SHORT).show();
+        addActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                WriteDataFireBase(String.valueOf(activitiesOfLevel.getText()), String.valueOf(activityLevel.getText()), "a", String.valueOf(pickTimeButton.getText()));
+            }
+        });
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,9 +110,6 @@ public class Physical extends AppCompatActivity {
         };
 
 //        // Get the current time
-//        Calendar calendar = Calendar.getInstance();
-//        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-//        int minute = calendar.get(Calendar.MINUTE);
 
         // Use Holo theme here
         int style = AlertDialog.THEME_HOLO_LIGHT;
@@ -279,16 +280,16 @@ public class Physical extends AppCompatActivity {
     }
 
     // Write Data to Cloud Firestone
-    public void WriteDataFireBase(String userActivityName, String userActivityLevel, String userActivityTime){
+    public void WriteDataFireBase(String userActivityName, String userActivityLevel,String userActivityMet, String userActivityTime){
         // Create a new item with all of the value
         Map<String, Object> item = new HashMap<>();
-        item.put("userActivityName", userActivityName);
         item.put("userActivityLevel", userActivityLevel);
-        item.put("userRecommendHeight", userActivityTime);
+        item.put("userActivityMet", userActivityMet);
+        item.put("userPracticeTime", userActivityTime);
 
         firebaseFirestore.collection("GoodLife")
                 .document(name).collection("Hoạt động thể lực")
-                .document("Value")
+                .document(userActivityName)
                 .set(item)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
