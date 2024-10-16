@@ -23,11 +23,18 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
@@ -36,10 +43,10 @@ public class Physical extends AppCompatActivity {
     private TimePickerDialog timePickerDialog;
     private Button pickTimeButton, backButton, activityLevel, activitiesOfLevel, addActivity;
     private Dialog dialog;
-    private ArrayList<String> items = new ArrayList<>();
-    private ArrayList<PairItem> activities = new ArrayList<>();
+    private ArrayList<String> items = new ArrayList<>(), activities = new ArrayList<>();
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private String name;
+    private double userWeight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +66,8 @@ public class Physical extends AppCompatActivity {
         items.add("Vừa");
         items.add("Nặng");
 
+        LoadDataFireBase();
+
         // Set OnClickListener to show the dialog on clicking the TextView
         activityLevel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +85,7 @@ public class Physical extends AppCompatActivity {
         });
 
         // Set current time for both time picker button
-        pickTimeButton.setText(" Thời gian luyện tập 0 giờ : 0 phút");
+        pickTimeButton.setText("Thời gian luyện tập 00 giờ : 00 phút");
 
         // use to open the dialog to select the user practice time
         initTimePicker();
@@ -84,7 +93,23 @@ public class Physical extends AppCompatActivity {
         addActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WriteDataFireBase(String.valueOf(activitiesOfLevel.getText()), String.valueOf(activityLevel.getText()), "a", String.valueOf(pickTimeButton.getText()));
+                String[] activityNameSplit = String.valueOf(activitiesOfLevel.getText()).split("-");
+                String itemActivityName = activityNameSplit[0].substring(9);
+                String itemActivityMET = activityNameSplit[1].substring(5);
+                String[] activityLevelSplit = String.valueOf(activityLevel.getText()).split(" ");
+                String itemActivityLevel = activityLevelSplit[4];
+                String itemPracticeTime = String.valueOf(pickTimeButton.getText()).substring(20);
+                int hour = Integer.parseInt(itemPracticeTime.substring(0, 2));
+                int minute = Integer.parseInt(itemPracticeTime.substring(9, 11));
+                minute += (hour * 60);
+                itemPracticeTime = String.valueOf(minute);
+
+                double itemUsedEnergy = (Double.parseDouble(itemActivityMET) * userWeight * 3.5 * minute) / 200;
+
+//                Toast.makeText(Physical.this, " " + itemUsedEnergy + " ", Toast.LENGTH_SHORT).show();
+
+                WriteDataFireBase(itemActivityName, itemActivityLevel, itemActivityMET
+                        , itemPracticeTime, String.valueOf(itemUsedEnergy));
             }
         });
 
@@ -105,7 +130,7 @@ public class Physical extends AppCompatActivity {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 // Display the selected time
-                pickTimeButton.setText(String.format(" Thời gian luyện tập: %02d giờ : %02d phút", hourOfDay, minute));
+                pickTimeButton.setText(String.format("Thời gian luyện tập %02d giờ : %02d phút", hourOfDay, minute));
             }
         };
 
@@ -156,84 +181,84 @@ public class Physical extends AppCompatActivity {
             activityLevel.setText("Mức độ hoạt động " + adapter.getItem(i));
             dialog.dismiss();
 
-            if(adapter.getItem(i) == null) {
-                activities.add(new PairItem("null", 0.0));
+            if(adapter.getItem(i) == "") {
+                activities.add(" - MET 0.0");
             }else if(adapter.getItem(i).equals("Nhẹ")) {
                 activities.clear();
 
-                activities.add(new PairItem("Câu cá đứng", 2.5));
-                activities.add(new PairItem("Làm việc nhà", 2.5));
-                activities.add(new PairItem("Chơi piano", 2.5));
-                activities.add(new PairItem("Ngồi yên", 1.0));
-                activities.add(new PairItem("Yoga", 2.5));
-                activities.add(new PairItem("Tập thể hình nhẹ", 3.0));
-                activities.add(new PairItem("Bơi biển, nhẹ", 2.5));
-                activities.add(new PairItem("Đi bộ vận tốc 3 km/giờ", 2.5));
+                activities.add("Câu cá đứng - MET 2.5");
+                activities.add("Làm việc nhà - MET 2.5");
+                activities.add("Chơi piano - MET 2.5");
+                activities.add("Ngồi yên - MET 1.0");
+                activities.add("Yoga - MET 2.5");
+                activities.add("Tập thể hình nhẹ - MET 3.0");
+                activities.add("Bơi biến nhẹ - MET 2.0");
+                activities.add("Đi bộ vận tốc 3 km/giờ - MET 2.5");
+
             } else if(adapter.getItem(i).equals("Vừa")) {
                 activities.clear();
-
-                activities.add(new PairItem("Bơi biến, vừa", 3.0));
-                activities.add(new PairItem("Bơi ở bể 2 km/h", 4.3));
-                activities.add(new PairItem("Bóng bàn", 4.7));
-                activities.add(new PairItem("Aerobic tốc độ chậm", 5.0));
-                activities.add(new PairItem("Cầu lông", 4.5));
-                activities.add(new PairItem("Bắn cung", 3.5));
-                activities.add(new PairItem("Tập thể hình vừa", 5.0));
-                activities.add(new PairItem("Bóng rổ", 4.5));
-                activities.add(new PairItem("Đạp xe thư giãn", 3.5));
-                activities.add(new PairItem("Bowling", 3.0));
-                activities.add(new PairItem("Thể dụng dụng cụ (nhẹ và vừa)", 3.5));
-                activities.add(new PairItem("Khiêu vũ aerobic hoặc bale", 6.0));
-                activities.add(new PairItem("Khiêu vũ hiện đại nhanh", 4.8));
-                activities.add(new PairItem("Câu cá đi bộ và đứng", 3.5));
-                activities.add(new PairItem("Làm vườn", 4.0));
-                activities.add(new PairItem("Thể dục dụng cụ", 4.0));
-                activities.add(new PairItem("Đi bộ đường dài ", 6.0));
-                activities.add(new PairItem("Nhảy trên bạt lò xo", 4.5));
-                activities.add(new PairItem("Đi bộ", 5.5));
-                activities.add(new PairItem("Trượt ván", 5.0));
-                activities.add(new PairItem("Lướt sóng", 6.0));
-                activities.add(new PairItem("Bơi lội tốc độ vừa phải", 4.5));
-                activities.add(new PairItem("Bóng chuyền", 3.0));
-                activities.add(new PairItem("Đi bộ 6km/giờ", 5.0));
-                activities.add(new PairItem("Trượt nước", 6.0));
+                activities.add("Bơi biến vừa - MET 3.0");
+                activities.add("Bơi ở bể 2 km/h - MET 4.3");
+                activities.add("Bóng bàn - MET 4.7");
+                activities.add("Aerobic tốc độ chậm - MET 5.0");
+                activities.add("Cầu lông - MET 4.5");
+                activities.add("Bắn cung - MET 3.5");
+                activities.add("Tập thể hình vừa - MET 5.0");
+                activities.add("Bóng rổ - MET 4.5");
+                activities.add("Đạp xe thư giãn - MET 3.5");
+                activities.add("Bowling - MET 3.0");
+                activities.add("Thể dụng dụng cụ (nhẹ và vừa) - MET 3.5");
+                activities.add("Khiêu vũ aerobic hoặc bale - MET 6.0");
+                activities.add("Khiêu vũ hiện đại nhanh - MET 4.8");
+                activities.add("Câu cá đi bộ và đứng - MET 3.5");
+                activities.add("Làm vườn - MET 4.0");
+                activities.add("Thể dục dụng cụ - MET 4.0");
+                activities.add("Đi bộ đường dài - MET 6.0");
+                activities.add("Nhảy trên bạt lò xo - MET 4.5");
+                activities.add("Đi bộ - MET 5.5");
+                activities.add("Trượt ván - MET 5.0");
+                activities.add("Lướt sóng - MET 6.0");
+                activities.add("Bơi lội tốc độ vừa phải - MET 4.5");
+                activities.add("Bóng chuyền - MET 3.0");
+                activities.add("Đi bộ 6km/giờ - MET 5.0");
+                activities.add("Trượt nước - MET 6.0");
             } else if(adapter.getItem(i).equals("Nặng")) {
                 activities.clear();
 
-                activities.add(new PairItem("Aerobic tốc độ vừa", 6.5));
-                activities.add(new PairItem("Tập thể hình nặng", 7.0));
-                activities.add(new PairItem("Khiêu vũ tốc độ mạnh", 7.0));
-                activities.add(new PairItem("Đạp xe 20km/giờ", 8.0));
-                activities.add(new PairItem("Đạp xe trên 30km/giờ", 16.0));
-                activities.add(new PairItem("Thể dục dụng cụ mức nặng", 8.0));
-                activities.add(new PairItem("Khuân vác", 7.0));
-                activities.add(new PairItem("Bóng đá có thi đấu", 9.0));
-                activities.add(new PairItem("Chạy bộ 20km/giờ", 8.0));
-                activities.add(new PairItem("Karate/tae Kwan do", 10.0));
-                activities.add(new PairItem("Leo núi", 8.0));
-                activities.add(new PairItem("Trượt patin", 7.0));
-                activities.add(new PairItem("Trượt patin nhanh", 12.0));
-                activities.add(new PairItem("Nhảy dây chậm", 8.0));
-                activities.add(new PairItem("Nhảy dây nhanh", 12.0));
-                activities.add(new PairItem("Chạy bộ 10 km/giờ", 10.0));
-                activities.add(new PairItem("Chạy bộ 16km/giờ", 16.0));
-                activities.add(new PairItem("Chạy bộ 13 km/giờ", 14.0));
-                activities.add(new PairItem("Chạy bộ 14 km/giờ", 12.0));
-                activities.add(new PairItem("Chạy bộ 12 km/giờ", 12.5));
-                activities.add(new PairItem("Chạy bộ 11 km/giờ", 11.0));
-                activities.add(new PairItem("Đá bóng thông thường", 7.0));
-                activities.add(new PairItem("Bơi nhanh", 10.0));
-                activities.add(new PairItem("Bơi vừa", 7.0));
-                activities.add(new PairItem("Bơi giải trí", 6.0));
-                activities.add(new PairItem("Bóng chuyền thi đấu/bãi biển", 8.0));
-                activities.add(new PairItem("Đi bộ 9 km/giờ", 11.0));
-                activities.add(new PairItem("Đi bộ cầu thang", 8.0));
-                activities.add(new PairItem("Chạy nước rút", 8.0));
-                activities.add(new PairItem("Bơi biến nặng", 6.5));
-                activities.add(new PairItem("Bơi ở bể 2.5 km/h", 6.8));
-                activities.add(new PairItem("Bơi ở bể 3 km/h", 8.9));
-                activities.add(new PairItem("Bơi ở bể 3.5 km/h", 11.5));
-                activities.add(new PairItem("Bơi ở bể 4 km/h", 13.6));
+                activities.add("Aerobic tốc độ vừa - MET 6.5");
+                activities.add("Tập thể hình nặng - MET 7.0");
+                activities.add("Khiêu vũ tốc độ mạnh - MET 7.0");
+                activities.add("Đạp xe 20km/giờ - MET 8.0");
+                activities.add("Đạp xe trên 30km/giờ - MET 16.0");
+                activities.add("Thể dục dụng cụ mức nặng - MET 8.0");
+                activities.add("Khuân vác - MET 7.0");
+                activities.add("Bóng đá có thi đấu - MET 9.0");
+                activities.add("Chạy bộ 20km/giờ - MET 8.0");
+                activities.add("Karate/tae Kwan do - MET 10.0");
+                activities.add("Leo núi - MET 8.0");
+                activities.add("Trượt patin - MET 7.0");
+                activities.add("Trượt patin nhanh - MET 12.0");
+                activities.add("Nhảy dây chậm - MET 8.0");
+                activities.add("Nhảy dây nhanh - MET 12.0");
+                activities.add("Chạy bộ 10 km/giờ - MET 10.0");
+                activities.add("Chạy bộ 16km/giờ - MET 16.0");
+                activities.add("Chạy bộ 13 km/giờ - MET 14.0");
+                activities.add("Chạy bộ 14 km/giờ - MET 12.0");
+                activities.add("Chạy bộ 12 km/giờ - MET 12.5");
+                activities.add("Chạy bộ 11 km/giờ - MET 11.0");
+                activities.add("Đá bóng thông thường - MET 7.0");
+                activities.add("Bơi nhanh - MET 10.0");
+                activities.add("Bơi vừa - MET 7.0");
+                activities.add("Bơi giải trí - MET 6.0");
+                activities.add("Bóng chuyền thi đấu/bãi biển - MET 8.0");
+                activities.add("Đi bộ 9 km/giờ - MET 11.0");
+                activities.add("Đi bộ cầu thang - MET 8.0");
+                activities.add("Chạy nước rút - MET 8.0");
+                activities.add("Bơi biến nặng - MET 6.5");
+                activities.add("Bơi ở bể 2.5 km/h - MET 6.8");
+                activities.add("Bơi ở bể 3 km/ - MET 8.9");
+                activities.add("Bơi ở bể 3.5 km/h - MET 11.5");
+                activities.add("Bơi ở bể 4 km/h - MET 13.6");
             }
         });
 
@@ -250,7 +275,7 @@ public class Physical extends AppCompatActivity {
         ListView listView = dialog.findViewById(R.id.listView);
 
         // Set up adapter
-        ArrayAdapter<PairItem> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, activities);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, activities);
         listView.setAdapter(adapter);
 
         // Set up search functionality
@@ -271,8 +296,7 @@ public class Physical extends AppCompatActivity {
 
         // Set item click listener
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
-            PairItem selectedItem = adapter.getItem(i);
-            activitiesOfLevel.setText("Hoạt động " + selectedItem.getKey());
+            activitiesOfLevel.setText("Hoạt động " + adapter.getItem(i));
             dialog.dismiss();
         });
 
@@ -280,12 +304,14 @@ public class Physical extends AppCompatActivity {
     }
 
     // Write Data to Cloud Firestone
-    public void WriteDataFireBase(String userActivityName, String userActivityLevel,String userActivityMet, String userActivityTime){
+    public void WriteDataFireBase(String userActivityName, String userActivityLevel
+            , String userActivityMet, String userActivityTime, String userUsedEnergy) {
         // Create a new item with all of the value
         Map<String, Object> item = new HashMap<>();
         item.put("userActivityLevel", userActivityLevel);
         item.put("userActivityMet", userActivityMet);
         item.put("userPracticeTime", userActivityTime);
+        item.put("userUsedEnergy", userUsedEnergy);
 
         firebaseFirestore.collection("GoodLife")
                 .document(name).collection("Hoạt động thể lực")
@@ -301,6 +327,35 @@ public class Physical extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w("Firestore", "Error adding value to database: ", e);
+                    }
+                });
+    }
+
+    // Load Data from database
+    public void LoadDataFireBase(){
+        firebaseFirestore.collection("GoodLife")
+                .document(name).collection("Dinh dưỡng")
+                .get()
+                .addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
+                    if(task.isSuccessful()) {
+                        // Loop through all documents
+                        for(QueryDocumentSnapshot document : task.getResult()) {
+                            if(document.getString("useHeight") == "" && document.getString("userWeight") == ""
+                                    && document.getString("userRecommendHeight") == ""
+                                    && document.getString("userRecommendWeight") == "") {
+                                return;
+                            } else {
+
+                                try {
+                                    userWeight = Double.parseDouble(document.getString("userWeight"));
+                                }catch (Exception e){
+                                    userWeight = 0.0;
+                                }
+                            }
+
+                        }
+                    } else {
+                        Log.w("Firestore", "Error getting documents", task.getException());
                     }
                 });
     }
