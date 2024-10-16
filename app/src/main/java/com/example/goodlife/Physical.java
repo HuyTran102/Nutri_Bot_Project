@@ -33,6 +33,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -46,7 +47,8 @@ public class Physical extends AppCompatActivity {
     private ArrayList<String> items = new ArrayList<>(), activities = new ArrayList<>();
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private String name;
-    private double userWeight;
+    private double userWeight, sumUsedEnergy;
+    private TextView totalUsedEnergy;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,10 +59,13 @@ public class Physical extends AppCompatActivity {
         activityLevel = findViewById(R.id.activity_level);
         activitiesOfLevel = findViewById(R.id.activities_of_level);
         addActivity = findViewById(R.id.add_activity);
+        totalUsedEnergy = findViewById(R.id.total_used_energy);
 
         SharedPreferences sharedPreferences = getSharedPreferences("Data", Context.MODE_PRIVATE);
 
         name = sharedPreferences.getString("Name", null);
+
+        sumUsedEnergy = 0;
 
         items.add("Nhẹ");
         items.add("Vừa");
@@ -104,12 +109,25 @@ public class Physical extends AppCompatActivity {
                 minute += (hour * 60);
                 itemPracticeTime = String.valueOf(minute);
 
+                // Get the current date
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
                 double itemUsedEnergy = (Double.parseDouble(itemActivityMET) * userWeight * 3.5 * minute) / 200;
 
 //                Toast.makeText(Physical.this, " " + itemUsedEnergy + " ", Toast.LENGTH_SHORT).show();
 
                 WriteDataFireBase(itemActivityName, itemActivityLevel, itemActivityMET
-                        , itemPracticeTime, String.valueOf(itemUsedEnergy));
+                        , itemPracticeTime, String.valueOf(itemUsedEnergy), String.valueOf(year)
+                        , String.valueOf(month), String.valueOf(day));
+
+                sumUsedEnergy += itemUsedEnergy;
+
+                CalculateSumUsedEnergy();
+
+                totalUsedEnergy.setText(String.valueOf(sumUsedEnergy));
             }
         });
 
@@ -305,13 +323,17 @@ public class Physical extends AppCompatActivity {
 
     // Write Data to Cloud Firestone
     public void WriteDataFireBase(String userActivityName, String userActivityLevel
-            , String userActivityMet, String userActivityTime, String userUsedEnergy) {
+            , String userActivityMet, String userActivityTime, String userUsedEnergy
+            , String itemAddingYear, String itemAddingMonth, String itemAddingDay) {
         // Create a new item with all of the value
         Map<String, Object> item = new HashMap<>();
         item.put("userActivityLevel", userActivityLevel);
         item.put("userActivityMet", userActivityMet);
         item.put("userPracticeTime", userActivityTime);
         item.put("userUsedEnergy", userUsedEnergy);
+        item.put("year", itemAddingYear);
+        item.put("month", itemAddingMonth);
+        item.put("day", itemAddingDay);
 
         firebaseFirestore.collection("GoodLife")
                 .document(name).collection("Hoạt động thể lực")
@@ -340,12 +362,10 @@ public class Physical extends AppCompatActivity {
                     if(task.isSuccessful()) {
                         // Loop through all documents
                         for(QueryDocumentSnapshot document : task.getResult()) {
-                            if(document.getString("useHeight") == "" && document.getString("userWeight") == ""
-                                    && document.getString("userRecommendHeight") == ""
-                                    && document.getString("userRecommendWeight") == "") {
-                                return;
-                            } else {
-
+                            if(document.getString("useHeight") != ""
+                                    && document.getString("userWeight") != ""
+                                    && document.getString("userRecommendHeight") != ""
+                                    && document.getString("userRecommendWeight") != "") {
                                 try {
                                     userWeight = Double.parseDouble(document.getString("userWeight"));
                                 }catch (Exception e){
@@ -353,6 +373,34 @@ public class Physical extends AppCompatActivity {
                                 }
                             }
 
+                        }
+                    } else {
+                        Log.w("Firestore", "Error getting documents", task.getException());
+                    }
+                });
+    }
+
+    // Load Data from database
+    public void CalculateSumUsedEnergy(){
+        firebaseFirestore.collection("GoodLife")
+                .document(name).collection("Hoạt động thể lực")
+                .get()
+                .addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
+                    if(task.isSuccessful()) {
+                        // Loop through all documents
+                        for(QueryDocumentSnapshot document : task.getResult()) {
+                            if(document.getString("userActivityLevel") != ""
+                                    && document.getString("userActivityMet") != ""
+                                    && document.getString("userPracticeTime") != ""
+                                    && document.getString("userUsedEnergy") != "") {
+
+                                try {
+                                    sumUsedEnergy += Double.parseDouble(document.getString("userUsedEnergy"));
+                                }catch (Exception e){
+                                    sumUsedEnergy += 0.0;
+                                }
+
+                            }
                         }
                     } else {
                         Log.w("Firestore", "Error getting documents", task.getException());

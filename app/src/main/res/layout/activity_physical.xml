@@ -38,12 +38,13 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:background="@drawable/custom_button"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.425">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -51,30 +52,30 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/activity_level"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/activity_level"
+                android:layout_marginStart="10dp"
+                android:background="@color/white"
+                android:dropDownHeight="wrap_content"
                 android:text="Mức độ hoạt động"
+                android:textColor="@color/black"
                 android:textColorHint="@color/black"
                 android:textSize="18sp"
-                android:background="@color/white"
-                android:textColor="@color/black"
-                app:backgroundTint="@null"
-                android:layout_marginStart="10dp"
-                android:dropDownHeight="wrap_content"/>
+                app:backgroundTint="@null" />
 
             <Button
+                android:id="@+id/activities_of_level"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/activities_of_level"
+                android:layout_marginStart="10dp"
+                android:background="@color/white"
+                android:dropDownHeight="wrap_content"
                 android:text="Hoạt động"
+                android:textColor="@color/black"
                 android:textColorHint="@color/black"
                 android:textSize="18sp"
-                android:background="@color/white"
-                android:textColor="@color/black"
-                app:backgroundTint="@null"
-                android:layout_marginStart="10dp"
-                android:dropDownHeight="wrap_content"/>
+                app:backgroundTint="@null" />
 
         </LinearLayout>
 
@@ -82,26 +83,42 @@
             android:id="@+id/pick_time_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thời gian luyện tập"
-            android:textSize="18sp"
-            android:background="@color/white"
-            android:textColor="@color/black"
-            app:backgroundTint="@null"
             android:layout_marginStart="10dp"
-            android:onClick="openTimePicker"/>
+            android:background="@color/white"
+            android:onClick="openTimePicker"
+            android:text="Thời gian luyện tập"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:backgroundTint="@null" />
 
-       <Button
-           android:id="@+id/add_activity"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_gravity="center"
-           android:background="@drawable/custom_button"
-           android:text="Lưu"
-           android:textColor="@color/black"
-           android:textSize="18sp"
-           app:backgroundTint="@null" />
+        <Button
+            android:id="@+id/add_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/custom_button"
+            android:text="Lưu"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:backgroundTint="@null" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/total_used_energy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Tổng năng lượng đã tiêu thụ: "
+        android:textColor="#FAED7D7D"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.667" />
 
     <Button
         android:id="@+id/back_button"

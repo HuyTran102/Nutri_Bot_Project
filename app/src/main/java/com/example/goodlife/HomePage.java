@@ -114,11 +114,10 @@ public class HomePage extends AppCompatActivity {
                     if(task.isSuccessful()) {
                         // Loop through all documents
                         for(QueryDocumentSnapshot document : task.getResult()) {
-                            if(document.getString("useHeight") == "" && document.getString("userWeight") == ""
-                                    && document.getString("userRecommendHeight") == ""
-                                    && document.getString("userRecommendWeight") == "") {
-                                return;
-                            } else {
+                            if(document.getString("useHeight") != ""
+                                    && document.getString("userWeight") != ""
+                                    && document.getString("userRecommendHeight") != ""
+                                    && document.getString("userRecommendWeight") != "") {
                                 try{
                                     actualHeight = Double.parseDouble(document.getString("userHeight"));
                                 }catch (Exception e){
