@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.util.Pair;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,21 +20,19 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
@@ -73,6 +70,10 @@ public class Physical extends AppCompatActivity {
 
         LoadDataFireBase();
 
+        sumUsedEnergy = CalculateSumUsedEnergy();
+
+        totalUsedEnergy.setText(String.valueOf(sumUsedEnergy));
+
         // Set OnClickListener to show the dialog on clicking the TextView
         activityLevel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,16 +105,19 @@ public class Physical extends AppCompatActivity {
                 String[] activityLevelSplit = String.valueOf(activityLevel.getText()).split(" ");
                 String itemActivityLevel = activityLevelSplit[4];
                 String itemPracticeTime = String.valueOf(pickTimeButton.getText()).substring(20);
-                int hour = Integer.parseInt(itemPracticeTime.substring(0, 2));
-                int minute = Integer.parseInt(itemPracticeTime.substring(9, 11));
-                minute += (hour * 60);
-                itemPracticeTime = String.valueOf(minute);
+                int phour = Integer.parseInt(itemPracticeTime.substring(0, 2));
+                int pminute = Integer.parseInt(itemPracticeTime.substring(9, 11));
+                pminute += (phour * 60);
+                itemPracticeTime = String.valueOf(pminute);
 
                 // Get the current date
                 Calendar cal = Calendar.getInstance();
                 int year = cal.get(Calendar.YEAR);
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
+                int hour = cal.get(Calendar.HOUR);
+                int minute = cal.get(Calendar.MINUTE);
+                int second = cal.get(Calendar.SECOND);
 
                 double itemUsedEnergy = (Double.parseDouble(itemActivityMET) * userWeight * 3.5 * minute) / 200;
 
@@ -121,11 +125,10 @@ public class Physical extends AppCompatActivity {
 
                 WriteDataFireBase(itemActivityName, itemActivityLevel, itemActivityMET
                         , itemPracticeTime, String.valueOf(itemUsedEnergy), String.valueOf(year)
-                        , String.valueOf(month), String.valueOf(day));
+                        , String.valueOf(month), String.valueOf(day)
+                        , String.valueOf(hour), String.valueOf(minute), String.valueOf(second));
 
-                sumUsedEnergy += itemUsedEnergy;
-
-                CalculateSumUsedEnergy();
+                sumUsedEnergy = CalculateSumUsedEnergy();
 
                 totalUsedEnergy.setText(String.valueOf(sumUsedEnergy));
             }
@@ -324,9 +327,11 @@ public class Physical extends AppCompatActivity {
     // Write Data to Cloud Firestone
     public void WriteDataFireBase(String userActivityName, String userActivityLevel
             , String userActivityMet, String userActivityTime, String userUsedEnergy
-            , String itemAddingYear, String itemAddingMonth, String itemAddingDay) {
+            , String itemAddingYear, String itemAddingMonth, String itemAddingDay
+            , String itemAddingHour, String itemAddingMinute, String itemAddingSecond) {
         // Create a new item with all of the value
         Map<String, Object> item = new HashMap<>();
+        item.put("userActivityName", userActivityName);
         item.put("userActivityLevel", userActivityLevel);
         item.put("userActivityMet", userActivityMet);
         item.put("userPracticeTime", userActivityTime);
@@ -334,14 +339,16 @@ public class Physical extends AppCompatActivity {
         item.put("year", itemAddingYear);
         item.put("month", itemAddingMonth);
         item.put("day", itemAddingDay);
+        item.put("hour", itemAddingHour);
+        item.put("minute", itemAddingMinute);
+        item.put("second", itemAddingSecond);
 
         firebaseFirestore.collection("GoodLife")
                 .document(name).collection("Hoạt động thể lực")
-                .document(userActivityName)
-                .set(item)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                .add(item)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
-                    public void onSuccess(Void aVoid) {
+                    public void onSuccess(DocumentReference documentReference) {
                         Log.d("Firestore", "Adding value to database successfully");
                     }
                 })
@@ -381,7 +388,8 @@ public class Physical extends AppCompatActivity {
     }
 
     // Load Data from database
-    public void CalculateSumUsedEnergy(){
+    public double CalculateSumUsedEnergy(){
+        AtomicReference<Double> sum = new AtomicReference<>((double) 0);
         firebaseFirestore.collection("GoodLife")
                 .document(name).collection("Hoạt động thể lực")
                 .get()
@@ -394,11 +402,7 @@ public class Physical extends AppCompatActivity {
                                     && document.getString("userPracticeTime") != ""
                                     && document.getString("userUsedEnergy") != "") {
 
-                                try {
-                                    sumUsedEnergy += Double.parseDouble(document.getString("userUsedEnergy"));
-                                }catch (Exception e){
-                                    sumUsedEnergy += 0.0;
-                                }
+                                    sum.updateAndGet(v -> new Double((double) (v + Double.parseDouble(document.getString("userUsedEnergy")))));
 
                             }
                         }
@@ -406,5 +410,6 @@ public class Physical extends AppCompatActivity {
                         Log.w("Firestore", "Error getting documents", task.getException());
                     }
                 });
+        return sum.get();
     }
 }
