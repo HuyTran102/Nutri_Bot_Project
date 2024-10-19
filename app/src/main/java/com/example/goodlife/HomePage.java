@@ -26,7 +26,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HomePage extends AppCompatActivity {
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-    private Button nutritionalStatusButton, physicalButton, dietaryButton;
+    private Button nutritionalStatusButton, physicalButton, dietaryButton, tempMenuButton;
     private ProgressBar weightProgressBar, heightProgressBar, kcaloProgressBar;
     private TextView weightProgressText, heightProgressText, kcaloProgressText, weightView, heightView;
     private double actualWeight, actualHeight, recommendWeight, recommendHeight, statusWeight, statusHeight;
@@ -42,6 +42,7 @@ public class HomePage extends AppCompatActivity {
         nutritionalStatusButton = findViewById(R.id.nutritional_status_button);
         physicalButton = findViewById(R.id.physical_button);
         dietaryButton = findViewById(R.id.dietary_button);
+        tempMenuButton = findViewById(R.id.temp_menu_button);
         weightView = findViewById(R.id.weight_view);
         heightView = findViewById(R.id.height_view);
         weightProgressBar = findViewById(R.id.weight_progres_bar);
@@ -99,6 +100,15 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomePage.this, Dietary.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        tempMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomePage.this, TemplateMenuView.class);
                 startActivity(intent);
                 finish();
             }

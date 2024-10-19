@@ -28,9 +28,10 @@
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.239">
+        app:layout_constraintVertical_bias="0.209">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -67,26 +68,26 @@
 
                     <ProgressBar
                         android:id="@+id/weight_progres_bar"
+                        style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        style="?android:attr/progressBarStyleHorizontal"
                         android:background="@drawable/circle_shape"
                         android:indeterminate="false"
                         android:progressDrawable="@drawable/weight_circle_progress_bar"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center" />
 
                     <TextView
                         android:id="@+id/weight_progres_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
                         android:layout_alignParentLeft="true"
+                        android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:gravity="center"
                         android:text=""
                         android:textColor="#ABA9A9"
                         android:textSize="16dp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
@@ -139,26 +140,26 @@
 
                     <ProgressBar
                         android:id="@+id/height_progres_bar"
+                        style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        style="?android:attr/progressBarStyleHorizontal"
                         android:background="@drawable/circle_shape"
                         android:indeterminate="false"
                         android:progressDrawable="@drawable/height_circle_progress_bar"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center" />
 
                     <TextView
                         android:id="@+id/height_progres_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
                         android:layout_alignParentLeft="true"
+                        android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:gravity="center"
                         android:text=""
                         android:textColor="#ABA9A9"
                         android:textSize="16dp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
@@ -199,8 +200,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kcalo"
                     android:layout_gravity="center"
+                    android:text="Kcalo"
                     android:textColor="#C907FF"
                     android:textSize="22dp"
                     android:textStyle="bold" />
@@ -212,26 +213,26 @@
 
                     <ProgressBar
                         android:id="@+id/kcalo_progres_bar"
+                        style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        style="?android:attr/progressBarStyleHorizontal"
                         android:background="@drawable/circle_shape"
                         android:indeterminate="false"
                         android:progressDrawable="@drawable/kcalo_circle_progress_bar"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center" />
 
                     <TextView
                         android:id="@+id/kcalo_progres_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
                         android:layout_alignParentLeft="true"
+                        android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:gravity="center"
                         android:text=""
                         android:textColor="#ABA9A9"
                         android:textSize="16dp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
@@ -283,7 +284,7 @@
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.582" />
+        app:layout_constraintVertical_bias="0.562" />
 
     <Button
         android:id="@+id/dietary_button"
@@ -311,9 +312,25 @@
         android:textSize="20dp"
         android:textStyle="bold"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/temp_menu_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dietary_button" />
+
+
+    <Button
+        android:id="@+id/temp_menu_button"
+        android:layout_width="330dp"
+        android:layout_height="58dp"
+        android:background="@drawable/custom_button"
+        android:text="Thực đơn mẫu"
+        android:textColor="#0293A5"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/physical_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
