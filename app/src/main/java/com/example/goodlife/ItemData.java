@@ -15,13 +15,21 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DecimalFormat;
+import java.time.LocalTime;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -185,6 +193,7 @@ public class ItemData extends AppCompatActivity {
             , String itemUnitType, String itemUnitName, String itemImageId
             , String itemAddingYear, String itemAddingMonth, String itemAddingDay
             , String itemAddingHour, String itemAddingMinute, String itemAddingSecond){
+        
         // Create a new item with all of the data like name, amount, ...
         Map<String, Object> item = new HashMap<>();
         item.put("name", itemName);
@@ -203,11 +212,11 @@ public class ItemData extends AppCompatActivity {
         item.put("minute", itemAddingMinute);
         item.put("second", itemAddingSecond);
 
-        firebaseFirestore.collection("GoodLife").document(name).collection("Nhật kí").document(itemName)
-                .set(item)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
+        firebaseFirestore.collection("GoodLife").document(name).collection("Nhật kí")
+                .add(item)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
-                    public void onSuccess(Void aVoid) {
+                    public void onSuccess(DocumentReference documentReference) {
                         Log.d("Firestore", "Adding item to database successfully");
                     }
                 })

@@ -11,8 +11,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -95,13 +101,46 @@ public class DiaryViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     DocumentReference documentReference = firebaseFirestore.collection("GoodLife").document(user_name).collection("Nhật kí").document(itemAtPosition.getName());
 
                     // delete document from database
-                    documentReference.delete()
-                            .addOnSuccessListener(aVoid -> {
-                                Log.d("Firestore", "Deleting item successfully");
-                            })
-                            .addOnFailureListener(e -> {
-                                Log.w("Firestore", "Error deleting document", e);
+
+                    firebaseFirestore.collection("GoodLife")
+                            .document(user_name)
+                            .collection("Nhật kí")
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if(task.isSuccessful()) {
+                                        // Loop through all documents
+                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                            String docId = null;
+                                            if(document.getString("name").equals(itemAtPosition.getName())) {
+                                                docId = document.getId();
+
+                                                firebaseFirestore.collection("GoodLife")
+                                                        .document(user_name)
+                                                        .collection("Nhật kí")
+                                                        .document(docId)
+                                                        .delete()
+                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                Log.w("Firestore", "Getting documents successfuly");
+                                                            }
+                                                        })
+                                                        .addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception e) {
+                                                                Log.w("Firestore", "Error getting documents", task.getException());
+                                                            }
+                                                        });
+                                            }
+                                        }
+                                    } else {
+                                        Log.w("Firestore", "Error getting documents", task.getException());
+                                    }
+                                }
                             });
+
                     Intent intent = new Intent(context, Dietary.class);
                     context.startActivity(intent);
                 }
