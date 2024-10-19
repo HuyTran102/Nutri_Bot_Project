@@ -41,7 +41,6 @@ public class FragmentDiary extends Fragment {
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
     private TextView viewItemName, itemKcalo, itemProtein, itemLipid, itemGlucid, itemUnitType, itemUnitName, itemAmount;
-    private List<DiaryItem> items = new ArrayList<>();
     private String name;
     private RecyclerView recyclerView;
     private int calories_val = 0;
@@ -51,7 +50,9 @@ public class FragmentDiary extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_diary, container, false);
+        View view = inflater.inflate(R.layout.fragment_diary, container, false);
+
+        return view;
 
     }
 
@@ -74,8 +75,6 @@ public class FragmentDiary extends Fragment {
 
         name = sp.getString("Name",null);
 
-        List<DiaryItem> items = new ArrayList<>();
-
         // Get the current date
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
@@ -85,33 +84,7 @@ public class FragmentDiary extends Fragment {
         month = month + 1;
         // Handle the selected date (e.g., update the TextView)
         String selectedDate = makeDateString(day, month, year);
-        items = showListData(selectedDate);
-        DiaryItem startItem = new DiaryItem("", 0, 0, 0, 0, 0
-                , "", "", 0, year, month, day, 0, 0, 0);
-
-        items.add(0, startItem);
-
-        // set total value
-        for(DiaryItem diaryItem : items) {
-            calories_val += diaryItem.getKcal();
-            amount_val += diaryItem.getAmount();
-            protein_val += diaryItem.getProtein();
-            lipid_val += diaryItem.getLipid();
-            glucid_val += diaryItem.getGlucid();
-        }
-
-        itemKcalo.setText(String.valueOf(calories_val));
-        DecimalFormat df = new DecimalFormat("###.#");
-        itemAmount.setText(df.format(amount_val));
-        itemGlucid.setText(df.format(glucid_val));
-        itemLipid.setText(df.format(lipid_val));
-        itemProtein.setText(df.format(protein_val));
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new DiaryViewAdapter(getContext(), items));
-
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(itemDecoration);
+        showListData(selectedDate);
 
     }
 
@@ -122,7 +95,17 @@ public class FragmentDiary extends Fragment {
         getView().setFocusableInTouchMode(true);
         getView().requestFocus();
 
-        items.clear();
+        // Get the current date
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        month = month + 1;
+        // Handle the selected date (e.g., update the TextView)
+        String selectedDate = makeDateString(day, month, year);
+        showListData(selectedDate);
+
         LoadDataFireBase();
 
         calories_val = 0;
@@ -137,7 +120,7 @@ public class FragmentDiary extends Fragment {
         return month + "/" + day + "/" + year;
     }
 
-    public void setDataUI(){
+    public void setDataUI(List<DiaryItem> items){
 
         calories_val = 0;
         amount_val = 0;
@@ -179,7 +162,7 @@ public class FragmentDiary extends Fragment {
                 String selectedDate = makeDateString(day, month, year);
                 //selectedDateTextView.setText(selectedDate);
                 Log.d("DATE",selectedDate);
-                items = showListData(selectedDate);
+                showListData(selectedDate);
 
             }
         };
@@ -205,8 +188,8 @@ public class FragmentDiary extends Fragment {
     }
 
     // Load Data to Recycle Item
-    public List<DiaryItem> showListData(String selectedDate){
-        List<DiaryItem> items = new ArrayList<>();
+    public void showListData(String selectedDate){
+        List<DiaryItem> list_items = new ArrayList<>();
         firebaseFirestore.collection("GoodLife")
                 .document(name)
                 .collection("Nhật kí")
@@ -225,7 +208,7 @@ public class FragmentDiary extends Fragment {
                                         , Integer.parseInt(document.getString("hour")), Integer.parseInt(document.getString("minute")), Integer.parseInt(document.getString("second")));
                                 String date = makeDateString(Integer.parseInt(document.getString("day")), Integer.parseInt(document.getString("month")), Integer.parseInt(document.getString("year")));
                                 if (date.equals(selectedDate)) {
-                                    items.add(diaryItem);
+                                    list_items.add(diaryItem);
                                 }
 //                                Toast.makeText(getContext(), document.getString("kcal"), Toast.LENGTH_SHORT).show();
                             }
@@ -235,9 +218,9 @@ public class FragmentDiary extends Fragment {
                             DiaryItem startItem = new DiaryItem("", 0, 0, 0, 0, 0
                                     , "", "", 0, Integer.parseInt(date[2]), Integer.parseInt(date[0]), Integer.parseInt(date[1]), 0, 0, 0);
 
-                            items.add(0, startItem);
+                            list_items.add(0, startItem);
                             
-                            Collections.sort(items, new Comparator<DiaryItem>() {
+                            Collections.sort(list_items, new Comparator<DiaryItem>() {
                                 @Override
                                 public int compare(DiaryItem item1, DiaryItem item2) {
                                     LocalTime item1_time = LocalTime.of(item1.getAdding_hour(), item1.getAdding_minute(), item1.getAdding_second());
@@ -245,12 +228,12 @@ public class FragmentDiary extends Fragment {
                                     return item1_time.compareTo(item2_time);
                                 }
                             });
-                            setDataUI();
+
+                            setDataUI(list_items);
                         } else {
                             Log.w("Firestore", "Error getting documents", task.getException());
                         }
                     }
                 });
-        return items;
     }
 }
