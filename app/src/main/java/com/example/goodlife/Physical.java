@@ -31,6 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -70,9 +71,7 @@ public class Physical extends AppCompatActivity {
 
         LoadDataFireBase();
 
-        sumUsedEnergy = CalculateSumUsedEnergy();
-
-        totalUsedEnergy.setText(String.valueOf(sumUsedEnergy));
+        CalculateSumUsedEnergy();
 
         // Set OnClickListener to show the dialog on clicking the TextView
         activityLevel.setOnClickListener(new View.OnClickListener() {
@@ -105,15 +104,16 @@ public class Physical extends AppCompatActivity {
                 String[] activityLevelSplit = String.valueOf(activityLevel.getText()).split(" ");
                 String itemActivityLevel = activityLevelSplit[4];
                 String itemPracticeTime = String.valueOf(pickTimeButton.getText()).substring(20);
-                int phour = Integer.parseInt(itemPracticeTime.substring(0, 2));
-                int pminute = Integer.parseInt(itemPracticeTime.substring(9, 11));
-                pminute += (phour * 60);
-                itemPracticeTime = String.valueOf(pminute);
+                int prac_hour = Integer.parseInt(itemPracticeTime.substring(0, 2));
+                int prac_minute = Integer.parseInt(itemPracticeTime.substring(9, 11));
+                prac_minute += (prac_hour * 60);
+                itemPracticeTime = String.valueOf(prac_minute);
 
                 // Get the current date
                 Calendar cal = Calendar.getInstance();
                 int year = cal.get(Calendar.YEAR);
                 int month = cal.get(Calendar.MONTH);
+                month += 1;
                 int day = cal.get(Calendar.DAY_OF_MONTH);
                 int hour = cal.get(Calendar.HOUR);
                 int minute = cal.get(Calendar.MINUTE);
@@ -121,16 +121,12 @@ public class Physical extends AppCompatActivity {
 
                 double itemUsedEnergy = (Double.parseDouble(itemActivityMET) * userWeight * 3.5 * minute) / 200;
 
-//                Toast.makeText(Physical.this, " " + itemUsedEnergy + " ", Toast.LENGTH_SHORT).show();
-
                 WriteDataFireBase(itemActivityName, itemActivityLevel, itemActivityMET
                         , itemPracticeTime, String.valueOf(itemUsedEnergy), String.valueOf(year)
                         , String.valueOf(month), String.valueOf(day)
                         , String.valueOf(hour), String.valueOf(minute), String.valueOf(second));
 
-                sumUsedEnergy = CalculateSumUsedEnergy();
-
-                totalUsedEnergy.setText(String.valueOf(sumUsedEnergy));
+                CalculateSumUsedEnergy();
             }
         });
 
@@ -388,28 +384,34 @@ public class Physical extends AppCompatActivity {
     }
 
     // Load Data from database
-    public double CalculateSumUsedEnergy(){
-        AtomicReference<Double> sum = new AtomicReference<>((double) 0);
+    public void CalculateSumUsedEnergy(){
         firebaseFirestore.collection("GoodLife")
                 .document(name).collection("Hoạt động thể lực")
                 .get()
                 .addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
                     if(task.isSuccessful()) {
+                        double total_sum = 0;
+                        // Get the current date
+                        Calendar cal = Calendar.getInstance();
+                        int year = cal.get(Calendar.YEAR);
+                        int month = cal.get(Calendar.MONTH);
+                        int day = cal.get(Calendar.DAY_OF_MONTH);
+                        month += 1;
                         // Loop through all documents
                         for(QueryDocumentSnapshot document : task.getResult()) {
-                            if(document.getString("userActivityLevel") != ""
-                                    && document.getString("userActivityMet") != ""
-                                    && document.getString("userPracticeTime") != ""
-                                    && document.getString("userUsedEnergy") != "") {
-
-                                    sum.updateAndGet(v -> new Double((double) (v + Double.parseDouble(document.getString("userUsedEnergy")))));
-
+                            if(document.getString("userUsedEnergy") != ""
+                                    && Integer.parseInt(document.getString("day")) == day
+                                    && Integer.parseInt(document.getString("month")) == month
+                                    && Integer.parseInt(document.getString("year")) == year) {
+                                    total_sum += Double.parseDouble(document.getString("userUsedEnergy"));
                             }
                         }
+
+                        DecimalFormat df = new DecimalFormat("###.#");
+                        totalUsedEnergy.setText(df.format(total_sum));
                     } else {
                         Log.w("Firestore", "Error getting documents", task.getException());
                     }
                 });
-        return sum.get();
     }
 }
