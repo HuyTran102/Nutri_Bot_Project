@@ -30,6 +30,20 @@ public class TemplateMenuView extends AppCompatActivity {
         backButton = findViewById(R.id.back_button);
 
         items.add(new TempMenuItem("Thực đơn 1 - 1200 Kcal", R.drawable.menu1));
+        items.add(new TempMenuItem("Thực đơn 2 - 1200 Kcal", R.drawable.menu1));
+        items.add(new TempMenuItem("Thực đơn 3 - 1200 Kcal", R.drawable.menu1));
+        items.add(new TempMenuItem("Thực đơn 4 - 1200 Kcal", R.drawable.menu1));
+        items.add(new TempMenuItem("Thực đơn 5 - 1200 Kcal", R.drawable.menu1));
+        items.add(new TempMenuItem("Thực đơn 1 - 1400 Kcal", R.drawable.menu1));
+        items.add(new TempMenuItem("Thực đơn 2 - 1400 Kcal", R.drawable.menu1));
+        items.add(new TempMenuItem("Thực đơn 3 - 1400 Kcal", R.drawable.menu1));
+        items.add(new TempMenuItem("Thực đơn 4 - 1400 Kcal", R.drawable.menu1));
+        items.add(new TempMenuItem("Thực đơn 5 - 1400 Kcal", R.drawable.menu1));
+        items.add(new TempMenuItem("Thực đơn 1 - 1600 Kcal", R.drawable.menu1));
+        items.add(new TempMenuItem("Thực đơn 2 - 1600 Kcal", R.drawable.menu1));
+        items.add(new TempMenuItem("Thực đơn 3 - 1600 Kcal", R.drawable.menu1));
+        items.add(new TempMenuItem("Thực đơn 4 - 1600 Kcal", R.drawable.menu1));
+        items.add(new TempMenuItem("Thực đơn 5 - 1600 Kcal", R.drawable.menu1));
 
         viewAdapter = new TempMenuViewAdapter(this, items);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
