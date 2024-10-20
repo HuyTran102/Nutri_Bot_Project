@@ -408,7 +408,7 @@ public class Physical extends AppCompatActivity {
                         }
 
                         DecimalFormat df = new DecimalFormat("###.#");
-                        totalUsedEnergy.setText(df.format(total_sum));
+                        totalUsedEnergy.setText(df.format(total_sum) + "Kcalo");
                     } else {
                         Log.w("Firestore", "Error getting documents", task.getException());
                     }
