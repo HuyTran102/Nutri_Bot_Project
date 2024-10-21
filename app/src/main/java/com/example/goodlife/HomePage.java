@@ -2,6 +2,7 @@ package com.example.goodlife;
 
 import static java.security.AccessController.getContext;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -17,11 +18,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DecimalFormat;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HomePage extends AppCompatActivity {
@@ -29,9 +43,9 @@ public class HomePage extends AppCompatActivity {
     private Button nutritionalStatusButton, physicalButton, dietaryButton, tempMenuButton;
     private ProgressBar weightProgressBar, heightProgressBar, kcaloProgressBar;
     private TextView weightProgressText, heightProgressText, kcaloProgressText, weightView, heightView;
-    private double actualWeight, actualHeight, recommendWeight, recommendHeight, statusWeight, statusHeight;
+    private double actualWeight, actualHeight, usedEnergy, addEnergy, actualEnergy, recommendWeight, recommendHeight, recommendEnergy, statusWeight, statusHeight, statusEnergy;
     private int weight, height, kcalo;
-    private String weight_status, height_status;
+    private String weight_status, height_status, energy_status;
     String name;
 
     @Override
@@ -60,23 +74,7 @@ public class HomePage extends AppCompatActivity {
 
         LoadDataFireBase();
 
-        final Handler kcalo_handler = new Handler();
-
-        kcaloProgressBar.setMax(1);
-
-        kcalo_handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if(kcalo <= 1) {
-                    kcaloProgressText.setText(String.valueOf(kcalo));
-                    kcaloProgressBar.setProgress(kcalo);
-                    kcalo++;
-                    kcalo_handler.postDelayed(this, 35);
-                } else {
-                    kcalo_handler.removeCallbacks(this);
-                }
-            }
-        }, 35);
+        Toast.makeText(HomePage.this, " " + actualEnergy + " " + usedEnergy + " " + addEnergy + " " + recommendEnergy + " ", Toast.LENGTH_SHORT).show();
 
         nutritionalStatusButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,6 +158,107 @@ public class HomePage extends AppCompatActivity {
                         Log.w("Firestore", "Error getting documents", task.getException());
                     }
                 });
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("user");
+        Query userDatabase = reference.orderByChild("name").equalTo(name);
+
+        userDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String gender = snapshot.child(name).child("gender").getValue(String.class);
+                String date = snapshot.child(name).child("date_of_birth").getValue(String.class);
+
+                String[] birth = date.split("/");
+                String year_of_birth = birth[2];
+
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+
+                int age = year - Integer.parseInt(year_of_birth);
+
+                if(gender.equals("Nam")) {
+                    if(10 <= age && age <= 11) {
+                        recommendEnergy = 1900;
+                    } else if(12 <= age && age <= 14) {
+                        recommendEnergy = 2200;
+                    } else {
+                        recommendEnergy = 2500;
+                    }
+                } else {
+                    if(10 <= age && age <= 11) {
+                        recommendEnergy = 1900;
+                    } else if(12 <= age && age <= 14) {
+                        recommendEnergy = 2200;
+                    } else {
+                        recommendEnergy = 2500;
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        firebaseFirestore.collection("GoodLife")
+                .document(name).collection("Hoạt động thể lực")
+                .get()
+                .addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
+                    if(task.isSuccessful()) {
+                        double total_sum = 0;
+                        // Get the current date
+                        Calendar cal = Calendar.getInstance();
+                        int year = cal.get(Calendar.YEAR);
+                        int month = cal.get(Calendar.MONTH);
+                        int day = cal.get(Calendar.DAY_OF_MONTH);
+                        month += 1;
+                        // Loop through all documents
+                        for(QueryDocumentSnapshot document : task.getResult()) {
+                            if(document.getString("userUsedEnergy") != ""
+                                    && Integer.parseInt(document.getString("day")) == day
+                                    && Integer.parseInt(document.getString("month")) == month
+                                    && Integer.parseInt(document.getString("year")) == year) {
+                                total_sum += Double.parseDouble(document.getString("userUsedEnergy"));
+                            }
+                        }
+                        usedEnergy = total_sum;
+                    } else {
+                        Log.w("Firestore", "Error getting documents", task.getException());
+                    }
+                });
+
+        firebaseFirestore.collection("GoodLife")
+                .document(name)
+                .collection("Nhật kí")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            double total_sum = 0;
+                            // Get the current date
+                            Calendar cal = Calendar.getInstance();
+                            int year = cal.get(Calendar.YEAR);
+                            int month = cal.get(Calendar.MONTH);
+                            int day = cal.get(Calendar.DAY_OF_MONTH);
+                            month += 1;
+                            // Loop through all documents
+                            for(QueryDocumentSnapshot document : task.getResult()) {
+                                if(document.getString("amount") != ""
+                                        && Integer.parseInt(document.getString("day")) == day
+                                        && Integer.parseInt(document.getString("month")) == month
+                                        && Integer.parseInt(document.getString("year")) == year) {
+                                    total_sum += Double.parseDouble(document.getString("amount"));;
+                                }
+                            }
+                            addEnergy = total_sum;
+                        } else {
+                            Log.w("Firestore", "Error getting documents", task.getException());
+                        }
+                    }
+                });
     }
 
     public void setWeightAndHeight() {
@@ -198,6 +297,14 @@ public class HomePage extends AppCompatActivity {
             actualHeight = 0;
             statusHeight = 0;
             height_status = "";
+        }
+
+        actualEnergy = Math.abs(usedEnergy - addEnergy);
+
+//        Toast.makeText(HomePage.this, " " + actualEnergy + " " + usedEnergy + " " + addEnergy + " " + recommendEnergy + " ", Toast.LENGTH_SHORT).show();
+
+        if(recommendEnergy == actualEnergy) {
+            recommendEnergy = 0;
         }
 
         decimalFormat = new DecimalFormat("0");
@@ -251,6 +358,28 @@ public class HomePage extends AppCompatActivity {
         }, 35);
 
         heightView.setText(height_status);
+
+        final Handler kcalo_handler = new Handler();
+
+        kcaloProgressBar.setMax((int) recommendEnergy + 1);
+
+        kcalo_handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(kcalo <= actualEnergy) {
+                    if(recommendWeight == 0) {
+                        kcaloProgressText.setText(String.valueOf(weight + "\n" + finalDecimalFormat.format(actualEnergy)));
+                    } else {
+                        kcaloProgressText.setText(String.valueOf(weight + "\n" + finalDecimalFormat.format(recommendEnergy)));
+                    }
+                    kcaloProgressBar.setProgress(kcalo);
+                    kcalo++;
+                    kcalo_handler.postDelayed(this, 35);
+                } else {
+                    kcalo_handler.removeCallbacks(this);
+                }
+            }
+        }, 35);
     }
 
     public void setNullValue() {
@@ -295,5 +424,24 @@ public class HomePage extends AppCompatActivity {
                 }
             }
         }, 35);
+
+        final Handler kcalo_handler = new Handler();
+
+        kcaloProgressBar.setMax(0);
+
+        kcalo_handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(kcalo <= 0) {
+                    kcaloProgressText.setText(String.valueOf(kcalo));
+                    kcaloProgressBar.setProgress(kcalo);
+                    kcalo++;
+                    kcalo_handler.postDelayed(this, 35);
+                } else {
+                    kcalo_handler.removeCallbacks(this);
+                }
+            }
+        }, 35);
     }
+
 }
