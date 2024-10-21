@@ -46,7 +46,7 @@ public class HomePage extends AppCompatActivity {
     private double actualWeight, actualHeight, usedEnergy, addEnergy, actualEnergy, recommendWeight, recommendHeight, recommendEnergy, statusWeight, statusHeight, statusEnergy;
     private int weight, height, kcalo;
     private String weight_status, height_status, energy_status;
-    String name;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
