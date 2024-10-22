@@ -73,8 +73,8 @@ public class HomePage extends AppCompatActivity {
         setNullValue();
 
         LoadDataFireBase();
-
-        Toast.makeText(HomePage.this, " " + actualEnergy + " " + usedEnergy + " " + addEnergy + " " + recommendEnergy + " ", Toast.LENGTH_SHORT).show();
+//
+//        Toast.makeText(HomePage.this, " " + actualEnergy + " " + usedEnergy + " " + addEnergy + " " + recommendEnergy + " ", Toast.LENGTH_SHORT).show();
 
         nutritionalStatusButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -380,6 +380,9 @@ public class HomePage extends AppCompatActivity {
                 }
             }
         }, 35);
+
+
+        Toast.makeText(HomePage.this, " " + actualEnergy + " " + usedEnergy + " " + addEnergy + " " + recommendEnergy + " ", Toast.LENGTH_SHORT).show();
     }
 
     public void setNullValue() {
@@ -433,7 +436,11 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void run() {
                 if(kcalo <= 0) {
-                    kcaloProgressText.setText(String.valueOf(kcalo));
+                    if(recommendEnergy == 0) {
+                        kcaloProgressText.setText(String.valueOf(kcalo + "\n" + 0));
+                    } else {
+                        kcaloProgressText.setText(String.valueOf(kcalo + "\n" + 0));
+                    }
                     kcaloProgressBar.setProgress(kcalo);
                     kcalo++;
                     kcalo_handler.postDelayed(this, 35);
