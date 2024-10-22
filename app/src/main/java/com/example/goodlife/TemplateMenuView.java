@@ -39,11 +39,11 @@ public class TemplateMenuView extends AppCompatActivity {
         items.add(new TempMenuItem("Thực đơn 3 - 1400 Kcal", R.drawable.menu3_1400));
         items.add(new TempMenuItem("Thực đơn 4 - 1400 Kcal", R.drawable.menu4_1400));
         items.add(new TempMenuItem("Thực đơn 5 - 1400 Kcal", R.drawable.menu5_1400));
-        items.add(new TempMenuItem("Thực đơn 1 - 1600 Kcal", R.drawable.menu1));
-        items.add(new TempMenuItem("Thực đơn 2 - 1600 Kcal", R.drawable.menu1));
-        items.add(new TempMenuItem("Thực đơn 3 - 1600 Kcal", R.drawable.menu1));
-        items.add(new TempMenuItem("Thực đơn 4 - 1600 Kcal", R.drawable.menu1));
-        items.add(new TempMenuItem("Thực đơn 5 - 1600 Kcal", R.drawable.menu1));
+        items.add(new TempMenuItem("Thực đơn 1 - 1600 Kcal", R.drawable.menu1_1600));
+        items.add(new TempMenuItem("Thực đơn 2 - 1600 Kcal", R.drawable.menu2_1600));
+        items.add(new TempMenuItem("Thực đơn 3 - 1600 Kcal", R.drawable.menu3_1600));
+        items.add(new TempMenuItem("Thực đơn 4 - 1600 Kcal", R.drawable.menu4_1600));
+        items.add(new TempMenuItem("Thực đơn 5 - 1600 Kcal", R.drawable.menu5_1600));
 
         viewAdapter = new TempMenuViewAdapter(this, items);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
