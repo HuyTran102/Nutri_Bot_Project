@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,7 +49,7 @@ public class HomePage extends AppCompatActivity {
     private int weight, height, kcalo;
     private String weight_status, height_status, energy_status;
     private String name;
-
+    public Boolean ok1 = false, ok2 = false, ok3 = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,55 +116,18 @@ public class HomePage extends AppCompatActivity {
     }
 
     // Load Data to Recycle Item
-    public void LoadDataFireBase(){
-        firebaseFirestore.collection("GoodLife")
+    public void LoadDataFireBase() {
+        // Task 1: Lấy dữ liệu từ Firestore cho "Dinh dưỡng"
+        Task<QuerySnapshot> nutritionTask = firebaseFirestore.collection("GoodLife")
                 .document(name).collection("Dinh dưỡng")
-                .get()
-                .addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
-                    if(task.isSuccessful()) {
-                        // Loop through all documents
-                        for(QueryDocumentSnapshot document : task.getResult()) {
-                            if(document.getString("useHeight") != ""
-                                    && document.getString("userWeight") != ""
-                                    && document.getString("userRecommendHeight") != ""
-                                    && document.getString("userRecommendWeight") != "") {
-                                try{
-                                    actualHeight = Double.parseDouble(document.getString("userHeight"));
-                                }catch (Exception e){
-                                    actualHeight = 0.0;
-                                }
+                .get();
 
-                                try {
-                                    actualWeight = Double.parseDouble(document.getString("userWeight"));
-                                }catch (Exception e){
-                                    actualWeight = 0.0;
-                                }
-
-                                try {
-                                    recommendHeight = Double.parseDouble(document.getString("userRecommendHeight"));
-                                }catch (Exception e){
-                                    recommendHeight = 0.0;
-                                }
-
-                                try {
-                                    recommendWeight = Double.parseDouble(document.getString("userRecommendWeight"));
-                                }catch (Exception e){
-                                    recommendWeight = 0.0;
-                                }
-
-                                setWeightAndHeight();
-                            }
-
-                        }
-                    } else {
-                        Log.w("Firestore", "Error getting documents", task.getException());
-                    }
-                });
-
+        // Task 2: Lấy dữ liệu từ Firebase Realtime Database
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("user");
         Query userDatabase = reference.orderByChild("name").equalTo(name);
+        TaskCompletionSource<Void> realtimeDatabaseTask = new TaskCompletionSource<>();
 
-        userDatabase.addValueEventListener(new ValueEventListener() {
+        userDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String gender = snapshot.child(name).child("gender").getValue(String.class);
@@ -194,78 +159,119 @@ public class HomePage extends AppCompatActivity {
                     }
                 }
 
+                // Hoàn thành task khi dữ liệu từ Realtime Database được lấy
+                realtimeDatabaseTask.setResult(null);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                realtimeDatabaseTask.setException(error.toException());
             }
         });
 
         // Get the current date
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        month += 1;
+        int month = cal.get(Calendar.MONTH) + 1; // tháng 1 bắt đầu từ 0 trong Calendar
         int day = cal.get(Calendar.DAY_OF_MONTH);
 
-        firebaseFirestore.collection("GoodLife")
+        // Task 3: Lấy dữ liệu từ Firestore cho "Hoạt động thể lực"
+        Task<QuerySnapshot> activityTask = firebaseFirestore.collection("GoodLife")
                 .document(name).collection("Hoạt động thể lực")
-                .whereEqualTo("year", year)
-                .whereEqualTo("month", month)
-                .whereEqualTo("day", day)
-                .get()
-                .addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
-                    if(task.isSuccessful()) {
-                        double total_sum = 0;
-                        // Loop through all documents
-                        for(QueryDocumentSnapshot document : task.getResult()) {
-                            String amount = document.getString("userUsedEnergy");
-                            if(amount != null && !amount.isEmpty()) {
-                                try {
-                                    total_sum += Double.parseDouble(amount);
-                                } catch (NumberFormatException e) {
-                                    Log.w("Firestore", "Error getting documents", e);
-                                }
-                            }
+                .whereEqualTo("year", String.valueOf(year))
+                .whereEqualTo("month", String.valueOf(month))
+                .whereEqualTo("day", "22")
+                .get();
 
-                        }
-                        usedEnergy = total_sum;
-                    } else {
-                        Log.w("Firestore", "Error getting documents", task.getException());
-                    }
-                });
-
-        firebaseFirestore.collection("GoodLife")
+        // Task 4: Lấy dữ liệu từ Firestore cho "Nhật kí"
+        Task<QuerySnapshot> diaryTask = firebaseFirestore.collection("GoodLife")
                 .document(name)
                 .collection("Nhật kí")
                 .whereEqualTo("year", year)
                 .whereEqualTo("month", month)
                 .whereEqualTo("day", day)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()) {
+                .get();
+
+        // Chờ cho tất cả các Task hoàn thành
+        Tasks.whenAll(nutritionTask, realtimeDatabaseTask.getTask(), activityTask, diaryTask)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        // Task 1: Xử lý kết quả của Nutrition task
+                        QuerySnapshot nutritionResult = nutritionTask.getResult();
+                        if (nutritionResult != null) {
+                            for (QueryDocumentSnapshot document : nutritionResult) {
+                                if (document.getString("userHeight") != null
+                                        && document.getString("userWeight") != null
+                                        && document.getString("userRecommendHeight") != null
+                                        && document.getString("userRecommendWeight") != null) {
+                                    try {
+                                        actualHeight = Double.parseDouble(document.getString("userHeight"));
+                                    } catch (Exception e) {
+                                        actualHeight = 0.0;
+                                    }
+
+                                    try {
+                                        actualWeight = Double.parseDouble(document.getString("userWeight"));
+                                    } catch (Exception e) {
+                                        actualWeight = 0.0;
+                                    }
+
+                                    try {
+                                        recommendHeight = Double.parseDouble(document.getString("userRecommendHeight"));
+                                    } catch (Exception e) {
+                                        recommendHeight = 0.0;
+                                    }
+
+                                    try {
+                                        recommendWeight = Double.parseDouble(document.getString("userRecommendWeight"));
+                                    } catch (Exception e) {
+                                        recommendWeight = 0.0;
+                                    }
+                                }
+                            }
+                        }
+
+                        // Task 3: Xử lý kết quả của Activity task
+                        QuerySnapshot activityResult = activityTask.getResult();
+                        if (activityResult != null) {
                             double total_sum = 0;
-                            // Loop through all documents
-                            for(QueryDocumentSnapshot document : task.getResult()) {
-                                String amount = document.getString("kcal");
-                                if(amount != null && !amount.isEmpty()) {
+                            for (QueryDocumentSnapshot document : activityResult) {
+                                String amount = document.getString("userUsedEnergy");
+                                if (amount != null && !amount.isEmpty()) {
                                     try {
                                         total_sum += Double.parseDouble(amount);
                                     } catch (NumberFormatException e) {
-                                        Log.w("Firestore", "Error getting documents", e);
+                                        Log.w("Firestore", "Error parsing used energy", e);
+                                    }
+                                }
+                            }
+                            usedEnergy = total_sum;
+                        }
+
+                        // Task 4: Xử lý kết quả của Diary task
+                        QuerySnapshot diaryResult = diaryTask.getResult();
+                        if (diaryResult != null) {
+                            double total_sum = 0;
+                            for (QueryDocumentSnapshot document : diaryResult) {
+                                String amount = document.getString("kcal");
+                                if (amount != null && !amount.isEmpty()) {
+                                    try {
+                                        total_sum += Double.parseDouble(amount);
+                                    } catch (NumberFormatException e) {
+                                        Log.w("Firestore", "Error parsing diary energy", e);
                                     }
                                 }
                             }
                             addEnergy = total_sum;
-                        } else {
-                            Log.w("Firestore", "Error getting documents", task.getException());
                         }
+                        setWeightAndHeight();
+                        Log.d("Firestore", "All tasks completed successfully");
+                    } else {
+                        Log.w("Firestore", "Error completing tasks", task.getException());
                     }
                 });
     }
+
 
     public void setWeightAndHeight() {
         actualHeight *= 100;
