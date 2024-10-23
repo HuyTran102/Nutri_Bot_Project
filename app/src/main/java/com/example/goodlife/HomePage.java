@@ -186,11 +186,11 @@ public class HomePage extends AppCompatActivity {
                     }
                 } else {
                     if(10 <= age && age <= 11) {
-                        recommendEnergy = 1900;
+                        recommendEnergy = 1750;
                     } else if(12 <= age && age <= 14) {
-                        recommendEnergy = 2200;
+                        recommendEnergy = 2050;
                     } else {
-                        recommendEnergy = 2500;
+                        recommendEnergy = 2100;
                     }
                 }
 
@@ -202,26 +202,33 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+        // Get the current date
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month += 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
         firebaseFirestore.collection("GoodLife")
                 .document(name).collection("Hoạt động thể lực")
+                .whereEqualTo("year", year)
+                .whereEqualTo("month", month)
+                .whereEqualTo("day", day)
                 .get()
                 .addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
                     if(task.isSuccessful()) {
                         double total_sum = 0;
-                        // Get the current date
-                        Calendar cal = Calendar.getInstance();
-                        int year = cal.get(Calendar.YEAR);
-                        int month = cal.get(Calendar.MONTH);
-                        int day = cal.get(Calendar.DAY_OF_MONTH);
-                        month += 1;
                         // Loop through all documents
                         for(QueryDocumentSnapshot document : task.getResult()) {
-                            if(document.getString("userUsedEnergy") != ""
-                                    && Integer.parseInt(document.getString("day")) == day
-                                    && Integer.parseInt(document.getString("month")) == month
-                                    && Integer.parseInt(document.getString("year")) == year) {
-                                total_sum += Double.parseDouble(document.getString("userUsedEnergy"));
+                            String amount = document.getString("userUsedEnergy");
+                            if(amount != null && !amount.isEmpty()) {
+                                try {
+                                    total_sum += Double.parseDouble(amount);
+                                } catch (NumberFormatException e) {
+                                    Log.w("Firestore", "Error getting documents", e);
+                                }
                             }
+
                         }
                         usedEnergy = total_sum;
                     } else {
@@ -232,25 +239,24 @@ public class HomePage extends AppCompatActivity {
         firebaseFirestore.collection("GoodLife")
                 .document(name)
                 .collection("Nhật kí")
+                .whereEqualTo("year", year)
+                .whereEqualTo("month", month)
+                .whereEqualTo("day", day)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()) {
                             double total_sum = 0;
-                            // Get the current date
-                            Calendar cal = Calendar.getInstance();
-                            int year = cal.get(Calendar.YEAR);
-                            int month = cal.get(Calendar.MONTH);
-                            int day = cal.get(Calendar.DAY_OF_MONTH);
-                            month += 1;
                             // Loop through all documents
                             for(QueryDocumentSnapshot document : task.getResult()) {
-                                if(document.getString("amount") != ""
-                                        && Integer.parseInt(document.getString("day")) == day
-                                        && Integer.parseInt(document.getString("month")) == month
-                                        && Integer.parseInt(document.getString("year")) == year) {
-                                    total_sum += Double.parseDouble(document.getString("amount"));;
+                                String amount = document.getString("kcal");
+                                if(amount != null && !amount.isEmpty()) {
+                                    try {
+                                        total_sum += Double.parseDouble(amount);
+                                    } catch (NumberFormatException e) {
+                                        Log.w("Firestore", "Error getting documents", e);
+                                    }
                                 }
                             }
                             addEnergy = total_sum;
@@ -301,7 +307,7 @@ public class HomePage extends AppCompatActivity {
 
         actualEnergy = Math.abs(usedEnergy - addEnergy);
 
-//        Toast.makeText(HomePage.this, " " + actualEnergy + " " + usedEnergy + " " + addEnergy + " " + recommendEnergy + " ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(HomePage.this, " " + actualEnergy + " " + usedEnergy + " " + addEnergy + " " + recommendEnergy + " ", Toast.LENGTH_SHORT).show();
 
         if(recommendEnergy == actualEnergy) {
             recommendEnergy = 0;
@@ -381,8 +387,8 @@ public class HomePage extends AppCompatActivity {
             }
         }, 35);
 
-
-        Toast.makeText(HomePage.this, " " + actualEnergy + " " + usedEnergy + " " + addEnergy + " " + recommendEnergy + " ", Toast.LENGTH_SHORT).show();
+//
+//        Toast.makeText(HomePage.this, " " + actualEnergy + " " + usedEnergy + " " + addEnergy + " " + recommendEnergy + " ", Toast.LENGTH_SHORT).show();
     }
 
     public void setNullValue() {
