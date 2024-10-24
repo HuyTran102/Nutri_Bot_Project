@@ -44,7 +44,7 @@ public class HomePage extends AppCompatActivity {
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private Button nutritionalStatusButton, physicalButton, dietaryButton, tempMenuButton;
     private ProgressBar weightProgressBar, heightProgressBar, kcaloProgressBar;
-    private TextView weightProgressText, heightProgressText, kcaloProgressText, weightView, heightView;
+    private TextView weightProgressText, heightProgressText, kcaloProgressText, weightView, heightView, kcaloView;
     private double actualWeight, actualHeight, usedEnergy, addEnergy, actualEnergy, recommendWeight, recommendHeight, recommendEnergy, statusWeight, statusHeight, statusEnergy;
     private int weight, height, kcalo;
     private String weight_status, height_status, energy_status;
@@ -61,6 +61,7 @@ public class HomePage extends AppCompatActivity {
         tempMenuButton = findViewById(R.id.temp_menu_button);
         weightView = findViewById(R.id.weight_view);
         heightView = findViewById(R.id.height_view);
+        kcaloView = findViewById(R.id.kcalo_view);
         weightProgressBar = findViewById(R.id.weight_progres_bar);
         weightProgressText = findViewById(R.id.weight_progres_text);
         heightProgressBar = findViewById(R.id.height_progres_bar);
@@ -180,16 +181,16 @@ public class HomePage extends AppCompatActivity {
                 .document(name).collection("Hoạt động thể lực")
                 .whereEqualTo("year", String.valueOf(year))
                 .whereEqualTo("month", String.valueOf(month))
-                .whereEqualTo("day", "22")
+                .whereEqualTo("day", String.valueOf(day))
                 .get();
 
         // Task 4: Lấy dữ liệu từ Firestore cho "Nhật kí"
         Task<QuerySnapshot> diaryTask = firebaseFirestore.collection("GoodLife")
                 .document(name)
                 .collection("Nhật kí")
-                .whereEqualTo("year", year)
-                .whereEqualTo("month", month)
-                .whereEqualTo("day", day)
+                .whereEqualTo("year", String.valueOf(year))
+                .whereEqualTo("month", String.valueOf(month))
+                .whereEqualTo("day", String.valueOf(day))
                 .get();
 
         // Chờ cho tất cả các Task hoàn thành
@@ -246,6 +247,8 @@ public class HomePage extends AppCompatActivity {
                                 }
                             }
                             usedEnergy = total_sum;
+
+                            recommendEnergy = recommendWeight * 24 * 1.5 + usedEnergy;
                         }
 
                         // Task 4: Xử lý kết quả của Diary task
@@ -311,12 +314,24 @@ public class HomePage extends AppCompatActivity {
             height_status = "";
         }
 
-        actualEnergy = Math.abs(usedEnergy - addEnergy);
+        actualEnergy = Math.abs(usedEnergy + addEnergy);
 
-        Toast.makeText(HomePage.this, " " + actualEnergy + " " + usedEnergy + " " + addEnergy + " " + recommendEnergy + " ", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(HomePage.this, " " + actualEnergy + " " + usedEnergy + " " + addEnergy + " " + recommendEnergy + " ", Toast.LENGTH_SHORT).show();
 
         if(recommendEnergy == actualEnergy) {
-            recommendEnergy = 0;
+            statusEnergy = 0;
+            energy_status = "Bình thường";
+        } else if(actualEnergy > recommendEnergy) {
+            statusEnergy = (actualEnergy - recommendEnergy);
+            energy_status = "Thừa " + decimalFormat.format(statusEnergy) + " (kcal)";
+        } else if(actualEnergy < recommendEnergy) {
+            statusEnergy = (recommendEnergy - actualEnergy);
+            energy_status = "Thiếu " + decimalFormat.format(statusEnergy) + " (kcal)";
+        }else {
+            recommendEnergy = -1;
+            actualEnergy = 0;
+            statusEnergy = 0;
+            energy_status = "";
         }
 
         decimalFormat = new DecimalFormat("0");
@@ -380,21 +395,22 @@ public class HomePage extends AppCompatActivity {
             public void run() {
                 if(kcalo <= actualEnergy) {
                     if(recommendWeight == 0) {
-                        kcaloProgressText.setText(String.valueOf(weight + "\n" + finalDecimalFormat.format(actualEnergy)));
+                        kcaloProgressText.setText(String.valueOf(kcalo + "\n" + finalDecimalFormat.format(actualEnergy)));
                     } else {
-                        kcaloProgressText.setText(String.valueOf(weight + "\n" + finalDecimalFormat.format(recommendEnergy)));
+                        kcaloProgressText.setText(String.valueOf(kcalo + "\n" + finalDecimalFormat.format(recommendEnergy)));
                     }
                     kcaloProgressBar.setProgress(kcalo);
                     kcalo++;
-                    kcalo_handler.postDelayed(this, 35);
+                    kcalo_handler.postDelayed(this, 0);
                 } else {
                     kcalo_handler.removeCallbacks(this);
                 }
             }
-        }, 35);
+        }, 0);
 
-//
-//        Toast.makeText(HomePage.this, " " + actualEnergy + " " + usedEnergy + " " + addEnergy + " " + recommendEnergy + " ", Toast.LENGTH_SHORT).show();
+        kcaloView.setText(energy_status);
+
+//       Toast.makeText(HomePage.this, " " + actualEnergy + " " + usedEnergy + " " + addEnergy + " " + recommendEnergy + " ", Toast.LENGTH_SHORT).show();
     }
 
     public void setNullValue() {
@@ -455,12 +471,12 @@ public class HomePage extends AppCompatActivity {
                     }
                     kcaloProgressBar.setProgress(kcalo);
                     kcalo++;
-                    kcalo_handler.postDelayed(this, 35);
+                    kcalo_handler.postDelayed(this, 0);
                 } else {
                     kcalo_handler.removeCallbacks(this);
                 }
             }
-        }, 35);
+        }, 0);
     }
 
 }
