@@ -248,7 +248,11 @@ public class HomePage extends AppCompatActivity {
                             }
                             usedEnergy = total_sum;
 
-                            recommendEnergy = recommendWeight * 24 * 1.5 + usedEnergy;
+                            if(usedEnergy == 0) {
+                                recommendEnergy = 0;
+                            } else {
+                                recommendEnergy = recommendWeight * 24 * 1.5 + usedEnergy;
+                            }
                         }
 
                         // Task 4: Xử lý kết quả của Diary task
@@ -327,9 +331,14 @@ public class HomePage extends AppCompatActivity {
         } else if(actualEnergy < recommendEnergy) {
             statusEnergy = (recommendEnergy - actualEnergy);
             energy_status = "Thiếu " + decimalFormat.format(statusEnergy) + " (kcal)";
-        }else {
+        } else {
             recommendEnergy = -1;
             actualEnergy = 0;
+            statusEnergy = 0;
+            energy_status = "";
+        }
+
+        if(recommendEnergy == 0 || actualEnergy == 0) {
             statusEnergy = 0;
             energy_status = "";
         }
