@@ -27,7 +27,7 @@ public class RegisterPage extends AppCompatActivity {
     private CircularProgressButton signUp;
     private FirebaseDatabase database;
     private DatabaseReference reference;
-    private RadioButton chosse_boy, chose_girl;
+    private RadioButton chose_boy, chose_girl;
     private String date, signUpDate;
 
     @Override
@@ -41,6 +41,8 @@ public class RegisterPage extends AppCompatActivity {
         editTextName = findViewById(R.id.acc_name);
         editTextPassword = findViewById(R.id.editTextPassword);
         signUp = findViewById(R.id.RegisterButton);
+        chose_boy = findViewById(R.id.checked_nam);
+        chose_girl = findViewById(R.id.checked_nu);
         signUpDate = getTodaysDate();
 
         // User click sign up button
@@ -54,12 +56,12 @@ public class RegisterPage extends AppCompatActivity {
                 String name, password, gender;
                 name = String.valueOf(editTextName.getText());
                 password = String.valueOf(editTextPassword.getText());
-                if(chosse_boy.isChecked()) gender = "Nam"; else gender = "Nữ";
+                if(chose_boy.isChecked()) gender = "Nam"; else gender = "Nữ";
                 HelperClass helperClass = new HelperClass(name, password, date, gender, signUpDate);
                 reference.child(name).setValue(helperClass);
 
                 Toast.makeText(RegisterPage.this, "Đăng kí tài khoản thành công!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(RegisterPage.this, MainActivity.class);
+                Intent intent = new Intent(RegisterPage.this, LoginScreen.class);
                 startActivity(intent);
                 finish();
             }

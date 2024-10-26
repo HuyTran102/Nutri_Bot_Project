@@ -133,14 +133,14 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:layout_gravity="center_horizontal"
-                        android:checkedButton="@id/checked_gv"
+                        android:checkedButton="@id/checked_nam"
                         android:id="@+id/radio_role">
 
 
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/checked_gv"
+                            android:id="@+id/checked_nam"
                             android:button="@android:color/transparent"
                             android:text="Nam"
                             android:elevation="4dp"
@@ -155,7 +155,7 @@
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/checked_hs"
+                            android:id="@+id/checked_nu"
                             android:button="@android:color/transparent"
                             android:text="Nữ"
                             android:elevation="4dp"
