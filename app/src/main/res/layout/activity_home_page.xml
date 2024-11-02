@@ -8,7 +8,8 @@
     android:background="#F7FFFFFF"
     android:focusableInTouchMode="true"
     android:layout_gravity="center"
-    android:keepScreenOn="true">
+    android:keepScreenOn="true"
+    tools:openDrawer="start">
 
     <ImageView
         android:layout_width="424dp"
@@ -271,7 +272,7 @@
 
     <Button
         android:id="@+id/nutritional_status_button"
-        android:layout_width="330dp"
+        android:layout_width="323dp"
         android:layout_height="58dp"
         android:background="@drawable/custom_button"
         android:text="@string/t_nh_tr_ng_dinh_d_ng"
@@ -284,11 +285,11 @@
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.562" />
+        app:layout_constraintVertical_bias="0.558" />
 
     <Button
         android:id="@+id/dietary_button"
-        android:layout_width="330dp"
+        android:layout_width="323dp"
         android:layout_height="58dp"
         android:background="@drawable/custom_button"
         android:text="Khẩu phần"
@@ -304,7 +305,7 @@
 
     <Button
         android:id="@+id/physical_button"
-        android:layout_width="330dp"
+        android:layout_width="323dp"
         android:layout_height="58dp"
         android:background="@drawable/custom_button"
         android:text="Hoạt động thể chất"
@@ -320,7 +321,7 @@
 
     <Button
         android:id="@+id/temp_menu_button"
-        android:layout_width="330dp"
+        android:layout_width="323dp"
         android:layout_height="58dp"
         android:background="@drawable/custom_button"
         android:text="Thực đơn mẫu"
