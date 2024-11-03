@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -119,7 +120,9 @@ public class Physical extends AppCompatActivity {
                 int minute = cal.get(Calendar.MINUTE);
                 int second = cal.get(Calendar.SECOND);
 
-                double itemUsedEnergy = (Double.parseDouble(itemActivityMET) * userWeight * 3.5 * minute) / 200;
+                double itemUsedEnergy = (Double.parseDouble(itemActivityMET) * userWeight * 3.5 * prac_minute) / 200;
+
+//                Toast.makeText(Physical.this, itemUsedEnergy + " " + itemActivityMET + " " + userWeight + " " + prac_minute, Toast.LENGTH_SHORT).show();
 
                 WriteDataFireBase(itemActivityName, itemActivityLevel, itemActivityMET
                         , itemPracticeTime, String.valueOf(itemUsedEnergy), String.valueOf(year)
@@ -408,7 +411,7 @@ public class Physical extends AppCompatActivity {
                         }
 
                         DecimalFormat df = new DecimalFormat("###.#");
-                        totalUsedEnergy.setText(df.format(total_sum) + " Kcalo");
+                        totalUsedEnergy.setText(df.format(total_sum) + " Kcal");
                     } else {
                         Log.w("Firestore", "Error getting documents", task.getException());
                     }

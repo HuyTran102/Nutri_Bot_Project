@@ -320,7 +320,7 @@ public class HomePage extends AppCompatActivity {
             height_status = "";
         }
 
-        actualEnergy = Math.abs(usedEnergy + addEnergy);
+        actualEnergy = addEnergy;
 
 //        Toast.makeText(HomePage.this, " " + actualEnergy + " " + usedEnergy + " " + addEnergy + " " + recommendEnergy + " ", Toast.LENGTH_SHORT).show();
 

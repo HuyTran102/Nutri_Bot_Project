@@ -207,9 +207,9 @@ public class DiaryItemData extends AppCompatActivity {
         item.put("unit_name", itemUnitName);
         item.put("unit_type", itemUnitType);
         item.put("image_id", itemImageId);
-        item.put("year", itemAddingYear);
-        item.put("month", itemAddingMonth);
-        item.put("day", itemAddingDay);
+        item.put("year", String.valueOf(itemAddingYear));
+        item.put("month", String.valueOf(itemAddingMonth));
+        item.put("day", String.valueOf(itemAddingDay));
 
         firebaseFirestore.collection("GoodLife").document(name).collection("Nhật kí").document(itemName)
                 .set(item)

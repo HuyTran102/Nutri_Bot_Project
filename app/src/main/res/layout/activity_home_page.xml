@@ -22,16 +22,31 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/value_guide_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.08"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/value_guide_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.145"/>
+
     <LinearLayout
         android:layout_width="330dp"
         android:layout_height="240dp"
         android:background="@drawable/custom_button"
+        app:layout_constraintDimensionRatio="1:1"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/value_guide_4"
+        app:layout_constraintEnd_toEndOf="@id/value_guide_2"
         app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/value_guide_1"
+        app:layout_constraintTop_toTopOf="@id/value_guide_3"
         app:layout_constraintVertical_bias="0.209">
 
         <LinearLayout
@@ -254,6 +269,34 @@
         </LinearLayout>
     </LinearLayout>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/value_guide_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/value_guide_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.442"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/name_guide_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.32"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/name_guide_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.063"/>
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -264,74 +307,162 @@
         android:textColor="#FFFFFF"
         android:textSize="32sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintBottom_toBottomOf="@id/name_guide_4"
+        app:layout_constraintEnd_toEndOf="@id/name_guide_2"
+        app:layout_constraintStart_toStartOf="@id/name_guide_1"
+        app:layout_constraintTop_toTopOf="@id/name_guide_3"
         app:layout_constraintVertical_bias="0.069" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/name_guide_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.68"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/name_guide_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.12"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/button_guide_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.09"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/button_guide_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.52"/>
 
     <Button
         android:id="@+id/nutritional_status_button"
         android:layout_width="323dp"
         android:layout_height="58dp"
         android:background="@drawable/custom_button"
+        app:layout_constraintDimensionRatio="1:1"
         android:text="@string/t_nh_tr_ng_dinh_d_ng"
         android:textColor="#0293A5"
         android:textSize="20dp"
         android:textStyle="bold"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/button_guide_4"
+        app:layout_constraintEnd_toEndOf="@id/button_guide_2"
         app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/button_guide_1"
+        app:layout_constraintTop_toTopOf="@id/button_guide_3"
         app:layout_constraintVertical_bias="0.558" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/button_guide_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.59"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/button_guide_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.64"/>
 
     <Button
         android:id="@+id/dietary_button"
         android:layout_width="323dp"
         android:layout_height="58dp"
         android:background="@drawable/custom_button"
+        app:layout_constraintDimensionRatio="1:1"
         android:text="Khẩu phần"
         android:textColor="#0293A5"
         android:textSize="20dp"
         android:textStyle="bold"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toTopOf="@id/physical_button"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/button_guide_5"
+        app:layout_constraintEnd_toEndOf="@id/button_guide_2"
         app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nutritional_status_button" />
+        app:layout_constraintStart_toStartOf="@id/button_guide_1"
+        app:layout_constraintBottom_toBottomOf="@id/button_guide_6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/button_guide_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.71"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/button_guide_7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.76"/>
 
     <Button
         android:id="@+id/physical_button"
         android:layout_width="323dp"
         android:layout_height="58dp"
         android:background="@drawable/custom_button"
+        app:layout_constraintDimensionRatio="1:1"
         android:text="Hoạt động thể chất"
         android:textColor="#0293A5"
         android:textSize="20dp"
         android:textStyle="bold"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toTopOf="@+id/temp_menu_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dietary_button" />
+        app:layout_constraintTop_toTopOf="@id/button_guide_7"
+        app:layout_constraintEnd_toEndOf="@id/button_guide_2"
+        app:layout_constraintStart_toStartOf="@id/button_guide_1"
+        app:layout_constraintBottom_toBottomOf="@id/button_guide_8" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/button_guide_8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.83"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/button_guide_9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.88"/>
 
     <Button
         android:id="@+id/temp_menu_button"
         android:layout_width="323dp"
         android:layout_height="58dp"
         android:background="@drawable/custom_button"
+        app:layout_constraintDimensionRatio="1:1"
         android:text="Thực đơn mẫu"
         android:textColor="#0293A5"
         android:textSize="20dp"
         android:textStyle="bold"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/physical_button" />
+        app:layout_constraintBottom_toBottomOf="@id/button_guide_10"
+        app:layout_constraintEnd_toEndOf="@id/button_guide_2"
+        app:layout_constraintStart_toStartOf="@id/button_guide_1"
+        app:layout_constraintTop_toTopOf="@id/button_guide_9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/button_guide_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/button_guide_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.91"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
