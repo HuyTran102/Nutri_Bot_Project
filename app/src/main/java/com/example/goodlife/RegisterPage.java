@@ -56,7 +56,7 @@ public class RegisterPage extends AppCompatActivity {
                 String name, password, gender;
                 name = String.valueOf(editTextName.getText());
                 password = String.valueOf(editTextPassword.getText());
-                if(chose_boy.isChecked()) gender = "Nam"; else gender = "Nữ";
+                if(chose_boy.isChecked()) gender = "Nam"; else gender = "Nu";
                 HelperClass helperClass = new HelperClass(name, password, date, gender, signUpDate);
                 reference.child(name).setValue(helperClass);
 

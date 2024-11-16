@@ -88,6 +88,8 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
                             gender = snapshot.child(name).child("gender").getValue(String.class);
                             password = snapshot.child(name).child("password").getValue(String.class);
                             date = snapshot.child(name).child("date_of_birth").getValue(String.class);
+//
+//                            Toast.makeText(CalculateNutritionalStatus.this, " " + gender + " ", Toast.LENGTH_SHORT).show();
 
                             int monthAge = calculateMonthAge();
 
@@ -254,7 +256,7 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
         String path;
         if(gender.equals("Nam")) {
             path = "bmiBoys.xlsx";
-        } else if(gender.equals("Nữ")) {
+        } else if(gender.equals("Nu")) {
             path = "bmiGirls.xlsx";
         } else {
             Toast.makeText(CalculateNutritionalStatus.this, "Không thể cảnh báo tình trạng BMI do giới tính không hợp lệ !", Toast.LENGTH_SHORT).show();
@@ -354,7 +356,7 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
         String path;
         if(gender.equals("Nam")) {
             path = "hfaBoys.xlsx";
-        } else if(gender.equals("Nữ")) {
+        } else if(gender.equals("Nu")) {
             path = "hfaGirls.xlsx";
         } else {
             Toast.makeText(CalculateNutritionalStatus.this, "Không thể cảnh báo tình trạng BMI do giới tính không hợp lệ !", Toast.LENGTH_SHORT).show();
