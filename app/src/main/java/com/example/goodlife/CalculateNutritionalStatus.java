@@ -323,7 +323,7 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
                     }  else if(negativeSD2 <= bmi && bmi <= positiveSD1) {
                         result += "Bình thường 0.0 (kg)";
 
-                        userRecommendWeight = 0;
+                        userRecommendWeight = Double.parseDouble(this.weight);
 
                         weightView.setText(result);
                     } else {
@@ -421,7 +421,7 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
                     }  else if(negativeSD2 <= height && height <= positiveSD3) {
                         result += "Bình thường 0.0 (cm)";
 
-                        userRecommendHeight = 0;
+                        userRecommendHeight = height;
 
                         heightView.setText(result);
                     } else {

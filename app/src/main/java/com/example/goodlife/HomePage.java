@@ -16,13 +16,11 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.android.gms.tasks.Tasks;
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,6 +50,7 @@ public class HomePage extends AppCompatActivity {
     private String weight_status, height_status, energy_status;
     private String name;
     public Boolean ok1 = false, ok2 = false, ok3 = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +72,7 @@ public class HomePage extends AppCompatActivity {
 
         SharedPreferences sp = getSharedPreferences("Data", Context.MODE_PRIVATE);
 
-        name = sp.getString("Name",null);
+        name = sp.getString("Name", null);
 
         setNullValue();
 
@@ -144,18 +143,18 @@ public class HomePage extends AppCompatActivity {
 
                 int age = year - Integer.parseInt(year_of_birth);
 
-                if(gender.equals("Nam")) {
-                    if(10 <= age && age <= 11) {
+                if (gender.equals("Nam")) {
+                    if (10 <= age && age <= 11) {
                         recommendEnergy = 1900;
-                    } else if(12 <= age && age <= 14) {
+                    } else if (12 <= age && age <= 14) {
                         recommendEnergy = 2200;
                     } else {
                         recommendEnergy = 2500;
                     }
                 } else {
-                    if(10 <= age && age <= 11) {
+                    if (10 <= age && age <= 11) {
                         recommendEnergy = 1750;
-                    } else if(12 <= age && age <= 14) {
+                    } else if (12 <= age && age <= 14) {
                         recommendEnergy = 2050;
                     } else {
                         recommendEnergy = 2100;
@@ -234,6 +233,8 @@ public class HomePage extends AppCompatActivity {
                             }
                         }
 
+                        // Toast.makeText(this, " " + recommendWeight + " ", Toast.LENGTH_SHORT).show();
+
                         // Task 3: Xử lý kết quả của Activity task
                         QuerySnapshot activityResult = activityTask.getResult();
                         if (activityResult != null) {
@@ -250,7 +251,7 @@ public class HomePage extends AppCompatActivity {
                             }
                             usedEnergy = total_sum;
 
-                            if(usedEnergy == 0) {
+                            if (usedEnergy == 0) {
                                 recommendEnergy = 0;
                             } else {
                                 recommendEnergy = recommendWeight * 24 * 1.5 + usedEnergy;
@@ -287,24 +288,24 @@ public class HomePage extends AppCompatActivity {
 
         DecimalFormat decimalFormat = new DecimalFormat("0.0");
 
-        if(recommendWeight == 0){
+        if (recommendWeight == actualWeight) {
             statusWeight = 0;
             weight_status = "Bình thường";
-        }else if(actualWeight > recommendWeight) {
+        } else if (actualWeight > recommendWeight) {
             statusWeight = (actualWeight - recommendWeight);
             weight_status = "Thừa " + decimalFormat.format(statusWeight) + " (kg)";
 
-        } else if(actualWeight < recommendWeight){
+        } else if (actualWeight < recommendWeight) {
             statusWeight = (recommendWeight - actualWeight);
             weight_status = "Thiếu " + decimalFormat.format(statusWeight) + " (kg)";
         } else {
-            recommendWeight = -1;
+            recommendWeight = 0;
             actualWeight = 0;
             statusWeight = 0;
             weight_status = "";
         }
 
-        if (recommendHeight == 0){
+        if (recommendHeight == actualHeight){
             statusHeight = 0;
             height_status = "Bình thường";
         } else if(actualHeight > recommendHeight) {
@@ -324,43 +325,38 @@ public class HomePage extends AppCompatActivity {
 
 //        Toast.makeText(HomePage.this, " " + actualEnergy + " " + usedEnergy + " " + addEnergy + " " + recommendEnergy + " ", Toast.LENGTH_SHORT).show();
 
-        if(recommendEnergy == actualEnergy) {
+        if (recommendEnergy == actualEnergy) {
             statusEnergy = 0;
             energy_status = "Bình thường";
-        } else if(actualEnergy > recommendEnergy) {
+        } else if (actualEnergy > recommendEnergy) {
             statusEnergy = (actualEnergy - recommendEnergy);
             energy_status = "Thừa " + decimalFormat.format(statusEnergy) + " (kcal)";
-        } else if(actualEnergy < recommendEnergy) {
+        } else if (actualEnergy < recommendEnergy) {
             statusEnergy = (recommendEnergy - actualEnergy);
             energy_status = "Thiếu " + decimalFormat.format(statusEnergy) + " (kcal)";
-        } else {
-            recommendEnergy = -1;
+        } else{
+            recommendEnergy = 0;
             actualEnergy = 0;
             statusEnergy = 0;
             energy_status = "";
         }
 
-        if(recommendEnergy == 0 || actualEnergy == 0) {
+        if (recommendEnergy == 0 || actualEnergy == 0) {
             statusEnergy = 0;
             energy_status = "";
         }
-
         decimalFormat = new DecimalFormat("0");
 
         final Handler weight_handler = new Handler();
 
-        weightProgressBar.setMax((int) recommendWeight + 1);
+        weightProgressBar.setMax((int) recommendWeight);
 
         DecimalFormat finalDecimalFormat = decimalFormat;
         weight_handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(weight <= actualWeight) {
-                    if(recommendWeight == 0) {
-                        weightProgressText.setText(String.valueOf(weight + "\n" + finalDecimalFormat.format(actualWeight)));
-                    } else {
+                if (weight <= actualWeight) {
                         weightProgressText.setText(String.valueOf(weight + "\n" + finalDecimalFormat.format(recommendWeight)));
-                    }
                     weightProgressBar.setProgress(weight);
                     weight++;
                     weight_handler.postDelayed(this, 35);
@@ -404,12 +400,8 @@ public class HomePage extends AppCompatActivity {
         kcalo_handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(kcalo <= actualEnergy) {
-                    if(recommendWeight == 0) {
-                        kcaloProgressText.setText(String.valueOf(kcalo + "\n" + finalDecimalFormat.format(actualEnergy)));
-                    } else {
+                if (kcalo <= actualEnergy) {
                         kcaloProgressText.setText(String.valueOf(kcalo + "\n" + finalDecimalFormat.format(recommendEnergy)));
-                    }
                     kcaloProgressBar.setProgress(kcalo);
                     kcalo++;
                     kcalo_handler.postDelayed(this, 0);
@@ -431,8 +423,8 @@ public class HomePage extends AppCompatActivity {
         weight_handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(weight <= actualWeight) {
-                    if(recommendWeight == 0) {
+                if (weight <= actualWeight) {
+                    if (recommendWeight == 0) {
                         weightProgressText.setText(String.valueOf(weight + "\n" + 0));
                     } else {
                         weightProgressText.setText(String.valueOf(weight + "\n" + 0));
@@ -452,8 +444,8 @@ public class HomePage extends AppCompatActivity {
         height_handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(height <= 0) {
-                    if(recommendHeight == 0) {
+                if (height <= 0) {
+                    if (recommendHeight == 0) {
                         heightProgressText.setText(String.valueOf(height + "\n" + 0));
                     } else {
                         heightProgressText.setText(String.valueOf(height + "\n" + 0));
@@ -474,8 +466,8 @@ public class HomePage extends AppCompatActivity {
         kcalo_handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(kcalo <= 0) {
-                    if(recommendEnergy == 0) {
+                if (kcalo <= 0) {
+                    if (recommendEnergy == 0) {
                         kcaloProgressText.setText(String.valueOf(kcalo + "\n" + 0));
                     } else {
                         kcaloProgressText.setText(String.valueOf(kcalo + "\n" + 0));
@@ -489,5 +481,4 @@ public class HomePage extends AppCompatActivity {
             }
         }, 0);
     }
-
 }
