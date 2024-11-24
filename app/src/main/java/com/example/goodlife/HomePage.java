@@ -4,13 +4,17 @@ import static java.security.AccessController.getContext;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -21,6 +25,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.android.gms.tasks.Tasks;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +35,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import org.apache.poi.xwpf.usermodel.TOC;
 
 import java.text.DecimalFormat;
 import java.time.LocalTime;
@@ -42,7 +49,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HomePage extends AppCompatActivity {
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-    private Button nutritionalStatusButton, physicalButton, dietaryButton, tempMenuButton;
+    private Button nutritionalStatusButton, physicalButton, dietaryButton, tempMenuButton, drawerMenuButton;
     private ProgressBar weightProgressBar, heightProgressBar, kcaloProgressBar;
     private TextView weightProgressText, heightProgressText, kcaloProgressText, weightView, heightView, kcaloView;
     private double actualWeight, actualHeight, usedEnergy, addEnergy, actualEnergy, recommendWeight, recommendHeight, recommendEnergy, statusWeight, statusHeight, statusEnergy;
@@ -50,6 +57,8 @@ public class HomePage extends AppCompatActivity {
     private String weight_status, height_status, energy_status;
     private String name;
     public Boolean ok1 = false, ok2 = false, ok3 = false;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +78,64 @@ public class HomePage extends AppCompatActivity {
         heightProgressText = findViewById(R.id.height_progres_text);
         kcaloProgressBar = findViewById(R.id.kcalo_progres_bar);
         kcaloProgressText = findViewById(R.id.kcalo_progres_text);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        drawerMenuButton = findViewById(R.id.drawer_menu_button);
+
+        drawerLayout.bringToFront();
+        navigationView.bringToFront();
+        drawerMenuButton.bringToFront();
+
+        drawerMenuButton.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
+
+        drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull View drawerView) {
+                drawerMenuButton.setAlpha(0f);
+                drawerMenuButton.setVisibility(View.GONE);
+                drawerMenuButton.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull View drawerView) {
+                drawerMenuButton.setAlpha(1f);
+                drawerMenuButton.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if (id == R.id.user_information) {
+                    Toast.makeText(HomePage.this, "user_information", Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.notification) {
+                    Toast.makeText(HomePage.this, "notification", Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.tracking_diagram) {
+                    Toast.makeText(HomePage.this, "tracking_diagram", Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.about_us) {
+                    Toast.makeText(HomePage.this, "about_us", Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.app_ranking) {
+                    Toast.makeText(HomePage.this, "app_ranking", Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.contact_support_team) {
+                    Toast.makeText(HomePage.this, "contact_support_team", Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.logout) {
+                    Toast.makeText(HomePage.this, "logout", Toast.LENGTH_SHORT).show();
+                }
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
 
         SharedPreferences sp = getSharedPreferences("Data", Context.MODE_PRIVATE);
 
@@ -77,7 +144,7 @@ public class HomePage extends AppCompatActivity {
         setNullValue();
 
         LoadDataFireBase();
-//
+
 //        Toast.makeText(HomePage.this, " " + actualEnergy + " " + usedEnergy + " " + addEnergy + " " + recommendEnergy + " ", Toast.LENGTH_SHORT).show();
 
         nutritionalStatusButton.setOnClickListener(new View.OnClickListener() {

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    android:background="#F7FFFFFF">
+
+        <item
+            android:id="@+id/user_information"
+            android:icon="@drawable/user_information"
+            android:title="Thông tin người dùng"/>
+
+        <item
+            android:id="@+id/notification"
+            android:icon="@drawable/notifications"
+            android:title="Thông báo"/>
+
+        <item
+            android:id="@+id/tracking_diagram"
+            android:icon="@drawable/tracking_diagram"
+            android:title="Biểu đồ thống kê"/>
+
+        <item
+            android:id="@+id/about_us"
+            android:icon="@drawable/about_us"
+            android:title="Về chúng tôi"/>
+
+        <item
+            android:id="@+id/app_ranking"
+            android:icon="@drawable/app_ranking"
+            android:title="Đánh giá ứng dụng"/>
+
+        <item
+            android:id="@+id/contact_support_team"
+            android:icon="@drawable/contact_support_team"
+            android:title="Liên hệ"/>
+
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/logout"
+            android:title="Đăng xuất"/>
+
+</menu>
