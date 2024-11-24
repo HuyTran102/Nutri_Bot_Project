@@ -118,19 +118,31 @@ public class HomePage extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 if (id == R.id.user_information) {
-                    Toast.makeText(HomePage.this, "user_information", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomePage.this, UserInformation.class);
+                    startActivity(intent);
+                    finish();
                 } else if (id == R.id.notification) {
-                    Toast.makeText(HomePage.this, "notification", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomePage.this, Notification.class);
+                    startActivity(intent);
+                    finish();
                 } else if (id == R.id.tracking_diagram) {
-                    Toast.makeText(HomePage.this, "tracking_diagram", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomePage.this, TrackingDiagram.class);
+                    startActivity(intent);
+                    finish();
                 } else if (id == R.id.about_us) {
-                    Toast.makeText(HomePage.this, "about_us", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomePage.this, AboutUs.class);
+                    startActivity(intent);
+                    finish();
                 } else if (id == R.id.app_ranking) {
-                    Toast.makeText(HomePage.this, "app_ranking", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomePage.this, AppRanking.class);
+                    startActivity(intent);
+                    finish();
                 } else if (id == R.id.contact_support_team) {
-                    Toast.makeText(HomePage.this, "contact_support_team", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomePage.this, ContactSupportTeam.class);
+                    startActivity(intent);
+                    finish();
                 } else if (id == R.id.logout) {
-                    Toast.makeText(HomePage.this, "logout", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomePage.this, "Logout", Toast.LENGTH_SHORT).show();
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;

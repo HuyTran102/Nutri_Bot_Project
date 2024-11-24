@@ -15,6 +15,24 @@
         android:theme="@style/Theme.GoodLife"
         tools:targetApi="31">
         <activity
+            android:name=".ContactSupportTeam"
+            android:exported="false" />
+        <activity
+            android:name=".AppRanking"
+            android:exported="false" />
+        <activity
+            android:name=".AboutUs"
+            android:exported="false" />
+        <activity
+            android:name=".TrackingDiagram"
+            android:exported="false" />
+        <activity
+            android:name=".Notification"
+            android:exported="false" />
+        <activity
+            android:name=".UserInformation"
+            android:exported="false" />
+        <activity
             android:name=".TempMenuData"
             android:exported="false" />
         <activity
