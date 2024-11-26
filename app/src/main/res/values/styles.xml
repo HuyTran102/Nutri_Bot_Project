@@ -67,10 +67,9 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="Logout" parent="viewParent">
-        <item name="android:background">#FF0267</item>
-        <item name="android:textColor">@color/whiteTextColor</item>
-        <item name="android:textStyle">bold</item>
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#8B8B8B</item>
+        <item name="colorControlActivated">#FFC107</item>
     </style>
 
     <style name="spinnerHintText" parent="parent">
