@@ -23,7 +23,7 @@ import java.util.Calendar;
 public class RegisterPage extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
-    private EditText editTextName, editTextPassword;
+    private EditText editTextName, editTextPassword, editTextMail;
     private CircularProgressButton signUp;
     private FirebaseDatabase database;
     private DatabaseReference reference;
@@ -40,6 +40,7 @@ public class RegisterPage extends AppCompatActivity {
         dateButton.setText(getTodaysDate());
         editTextName = findViewById(R.id.acc_name);
         editTextPassword = findViewById(R.id.editTextPassword);
+        editTextMail = findViewById(R.id.editTextMail);
         signUp = findViewById(R.id.RegisterButton);
         chose_boy = findViewById(R.id.checked_nam);
         chose_girl = findViewById(R.id.checked_nu);
@@ -53,11 +54,12 @@ public class RegisterPage extends AppCompatActivity {
                 database = FirebaseDatabase.getInstance();
                 reference = database.getReference("user");
 
-                String name, password, gender;
+                String name, password, email, gender;
                 name = String.valueOf(editTextName.getText());
                 password = String.valueOf(editTextPassword.getText());
+                email = String.valueOf(editTextMail.getText());
                 if(chose_boy.isChecked()) gender = "Nam"; else gender = "Nu";
-                HelperClass helperClass = new HelperClass(name, password, date, gender, signUpDate);
+                HelperClass helperClass = new HelperClass(name, password, email, date, gender, signUpDate);
                 reference.child(name).setValue(helperClass);
 
                 Toast.makeText(RegisterPage.this, "Đăng kí tài khoản thành công!", Toast.LENGTH_SHORT).show();

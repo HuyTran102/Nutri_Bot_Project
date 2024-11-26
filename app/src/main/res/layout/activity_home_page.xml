@@ -12,6 +12,20 @@
     android:keepScreenOn="true"
     tools:openDrawer="start">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/nav_guide_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.028"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/nav_guide_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.059"/>
+
     <Button
         android:id="@+id/drawer_menu_button"
         android:layout_width="35dp"
@@ -21,12 +35,24 @@
         android:gravity="center_vertical"
         app:backgroundTint="@null"
         android:layout_marginStart="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.053"/>
+        app:layout_constraintBottom_toBottomOf="@id/nav_guide_4"
+        app:layout_constraintEnd_toEndOf="@id/nav_guide_2"
+        app:layout_constraintStart_toStartOf="@id/nav_guide_1"
+        app:layout_constraintTop_toTopOf="@id/nav_guide_3"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/nav_guide_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.12"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/nav_guide_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.06"/>
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
@@ -48,7 +74,7 @@
     </androidx.drawerlayout.widget.DrawerLayout>
 
     <ImageView
-        android:layout_width="424dp"
+        android:layout_width="435dp"
         android:layout_height="232dp"
         android:background="@drawable/wave"
         app:layout_constraintBottom_toBottomOf="parent"
