@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,56 +13,517 @@
     android:keepScreenOn="true"
     tools:openDrawer="start">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/nav_guide_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.028"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/nav_guide_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.059"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/nav_guide_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.028"/>
 
-    <Button
-        android:id="@+id/drawer_menu_button"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:background="@drawable/drawer_menu"
-        android:ems="10"
-        android:gravity="center_vertical"
-        app:backgroundTint="@null"
-        android:layout_marginStart="10dp"
-        app:layout_constraintBottom_toBottomOf="@id/nav_guide_4"
-        app:layout_constraintEnd_toEndOf="@id/nav_guide_2"
-        app:layout_constraintStart_toStartOf="@id/nav_guide_1"
-        app:layout_constraintTop_toTopOf="@id/nav_guide_3"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/nav_guide_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.059"/>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/nav_guide_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.12"/>
+        <Button
+            android:id="@+id/drawer_menu_button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/drawer_menu"
+            android:ems="10"
+            android:gravity="center_vertical"
+            app:backgroundTint="@null"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/nav_guide_4"
+            app:layout_constraintEnd_toEndOf="@id/nav_guide_2"
+            app:layout_constraintStart_toStartOf="@id/nav_guide_1"
+            app:layout_constraintTop_toTopOf="@id/nav_guide_3"/>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/nav_guide_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.06"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/nav_guide_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.12"/>
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/nav_guide_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.06"/>
+
+        <ImageView
+            android:layout_width="435dp"
+            android:layout_height="232dp"
+            android:background="@drawable/wave"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/value_guide_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.08"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/value_guide_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.145"/>
+
+        <LinearLayout
+            android:layout_width="330dp"
+            android:layout_height="240dp"
+            android:background="@drawable/custom_button"
+            app:layout_constraintDimensionRatio="1:1"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/value_guide_4"
+            app:layout_constraintEnd_toEndOf="@id/value_guide_2"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="@id/value_guide_1"
+            app:layout_constraintTop_toTopOf="@id/value_guide_3"
+            app:layout_constraintVertical_bias="0.209">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.249"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.248">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cân nặng"
+                        android:textColor="#0EE532"
+                        android:textSize="22dp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        android:layout_gravity="center">
+
+                        <ProgressBar
+                            android:id="@+id/weight_progres_bar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/circle_shape"
+                            android:indeterminate="false"
+                            android:progressDrawable="@drawable/weight_circle_progress_bar"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:id="@+id/weight_progres_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="#ABA9A9"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/weight_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text=""
+                    android:textColor="#ABA9A9"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chiều cao"
+                        android:textColor="#FF9900"
+                        android:textSize="22dp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        android:layout_gravity="center">
+
+                        <ProgressBar
+                            android:id="@+id/height_progres_bar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/circle_shape"
+                            android:indeterminate="false"
+                            android:progressDrawable="@drawable/height_circle_progress_bar"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:id="@+id/height_progres_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="#ABA9A9"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/height_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text=""
+                    android:textColor="#ABA9A9"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Kcal"
+                        android:textColor="#C907FF"
+                        android:textSize="22dp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        android:layout_gravity="center">
+
+                        <ProgressBar
+                            android:id="@+id/kcalo_progres_bar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/circle_shape"
+                            android:indeterminate="false"
+                            android:progressDrawable="@drawable/kcalo_circle_progress_bar"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:id="@+id/kcalo_progres_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="#ABA9A9"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/kcalo_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text=""
+                    android:textColor="#ABA9A9"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/value_guide_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.92"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/value_guide_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.442"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/name_guide_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.32"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/name_guide_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.063"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Good Life"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintBottom_toBottomOf="@id/name_guide_4"
+            app:layout_constraintEnd_toEndOf="@id/name_guide_2"
+            app:layout_constraintStart_toStartOf="@id/name_guide_1"
+            app:layout_constraintTop_toTopOf="@id/name_guide_3"
+            app:layout_constraintVertical_bias="0.069" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/name_guide_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.68"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/name_guide_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.12"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/button_guide_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.09"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/button_guide_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.52"/>
+
+        <Button
+            android:id="@+id/nutritional_status_button"
+            android:layout_width="323dp"
+            android:layout_height="58dp"
+            android:background="@drawable/custom_button"
+            app:layout_constraintDimensionRatio="1:1"
+            android:text="Dinh dưỡng"
+            android:textColor="#0293A5"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="@id/button_guide_4"
+            app:layout_constraintEnd_toEndOf="@id/button_guide_2"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="@id/button_guide_1"
+            app:layout_constraintTop_toTopOf="@id/button_guide_3"
+            app:layout_constraintVertical_bias="0.558" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/button_guide_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.59"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/button_guide_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.64"/>
+
+        <Button
+            android:id="@+id/dietary_button"
+            android:layout_width="323dp"
+            android:layout_height="58dp"
+            android:background="@drawable/custom_button"
+            app:layout_constraintDimensionRatio="1:1"
+            android:text="Khẩu phần"
+            android:textColor="#0293A5"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:backgroundTint="@null"
+            app:layout_constraintTop_toTopOf="@id/button_guide_5"
+            app:layout_constraintEnd_toEndOf="@id/button_guide_2"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="@id/button_guide_1"
+            app:layout_constraintBottom_toBottomOf="@id/button_guide_6" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/button_guide_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.71"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/button_guide_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.76"/>
+
+        <Button
+            android:id="@+id/physical_button"
+            android:layout_width="323dp"
+            android:layout_height="58dp"
+            android:background="@drawable/custom_button"
+            app:layout_constraintDimensionRatio="1:1"
+            android:text="Luyện tập"
+            android:textColor="#0293A5"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:backgroundTint="@null"
+            app:layout_constraintTop_toTopOf="@id/button_guide_7"
+            app:layout_constraintEnd_toEndOf="@id/button_guide_2"
+            app:layout_constraintStart_toStartOf="@id/button_guide_1"
+            app:layout_constraintBottom_toBottomOf="@id/button_guide_8" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/button_guide_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.83"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/button_guide_9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.88"/>
+
+        <Button
+            android:id="@+id/temp_menu_button"
+            android:layout_width="323dp"
+            android:layout_height="58dp"
+            android:background="@drawable/custom_button"
+            app:layout_constraintDimensionRatio="1:1"
+            android:text="Thực đơn mẫu"
+            android:textColor="#0293A5"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="@id/button_guide_10"
+            app:layout_constraintEnd_toEndOf="@id/button_guide_2"
+            app:layout_constraintStart_toStartOf="@id/button_guide_1"
+            app:layout_constraintTop_toTopOf="@id/button_guide_9" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/button_guide_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.95"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/button_guide_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.91"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    <androidx.drawerlayout.widget.DrawerLayout-->
+<!--        android:id="@+id/drawer_layout"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
 
         <com.google.android.material.navigation.NavigationView
             android:layout_width="wrap_content"
@@ -71,460 +533,6 @@
             app:menu="@menu/menu"
             android:layout_gravity="start"/>
 
-    </androidx.drawerlayout.widget.DrawerLayout>
+<!--    </androidx.drawerlayout.widget.DrawerLayout>-->
 
-    <ImageView
-        android:layout_width="435dp"
-        android:layout_height="232dp"
-        android:background="@drawable/wave"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/value_guide_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.08"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/value_guide_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.145"/>
-
-    <LinearLayout
-        android:layout_width="330dp"
-        android:layout_height="240dp"
-        android:background="@drawable/custom_button"
-        app:layout_constraintDimensionRatio="1:1"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@id/value_guide_4"
-        app:layout_constraintEnd_toEndOf="@id/value_guide_2"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="@id/value_guide_1"
-        app:layout_constraintTop_toTopOf="@id/value_guide_3"
-        app:layout_constraintVertical_bias="0.209">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.249"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.248">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cân nặng"
-                    android:textColor="#0EE532"
-                    android:textSize="22dp"
-                    android:textStyle="bold" />
-
-                <RelativeLayout
-                    android:layout_width="85dp"
-                    android:layout_height="85dp"
-                    android:layout_gravity="center">
-
-                    <ProgressBar
-                        android:id="@+id/weight_progres_bar"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/circle_shape"
-                        android:indeterminate="false"
-                        android:progressDrawable="@drawable/weight_circle_progress_bar"
-                        android:textAlignment="center" />
-
-                    <TextView
-                        android:id="@+id/weight_progres_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:gravity="center"
-                        android:text=""
-                        android:textColor="#ABA9A9"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/weight_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:text=""
-                android:textColor="#ABA9A9"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chiều cao"
-                    android:textColor="#FF9900"
-                    android:textSize="22dp"
-                    android:textStyle="bold" />
-
-                <RelativeLayout
-                    android:layout_width="85dp"
-                    android:layout_height="85dp"
-                    android:layout_gravity="center">
-
-                    <ProgressBar
-                        android:id="@+id/height_progres_bar"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/circle_shape"
-                        android:indeterminate="false"
-                        android:progressDrawable="@drawable/height_circle_progress_bar"
-                        android:textAlignment="center" />
-
-                    <TextView
-                        android:id="@+id/height_progres_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:gravity="center"
-                        android:text=""
-                        android:textColor="#ABA9A9"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/height_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:text=""
-                android:textColor="#ABA9A9"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Kcal"
-                    android:textColor="#C907FF"
-                    android:textSize="22dp"
-                    android:textStyle="bold" />
-
-                <RelativeLayout
-                    android:layout_width="85dp"
-                    android:layout_height="85dp"
-                    android:layout_gravity="center">
-
-                    <ProgressBar
-                        android:id="@+id/kcalo_progres_bar"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/circle_shape"
-                        android:indeterminate="false"
-                        android:progressDrawable="@drawable/kcalo_circle_progress_bar"
-                        android:textAlignment="center" />
-
-                    <TextView
-                        android:id="@+id/kcalo_progres_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:gravity="center"
-                        android:text=""
-                        android:textColor="#ABA9A9"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-
-            <TextView
-                android:id="@+id/kcalo_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:text=""
-                android:textColor="#ABA9A9"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/value_guide_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.92"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/value_guide_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.442"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/name_guide_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.32"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/name_guide_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.063"/>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="Good Life"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintBottom_toBottomOf="@id/name_guide_4"
-        app:layout_constraintEnd_toEndOf="@id/name_guide_2"
-        app:layout_constraintStart_toStartOf="@id/name_guide_1"
-        app:layout_constraintTop_toTopOf="@id/name_guide_3"
-        app:layout_constraintVertical_bias="0.069" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/name_guide_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.68"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/name_guide_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.12"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/button_guide_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.09"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/button_guide_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.52"/>
-
-    <Button
-        android:id="@+id/nutritional_status_button"
-        android:layout_width="323dp"
-        android:layout_height="58dp"
-        android:background="@drawable/custom_button"
-        app:layout_constraintDimensionRatio="1:1"
-        android:text="Dinh dưỡng"
-        android:textColor="#0293A5"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="@id/button_guide_4"
-        app:layout_constraintEnd_toEndOf="@id/button_guide_2"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="@id/button_guide_1"
-        app:layout_constraintTop_toTopOf="@id/button_guide_3"
-        app:layout_constraintVertical_bias="0.558" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/button_guide_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.59"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/button_guide_5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.64"/>
-
-    <Button
-        android:id="@+id/dietary_button"
-        android:layout_width="323dp"
-        android:layout_height="58dp"
-        android:background="@drawable/custom_button"
-        app:layout_constraintDimensionRatio="1:1"
-        android:text="Khẩu phần"
-        android:textColor="#0293A5"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:backgroundTint="@null"
-        app:layout_constraintTop_toTopOf="@id/button_guide_5"
-        app:layout_constraintEnd_toEndOf="@id/button_guide_2"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="@id/button_guide_1"
-        app:layout_constraintBottom_toBottomOf="@id/button_guide_6" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/button_guide_6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.71"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/button_guide_7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.76"/>
-
-    <Button
-        android:id="@+id/physical_button"
-        android:layout_width="323dp"
-        android:layout_height="58dp"
-        android:background="@drawable/custom_button"
-        app:layout_constraintDimensionRatio="1:1"
-        android:text="Luyện tập"
-        android:textColor="#0293A5"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:backgroundTint="@null"
-        app:layout_constraintTop_toTopOf="@id/button_guide_7"
-        app:layout_constraintEnd_toEndOf="@id/button_guide_2"
-        app:layout_constraintStart_toStartOf="@id/button_guide_1"
-        app:layout_constraintBottom_toBottomOf="@id/button_guide_8" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/button_guide_8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.83"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/button_guide_9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.88"/>
-
-    <Button
-        android:id="@+id/temp_menu_button"
-        android:layout_width="323dp"
-        android:layout_height="58dp"
-        android:background="@drawable/custom_button"
-        app:layout_constraintDimensionRatio="1:1"
-        android:text="Thực đơn mẫu"
-        android:textColor="#0293A5"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="@id/button_guide_10"
-        app:layout_constraintEnd_toEndOf="@id/button_guide_2"
-        app:layout_constraintStart_toStartOf="@id/button_guide_1"
-        app:layout_constraintTop_toTopOf="@id/button_guide_9" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/button_guide_10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.95"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/button_guide_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.91"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
