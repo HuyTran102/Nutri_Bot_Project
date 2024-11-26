@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class AppRanking extends AppCompatActivity {
     private RatingBar ratingBar;
     private TextView message;
-    private Button backButton;
+    private Button backButton, submitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +21,15 @@ public class AppRanking extends AppCompatActivity {
 
         ratingBar = findViewById(R.id.app_rating);
         message = findViewById(R.id.message);
+        submitButton = findViewById(R.id.submit_button);
         backButton = findViewById(R.id.back_button);
 
-        if(ratingBar.getRating() > 0) {
-            message.setText("Cảm ơn bạn!");
-        }
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                message.setText("Cảm ơn bạn!");
+            }
+        });
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
