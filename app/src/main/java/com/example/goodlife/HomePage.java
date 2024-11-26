@@ -138,6 +138,10 @@ public class HomePage extends AppCompatActivity {
                     Intent intent = new Intent(HomePage.this, AppRanking.class);
                     startActivity(intent);
                     finish();
+                } else if (id == R.id.question_and_answer) {
+                    Intent intent = new Intent(HomePage.this, QuestionAndAnswer.class);
+                    startActivity(intent);
+                    finish();
                 } else if (id == R.id.contact_support_team) {
                     Intent intent = new Intent(HomePage.this, ContactSupportTeam.class);
                     startActivity(intent);

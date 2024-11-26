@@ -30,6 +30,11 @@
             android:title="Đánh giá ứng dụng"/>
 
         <item
+            android:id="@+id/question_and_answer"
+            android:icon="@drawable/question_and_answer"
+            android:title="Q&amp;A"/>
+
+        <item
             android:id="@+id/contact_support_team"
             android:icon="@drawable/contact_support_team"
             android:title="Liên hệ"/>
