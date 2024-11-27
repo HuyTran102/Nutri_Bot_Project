@@ -48,6 +48,7 @@ public class LoginScreen extends AppCompatActivity {
 
         // Login zone
         SharedPreferences sharedPreferences = getSharedPreferences("Data", Context.MODE_PRIVATE);
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

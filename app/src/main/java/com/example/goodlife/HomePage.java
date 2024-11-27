@@ -144,12 +144,19 @@ public class HomePage extends AppCompatActivity {
                     Intent intent = new Intent(HomePage.this, QuestionAndAnswer.class);
                     startActivity(intent);
                     finish();
+                } else if (id == R.id.contact_with_nutritionist) {
+                    Intent intent = new Intent(HomePage.this, ContactWithNutritionist.class);
+                    startActivity(intent);
+                    finish();
                 } else if (id == R.id.contact_support_team) {
                     Intent intent = new Intent(HomePage.this, ContactSupportTeam.class);
                     startActivity(intent);
                     finish();
                 } else if (id == R.id.logout) {
-                    Toast.makeText(HomePage.this, "Logout", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomePage.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomePage.this, LoginScreen.class);
+                    startActivity(intent);
+                    finish();
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
