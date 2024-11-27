@@ -102,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:text="Nam"
+            android:text=""
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -147,7 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:text="17/08/2011"
+            android:text=""
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -192,7 +192,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:text="huyserver1323@gmail.com"
+            android:text=""
             android:textSize="20sp"
             android:textStyle="bold" />
 
