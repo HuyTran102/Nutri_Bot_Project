@@ -75,20 +75,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.08"/>
+            app:layout_constraintGuide_percent="0.04"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/value_guide_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.145"/>
+            app:layout_constraintGuide_percent="0.17"/>
 
         <LinearLayout
-            android:layout_width="330dp"
-            android:layout_height="240dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@drawable/custom_button"
-            app:layout_constraintDimensionRatio="1:1"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="@id/value_guide_4"
             app:layout_constraintEnd_toEndOf="@id/value_guide_2"
@@ -121,8 +120,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Cân nặng"
-                        android:textColor="#0EE532"
-                        android:textSize="22dp"
+                        android:textColor="#0BAC26"
+                        android:textSize="20dp"
                         android:textStyle="bold" />
 
                     <RelativeLayout
@@ -194,7 +193,7 @@
                         android:layout_height="wrap_content"
                         android:text="Chiều cao"
                         android:textColor="#FF9900"
-                        android:textSize="22dp"
+                        android:textSize="20dp"
                         android:textStyle="bold" />
 
                     <RelativeLayout
@@ -267,7 +266,7 @@
                         android:layout_gravity="center"
                         android:text="Kcal"
                         android:textColor="#C907FF"
-                        android:textSize="22dp"
+                        android:textSize="20dp"
                         android:textStyle="bold" />
 
                     <RelativeLayout
@@ -322,14 +321,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.92"/>
+            app:layout_constraintGuide_percent="0.96"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/value_guide_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.442"/>
+            app:layout_constraintGuide_percent="0.48"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/name_guide_1"
@@ -381,7 +380,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.09"/>
+            app:layout_constraintGuide_percent="0.05"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/button_guide_3"
@@ -390,91 +389,219 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.52"/>
 
-        <Button
+        <LinearLayout
             android:id="@+id/nutritional_status_button"
-            android:layout_width="323dp"
-            android:layout_height="58dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
             android:background="@drawable/custom_button"
-            app:layout_constraintDimensionRatio="1:1"
-            android:text="Dinh dưỡng"
-            android:textColor="#0293A5"
-            android:textSize="20dp"
-            android:textStyle="bold"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="@id/button_guide_4"
             app:layout_constraintEnd_toEndOf="@id/button_guide_2"
             app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="@id/button_guide_1"
             app:layout_constraintTop_toTopOf="@id/button_guide_3"
-            app:layout_constraintVertical_bias="0.558" />
+            app:layout_constraintVertical_bias="0.558">
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:src="@drawable/nutrition_status"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#F7FFFFFF"
+                android:text="Dinh dưỡng"
+                android:textColor="#0293A5"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                app:backgroundTint="@null"/>
+
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/button_guide_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.59"/>
+            app:layout_constraintGuide_percent="0.66"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/button_guide_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.64"/>
+            app:layout_constraintGuide_percent="0.67"/>
 
-        <Button
+        <LinearLayout
             android:id="@+id/dietary_button"
-            android:layout_width="323dp"
-            android:layout_height="58dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
             android:background="@drawable/custom_button"
-            app:layout_constraintDimensionRatio="1:1"
-            android:text="Khẩu phần"
-            android:textColor="#0293A5"
-            android:textSize="20dp"
-            android:textStyle="bold"
             app:backgroundTint="@null"
             app:layout_constraintTop_toTopOf="@id/button_guide_5"
             app:layout_constraintEnd_toEndOf="@id/button_guide_2"
             app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="@id/button_guide_1"
-            app:layout_constraintBottom_toBottomOf="@id/button_guide_6" />
+            app:layout_constraintBottom_toBottomOf="@id/button_guide_6">
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:src="@drawable/dietary"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#F7FFFFFF"
+                android:text="Khẩu phần"
+                android:textColor="#0293A5"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                app:backgroundTint="@null"/>
+
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/button_guide_6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.71"/>
+            app:layout_constraintGuide_percent="0.81"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/button_guide_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.47"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/button_guide_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.53"/>
+
+        <LinearLayout
+            android:id="@+id/physical_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:background="@drawable/custom_button"
+            app:backgroundTint="@null"
+            app:layout_constraintTop_toTopOf="@id/button_guide_3"
+            app:layout_constraintEnd_toEndOf="@id/button_guide_11"
+            app:layout_constraintStart_toStartOf="@id/button_guide_12"
+            app:layout_constraintBottom_toBottomOf="@id/button_guide_4">
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:src="@drawable/physical_activity"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#F7FFFFFF"
+                android:text="Luyện tập"
+                android:textColor="#0293A5"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                app:backgroundTint="@null"/>
+
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/button_guide_7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.76"/>
+            app:layout_constraintGuide_percent="0.82"/>
 
-        <Button
-            android:id="@+id/physical_button"
-            android:layout_width="323dp"
-            android:layout_height="58dp"
+
+        <LinearLayout
+            android:id="@+id/recommend_menu_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
             android:background="@drawable/custom_button"
-            app:layout_constraintDimensionRatio="1:1"
-            android:text="Luyện tập"
-            android:textColor="#0293A5"
-            android:textSize="20dp"
-            android:textStyle="bold"
             app:backgroundTint="@null"
             app:layout_constraintTop_toTopOf="@id/button_guide_7"
             app:layout_constraintEnd_toEndOf="@id/button_guide_2"
             app:layout_constraintStart_toStartOf="@id/button_guide_1"
-            app:layout_constraintBottom_toBottomOf="@id/button_guide_8" />
+            app:layout_constraintBottom_toBottomOf="@id/button_guide_8">
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:src="@drawable/recommend_menu"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#F7FFFFFF"
+                android:text="Thực đơn"
+                android:textColor="#0293A5"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                app:backgroundTint="@null"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/water_demand_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:background="@drawable/custom_button"
+            app:backgroundTint="@null"
+            app:layout_constraintTop_toTopOf="@id/button_guide_7"
+            app:layout_constraintEnd_toEndOf="@id/button_guide_11"
+            app:layout_constraintStart_toStartOf="@id/button_guide_12"
+            app:layout_constraintBottom_toBottomOf="@id/button_guide_8" >
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:src="@drawable/water_demand"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#F7FFFFFF"
+                android:text="Nhu cầu nước"
+                android:textColor="#0293A5"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                app:backgroundTint="@null"/>
+
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/button_guide_8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.83"/>
+            app:layout_constraintGuide_percent="0.96"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/button_guide_9"
@@ -483,21 +610,37 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.88"/>
 
-        <Button
+        <LinearLayout
             android:id="@+id/temp_menu_button"
-            android:layout_width="323dp"
-            android:layout_height="58dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
             android:background="@drawable/custom_button"
-            app:layout_constraintDimensionRatio="1:1"
-            android:text="Thực đơn mẫu"
-            android:textColor="#0293A5"
-            android:textSize="20dp"
-            android:textStyle="bold"
             app:backgroundTint="@null"
-            app:layout_constraintBottom_toBottomOf="@id/button_guide_10"
-            app:layout_constraintEnd_toEndOf="@id/button_guide_2"
-            app:layout_constraintStart_toStartOf="@id/button_guide_1"
-            app:layout_constraintTop_toTopOf="@id/button_guide_9" />
+            app:layout_constraintBottom_toBottomOf="@id/button_guide_6"
+            app:layout_constraintEnd_toEndOf="@id/button_guide_11"
+            app:layout_constraintStart_toStartOf="@id/button_guide_12"
+            app:layout_constraintTop_toTopOf="@id/button_guide_5">
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:src="@drawable/template_menu"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#F7FFFFFF"
+                android:text="Thực đơn mẫu"
+                android:textColor="#0293A5"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                app:backgroundTint="@null"/>
+
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/button_guide_10"
@@ -507,32 +650,21 @@
             app:layout_constraintGuide_percent="0.95"/>
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/button_guide_2"
+            android:id="@+id/button_guide_11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.91"/>
+            app:layout_constraintGuide_percent="0.95"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--    <androidx.drawerlayout.widget.DrawerLayout-->
-<!--        android:id="@+id/drawer_layout"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
-
-        <com.google.android.material.navigation.NavigationView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/nav_view"
-            app:headerLayout="@layout/nav_header"
-            app:menu="@menu/menu"
-            android:layout_gravity="start"/>
-
-<!--    </androidx.drawerlayout.widget.DrawerLayout>-->
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/nav_view"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/menu"
+        android:layout_gravity="start"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
