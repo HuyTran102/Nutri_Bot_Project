@@ -35,6 +35,11 @@
             android:title="Q&amp;A"/>
 
         <item
+            android:id="@+id/contact_with_nutritionist"
+            android:icon="@drawable/contact_with_nutritionist"
+            android:title="Trò chuyện với chuyên gia"/>
+
+        <item
             android:id="@+id/contact_support_team"
             android:icon="@drawable/contact_support_team"
             android:title="Liên hệ"/>
