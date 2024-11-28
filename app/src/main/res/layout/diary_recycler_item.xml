@@ -55,11 +55,9 @@
                     android:minWidth="0dp"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:background="@drawable/button_background_red"
+                    android:background="@drawable/exit"
                     app:backgroundTint="@null"
-                    android:layout_marginStart="10dp"
-                    android:text="x"
-                    android:textSize="25dp"/>
+                    android:layout_marginStart="10dp"/>
 
 
                 <Button
@@ -71,12 +69,9 @@
                     android:minWidth="0dp"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:background="@drawable/button_background_green"
+                    android:background="@drawable/info"
                     app:backgroundTint="@null"
-                    android:layout_marginStart="10dp"
-                    android:text=">"
-                    android:textAlignment="center"
-                    android:textSize="25dp"/>
+                    android:layout_marginStart="10dp"/>
 
             </LinearLayout>
         </LinearLayout>
