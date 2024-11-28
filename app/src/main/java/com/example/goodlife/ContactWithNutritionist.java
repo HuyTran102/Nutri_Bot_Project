@@ -1,13 +1,21 @@
 package com.example.goodlife;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class ContactWithNutritionist extends AppCompatActivity {
+    private static final int REQUEST_PHONE_CALL = 1;
+    private ImageView phoneButton, textButton, emailButton;
     private Button backButton;
 
     @Override
@@ -15,7 +23,42 @@ public class ContactWithNutritionist extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_with_nutritionist);
 
+        phoneButton = findViewById(R.id.contact_phone);
+        textButton = findViewById(R.id.contact_text);
+        emailButton = findViewById(R.id.contact_email);
         backButton = findViewById(R.id.back_button);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE},REQUEST_PHONE_CALL);
+        }
+
+        phoneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:" + "0989631715"));
+                startActivity(intent);
+            }
+        });
+        
+        textButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.fromParts("sms", "0989631715", null));
+                startActivity(intent);
+            }
+        });
+        
+        emailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("message/rfc822");
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"vuthiquynhchi72@gmail.com"});
+                startActivity(intent);
+            }
+        });
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
