@@ -7,7 +7,6 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
@@ -20,6 +19,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GoodLife"
         tools:targetApi="31">
+        <activity
+            android:name=".RecommendMenu"
+            android:exported="false" />
+        <activity
+            android:name=".WaterDemand"
+            android:exported="false" />
         <activity
             android:name=".ContactWithNutritionist"
             android:exported="true" />

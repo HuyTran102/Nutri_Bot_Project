@@ -52,7 +52,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class HomePage extends AppCompatActivity {
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private Button drawerMenuButton;
-    private LinearLayout nutritionalStatusButton, physicalButton, dietaryButton, tempMenuButton;
+    private LinearLayout nutritionalStatusButton, physicalButton, dietaryButton, tempMenuButton, recommendMenuButton, waterDemandButton;
     private ProgressBar weightProgressBar, heightProgressBar, kcaloProgressBar;
     private TextView weightProgressText, heightProgressText, kcaloProgressText, weightView, heightView, kcaloView;
     private double actualWeight, actualHeight, usedEnergy, addEnergy, actualEnergy, recommendWeight, recommendHeight, recommendEnergy, statusWeight, statusHeight, statusEnergy;
@@ -72,6 +72,8 @@ public class HomePage extends AppCompatActivity {
         physicalButton = findViewById(R.id.physical_button);
         dietaryButton = findViewById(R.id.dietary_button);
         tempMenuButton = findViewById(R.id.temp_menu_button);
+        recommendMenuButton = findViewById(R.id.recommend_menu_button);
+        waterDemandButton = findViewById(R.id.water_demand_button);
         weightView = findViewById(R.id.weight_view);
         heightView = findViewById(R.id.height_view);
         kcaloView = findViewById(R.id.kcalo_view);
@@ -204,6 +206,24 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomePage.this, TemplateMenuView.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        recommendMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomePage.this, RecommendMenu.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        waterDemandButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomePage.this, WaterDemand.class);
                 startActivity(intent);
                 finish();
             }

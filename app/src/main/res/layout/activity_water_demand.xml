@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TrackingDiagram"
+    tools:context=".WaterDemand"
     android:background="#F7FFFFFF"
     android:focusableInTouchMode="true"
     android:layout_gravity="center"
@@ -12,7 +12,7 @@
 
     <ImageView
         android:layout_width="592dp"
-        android:layout_height="389dp"
+        android:layout_height="360dp"
         android:background="@drawable/wave"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,19 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
-
-
-    <!--    <RelativeLayout-->
-<!--        xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
-
-<!--        <com.github.mikephil.charting.charts.LineChart-->
-<!--            android:id="@+id/lineChart"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent" />-->
-
-<!--    </RelativeLayout>-->
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/back_guide_1"
