@@ -383,6 +383,8 @@ public class HomePage extends AppCompatActivity {
                             }
                         }
 
+                        recommendEnergy = recommendWeight * 24 * 1.5;
+
                         // Toast.makeText(this, " " + recommendWeight + " ", Toast.LENGTH_SHORT).show();
 
                         // Task 3: Xử lý kết quả của Activity task
@@ -401,11 +403,11 @@ public class HomePage extends AppCompatActivity {
                             }
                             usedEnergy = total_sum;
 
-                            if (usedEnergy == 0) {
-                                recommendEnergy = 0;
-                            } else {
+//                            if (usedEnergy == 0) {
+//                                recommendEnergy = 0;
+//                            } else {
                                 recommendEnergy = recommendWeight * 24 * 1.5 + usedEnergy;
-                            }
+//                            }
                         }
 
                         // Task 4: Xử lý kết quả của Diary task
