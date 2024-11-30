@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -60,6 +61,7 @@ public class Notification extends AppCompatActivity {
                                 NotificationData item = new NotificationData(document.getString("name")
                                         , document.getString("information"), document.getString("time"));
                                 list_items.add(item);
+                                Toast.makeText(Notification.this, "" + document.getString("name") + " " + document.getString("information") + " " + document.getString("time") + "", Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             Log.w("Firestore", "Error getting documents", task.getException());

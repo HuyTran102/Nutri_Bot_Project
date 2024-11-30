@@ -7,9 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class NotificationHolder extends RecyclerView.ViewHolder {
-    public TextView name, information, time;
+    TextView name, information, time;
 
-    public NotificationHolder(@NonNull View itemView, int viewType) {
+    public NotificationHolder(@NonNull View itemView) {
         super(itemView);
 
         name = itemView.findViewById(R.id.name);
