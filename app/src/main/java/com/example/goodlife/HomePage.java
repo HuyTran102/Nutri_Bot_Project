@@ -167,20 +167,17 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        Calendar cal = Calendar.getInstance();
-        int hour = cal.get(Calendar.HOUR);
-        int minute = cal.get(Calendar.MINUTE);
-        int second = cal.get(Calendar.SECOND);
-
         SharedPreferences waterVal = getSharedPreferences("Water", Context.MODE_PRIVATE);
 
         int value = waterVal.getInt("Val", 0);
 
-        scheduleNotification(6, 0, 1, value);
-        scheduleNotification(9, 0, 2, value);
-        scheduleNotification(11, 0, 3, value);
-        scheduleNotification(15, 19, 4, value);
-        scheduleNotification(15, 20, 5, value);
+        if(value != 0) {
+            scheduleNotification(6, 0, 1, value);
+            scheduleNotification(9, 0, 20, value);
+            scheduleNotification(11, 0, 3, value);
+            scheduleNotification(16, 40, 40, value);
+            scheduleNotification(16, 41, 5, value);
+        }
 
         SharedPreferences sp = getSharedPreferences("Data", Context.MODE_PRIVATE);
 
@@ -261,7 +258,7 @@ public class HomePage extends AppCompatActivity {
         intent.putExtra("EXTRA_VALUE", value);
         intent.putExtra("EXTRA_ID", id);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+                this, id, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         if (alarmManager != null) {
