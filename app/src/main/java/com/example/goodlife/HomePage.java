@@ -173,10 +173,10 @@ public class HomePage extends AppCompatActivity {
 
         if(value != 0) {
             scheduleNotification(6, 0, 1, value);
-            scheduleNotification(9, 0, 20, value);
+            scheduleNotification(9, 0, 2, value);
             scheduleNotification(11, 0, 3, value);
-            scheduleNotification(16, 40, 40, value);
-            scheduleNotification(16, 41, 5, value);
+            scheduleNotification(14, 0, 4, value);
+            scheduleNotification(18, 0, 5, value);
         }
 
         SharedPreferences sp = getSharedPreferences("Data", Context.MODE_PRIVATE);
