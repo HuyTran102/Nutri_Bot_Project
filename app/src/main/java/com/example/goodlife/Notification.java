@@ -30,6 +30,7 @@ import java.util.List;
 public class Notification extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FirebaseFirestore firebaseFirestore;
+    private List<NotificationData> list_items = new ArrayList<>();
     private String name;
     private Button backButton;
 
@@ -47,27 +48,8 @@ public class Notification extends AppCompatActivity {
 
         name = sp.getString("Name",null);
 
-        List<NotificationData> list_items = new ArrayList<>();
-        firebaseFirestore.collection("GoodLife")
-                .document(name)
-                .collection("Thông Báo")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()) {
-                            // Loop through all documents
-                            for(QueryDocumentSnapshot document : task.getResult()) {
-                                NotificationData item = new NotificationData(document.getString("name")
-                                        , document.getString("information"), document.getString("time"));
-                                list_items.add(item);
-                                Toast.makeText(Notification.this, "" + document.getString("name") + " " + document.getString("information") + " " + document.getString("time") + "", Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Log.w("Firestore", "Error getting documents", task.getException());
-                        }
-                    }
-                });
+        loadData();
+
         NotificationAdapter viewAdapter = new NotificationAdapter(this, list_items);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(viewAdapter);
@@ -80,5 +62,28 @@ public class Notification extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void loadData() {
+        firebaseFirestore.collection("GoodLife")
+                .document(name)
+                .collection("Thông Báo")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            // Loop through all documents
+                            for(QueryDocumentSnapshot document : task.getResult()) {
+                                NotificationData new_item = new NotificationData(document.getString("name")
+                                        , document.getString("information"), document.getString("time"));
+                                list_items.add(new_item);
+                                Toast.makeText(Notification.this, "" + new_item.name + " " + new_item.information + " " + new_item.time + "", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Log.w("Firestore", "Error getting documents", task.getException());
+                        }
+                    }
+                });
     }
 }

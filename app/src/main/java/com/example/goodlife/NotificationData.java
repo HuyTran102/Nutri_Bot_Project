@@ -3,9 +3,6 @@ package com.example.goodlife;
 public class NotificationData {
     public String name, information, time;
 
-    public NotificationData() {
-    }
-
     public NotificationData(String name, String information, String time) {
         this.name = name;
         this.information = information;
