@@ -77,6 +77,7 @@
         app:layout_constraintVertical_bias="0.604">
 
         <TextView
+            android:id="@+id/menu_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Thực đơn 1"
@@ -84,6 +85,7 @@
             android:textSize="17sp" />
 
         <TextView
+            android:id="@+id/menu_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -92,6 +94,7 @@
             android:textSize="17sp" />
 
         <TextView
+            android:id="@+id/menu_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
