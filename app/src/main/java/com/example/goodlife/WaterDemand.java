@@ -83,7 +83,8 @@ public class WaterDemand extends AppCompatActivity {
                                 editor.putInt("Val", addWater);
                                 editor.apply();
 
-                                Toast.makeText(this, " " + recommendWaterAmount + " " + recommendWeight + " ", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(this, " " + recommendWaterAmount + " " + recommendWeight + " ", Toast.LENGTH_SHORT).show();
+                                test();
                             } catch (Exception e) {
                                 recommendWeight = 0.0;
                             }
@@ -94,7 +95,6 @@ public class WaterDemand extends AppCompatActivity {
         });
 
 //        Toast.makeText(this, " " + recommendWaterAmount + " " + recommendWeight + " ", Toast.LENGTH_SHORT).show();
-
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,5 +103,8 @@ public class WaterDemand extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    void test(){
+        Toast.makeText(this, " " + recommendWaterAmount + " " + recommendWeight + " ", Toast.LENGTH_SHORT).show();
     }
 }

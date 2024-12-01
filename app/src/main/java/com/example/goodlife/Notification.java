@@ -50,9 +50,7 @@ public class Notification extends AppCompatActivity {
 
         loadData();
 
-        NotificationAdapter viewAdapter = new NotificationAdapter(this, list_items);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(viewAdapter);
+
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +78,9 @@ public class Notification extends AppCompatActivity {
                                 list_items.add(new_item);
                                 Toast.makeText(Notification.this, "" + new_item.name + " " + new_item.information + " " + new_item.time + "", Toast.LENGTH_SHORT).show();
                             }
+                            NotificationAdapter viewAdapter = new NotificationAdapter(Notification.this, list_items);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(Notification.this));
+                            recyclerView.setAdapter(viewAdapter);
                         } else {
                             Log.w("Firestore", "Error getting documents", task.getException());
                         }
