@@ -11,9 +11,8 @@
     android:keepScreenOn="true">
 
     <ImageView
-        android:id="@+id/imageView4"
         android:layout_width="592dp"
-        android:layout_height="389dp"
+        android:layout_height="360dp"
         android:background="@drawable/wave"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.22"/>
+        app:layout_constraintGuide_percent="0.1"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/name_guide_3"
@@ -39,70 +38,31 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Thực đơn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Thông báo"
         android:textColor="#FFFFFF"
         android:textSize="27sp"
         android:textStyle="bold"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@id/name_guide_4"
         app:layout_constraintEnd_toEndOf="@id/name_guide_2"
         app:layout_constraintStart_toStartOf="@id/name_guide_1"
-        app:layout_constraintTop_toTopOf="@id/name_guide_3"
-        app:layout_constraintVertical_bias="0.138" />
+        app:layout_constraintTop_toTopOf="@id/name_guide_3"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/name_guide_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.78"/>
+        app:layout_constraintGuide_percent="0.9"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/name_guide_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.12"/>
-
-    <LinearLayout
-        android:layout_width="354dp"
-        android:layout_height="475dp"
-        android:background="#F7FFFFFF"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.604">
-
-        <TextView
-            android:id="@+id/menu_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Thực đơn 1"
-            android:textColor="@color/black"
-            android:textSize="17sp" />
-
-        <TextView
-            android:id="@+id/menu_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Thực đơn 2"
-            android:textColor="@color/black"
-            android:textSize="17sp" />
-
-        <TextView
-            android:id="@+id/menu_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Thực đơn 3"
-            android:textColor="@color/black"
-            android:textSize="17sp" />
-
-    </LinearLayout>
+        app:layout_constraintGuide_begin="104dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/back_guide_1"
@@ -143,6 +103,5 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="1"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
