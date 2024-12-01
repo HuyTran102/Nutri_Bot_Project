@@ -1,12 +1,13 @@
 package com.example.goodlife;
 
 public class NotificationData {
-    public String name, information, time;
+    public String name, information, time, date;
 
-    public NotificationData(String name, String information, String time) {
+    public NotificationData(String name, String information, String time, String date) {
         this.name = name;
         this.information = information;
         this.time = time;
+        this.date = date;
     }
 
     public String getName() {
@@ -31,5 +32,13 @@ public class NotificationData {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

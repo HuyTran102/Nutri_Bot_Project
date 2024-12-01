@@ -23,6 +23,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -50,8 +51,6 @@ public class Notification extends AppCompatActivity {
 
         loadData();
 
-
-
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +62,12 @@ public class Notification extends AppCompatActivity {
     }
 
     public void loadData() {
+        // Get the current date
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH) + 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
         firebaseFirestore.collection("GoodLife")
                 .document(name)
                 .collection("Thông Báo")
@@ -74,9 +79,12 @@ public class Notification extends AppCompatActivity {
                             // Loop through all documents
                             for(QueryDocumentSnapshot document : task.getResult()) {
                                 NotificationData new_item = new NotificationData(document.getString("name")
-                                        , document.getString("information"), document.getString("time"));
-                                list_items.add(new_item);
-                                Toast.makeText(Notification.this, "" + new_item.name + " " + new_item.information + " " + new_item.time + "", Toast.LENGTH_SHORT).show();
+                                        , document.getString("information"), document.getString("time"), document.getString("date"));
+                                String curr_date = month + " " + day + " " + year;
+                                if(document.getString("date").equals(curr_date)) {
+                                    list_items.add(new_item);
+                                }
+//                                Toast.makeText(Notification.this, "" + new_item.name + " " + new_item.information + " " + new_item.time + "", Toast.LENGTH_SHORT).show();
                             }
                             NotificationAdapter viewAdapter = new NotificationAdapter(Notification.this, list_items);
                             recyclerView.setLayoutManager(new LinearLayoutManager(Notification.this));
