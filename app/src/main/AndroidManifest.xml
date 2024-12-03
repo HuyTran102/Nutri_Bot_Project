@@ -24,6 +24,33 @@
         android:theme="@style/Theme.GoodLife"
         tools:targetApi="31">
         <activity
+            android:name=".OverWeight"
+            android:exported="false" />
+        <activity
+            android:name=".NutritionPubertyPeriod"
+            android:exported="false" />
+        <activity
+            android:name=".Malnutrition"
+            android:exported="false" />
+        <activity
+            android:name=".NutritionMentalHealth"
+            android:exported="false" />
+        <activity
+            android:name=".nutritionMentalHealth"
+            android:exported="false" />
+        <activity
+            android:name=".NutritionPhysicalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ExamSeasonNutrition"
+            android:exported="false" />
+        <activity
+            android:name=".NutritionSchoolHealth"
+            android:exported="false" />
+        <activity
+            android:name=".BasicNutrition"
+            android:exported="false" />
+        <activity
             android:name=".RecommendMenuNum3"
             android:exported="false" />
         <activity
