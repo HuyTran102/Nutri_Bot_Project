@@ -135,27 +135,27 @@ public class RecommendMenuNum3 extends AppCompatActivity {
 
                             double sang = recommendEnergy * 30 / 100, trua = recommendEnergy * 40 /100, toi = recommendEnergy * 30 / 100;
 
-                            mien.setText(String.format("%.0f", sang * 36 / 100));
-                            gioSong.setText(String.format("%.0f", sang * 10 / 100));
-                            cuaBien.setText(String.format("%.0f", sang * 23 / 100));
-                            rauSong.setText(String.format("%.0f", sang * 1 / 100));
-                            caramen.setText(String.format("%.0f", sang * 20 / 100));
-                            le.setText(String.format("%.0f", sang * 10 / 100));
+                            mien.setText(String.format("%.0f", (sang * 36 / 100) * 100 / 332));
+                            gioSong.setText(String.format("%.0f", (sang * 10 / 100) * 100 / 136));
+                            cuaBien.setText(String.format("%.0f", (sang * 23 / 100) * 100 / 103));
+                            rauSong.setText(String.format("%.0f", (sang * 1 / 100) * 100 / 18));
+                            caramen.setText(String.format("%.0f", (sang * 20 / 100) * 100 / 109));
+                            le.setText(String.format("%.0f", (sang * 10 / 100) * 100 / 45));
 
-                            gaoTe1.setText(String.format("%.0f", trua * 48 / 100));
-                            cotLet.setText(String.format("%.0f", trua * 20 / 100));
-                            ghe.setText(String.format("%.0f", trua * 10 / 100));
-                            trung.setText(String.format("%.0f", trua * 6 / 100));
-                            bongCaiXanh.setText(String.format("%.0f", trua * 3 / 100));
-                            dauAn1.setText(String.format("%.0f", trua * 3 / 100));
-                            mangCau.setText(String.format("%.0f", trua * 10 / 100));
+                            gaoTe1.setText(String.format("%.0f", (trua * 48 / 100) * 100 / 347));
+                            cotLet.setText(String.format("%.0f", (trua * 20 / 100) * 100 / 187));
+                            ghe.setText(String.format("%.0f", (trua * 10 / 100) * 100 / 54));
+                            trung.setText(String.format("%.0f", (trua * 6 / 100) * 100 / 166));
+                            bongCaiXanh.setText(String.format("%.0f", (trua * 3 / 100) * 100 / 26));
+                            dauAn1.setText(String.format("%.0f", (trua * 3 / 100) * 100 / 900));
+                            mangCau.setText(String.format("%.0f", (trua * 10 / 100) * 100 / 53));
 
-                            gaoTe2.setText(String.format("%.0f", toi * 48 / 100));
-                            caLoc.setText(String.format("%.0f", toi * 26 / 100));
-                            thitNac.setText(String.format("%.0f", toi * 15 / 100));
-                            bapCai.setText(String.format("%.0f", toi * 3 / 100));
-                            dauAn2.setText(String.format("%.0f", toi * 3 / 100));
-                            duDu.setText(String.format("%.0f", toi * 5 / 100));
+                            gaoTe2.setText(String.format("%.0f", (toi * 48 / 100) * 100 / 347));
+                            caLoc.setText(String.format("%.0f", (toi * 26 / 100) * 100 / 406));
+                            thitNac.setText(String.format("%.0f", (toi * 15 / 100) * 100 / 139));
+                            bapCai.setText(String.format("%.0f", (toi * 3 / 100) * 100 / 29));
+                            dauAn2.setText(String.format("%.0f", (toi * 3 / 100) * 100 / 900));
+                            duDu.setText(String.format("%.0f", (toi * 5 / 100) * 100 / 36));
 
                             tongSang.setText(String.format("%.0f", sang));
 
