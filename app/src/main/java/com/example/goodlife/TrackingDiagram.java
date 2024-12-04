@@ -57,28 +57,6 @@ public class TrackingDiagram extends AppCompatActivity {
 
         name = sp.getString("Name",null);
 
-        entries.add(new Entry(0, 2));
-        entries.add(new Entry(1, 4));
-        entries.add(new Entry(2, 6));
-        entries.add(new Entry(3, 3));
-        entries.add(new Entry(4, 10));
-        entries.add(new Entry(5, 2));
-        entries.add(new Entry(6, 1));
-        entries.add(new Entry(7, 6));
-        entries.add(new Entry(8, 5));
-        entries.add(new Entry(9, 13));
-
-        LineDataSet dataSet = new LineDataSet(entries, "Thống kê năng lượng");
-        dataSet.setColor(getResources().getColor(R.color.red_pink));
-        dataSet.setLineWidth(4f);
-        dataSet.setValueTextColor(getResources().getColor(R.color.dark_green));
-        dataSet.setValueTextSize(15f);
-
-        LineData lineData = new LineData(dataSet);
-        lineChart.setData(lineData);
-        lineChart.getDescription().setEnabled(false);
-        lineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-
         currentDate = LocalDate.now();
 
         weekFields = WeekFields.of(Locale.getDefault());
@@ -87,9 +65,7 @@ public class TrackingDiagram extends AppCompatActivity {
 
         endOfWeek = currentDate.with(weekFields.dayOfWeek(), 7);
 
-        showListData();
-
-//        Toast.makeText(this, startOfWeek + " " + endOfWeek, Toast.LENGTH_SHORT).show();
+        LoadData();
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +77,7 @@ public class TrackingDiagram extends AppCompatActivity {
         });
     }
 
-    public void showListData() {
+    public void LoadData() {
         firebaseFirestore.collection("GoodLife")
                 .document(name)
                 .collection("Nhật kí")
@@ -114,14 +90,29 @@ public class TrackingDiagram extends AppCompatActivity {
                             for (int i = startOfWeek.getDayOfMonth(); i <= endOfWeek.getDayOfMonth(); i++) {
                                 int sumKcal = 0;
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                    int day = Integer.parseInt(document.getString("day")), month = Integer.parseInt(document.getString("month")), year = Integer.parseInt(document.getString("year"));
+                                    int day = Integer.parseInt(document.getString("day"))
+                                            , month = Integer.parseInt(document.getString("month"))
+                                            , year = Integer.parseInt(document.getString("year"));
                                     if ((i == day && day == i)
                                             && (startOfWeek.getMonthValue() == month && endOfWeek.getMonthValue() == month)
-                                            && (startOfWeek.getYear() == month && endOfWeek.getYear() == month)) {
+                                            && (startOfWeek.getYear() == year && endOfWeek.getYear() == year)) {
                                         sumKcal += Integer.parseInt(document.getString("kcal"));
                                     }
                                 }
-                                if(sumKcal != 0) Toast.makeText(TrackingDiagram.this, "" + sumKcal, Toast.LENGTH_SHORT).show();
+                                entries.add(new Entry(i, sumKcal));
+
+                                LineDataSet dataSet = new LineDataSet(entries, "Thống kê năng lượng");
+                                dataSet.setColor(getResources().getColor(R.color.red_pink));
+                                dataSet.setLineWidth(4f);
+                                dataSet.setValueTextColor(getResources().getColor(R.color.dark_green));
+                                dataSet.setValueTextSize(15f);
+
+                                LineData lineData = new LineData(dataSet);
+                                lineChart.setData(lineData);
+                                lineChart.getDescription().setEnabled(false);
+                                lineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+
+//                                if(sumKcal != 0) Toast.makeText(TrackingDiagram.this, "" + sumKcal, Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             Log.w("Firestore", "Error getting documents", task.getException());
