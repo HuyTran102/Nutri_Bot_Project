@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -110,6 +111,7 @@ public class TrackingDiagram extends AppCompatActivity {
                                 LineData lineData = new LineData(dataSet);
                                 lineChart.setData(lineData);
                                 lineChart.getDescription().setEnabled(false);
+                                lineChart.getDescription().setTypeface(Typeface.DEFAULT_BOLD);
                                 lineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
 
 //                                if(sumKcal != 0) Toast.makeText(TrackingDiagram.this, "" + sumKcal, Toast.LENGTH_SHORT).show();
