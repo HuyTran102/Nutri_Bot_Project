@@ -33,7 +33,7 @@ import java.util.Calendar;
 public class WaterDemand extends AppCompatActivity {
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private static final String CHANNEL_ID = "example_channel";
-    private TextView dataView1, dataView2, dataView3, dataView4, dataView5;
+    private TextView dataView1, dataView2, dataView3, dataView4, dataView5, sumDataView;
     private int addWater;
     private String name;
     private double recommendWeight, recommendWaterAmount;
@@ -49,6 +49,7 @@ public class WaterDemand extends AppCompatActivity {
         dataView3 = findViewById(R.id.num3);
         dataView4 = findViewById(R.id.num4);
         dataView5 = findViewById(R.id.num5);
+        sumDataView = findViewById(R.id.sum_num);
         backButton = findViewById(R.id.back_button);
 
         SharedPreferences sp = getSharedPreferences("Data", Context.MODE_PRIVATE);
@@ -70,6 +71,8 @@ public class WaterDemand extends AppCompatActivity {
 
                                 recommendWaterAmount = 40 * recommendWeight;
 
+                                sumDataView.setText(recommendWaterAmount + " ml");
+
                                 addWater = (int) (recommendWaterAmount / 5);
 
                                 dataView1.setText(addWater + " ml");
@@ -83,8 +86,6 @@ public class WaterDemand extends AppCompatActivity {
                                 editor.putInt("Val", addWater);
                                 editor.apply();
 
-                                //Toast.makeText(this, " " + recommendWaterAmount + " " + recommendWeight + " ", Toast.LENGTH_SHORT).show();
-                                test();
                             } catch (Exception e) {
                                 recommendWeight = 0.0;
                             }
@@ -103,8 +104,5 @@ public class WaterDemand extends AppCompatActivity {
                 finish();
             }
         });
-    }
-    void test(){
-        Toast.makeText(this, " " + recommendWaterAmount + " " + recommendWeight + " ", Toast.LENGTH_SHORT).show();
     }
 }
