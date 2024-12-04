@@ -102,9 +102,9 @@ public class TrackingDiagram extends AppCompatActivity {
                                 }
                                 entries.add(new Entry(i, sumKcal));
 
-                                LineDataSet dataSet = new LineDataSet(entries, "Thống kê năng lượng");
+                                LineDataSet dataSet = new LineDataSet(entries, "Năng lượng");
                                 dataSet.setColor(getResources().getColor(R.color.red_pink));
-                                dataSet.setLineWidth(4f);
+                                dataSet.setLineWidth(3f);
                                 dataSet.setValueTextColor(getResources().getColor(R.color.dark_green));
                                 dataSet.setValueTextSize(15f);
 
