@@ -88,33 +88,33 @@ public class TrackingDiagram extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             // Loop through all documents
-                            for (int i = startOfWeek.getDayOfMonth(); i <= endOfWeek.getDayOfMonth(); i++) {
-                                int sumKcal = 0;
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    int day = Integer.parseInt(document.getString("day"))
-                                            , month = Integer.parseInt(document.getString("month"))
-                                            , year = Integer.parseInt(document.getString("year"));
-                                    if ((i == day && day == i)
-                                            && (startOfWeek.getMonthValue() == month && endOfWeek.getMonthValue() == month)
-                                            && (startOfWeek.getYear() == year && endOfWeek.getYear() == year)) {
-                                        sumKcal += Integer.parseInt(document.getString("kcal"));
+                            if (!task.getResult().isEmpty()) {
+                                for (int i = startOfWeek.getDayOfMonth(); i <= endOfWeek.getDayOfMonth(); i++) {
+                                    int sumKcal = 0;
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        int day = Integer.parseInt(document.getString("day")), month = Integer.parseInt(document.getString("month")), year = Integer.parseInt(document.getString("year"));
+                                        if ((i == day && day == i)
+                                                && (startOfWeek.getMonthValue() == month && endOfWeek.getMonthValue() == month)
+                                                && (startOfWeek.getYear() == year && endOfWeek.getYear() == year)) {
+                                            sumKcal += Integer.parseInt(document.getString("kcal"));
+                                        }
                                     }
-                                }
-                                entries.add(new Entry(i, sumKcal));
+                                    entries.add(new Entry(i, sumKcal));
 
-                                LineDataSet dataSet = new LineDataSet(entries, "Năng lượng");
-                                dataSet.setColor(getResources().getColor(R.color.red_pink));
-                                dataSet.setLineWidth(3f);
-                                dataSet.setValueTextColor(getResources().getColor(R.color.dark_green));
-                                dataSet.setValueTextSize(15f);
+                                    LineDataSet dataSet = new LineDataSet(entries, "Năng lượng (Kcal)");
+                                    dataSet.setColor(getResources().getColor(R.color.red_pink));
+                                    dataSet.setLineWidth(3f);
+                                    dataSet.setValueTextColor(getResources().getColor(R.color.dark_green));
+                                    dataSet.setValueTextSize(15f);
 
-                                LineData lineData = new LineData(dataSet);
-                                lineChart.setData(lineData);
-                                lineChart.getDescription().setEnabled(false);
-                                lineChart.getDescription().setTypeface(Typeface.DEFAULT_BOLD);
-                                lineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+                                    LineData lineData = new LineData(dataSet);
+                                    lineChart.setData(lineData);
+                                    lineChart.getDescription().setEnabled(false);
+                                    lineChart.getDescription().setTypeface(Typeface.DEFAULT_BOLD);
+                                    lineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
 
 //                                if(sumKcal != 0) Toast.makeText(TrackingDiagram.this, "" + sumKcal, Toast.LENGTH_SHORT).show();
+                                }
                             }
                         } else {
                             Log.w("Firestore", "Error getting documents", task.getException());
