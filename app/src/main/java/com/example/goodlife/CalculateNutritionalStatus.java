@@ -292,16 +292,22 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
                     double positiveSD3 = (double) cell.getNumericCellValue();
 
                     if(bmi > positiveSD3) {
+                        bmiStatusView.setTextColor(getResources().getColor(R.color.large));
                         bmiStatusView.setText("  Béo phì !");
                     } else if(positiveSD2 <= bmi && bmi <= positiveSD3) {
+                        bmiStatusView.setTextColor(getResources().getColor(R.color.large));
                         bmiStatusView.setText("  Béo phì !");
                     } else if(positiveSD1 <= bmi && bmi <= positiveSD2) {
+                        bmiStatusView.setTextColor(getResources().getColor(R.color.large));
                         bmiStatusView.setText("  Thừa cân !");
                     } else if(negativeSD2 <= bmi && bmi <= positiveSD1) {
+                        bmiStatusView.setTextColor(getResources().getColor(R.color.normal));
                         bmiStatusView.setText("  Bình thường !");
                     } else if(negativeSD3 <= bmi && bmi <= negativeSD2) {
+                        bmiStatusView.setTextColor(getResources().getColor(R.color.small));
                         bmiStatusView.setText("  Gầy còm vừa !");
                     } else if(bmi < negativeSD3){
+                        bmiStatusView.setTextColor(getResources().getColor(R.color.small));
                         bmiStatusView.setText("  Gầy còm nặng !");
                     }
 
@@ -309,7 +315,7 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
 
                     String result = "";
 
-                    if(bmi < positiveSD3 && bmi >= positiveSD1) {
+                    if(bmi < positiveSD3 && bmi > positiveSD1) {
                         result += "Thừa ";
 
                         double recommendWeight = positiveSD1 * Double.parseDouble(height) * Double.parseDouble(height);
@@ -319,12 +325,13 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
                         double subtrac = Double.parseDouble(weight) - recommendWeight;
 
                         result += decimalFormat.format(subtrac) + " (kg)";
+                        weightView.setTextColor(getResources().getColor(R.color.large));
                         weightView.setText(result);
                     }  else if(negativeSD2 <= bmi && bmi <= positiveSD1) {
                         result += "Bình thường 0.0 (kg)";
 
                         userRecommendWeight = Double.parseDouble(this.weight);
-
+                        weightView.setTextColor(getResources().getColor(R.color.normal));
                         weightView.setText(result);
                     } else {
                         result += "Thiếu ";
@@ -336,6 +343,7 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
                         double add = Math.abs(Double.parseDouble(weight) - recommendWeight);
 
                         result += decimalFormat.format(add) + " (kg)";
+                        weightView.setTextColor(getResources().getColor(R.color.small));
                         weightView.setText(result);
                     }
                 }
@@ -392,16 +400,22 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
                     double positiveSD3 = (double) cell.getNumericCellValue();
 
                     if(height > positiveSD3) {
+                        hfaStatusView.setTextColor(getResources().getColor(R.color.large));
                         hfaStatusView.setText("  Béo phì !");
                     } else if(positiveSD2 <= height && height <= positiveSD3) {
+                        hfaStatusView.setTextColor(getResources().getColor(R.color.normal));
                         hfaStatusView.setText("  Bình thường !");
                     } else if(positiveSD1 <= height && height <= positiveSD2) {
+                        hfaStatusView.setTextColor(getResources().getColor(R.color.normal));
                         hfaStatusView.setText("  Bình thường !");
                     } else if(negativeSD2 <= height && height <= positiveSD1) {
+                        hfaStatusView.setTextColor(getResources().getColor(R.color.normal));
                         hfaStatusView.setText("  Bình thường !");
                     } else if(negativeSD3 <= height && height <= negativeSD2) {
+                        hfaStatusView.setTextColor(getResources().getColor(R.color.small));
                         hfaStatusView.setText("  Thấp còi vừa !");
                     } else if(height < negativeSD3){
+                        hfaStatusView.setTextColor(getResources().getColor(R.color.small));
                         hfaStatusView.setText("  Thấp còi nặng !");
                     }
 
@@ -417,12 +431,13 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
                         userRecommendHeight = positiveSD1;
 
                         result += decimalFormat.format(subtrac) + " (cm)";
+                        heightView.setTextColor(getResources().getColor(R.color.large));
                         heightView.setText(result);
                     }  else if(negativeSD2 <= height && height <= positiveSD3) {
                         result += "Bình thường 0.0 (cm)";
 
                         userRecommendHeight = height;
-
+                        heightView.setTextColor(getResources().getColor(R.color.normal));
                         heightView.setText(result);
                     } else {
                         result += "Thiếu ";
@@ -432,6 +447,7 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
                         userRecommendHeight = negativeSD1;
 
                         result += decimalFormat.format(add) + " (cm)";
+                        heightView.setTextColor(getResources().getColor(R.color.small));
                         heightView.setText(result);
                     }
                 }
