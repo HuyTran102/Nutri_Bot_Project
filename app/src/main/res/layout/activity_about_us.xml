@@ -68,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1"/>
+        app:layout_constraintGuide_percent="0.05"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/text_guide_3"
@@ -78,85 +78,106 @@
         app:layout_constraintGuide_percent="0.35"/>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/text_guide_5"
+        android:id="@+id/img_guide_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.52" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.33"/>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/text_guide_7"
+        android:id="@+id/img_guide_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.72" />
+        app:layout_constraintGuide_percent="0.14"/>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/about_us_img"
+        app:layout_constraintBottom_toBottomOf="@id/img_guide_4"
+        app:layout_constraintEnd_toEndOf="@id/img_guide_2"
+        app:layout_constraintStart_toStartOf="@id/img_guide_1"
+        app:layout_constraintTop_toTopOf="@id/img_guide_3"
+        app:layout_constraintVertical_bias="0.168" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/img_guide_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.68"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/img_guide_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.27" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/custom_button"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/text_guide_4"
+        app:layout_constraintEnd_toEndOf="@id/text_guide_2"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="@id/text_guide_1"
+        app:layout_constraintTop_toTopOf="@id/text_guide_3"
+        app:layout_constraintVertical_bias="0.594">
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:justificationMode="inter_word"
             android:text="Phần mềm Quản lý dinh dưỡng cá nhân được thiết kế dành riêng cho học sinh trung học, giúp các em xây dựng thói quen ăn uống lành mạnh và khoa học."
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            app:layout_constraintBottom_toBottomOf="@id/text_guide_4"
-            app:layout_constraintEnd_toEndOf="@id/text_guide_2"
-            app:layout_constraintHorizontal_bias="0.457"
-            app:layout_constraintStart_toStartOf="@id/text_guide_1"
-            app:layout_constraintTop_toTopOf="@id/text_guide_3"/>
+            android:textStyle="bold" />
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:justificationMode="inter_word"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:text="Phần mềm có giao diện thân thiện và dễ sử dụng cung cấp các tính năng theo dõi dinh dưỡng hàng ngày, lên kế hoạch bữa ăn cân đối và phân tích sức khỏe dựa trên thông tin cá nhân."
             android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/text_guide_6"
-            app:layout_constraintEnd_toEndOf="@id/text_guide_2"
-            app:layout_constraintHorizontal_bias="0.457"
-            app:layout_constraintStart_toStartOf="@id/text_guide_1"
-            app:layout_constraintTop_toTopOf="@id/text_guide_5"/>
+            android:textStyle="bold" />
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:justificationMode="inter_word"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:text="Sứ mệnh của chúng tôi là đồng hành cùng học sinh trên hành trình nâng cao sức khỏe thể chất và tinh thần, hỗ trợ các em phát triển toàn diện để có thành tích học tập tốt nhất."
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            app:layout_constraintBottom_toBottomOf="@id/text_guide_8"
-            app:layout_constraintEnd_toEndOf="@id/text_guide_2"
-            app:layout_constraintHorizontal_bias="0.457"
-            app:layout_constraintStart_toStartOf="@id/text_guide_1"
-            app:layout_constraintTop_toTopOf="@id/text_guide_7" />
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/text_guide_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9"/>
+        app:layout_constraintGuide_percent="0.95"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/text_guide_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.55" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/text_guide_6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.72" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/text_guide_8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="1" />
+        app:layout_constraintGuide_percent="0.9" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/back_guide_1"
