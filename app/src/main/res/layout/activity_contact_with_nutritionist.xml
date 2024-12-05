@@ -188,6 +188,7 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:justificationMode="inter_word"
         android:text="Kinh nghiệm: Hơn 15 năm nghiên cứu chuyên sâu về Dinh dưỡng, và tham gia triển khai các chương trình dinh dưỡng học đường."
         android:textSize="22sp"
         android:textStyle="bold"
