@@ -78,8 +78,8 @@
         app:layout_constraintGuide_percent="0.33"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/custom_button"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@id/value_guide_4"
@@ -91,13 +91,15 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center">
 
             <Button
                 android:id="@+id/activity_level"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_gravity="center"
                 android:background="@color/white"
                 android:dropDownHeight="wrap_content"
                 android:text="Mức độ hoạt động"
@@ -108,9 +110,10 @@
 
             <Button
                 android:id="@+id/activities_of_level"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_gravity="center"
                 android:background="@color/white"
                 android:dropDownHeight="wrap_content"
                 android:text="Hoạt động"
@@ -119,30 +122,31 @@
                 android:textSize="18sp"
                 app:backgroundTint="@null" />
 
+            <Button
+                android:id="@+id/pick_time_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:onClick="openTimePicker"
+                android:text="Thời gian luyện tập"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:backgroundTint="@null" />
+
+            <Button
+                android:id="@+id/add_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/custom_button"
+                android:text="Lưu"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:backgroundTint="@null" />
+
         </LinearLayout>
-
-        <Button
-            android:id="@+id/pick_time_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:background="@color/white"
-            android:onClick="openTimePicker"
-            android:text="Thời gian luyện tập"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:backgroundTint="@null" />
-
-        <Button
-            android:id="@+id/add_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/custom_button"
-            android:text="Lưu"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:backgroundTint="@null" />
 
     </LinearLayout>
 
@@ -159,25 +163,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.555"/>
+        app:layout_constraintGuide_percent="0.65"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/view_guide_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.19"/>
+        app:layout_constraintGuide_percent="0.15"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/view_guide_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.64"/>
+        app:layout_constraintGuide_percent="0.68"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@id/view_guide_4"
         app:layout_constraintEnd_toEndOf="@id/view_guide_2"
@@ -188,7 +192,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:text="Tổng năng lượng đã tiêu thụ:"
             android:textColor="#FAED7D7D"
             android:textSize="20sp"
@@ -223,14 +227,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.81"/>
+        app:layout_constraintGuide_percent="0.85"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/view_guide_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.71"/>
+        app:layout_constraintGuide_percent="0.75"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/back_guide_1"
