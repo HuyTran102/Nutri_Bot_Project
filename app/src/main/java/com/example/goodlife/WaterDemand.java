@@ -27,6 +27,9 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
+import org.apache.poi.hpsf.Decimal;
+
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 
@@ -69,7 +72,12 @@ public class WaterDemand extends AppCompatActivity {
                             try {
                                 recommendWeight = Double.parseDouble(document.getString("userRecommendWeight"));
 
-                                recommendWaterAmount = 40 * recommendWeight;
+                                double tmpRecommendWaterAmount = (40 * recommendWeight) / 1000;
+
+                                DecimalFormat decimalFormat = new DecimalFormat("#.#");
+                                recommendWaterAmount = Math.floor(tmpRecommendWaterAmount * 10.0) / 10.0;
+
+                                recommendWaterAmount *= 1000;
 
                                 sumDataView.setText(recommendWaterAmount + " ml");
 
