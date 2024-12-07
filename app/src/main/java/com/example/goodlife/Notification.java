@@ -17,15 +17,19 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.events.Event;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class Notification extends AppCompatActivity {
@@ -84,6 +88,21 @@ public class Notification extends AppCompatActivity {
                                 if(document.getString("date").equals(curr_date)) {
                                     list_items.add(new_item);
                                 }
+
+                                SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+                                Collections.sort(list_items, new Comparator<NotificationData>() {
+                                    @Override
+                                    public int compare(NotificationData e1, NotificationData e2) {
+                                        try {
+                                            Date time1 = timeFormat.parse(e1.getTime());
+                                            Date time2 = timeFormat.parse(e2.getTime());
+                                            return time1.compareTo(time2);
+                                        } catch (ParseException e) {
+                                            e.printStackTrace();
+                                        }
+                                        return 0;
+                                    }
+                                });
 //                                Toast.makeText(Notification.this, "" + new_item.name + " " + new_item.information + " " + new_item.time + "", Toast.LENGTH_SHORT).show();
                             }
                             NotificationAdapter viewAdapter = new NotificationAdapter(Notification.this, list_items);
