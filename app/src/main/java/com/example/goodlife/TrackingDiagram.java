@@ -105,8 +105,9 @@ public class TrackingDiagram extends AppCompatActivity {
                                     dataSet.setColor(getResources().getColor(R.color.red_pink));
                                     dataSet.setHighLightColor(getResources().getColor(R.color.highlight));
                                     dataSet.setCircleColor(getResources().getColor(R.color.dot));
+                                    dataSet.setCircleHoleColor(getResources().getColor(R.color.red_pink));
                                     dataSet.setLineWidth(3f);
-                                    dataSet.setValueTextColor(getResources().getColor(R.color.dark_green));
+                                    dataSet.setValueTextColor(getResources().getColor(R.color.darkblue));
                                     dataSet.setValueTextSize(15f);
 
                                     LineData lineData = new LineData(dataSet);

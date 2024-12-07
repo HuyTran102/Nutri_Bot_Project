@@ -227,4 +227,28 @@ public class ItemData extends AppCompatActivity {
                     }
                 });
     }
+
+    // OverWrite Data to Cloud Firestone
+    public void OverWriteDataFireBase(String itemName, double itemAmount, String itemKcalValue
+            , String itemProteinValue,String itemLipidValue, String itemGlucidValue){
+        firebaseFirestore.collection("GoodLife")
+                .document(name)
+                .collection("Nhật kí")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            // Loop through all documents
+                            for(QueryDocumentSnapshot document : task.getResult()) {
+                                if(document.getString("name").equals(itemName)) {
+
+                                }
+                            }
+                        } else {
+                            Log.w("Firestore", "Error getting documents", task.getException());
+                        }
+                    }
+                });
+    }
 }

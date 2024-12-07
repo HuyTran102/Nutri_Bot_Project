@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="highlight">#FF9900</color>
+    <color name="highlight">#F8BA5C</color>
     <color name="dot">#00BCD4</color>
     <color name="large">#F5372A</color>
     <color name="normal">#1CC92D</color>
     <color name="small">#F5BB2A</color>
     <color name="colorSecondary">#F433A2FF</color>
-    <color name="dark_green">#0BAC26</color>
+    <color name="darkblue">#0190A2</color>
     <color name="red_pink">#FAED7D7D</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
