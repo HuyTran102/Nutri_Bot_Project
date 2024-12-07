@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="highlight">#FF9900</color>
+    <color name="dot">#00BCD4</color>
     <color name="large">#F5372A</color>
     <color name="normal">#1CC92D</color>
     <color name="small">#F5BB2A</color>

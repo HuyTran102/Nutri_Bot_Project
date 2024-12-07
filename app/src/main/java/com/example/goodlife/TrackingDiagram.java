@@ -103,6 +103,8 @@ public class TrackingDiagram extends AppCompatActivity {
 
                                     LineDataSet dataSet = new LineDataSet(entries, "Năng lượng (Kcal)");
                                     dataSet.setColor(getResources().getColor(R.color.red_pink));
+                                    dataSet.setHighLightColor(getResources().getColor(R.color.highlight));
+                                    dataSet.setCircleColor(getResources().getColor(R.color.dot));
                                     dataSet.setLineWidth(3f);
                                     dataSet.setValueTextColor(getResources().getColor(R.color.dark_green));
                                     dataSet.setValueTextSize(15f);
