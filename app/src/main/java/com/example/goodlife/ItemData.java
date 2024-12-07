@@ -245,18 +245,18 @@ public class ItemData extends AppCompatActivity {
                                     firebaseFirestore.collection("GoodLife")
                                             .document(name)
                                             .collection("Nhật kí")
-                                            .document(document.getId()) // Dùng ID của tài liệu cần ghi đè
-                                            .set("test")
+                                            .document(name) // Tài liệu cụ thể
+                                            .update("protein", newProteinValue)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
-                                                    Log.d("Firestore", "Data successfully overwritten!");
+                                                    Log.d("Firestore", "value updated successfully!");
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
-                                                    Log.w("Firestore", "Error writing document", e);
+                                                    Log.w("Firestore", "Error updating  value", e);
                                                 }
                                             });
                                 }
