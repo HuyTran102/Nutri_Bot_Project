@@ -324,11 +324,19 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
 
                         double subtrac = Double.parseDouble(weight) - recommendWeight;
 
-                        result += decimalFormat.format(subtrac) + " (kg)";
-                        weightView.setTextColor(getResources().getColor(R.color.large));
-                        weightView.setText(result);
+                        if(subtrac == 0) {
+                            result += "Bình thường!";
+
+                            userRecommendWeight = Double.parseDouble(this.weight);
+                            weightView.setTextColor(getResources().getColor(R.color.normal));
+                            weightView.setText(result);
+                        } else {
+                            result += decimalFormat.format(subtrac) + " (kg)";
+                            weightView.setTextColor(getResources().getColor(R.color.large));
+                            weightView.setText(result);
+                        }
                     }  else if(negativeSD2 <= bmi && bmi <= positiveSD1) {
-                        result += "Bình thường 0.0 (kg)";
+                        result += "Bình thường!";
 
                         userRecommendWeight = Double.parseDouble(this.weight);
                         weightView.setTextColor(getResources().getColor(R.color.normal));
@@ -434,7 +442,7 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
                         heightView.setTextColor(getResources().getColor(R.color.large));
                         heightView.setText(result);
                     }  else if(negativeSD2 <= height && height <= positiveSD3) {
-                        result += "Bình thường 0.0 (cm)";
+                        result += "Bình thường!";
 
                         userRecommendHeight = height;
                         heightView.setTextColor(getResources().getColor(R.color.normal));
