@@ -231,6 +231,15 @@ public class ItemData extends AppCompatActivity {
     // OverWrite Data to Cloud Firestone
     public void OverWriteDataFireBase(String itemName, double itemAmount, String itemKcalValue
             , String itemProteinValue,String itemLipidValue, String itemGlucidValue){
+        // Create a new item with all of the data like name, amount, ...
+        Map<String, Object> item = new HashMap<>();
+        item.put("amount", String.valueOf(itemAmount));
+        item.put("kcal", itemKcalValue);
+        item.put("protein", itemProteinValue);
+        item.put("lipid", itemLipidValue);
+        item.put("glucid", itemGlucidValue);
+        item.put("unit_name", itemUnitName);
+        item.put("unit_type", itemUnitType);
         firebaseFirestore.collection("GoodLife")
                 .document(name)
                 .collection("Nhật kí")
@@ -245,18 +254,18 @@ public class ItemData extends AppCompatActivity {
                                     firebaseFirestore.collection("GoodLife")
                                             .document(name)
                                             .collection("Nhật kí")
-                                            .document(name) // Tài liệu cụ thể
-                                            .update("protein", newProteinValue)
+                                            .document(document.getId()) // Dùng ID của tài liệu cần ghi đè
+                                            .update(item)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
-                                                    Log.d("Firestore", "value updated successfully!");
+                                                    Log.d("Firestore", "Data successfully overwritten!");
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
-                                                    Log.w("Firestore", "Error updating  value", e);
+                                                    Log.w("Firestore", "Error writing document", e);
                                                 }
                                             });
                                 }
