@@ -90,6 +90,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 1: Suy dinh dưỡng là gì?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -100,6 +101,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Suy dinh dưỡng là tình trạng cơ thể không nhận đủ các chất dinh dưỡng cần thiết, dẫn đến thiếu cân, chậm phát triển hoặc các vấn đề sức khỏe khác."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -111,11 +113,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 2: Nguyên nhân chính gây suy dinh dưỡng ở học sinh là gì?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -126,6 +130,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Nguyên nhân bao gồm chế độ ăn không đầy đủ, kém hấp thu dinh dưỡng, hoặc mắc các bệnh lý kéo dài."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -137,11 +142,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 3: Dấu hiệu nhận biết suy dinh dưỡng là gì?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -152,6 +159,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Các dấu hiệu bao gồm sụt cân, chậm tăng trưởng, mệt mỏi, da xanh xao, tóc khô gãy và hệ miễn dịch suy yếu."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -163,11 +171,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 4: Suy dinh dưỡng ảnh hưởng như thế nào đến việc học tập?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -178,6 +188,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Suy dinh dưỡng làm giảm khả năng tập trung, dễ mệt mỏi, suy giảm trí nhớ và ảnh hưởng đến kết quả học tập."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -185,14 +196,18 @@
                     android:textSize="17sp"/>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 5: Làm thế nào để phòng tránh suy dinh dưỡng?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -203,6 +218,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
+                    android:layout_marginBottom="10dp"
                     android:text="Đáp án: Ăn đủ các nhóm thực phẩm, đặc biệt là protein, vitamin và khoáng chất. Duy trì bữa ăn đầy đủ, không bỏ bữa sáng."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"

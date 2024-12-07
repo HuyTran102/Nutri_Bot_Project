@@ -89,6 +89,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 1: Protein có vai trò gì trong cơ thể?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -99,6 +100,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Protein giúp xây dựng và sửa chữa các mô, đồng thời là thành phần quan trọng của enzyme, hormone và các tế bào miễn dịch."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -116,6 +118,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 2: Carbohydrate được cơ thể sử dụng như thế nào?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -126,6 +129,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Carbohydrate là nguồn năng lượng chính của cơ thể. Chúng được phân hủy thành glucose, cung cấp năng lượng cho hoạt động thể chất và trí não."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -143,6 +147,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 3: Chất béo có cần thiết không? Tại sao?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -153,6 +158,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Có. Chất béo giúp hấp thu các vitamin tan trong dầu (A, D, E, K), cung cấp năng lượng và bảo vệ các cơ quan nội tạng."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -170,6 +176,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 4: Vitamin D có chức năng gì?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -180,6 +187,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Vitamin D giúp cơ thể hấp thụ canxi, từ đó giúp xương và răng chắc khỏe."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -197,6 +205,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 5: Thiếu sắt có thể gây ra bệnh gì?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -207,6 +216,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Thiếu sắt có thể gây thiếu máu, khiến cơ thể mệt mỏi, da xanh xao, giảm khả năng tập trung."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -224,6 +234,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 6: Canxi có vai trò gì đối với cơ thể?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -234,6 +245,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Canxi là thành phần chính của xương và răng, giúp duy trì chức năng cơ và thần kinh."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -251,6 +263,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 7: Tại sao học sinh cần chú ý đến dinh dưỡng?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -261,6 +274,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Dinh dưỡng tốt giúp phát triển thể chất, tăng cường trí nhớ và khả năng tập trung, phòng ngừa bệnh tật, và hỗ trợ quá trình học tập hiệu quả."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -278,6 +292,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 8: Quản lý dinh dưỡng không tốt có thể gây hậu quả gì?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -288,6 +303,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Có thể dẫn đến suy dinh dưỡng, thừa cân béo phì, thiếu hụt vi chất dinh dưỡng và làm giảm hiệu suất học tập."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
