@@ -242,7 +242,23 @@ public class ItemData extends AppCompatActivity {
                             // Loop through all documents
                             for(QueryDocumentSnapshot document : task.getResult()) {
                                 if(document.getString("name").equals(itemName)) {
-
+                                    firebaseFirestore.collection("GoodLife")
+                                            .document(name)
+                                            .collection("Nhật kí")
+                                            .document(document.getId()) // Dùng ID của tài liệu cần ghi đè
+                                            .set("test")
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Log.d("Firestore", "Data successfully overwritten!");
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.w("Firestore", "Error writing document", e);
+                                                }
+                                            });
                                 }
                             }
                         } else {
