@@ -90,6 +90,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 1: Học sinh có cần bổ sung thực phẩm chức năng không?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -100,6 +101,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Nếu có chế độ ăn uống đầy đủ, thường không cần bổ sung thực phẩm chức năng. Chỉ nên bổ sung khi có chỉ định của bác sĩ."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -117,6 +119,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 2: Tập thể dục ảnh hưởng thế nào đến dinh dưỡng?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -127,6 +130,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Tập thể dục giúp tăng cường trao đổi chất, đốt cháy calo và tăng cường sức khỏe. Người tập thể dục cần bổ sung đủ protein và carbohydrate."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -144,6 +148,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 3: Nên uống nước khi nào trong lúc tập thể dục?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -154,6 +159,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Nên uống nước trước, trong và sau khi tập thể dục để duy trì hydrat hóa."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -171,6 +177,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 4: Tại sao vận động thể chất lại quan trọng trong quản lý dinh dưỡng?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -181,6 +188,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Vận động giúp tiêu hao calo, tăng cường trao đổi chất, cải thiện tâm trạng và tăng cường sức khỏe toàn diện."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -193,11 +201,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 5: Nên ăn gì trước và sau khi tập thể dục?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -208,6 +218,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
+                    android:layout_marginBottom="10dp"
                     android:text="Đáp án: Trước khi tập nên ăn nhẹ thực phẩm giàu carbohydrate. Sau khi tập nên bổ sung protein để phục hồi cơ bắp."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"

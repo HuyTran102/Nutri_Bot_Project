@@ -90,6 +90,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 1: Tại sao tuổi dậy thì cần nhiều dinh dưỡng hơn?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -100,6 +101,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Đây là giai đoạn cơ thể phát triển nhanh chóng về chiều cao, cân nặng và hormone. Vì vậy, cần nhiều năng lượng và dinh dưỡng để phát triển toàn diện."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -117,6 +119,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 2: Làm thế nào để cải thiện làn da thông qua dinh dưỡng?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -127,6 +130,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Ăn nhiều rau củ, trái cây giàu vitamin C và E, uống đủ nước, tránh đồ chiên rán và thực phẩm nhiều đường để giữ da khỏe mạnh."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -139,11 +143,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 3: Thiếu kẽm có thể gây ra vấn đề gì?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -154,6 +160,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Thiếu kẽm có thể làm chậm phát triển, giảm khả năng miễn dịch, gây rụng tóc và nổi mụn."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"

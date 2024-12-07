@@ -90,6 +90,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 1: Bữa sáng có quan trọng không?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -100,6 +101,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Rất quan trọng. Bữa sáng cung cấp năng lượng cho cả ngày học tập, giúp tăng cường khả năng tập trung và cải thiện hiệu suất học tập."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -117,6 +119,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 2: Uống nước ngọt thường xuyên có ảnh hưởng gì?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -127,6 +130,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Uống nhiều nước ngọt có thể gây béo phì, tăng nguy cơ mắc tiểu đường loại 2 và sâu răng."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -144,6 +148,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 3: Nên ăn vặt như thế nào cho lành mạnh?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -154,6 +159,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Chọn các món ăn như trái cây tươi, các loại hạt, sữa chua không đường thay vì đồ chiên hoặc bánh kẹo ngọt."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -171,6 +177,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 4: Học sinh nên ăn mấy bữa mỗi ngày?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -181,6 +188,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Nên ăn 3 bữa chính (sáng, trưa, tối) và có thể bổ sung 1-2 bữa phụ với các món ăn nhẹ lành mạnh như trái cây, sữa chua."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -198,6 +206,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 5: Làm thế nào để kiểm soát cân nặng hiệu quả?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -208,6 +217,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Cần có chế độ ăn uống cân đối, hạn chế đồ ăn nhanh, nước ngọt và tăng cường vận động. Không nên áp dụng các chế độ giảm cân khắc nghiệt."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -225,6 +235,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 6: Học sinh nên uống bao nhiêu nước mỗi ngày?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -235,6 +246,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Đáp án: Nên uống khoảng 1.5 - 2 lít nước mỗi ngày, tùy thuộc vào mức độ hoạt động thể chất và thời tiết."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
@@ -252,6 +264,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="Câu hỏi 7: Giấc ngủ ảnh hưởng thế nào đến dinh dưỡng?"
                     android:layout_marginStart="5dp"
                     android:textColor="#FAED7D7D"
@@ -262,6 +275,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
+                    android:layout_marginBottom="10dp"
                     android:text="Đáp án: Thiếu ngủ làm rối loạn hormone, tăng cảm giác đói và thèm ăn, dẫn đến tăng cân và giảm khả năng tập trung."
                     android:layout_marginStart="5dp"
                     android:textColor="@color/black"
