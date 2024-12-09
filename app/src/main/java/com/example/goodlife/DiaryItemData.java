@@ -15,10 +15,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
@@ -171,8 +176,7 @@ public class DiaryItemData extends AppCompatActivity {
 
                 // write the data to the database
                 WriteDataFireBase(finalItemName, amount[0], kcalValue, proteinValue, lipidValue, glucidValue
-                        , finalUnitType, finalUnitName, String.valueOf(finalImageId)
-                        , year, month, day);
+                        , finalUnitType, finalUnitName);
 
                 Intent intent = new Intent(DiaryItemData.this, Dietary.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -194,36 +198,50 @@ public class DiaryItemData extends AppCompatActivity {
     // Write Data to Cloud Firestone
     public void WriteDataFireBase(String itemName, double itemAmount, String itemKcalValue
             , String itemProteinValue,String itemLipidValue, String itemGlucidValue
-            , String itemUnitType, String itemUnitName, String itemImageId
-            , int itemAddingYear, int itemAddingMonth, int itemAddingDay){
-        // Create a new item with all of the data like name, amount, ...
-        Map<String, Object> item = new HashMap<>();
-        item.put("name", itemName);
-        item.put("amount", String.valueOf(itemAmount));
-        item.put("kcal", itemKcalValue);
-        item.put("protein", itemProteinValue);
-        item.put("lipid", itemLipidValue);
-        item.put("glucid", itemGlucidValue);
-        item.put("unit_name", itemUnitName);
-        item.put("unit_type", itemUnitType);
-        item.put("image_id", itemImageId);
-        item.put("year", String.valueOf(itemAddingYear));
-        item.put("month", String.valueOf(itemAddingMonth));
-        item.put("day", String.valueOf(itemAddingDay));
-
-        firebaseFirestore.collection("GoodLife").document(name).collection("Nhật kí").document(itemName)
-                .set(item)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("Firestore", "Adding item to database successfully");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("Firestore", "Error adding item to database: ", e);
-                    }
-                });
+            , String itemUnitType, String itemUnitName){
+            // Create a new item with all of the data like name, amount, ...
+            Map<String, Object> item = new HashMap<>();
+            item.put("amount", String.valueOf(itemAmount));
+            item.put("kcal", itemKcalValue);
+            item.put("protein", itemProteinValue);
+            item.put("lipid", itemLipidValue);
+            item.put("glucid", itemGlucidValue);
+            item.put("unit_name", itemUnitName);
+            item.put("unit_type", itemUnitType);
+            firebaseFirestore.collection("GoodLife")
+                    .document(name)
+                    .collection("Nhật kí")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()) {
+                                // Loop through all documents
+                                for(QueryDocumentSnapshot document : task.getResult()) {
+                                    if(document.getString("name").equals(itemName)) {
+                                        firebaseFirestore.collection("GoodLife")
+                                                .document(name)
+                                                .collection("Nhật kí")
+                                                .document(document.getId()) // Dùng ID của tài liệu cần ghi đè
+                                                .update(item)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        Log.d("Firestore", "Data successfully overwritten!");
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Log.w("Firestore", "Error writing document", e);
+                                                    }
+                                                });
+                                    }
+                                }
+                            } else {
+                                Log.w("Firestore", "Error getting documents", task.getException());
+                            }
+                        }
+                    });
     }
 }

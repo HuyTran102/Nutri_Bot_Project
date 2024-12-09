@@ -158,6 +158,7 @@ public class DiaryViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     intent.putExtra("Glucid", itemAtPosition.glucid);
                     intent.putExtra("Image", itemAtPosition.getImage());
                     intent.putExtra("UnitType", itemAtPosition.unit_type);
+
                     context.startActivity(intent);
                 }
             });

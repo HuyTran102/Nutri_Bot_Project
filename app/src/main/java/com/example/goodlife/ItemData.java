@@ -40,14 +40,12 @@ public class ItemData extends AppCompatActivity {
     private Button backButton, addToDiaryButton;
     private ImageView itemImage;
     private String glucidValue , lipidValue, proteinValue, kcalValue, name;
-    private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();;
+    private FirebaseFirestore firebaseFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_data);
-
-
 
         backButton = findViewById(R.id.back_button);
         addToDiaryButton = findViewById(R.id.add_to_diary_button);
@@ -61,11 +59,12 @@ public class ItemData extends AppCompatActivity {
         itemAmount = findViewById(R.id.item_amount);
         itemImage = findViewById(R.id.item_image);
         
-
+        firebaseFirestore = FirebaseFirestore.getInstance();
 
         SharedPreferences sp = getSharedPreferences("Data", Context.MODE_PRIVATE);
 
         name = sp.getString("Name",null);
+
         // get item value fromm intent
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -225,44 +224,6 @@ public class ItemData extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w("Firestore", "Error adding item to database: ", e);
-                    }
-                });
-    }
-
-    // OverWrite Data to Cloud Firestone
-    public void OverWriteDataFireBase(String itemName, double itemAmount, String itemKcalValue
-            , String itemProteinValue,String itemLipidValue, String itemGlucidValue){
-        // Create a new item with all of the data like name, amount, ...
-
-        firebaseFirestore.collection("GoodLife")
-                .document(name)
-                .collection("Nhật kí")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()) {
-                            // Loop through all documents
-                            Map<String, Object> item = new HashMap<>();
-                            item.put("amount", String.valueOf(itemAmount));
-                            item.put("kcal", itemKcalValue);
-                            item.put("protein", itemProteinValue);
-                            item.put("lipid", itemLipidValue);
-                            item.put("glucid", itemGlucidValue);
-                            for(QueryDocumentSnapshot document : task.getResult()) {
-                                if(document.getString("name").equals(itemName)) {
-                                    document.getReference().update(item)
-                                            .addOnSuccessListener(aVoid -> {
-                                                Log.d("Firestore", "Document successfully updated!");
-                                            })
-                                            .addOnFailureListener(e -> {
-                                                Log.w("Firestore", "Error updating document", e);
-                                            });
-                                }
-                            }
-                        } else {
-                            Log.w("Firestore", "Error getting documents", task.getException());
-                        }
                     }
                 });
     }
