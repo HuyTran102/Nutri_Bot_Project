@@ -40,12 +40,14 @@ public class ItemData extends AppCompatActivity {
     private Button backButton, addToDiaryButton;
     private ImageView itemImage;
     private String glucidValue , lipidValue, proteinValue, kcalValue, name;
-    private FirebaseFirestore firebaseFirestore;
+    private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_data);
+
+
 
         backButton = findViewById(R.id.back_button);
         addToDiaryButton = findViewById(R.id.add_to_diary_button);
@@ -59,12 +61,11 @@ public class ItemData extends AppCompatActivity {
         itemAmount = findViewById(R.id.item_amount);
         itemImage = findViewById(R.id.item_image);
         
-        firebaseFirestore = FirebaseFirestore.getInstance();
+
 
         SharedPreferences sp = getSharedPreferences("Data", Context.MODE_PRIVATE);
 
         name = sp.getString("Name",null);
-
         // get item value fromm intent
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -232,14 +233,7 @@ public class ItemData extends AppCompatActivity {
     public void OverWriteDataFireBase(String itemName, double itemAmount, String itemKcalValue
             , String itemProteinValue,String itemLipidValue, String itemGlucidValue){
         // Create a new item with all of the data like name, amount, ...
-        Map<String, Object> item = new HashMap<>();
-        item.put("amount", String.valueOf(itemAmount));
-        item.put("kcal", itemKcalValue);
-        item.put("protein", itemProteinValue);
-        item.put("lipid", itemLipidValue);
-        item.put("glucid", itemGlucidValue);
-        item.put("unit_name", itemUnitName);
-        item.put("unit_type", itemUnitType);
+
         firebaseFirestore.collection("GoodLife")
                 .document(name)
                 .collection("Nhật kí")
@@ -249,24 +243,20 @@ public class ItemData extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()) {
                             // Loop through all documents
+                            Map<String, Object> item = new HashMap<>();
+                            item.put("amount", String.valueOf(itemAmount));
+                            item.put("kcal", itemKcalValue);
+                            item.put("protein", itemProteinValue);
+                            item.put("lipid", itemLipidValue);
+                            item.put("glucid", itemGlucidValue);
                             for(QueryDocumentSnapshot document : task.getResult()) {
                                 if(document.getString("name").equals(itemName)) {
-                                    firebaseFirestore.collection("GoodLife")
-                                            .document(name)
-                                            .collection("Nhật kí")
-                                            .document(document.getId()) // Dùng ID của tài liệu cần ghi đè
-                                            .update(item)
-                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void aVoid) {
-                                                    Log.d("Firestore", "Data successfully overwritten!");
-                                                }
+                                    document.getReference().update(item)
+                                            .addOnSuccessListener(aVoid -> {
+                                                Log.d("Firestore", "Document successfully updated!");
                                             })
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    Log.w("Firestore", "Error writing document", e);
-                                                }
+                                            .addOnFailureListener(e -> {
+                                                Log.w("Firestore", "Error updating document", e);
                                             });
                                 }
                             }
