@@ -14,6 +14,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.RingtoneManager;
@@ -47,6 +48,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import org.apache.poi.xwpf.usermodel.TOC;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -69,6 +73,9 @@ public class HomePage extends AppCompatActivity {
     public Boolean ok1 = false, ok2 = false, ok3 = false;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private String filename = "Storage.txt";
+    File myInternalFile;
+    private String filepath = "Super_mystery_folder";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +107,10 @@ public class HomePage extends AppCompatActivity {
         drawerMenuButton.bringToFront();
 
         drawerMenuButton.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
-
+        ContextWrapper contextWrapper = new ContextWrapper(
+                getApplicationContext());
+        File directory = contextWrapper.getDir(filepath, Context.MODE_PRIVATE);
+        myInternalFile = new File(directory, filename);
         drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
@@ -163,6 +173,14 @@ public class HomePage extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else if (id == R.id.logout) {
+                    try {
+                        String data = null + "\n" + "null" + "\n" +"false";
+                        FileOutputStream fos = new FileOutputStream(myInternalFile);
+                        fos.write(data.getBytes());
+                        fos.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     Toast.makeText(HomePage.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(HomePage.this, LoginScreen.class);
                     startActivity(intent);

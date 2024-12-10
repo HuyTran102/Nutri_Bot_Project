@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -29,16 +37,32 @@ public class LoginScreen extends AppCompatActivity {
     private EditText editTextName, editTextPassword;
     private Button loginButton;
     private String signInDate;
+    private String filename = "Storage.txt";
+    File myInternalFile;
+    private String filepath = "Super_mystery_folder";
+    String username_tmp, password_tmp, islogin = "false";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Layout sceen
         super.onCreate(savedInstanceState);
+
         ContextWrapper contextWrapper = new ContextWrapper(
                 getApplicationContext());
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
+
+        // check login
+        File directory = contextWrapper.getDir(filepath, Context.MODE_PRIVATE);
+        myInternalFile = new File(directory, filename);
+        if(check_is_login()){
+            checkUserData(username_tmp, password_tmp);
+        } else{
+            Log.d("wtf","wtf");
+        }
+
         setContentView(R.layout.activity_login);
+
 
         // Set value for object zone
         editTextName = findViewById(R.id.editEditTextMail);
@@ -49,6 +73,8 @@ public class LoginScreen extends AppCompatActivity {
         // Login zone
         SharedPreferences sharedPreferences = getSharedPreferences("Data", Context.MODE_PRIVATE);
 
+
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,7 +83,9 @@ public class LoginScreen extends AppCompatActivity {
                     editor.putString("Name", String.valueOf(editTextName.getText()));
                     editor.putString("SignInDate", signInDate);
                     editor.apply();
-                    checkUserData();
+                    String name = String.valueOf(editTextName.getText()).trim();
+                    String password = String.valueOf(editTextPassword.getText()).trim();
+                    checkUserData(name, password);
                 }
             }
         });
@@ -138,10 +166,8 @@ public class LoginScreen extends AppCompatActivity {
         }
     }
     // Login function
-    public void checkUserData() {
-        String name, password;
-        name = String.valueOf(editTextName.getText()).trim();
-        password = String.valueOf(editTextPassword.getText()).trim();
+    public void checkUserData(String name, String password) {
+
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("user");
         Query checkUserDatabase = reference.orderByChild("name").equalTo(name);
@@ -157,6 +183,14 @@ public class LoginScreen extends AppCompatActivity {
                     if(Objects.equals(passwordFromDB, password)) {
                         editTextName.setError(null);
                         Toast.makeText(LoginScreen.this, "Đăng nhập tài khoản thành công!", Toast.LENGTH_SHORT).show();
+                        try {
+                            String data = name + "\n" + password + "\n" +"true";
+                            FileOutputStream fos = new FileOutputStream(myInternalFile);
+                            fos.write(data.getBytes());
+                            fos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         Intent intent = new Intent(LoginScreen.this, HomePage.class);
                         startActivity(intent);
                         finish();
@@ -175,5 +209,28 @@ public class LoginScreen extends AppCompatActivity {
 
             }
         });
+    }
+    public boolean check_is_login(){
+        try {
+            FileInputStream fis = new FileInputStream(myInternalFile);
+            DataInputStream in = new DataInputStream(fis);
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader(in));
+            String strLine ;
+            int i = 1;
+            while ((strLine = br.readLine()) != null) {
+                if(i==1) username_tmp = strLine;
+                if(i==2) password_tmp = strLine;
+                if(i==3) islogin = strLine;
+                i++;
+            }
+            in.close();
+            if(islogin.equals("true")) {
+                return true;
+            } else return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
