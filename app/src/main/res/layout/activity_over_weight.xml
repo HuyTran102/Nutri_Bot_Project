@@ -220,6 +220,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp"
                     android:justificationMode="inter_word"
                     android:text="Đáp án: Cần áp dụng chế độ ăn uống cân bằng, hạn chế đồ ăn nhanh và nước ngọt, tăng cường tập thể dục, ngủ đủ giấc và tránh nhịn ăn quá mức."
                     android:textColor="@color/black"
