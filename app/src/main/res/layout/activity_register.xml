@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".RegisterPage"
     android:gravity="center"
-    android:background="@color/register_bk_color"
+    android:background="#00C8A6"
     android:focusableInTouchMode="true"
     android:layout_gravity="center"
     android:keepScreenOn="true">
@@ -186,7 +186,7 @@
                         android:onClick="onLoginClick"
                         android:text="Bạn đã có tài khoản?"
                         android:textAlignment="center"
-                        android:textColor="@color/themeColor"
+                        android:textColor="#04B798"
                         android:textSize="17sp"
                         android:textStyle="bold"/>
                 </LinearLayout>

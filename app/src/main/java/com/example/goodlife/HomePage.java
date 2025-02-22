@@ -94,6 +94,8 @@ public class HomePage extends AppCompatActivity {
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         nutritionalStatusButton = findViewById(R.id.nutritional_status_button);
         physicalButton = findViewById(R.id.physical_button);
         dietaryButton = findViewById(R.id.dietary_button);

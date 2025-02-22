@@ -38,7 +38,7 @@
                     android:layout_centerVertical="true"
                     android:text="Đăng nhập \n tài khoản"
                     android:textStyle="bold"
-                    android:textColor="#0293A5"/>
+                    android:textColor="#018971"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
                 android:layout_gravity="end"
                 android:layout_marginTop="10dp"
                 android:text="Quên mật khẩu?"
-                android:textColor="@color/primaryTextColor"
+                android:textColor="#0ABE9F"
                 android:textSize="@dimen/newsMoreTextSize" />
 
             <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
@@ -112,7 +112,7 @@
                 android:onClick="onLoginClick"
                 android:text="Chưa có tài khoản? Đăng ký ngay"
                 android:textAlignment="center"
-                android:textColor="@color/primaryTextColor"
+                android:textColor="#04AE91"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
