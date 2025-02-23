@@ -2,9 +2,9 @@
 <resources>
     <color name="highlight">#F8BA5C</color>
     <color name="dot">#00BCD4</color>
-    <color name="large">#F5372A</color>
-    <color name="normal">#1CC92D</color>
-    <color name="small">#F5BB2A</color>
+    <color name="large">#C02E24</color>
+    <color name="normal">#0F991C</color>
+    <color name="small">#DEA926</color>
     <color name="colorSecondary">#F433A2FF</color>
     <color name="darkblue">#0190A2</color>
     <color name="red_pink">#FAED7D7D</color>

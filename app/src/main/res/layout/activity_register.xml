@@ -56,7 +56,9 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputName"
-                        style="@style/parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/CustomTextInputLayout"
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
@@ -83,7 +85,7 @@
                         android:text="Ngày sinh"
                         android:textStyle="bold"
                         android:textSize="16dp"
-                        android:textColor="#585757"
+                        android:textColor="#D0D0D0"
                         android:onClick="openDatePicker"
                         android:gravity="center_vertical"
                         app:backgroundTint="@null"
@@ -94,7 +96,9 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputEmail"
-                        style="@style/parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/CustomTextInputLayout"
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
@@ -112,7 +116,9 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputPassword"
-                        style="@style/parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/CustomTextInputLayout"
                         android:layout_marginTop="@dimen/loginViewsMargin"
                         app:passwordToggleEnabled="true">
 

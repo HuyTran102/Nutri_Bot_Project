@@ -62,6 +62,8 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         backButton = findViewById(R.id.back_button);
         resultButton = findViewById(R.id.result_button);
         userHeight = findViewById(R.id.user_height);
