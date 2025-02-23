@@ -63,6 +63,8 @@ public class TrackingDiagram extends AppCompatActivity {
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         lineChart = findViewById(R.id.lineChart);
         backButton = findViewById(R.id.back_button);
 
@@ -114,10 +116,10 @@ public class TrackingDiagram extends AppCompatActivity {
                                     entries.add(new Entry(i, sumKcal));
 
                                     LineDataSet dataSet = new LineDataSet(entries, "Năng lượng (Kcal)");
-                                    dataSet.setColor(getResources().getColor(R.color.red_pink));
+                                    dataSet.setColor(getResources().getColor(R.color.purple_color));
                                     dataSet.setHighLightColor(getResources().getColor(R.color.highlight));
                                     dataSet.setCircleColor(getResources().getColor(R.color.dot));
-                                    dataSet.setCircleHoleColor(getResources().getColor(R.color.red_pink));
+                                    dataSet.setCircleHoleColor(getResources().getColor(R.color.purple_color));
                                     dataSet.setLineWidth(3f);
                                     dataSet.setValueTextColor(getResources().getColor(R.color.darkblue));
                                     dataSet.setValueTextSize(15f);
