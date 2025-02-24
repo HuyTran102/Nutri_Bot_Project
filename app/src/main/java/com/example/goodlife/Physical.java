@@ -65,6 +65,8 @@ public class Physical extends AppCompatActivity {
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         backButton = findViewById(R.id.back_button);
         pickTimeButton = findViewById(R.id.pick_time_button);
         activityLevel = findViewById(R.id.activity_level);
