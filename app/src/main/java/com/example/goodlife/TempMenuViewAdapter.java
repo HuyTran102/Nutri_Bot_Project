@@ -24,7 +24,7 @@ public class TempMenuViewAdapter extends RecyclerView.Adapter<ViewHolder>{
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.recycler_item, parent, false));
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.temp_menu_item, parent, false));
     }
 
     @Override
