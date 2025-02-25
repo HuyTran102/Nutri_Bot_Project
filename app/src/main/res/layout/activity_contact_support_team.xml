@@ -10,17 +10,6 @@
     android:layout_gravity="center"
     android:keepScreenOn="true">
 
-    <ImageView
-        android:layout_width="592dp"
-        android:layout_height="360dp"
-        android:background="@drawable/wave"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/name_guide_1"
         android:layout_width="wrap_content"
@@ -33,14 +22,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.063"/>
+        app:layout_constraintGuide_percent="0.043"/>
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="Thông tin nhà phát triển"
-        android:textColor="#FFFFFF"
+        android:textColor="#00725E"
         android:textSize="27sp"
         android:textStyle="bold"
         android:textAlignment="center"
@@ -61,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="104dp" />
+        app:layout_constraintGuide_percent="0.1"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/item_guide_1"
@@ -75,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
+        app:layout_constraintGuide_percent="0.53" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/item_guide_5"
@@ -84,107 +73,42 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.33"/>
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/img_guide_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/img_guide_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/custom_button"
-        app:layout_constraintBottom_toBottomOf="@id/item_guide_10"
-        app:layout_constraintEnd_toEndOf="@id/item_guide_2"
-        app:layout_constraintStart_toStartOf="@id/item_guide_1"
-        app:layout_constraintTop_toTopOf="@id/item_guide_4">
+        app:layout_constraintGuide_percent="0"/>
 
-        <LinearLayout
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="@id/item_guide_6"
-            app:layout_constraintEnd_toEndOf="@id/item_guide_2"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/item_guide_1"
-            app:layout_constraintTop_toTopOf="@id/item_guide_5"
-            app:layout_constraintVertical_bias="0.397">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/profile_background"
+        app:layout_constraintBottom_toBottomOf="@id/img_guide_8"
+        app:layout_constraintEnd_toEndOf="@id/img_guide_7"
+        app:layout_constraintStart_toStartOf="@id/img_guide_6"
+        app:layout_constraintTop_toTopOf="@id/img_guide_5" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Số điện thoại:"
-                android:layout_marginStart="10dp"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/img_guide_7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="1"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:text="+84 877 344 227"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="@id/item_guide_8"
-            app:layout_constraintEnd_toEndOf="@id/item_guide_2"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/item_guide_1"
-            app:layout_constraintTop_toTopOf="@id/item_guide_7"
-            app:layout_constraintVertical_bias="0.539">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Facebook:"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:text="Mint Tran"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="30dp"
-            app:layout_constraintBottom_toBottomOf="@id/item_guide_10"
-            app:layout_constraintEnd_toEndOf="@id/item_guide_2"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/item_guide_1"
-            app:layout_constraintTop_toTopOf="@id/item_guide_9"
-            app:layout_constraintVertical_bias="0.67">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Email:"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:text="huyserver1323@gmail.com"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/img_guide_8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.90"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/item_guide_6"
@@ -219,7 +143,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.77"/>
+        app:layout_constraintGuide_percent="0.86"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/item_guide_2"
@@ -227,20 +151,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.9"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/back_guide_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.04"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/back_guide_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.93"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/item_guide_3"
@@ -254,44 +164,134 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.27"/>
+        app:layout_constraintGuide_percent="0.1"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/img_guide_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.12"/>
+        app:layout_constraintGuide_percent="0.18"/>
 
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:src="@drawable/ceo_huy_thu_hai"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@id/img_guide_4"
         app:layout_constraintEnd_toEndOf="@id/img_guide_2"
         app:layout_constraintStart_toStartOf="@id/img_guide_1"
         app:layout_constraintTop_toTopOf="@id/img_guide_3"
-        app:layout_constraintVertical_bias="0.176" />
+        app:layout_constraintVertical_bias="0.176">
+
+        <ImageView
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ceo_huy_thu_hai" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Trần Vũ Gia Huy"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CEO &amp; Founder"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="14dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:src="@drawable/facebook_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:text=" Tran Vu Gia Huy"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp">
+
+                <ImageView
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:src="@drawable/email_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="8dp"
+                    android:layout_gravity="center"
+                    android:text="huyserver1323@gmail.com"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/img_guide_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.73"/>
+        app:layout_constraintGuide_percent="0.9"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/img_guide_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.35"/>
+        app:layout_constraintGuide_percent="0.75"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/back_guide_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/back_guide_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.03"/>
 
     <Button
         android:id="@+id/back_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:background="@drawable/back_to_home_button"
         android:textSize="20dp"
         app:backgroundTint="@null"
@@ -305,13 +305,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.14"/>
+        app:layout_constraintGuide_percent="0.1"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/back_guide_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="1"/>
+        app:layout_constraintGuide_percent="0.06"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
