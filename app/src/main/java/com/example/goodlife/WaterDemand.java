@@ -59,6 +59,8 @@ public class WaterDemand extends AppCompatActivity {
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         dataView1 = findViewById(R.id.num1);
         dataView2 = findViewById(R.id.num2);
         dataView3 = findViewById(R.id.num3);

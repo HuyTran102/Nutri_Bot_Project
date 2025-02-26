@@ -10,51 +10,40 @@
     android:layout_gravity="center"
     android:keepScreenOn="true">
 
-    <ImageView
-        android:layout_width="592dp"
-        android:layout_height="360dp"
-        android:background="@drawable/wave"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/val_guide_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.2"/>
+        app:layout_constraintGuide_percent="0.51"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/val_guide_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.8"/>
+        app:layout_constraintGuide_percent="0.93"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/sum_guide_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1"/>
+        app:layout_constraintGuide_percent="0.53"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/sum_guide_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9"/>
+        app:layout_constraintGuide_percent="0.93"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/sum_guide_5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8"/>
+        app:layout_constraintGuide_percent="0.7"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/sum_guide_6"
@@ -67,6 +56,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
+        android:background="@drawable/custom_button"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@id/sum_guide_6"
         app:layout_constraintEnd_toEndOf="@id/sum_guide_2"
         app:layout_constraintHorizontal_bias="0.512"
@@ -78,7 +69,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tổng lượng nước:"
-            android:textColor="#FAED7D7D"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:textColor="#FA645787"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -88,7 +81,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text=""
-            android:textColor="#FAED7D7D"
+            android:layout_gravity="center"
+            android:textColor="#FA645787"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -122,21 +116,38 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.39"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/val_guide_16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.49"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/val_guide_17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.07"/>
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@id/val_guide_6"
-        app:layout_constraintEnd_toEndOf="@id/val_guide_2"
+        android:orientation="vertical"
+        android:background="@drawable/cus_val_dis"
+        app:layout_constraintBottom_toBottomOf="@id/val_guide_8"
+        app:layout_constraintEnd_toEndOf="@id/val_guide_16"
         app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toStartOf="@id/val_guide_1"
-        app:layout_constraintTop_toTopOf="@id/val_guide_5"
+        app:layout_constraintStart_toStartOf="@id/val_guide_17"
+        app:layout_constraintTop_toTopOf="@id/val_guide_7"
         app:layout_constraintVertical_bias="0.366">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="6 giờ sáng:"
+            android:text="6 giờ sáng"
+            android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -146,40 +157,32 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text=""
+            android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:textStyle="bold" />
 
     </LinearLayout>
-
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/from_to_arrow"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/arrow_guide_2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/arrow_guide_1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/val_guide_7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.45"/>
+        app:layout_constraintGuide_percent="0.2"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/val_guide_8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.49"/>
+        app:layout_constraintGuide_percent="0.4"/>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
+        android:background="@drawable/cus_val_dis"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@id/val_guide_8"
         app:layout_constraintEnd_toEndOf="@id/val_guide_2"
         app:layout_constraintStart_toStartOf="@id/val_guide_1"
@@ -189,7 +192,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="9 giờ sáng:"
+            android:text="9 giờ sáng"
+            android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -199,51 +203,44 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text=""
+            android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:textStyle="bold" />
 
     </LinearLayout>
-
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/from_to_arrow"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/arrow_guide_2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/arrow_guide_1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.52" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/val_guide_9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.55"/>
+        app:layout_constraintGuide_percent="0.45"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/val_guide_10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.59"/>
+        app:layout_constraintGuide_percent="0.65"/>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
+        android:background="@drawable/cus_val_dis"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@id/val_guide_10"
-        app:layout_constraintEnd_toEndOf="@id/val_guide_2"
+        app:layout_constraintEnd_toEndOf="@id/val_guide_16"
         app:layout_constraintHorizontal_bias="0.486"
-        app:layout_constraintStart_toStartOf="@id/val_guide_1"
+        app:layout_constraintStart_toStartOf="@id/val_guide_17"
         app:layout_constraintTop_toTopOf="@id/val_guide_9"
         app:layout_constraintVertical_bias="0.571">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="11 giờ sáng:"
+            android:text="11 giờ sáng"
+            android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -253,21 +250,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text=""
+            android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:textStyle="bold" />
 
     </LinearLayout>
-
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/from_to_arrow"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/arrow_guide_2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/arrow_guide_1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.626" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/val_guide_11"
@@ -287,17 +274,20 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@id/val_guide_12"
+        android:background="@drawable/cus_val_dis"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/val_guide_10"
         app:layout_constraintEnd_toEndOf="@id/val_guide_2"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="@id/val_guide_1"
-        app:layout_constraintTop_toTopOf="@id/val_guide_11"
+        app:layout_constraintTop_toTopOf="@id/val_guide_9"
         app:layout_constraintVertical_bias="0.682">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="14 giờ chiều:"
+            android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -306,45 +296,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
+            android:textColor="#FFFFFF"
             android:text=""
             android:textSize="22sp"
             android:textStyle="bold" />
 
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/from_to_arrow"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/arrow_guide_2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/arrow_guide_1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.728" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/val_guide_13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.75"/>
+        app:layout_constraintGuide_percent="0.7"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/val_guide_14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.79"/>
+        app:layout_constraintGuide_percent="0.9"/>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
+        android:background="@drawable/cus_val_dis"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@id/val_guide_14"
-        app:layout_constraintEnd_toEndOf="@id/val_guide_2"
+        app:layout_constraintEnd_toEndOf="@id/val_guide_16"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/val_guide_1"
+        app:layout_constraintStart_toStartOf="@id/val_guide_17"
         app:layout_constraintTop_toTopOf="@id/val_guide_13"
         app:layout_constraintVertical_bias="0.782">
 
@@ -352,6 +334,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="18 giờ chiều:"
+            android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -361,6 +344,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text=""
+            android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -371,21 +355,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1"/>
+        app:layout_constraintGuide_percent="0.22"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/name_guide_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.063"/>
+        app:layout_constraintGuide_percent="0.043"/>
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="Nhu cầu nước"
-        android:textColor="#FFFFFF"
+        android:textColor="#00725E"
         android:textSize="27sp"
         android:textStyle="bold"
         android:textAlignment="center"
@@ -399,33 +383,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9"/>
+        app:layout_constraintGuide_percent="0.78"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/name_guide_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="104dp" />
+        app:layout_constraintGuide_percent="0.1"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/back_guide_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.04"/>
+        app:layout_constraintGuide_percent="0.05"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/back_guide_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.93"/>
+        app:layout_constraintGuide_percent="0.03"/>
 
     <Button
         android:id="@+id/back_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:background="@drawable/back_to_home_button"
         android:textSize="20dp"
         app:backgroundTint="@null"
@@ -439,13 +423,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.14"/>
+        app:layout_constraintGuide_percent="0.1"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/back_guide_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="1"/>
+        app:layout_constraintGuide_percent="0.06"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
