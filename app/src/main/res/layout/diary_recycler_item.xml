@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
-    android:layout_marginStart="3dp"
+    android:layout_marginStart="1.5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/view"
             android:layout_gravity="center"
-            android:background="@drawable/item_name_background"
+            android:background="@drawable/custom_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -80,7 +80,7 @@
             android:id="@+id/data_frame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#25A9A8A8"
+            android:background="#EFEFEF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

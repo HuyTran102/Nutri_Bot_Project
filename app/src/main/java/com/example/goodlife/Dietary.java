@@ -34,6 +34,8 @@ public class Dietary extends AppCompatActivity {
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         backButton = findViewById(R.id.back_button);
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.pageViewer);

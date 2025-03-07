@@ -38,9 +38,10 @@
             android:id="@+id/item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:text=""
             android:textSize="26dp"
+            android:textColor="#00725E"
             android:textAlignment="center"
             android:layout_gravity="center"
             android:textStyle="bold"
@@ -51,19 +52,46 @@
 
     </LinearLayout>
 
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/back_guide_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.04" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/back_guide_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.03"/>
+
     <Button
         android:id="@+id/back_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="640dp"
-        android:layout_marginEnd="290dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:background="@drawable/back_to_home_button"
         android:textSize="20dp"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@id/back_guide_4"
+        app:layout_constraintEnd_toEndOf="@id/back_guide_2"
+        app:layout_constraintStart_toStartOf="@id/back_guide_1"
+        app:layout_constraintTop_toTopOf="@id/back_guide_3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/back_guide_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/back_guide_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.06"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -105,6 +133,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
+                    android:textColor="#00725E"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -114,6 +143,7 @@
                     android:gravity="center"
                     android:id="@+id/unit_type"
                     android:text=""
+                    android:textColor="#00725E"
                     android:textSize="18sp"
                     android:textStyle="bold"/>
             </LinearLayout>
@@ -121,6 +151,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/CustomTextInputLayout"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -171,6 +202,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Năng lượng"
+                    android:textColor="#00725E"
                     android:textSize="18sp"
                     android:textStyle="bold"/>
 
@@ -179,17 +211,22 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="(kcalo)"
+                    android:textColor="#00725E"
                     android:textSize="18sp"
                     android:textStyle="bold"/>
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/item_kcalo"
-                android:text="0"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/item_kcalo"
+                    android:text="0"
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center"
+                    android:textColor="#00725E"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -219,6 +256,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Protein"
+                    android:textColor="#00725E"
                     android:textSize="18sp"
                     android:textStyle="bold"/>
 
@@ -227,17 +265,22 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="(g)"
+                    android:textColor="#00725E"
                     android:textSize="18sp"
                     android:textStyle="bold"/>
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/item_protein"
-                android:text="0"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/item_protein"
+                    android:textColor="#00725E"
+                    android:text="0"
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -269,6 +312,7 @@
                     android:layout_height="wrap_content"
                     android:text="Lipid"
                     android:textSize="18sp"
+                    android:textColor="#00725E"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -277,16 +321,21 @@
                     android:gravity="center"
                     android:text="(g)"
                     android:textSize="18sp"
+                    android:textColor="#00725E"
                     android:textStyle="bold"/>
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/item_lipid"
-                android:text="0"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/item_lipid"
+                    android:text="0"
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center"
+                    android:textSize="18sp"
+                    android:textColor="#00725E"
+                    android:textStyle="bold" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -317,6 +366,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Glucid"
+                    android:textColor="#00725E"
                     android:textSize="18sp"
                     android:textStyle="bold"/>
 
@@ -325,17 +375,22 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="(g)"
+                    android:textColor="#00725E"
                     android:textSize="18sp"
                     android:textStyle="bold"/>
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/item_glucid"
-                android:text="0"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/item_glucid"
+                    android:text="0"
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center"
+                    android:textColor="#00725E"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
         </LinearLayout>
     </LinearLayout>
 
@@ -352,9 +407,9 @@
             android:id="@+id/add_to_diary_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_button"
+            android:background="@drawable/cus_val_dis"
             android:text="Lưu"
-            android:textColor="@color/black"
+            android:textColor="#FFFFFF"
             android:textSize="20dp"
             app:backgroundTint="@null"/>
 

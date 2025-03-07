@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/date"
             android:text=" 25/9/2024 "
-            android:textColor="@color/primaryTextColor"
+            android:textColor="#01A588"
             android:textStyle="bold"
             android:textSize="18sp"/>
 
