@@ -30,6 +30,8 @@ public class QuestionAndAnswer extends AppCompatActivity {
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         basicNutrition = findViewById(R.id.basic_nutrition);
         nutritionSchoolHealth = findViewById(R.id.nutrition_school_health);
         examSeasonNutrition = findViewById(R.id.exam_season_nutrition);

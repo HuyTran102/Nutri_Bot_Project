@@ -10,18 +10,6 @@
     android:layout_gravity="center"
     android:keepScreenOn="true">
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="592dp"
-        android:layout_height="389dp"
-        android:background="@drawable/wave"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/name_guide_1"
@@ -35,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.063"/>
+        app:layout_constraintGuide_percent="0.043"/>
 
     <TextView
         android:id="@+id/textView3"
@@ -43,7 +31,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:text="Dinh dưỡng mùa thi"
-        android:textColor="#FFFFFF"
+        android:textColor="#00725E"
         android:textSize="27sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/name_guide_4"
@@ -64,17 +52,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.12"/>
+        app:layout_constraintGuide_percent="0.1"/>
 
     <ScrollView
         android:layout_width="356dp"
         android:layout_height="475dp"
         android:background="#F7FFFFFF"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.604">
+        app:layout_constraintVertical_bias="0.655">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -85,6 +74,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/custom_button"
                 android:orientation="vertical">
 
                 <TextView
@@ -93,7 +83,7 @@
                     android:justificationMode="inter_word"
                     android:text="Câu hỏi 1: Tại sao dinh dưỡng lại quan trọng trong mùa thi?"
                     android:layout_marginStart="5dp"
-                    android:textColor="#FAED7D7D"
+                    android:textColor="#FA645787"
                     android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
@@ -104,7 +94,8 @@
                     android:justificationMode="inter_word"
                     android:text="Đáp án: Dinh dưỡng hợp lý giúp cung cấp năng lượng cho não bộ, cải thiện khả năng tập trung, tăng cường trí nhớ và giảm căng thẳng trong kỳ thi."
                     android:layout_marginStart="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="#C7C5C5"
+                    android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
 
@@ -114,7 +105,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:background="@drawable/custom_button"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -122,7 +114,7 @@
                     android:justificationMode="inter_word"
                     android:text="Câu hỏi 2: Những chất dinh dưỡng nào quan trọng nhất trong mùa thi?"
                     android:layout_marginStart="5dp"
-                    android:textColor="#FAED7D7D"
+                    android:textColor="#FA645787"
                     android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
@@ -133,7 +125,8 @@
                     android:justificationMode="inter_word"
                     android:text="Đáp án: Các chất quan trọng bao gồm protein, omega-3, vitamin B, vitamin C, sắt, và các chất chống oxy hóa như flavonoid."
                     android:layout_marginStart="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="#C7C5C5"
+                    android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
 
@@ -143,7 +136,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:background="@drawable/custom_button"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -151,7 +145,7 @@
                     android:justificationMode="inter_word"
                     android:text="Câu hỏi 3: Nên ăn gì vào bữa sáng trong mùa thi?"
                     android:layout_marginStart="5dp"
-                    android:textColor="#FAED7D7D"
+                    android:textColor="#FA645787"
                     android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
@@ -162,7 +156,8 @@
                     android:justificationMode="inter_word"
                     android:text="Đáp án: Nên ăn các thực phẩm giàu protein và carbohydrate như trứng, bánh mì ngũ cốc nguyên hạt, sữa hoặc sữa chua để cung cấp năng lượng lâu dài cho não bộ."
                     android:layout_marginStart="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="#C7C5C5"
+                    android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
 
@@ -172,7 +167,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:background="@drawable/custom_button"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -180,7 +176,7 @@
                     android:justificationMode="inter_word"
                     android:text="Câu hỏi 4: Thực phẩm nào giúp tăng cường trí nhớ và tập trung?"
                     android:layout_marginStart="5dp"
-                    android:textColor="#FAED7D7D"
+                    android:textColor="#FA645787"
                     android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
@@ -191,7 +187,8 @@
                     android:justificationMode="inter_word"
                     android:text="Đáp án: Các thực phẩm như cá hồi, quả óc chó, trứng, bơ, việt quất và các loại rau lá xanh giúp tăng cường chức năng não bộ và trí nhớ."
                     android:layout_marginStart="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="#C7C5C5"
+                    android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
 
@@ -201,7 +198,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:background="@drawable/custom_button"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -209,7 +207,7 @@
                     android:justificationMode="inter_word"
                     android:text="Câu hỏi 5: Có nên uống cà phê hoặc nước tăng lực không?"
                     android:layout_marginStart="5dp"
-                    android:textColor="#FAED7D7D"
+                    android:textColor="#FA645787"
                     android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
@@ -220,7 +218,8 @@
                     android:justificationMode="inter_word"
                     android:text="Đáp án: Uống một lượng nhỏ cà phê có thể giúp tỉnh táo, nhưng lạm dụng có thể gây mất ngủ, lo lắng. Nước tăng lực không được khuyến khích vì chứa nhiều đường và caffeine."
                     android:layout_marginStart="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="#C7C5C5"
+                    android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
 
@@ -230,7 +229,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:background="@drawable/custom_button"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -238,7 +238,7 @@
                     android:justificationMode="inter_word"
                     android:text="Câu hỏi 6: Có thực phẩm nào không nên ăn trước khi thi không?"
                     android:layout_marginStart="5dp"
-                    android:textColor="#FAED7D7D"
+                    android:textColor="#FA645787"
                     android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
@@ -249,7 +249,8 @@
                     android:justificationMode="inter_word"
                     android:text="Đáp án: Nên tránh các thực phẩm chiên rán, đồ ăn nhanh, nước ngọt có ga và các món ăn nhiều đường vì chúng làm cơ thể uể oải, khó tập trung."
                     android:layout_marginStart="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="#C7C5C5"
+                    android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
 
@@ -259,7 +260,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:background="@drawable/custom_button"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -267,7 +269,7 @@
                     android:justificationMode="inter_word"
                     android:text="Câu hỏi 7: Ăn nhiều đồ ngọt có giúp tăng năng lượng không?"
                     android:layout_marginStart="5dp"
-                    android:textColor="#FAED7D7D"
+                    android:textColor="#FA645787"
                     android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
@@ -278,7 +280,8 @@
                     android:justificationMode="inter_word"
                     android:text="Đáp án: Đồ ngọt chỉ cung cấp năng lượng ngắn hạn, sau đó dễ gây mệt mỏi. Thay vào đó, nên ăn trái cây để cung cấp đường tự nhiên cùng với vitamin."
                     android:layout_marginStart="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="#C7C5C5"
+                    android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
 
@@ -288,7 +291,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:background="@drawable/custom_button"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -296,7 +300,7 @@
                     android:layout_marginStart="5dp"
                     android:justificationMode="inter_word"
                     android:text="Câu hỏi 8: Có nên ăn đêm khi ôn thi không?"
-                    android:textColor="#FAED7D7D"
+                    android:textColor="#FA645787"
                     android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
@@ -307,7 +311,8 @@
                     android:justificationMode="inter_word"
                     android:text="Đáp án: Không nên ăn đêm thường xuyên vì dễ gây tăng cân và ảnh hưởng đến giấc ngủ. Nếu đói, nên ăn nhẹ các món như sữa chua, chuối hoặc hạt."
                     android:layout_marginStart="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="#C7C5C5"
+                    android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
 
@@ -317,7 +322,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:background="@drawable/custom_button"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -325,7 +331,7 @@
                     android:layout_marginStart="5dp"
                     android:justificationMode="inter_word"
                     android:text="Câu hỏi 9: Uống đủ nước quan trọng như thế nào trong mùa thi?"
-                    android:textColor="#FAED7D7D"
+                    android:textColor="#FA645787"
                     android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
@@ -336,7 +342,8 @@
                     android:justificationMode="inter_word"
                     android:text="Đáp án: Uống đủ nước giúp duy trì sự tỉnh táo và tăng khả năng tập trung. Thiếu nước có thể gây đau đầu và mệt mỏi."
                     android:layout_marginStart="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="#C7C5C5"
+                    android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
 
@@ -346,7 +353,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:background="@drawable/custom_button"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -354,7 +362,7 @@
                     android:layout_marginStart="5dp"
                     android:justificationMode="inter_word"
                     android:text="Câu hỏi 10: Nên chia bữa ăn như thế nào trong thời gian ôn thi?"
-                    android:textColor="#FAED7D7D"
+                    android:textColor="#FA645787"
                     android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
@@ -365,7 +373,8 @@
                     android:justificationMode="inter_word"
                     android:text="Đáp án: Nên chia thành 3 bữa chính và 2 bữa phụ để cung cấp năng lượng liên tục, tránh tình trạng đói hoặc no quá mức."
                     android:layout_marginStart="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="#C7C5C5"
+                    android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
 
@@ -375,7 +384,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:background="@drawable/custom_button"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -383,7 +393,7 @@
                     android:layout_marginStart="5dp"
                     android:justificationMode="inter_word"
                     android:text="Câu hỏi 11: Thực phẩm nào giúp giảm căng thẳng?"
-                    android:textColor="#FAED7D7D"
+                    android:textColor="#FA645787"
                     android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
@@ -394,7 +404,8 @@
                     android:justificationMode="inter_word"
                     android:text="Đáp án: Các thực phẩm như chuối, sô-cô-la đen, hạnh nhân, và các loại hạt chứa magie giúp giảm căng thẳng. Trà xanh cũng giúp làm dịu tinh thần."
                     android:layout_marginStart="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="#C7C5C5"
+                    android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
 
@@ -404,7 +415,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:background="@drawable/custom_button"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -412,7 +424,7 @@
                     android:layout_marginStart="5dp"
                     android:justificationMode="inter_word"
                     android:text="Câu hỏi 12: Làm gì để tránh buồn ngủ khi học bài?"
-                    android:textColor="#FAED7D7D"
+                    android:textColor="#FA645787"
                     android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
@@ -423,7 +435,8 @@
                     android:justificationMode="inter_word"
                     android:text="Đáp án: Nên ăn các bữa nhẹ chứa protein như sữa chua hoặc hạt. Tránh ăn quá no, uống đủ nước và có thể vận động nhẹ giữa giờ học."
                     android:layout_marginStart="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="#C7C5C5"
+                    android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
 
@@ -433,7 +446,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:background="@drawable/custom_button"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -441,7 +455,7 @@
                     android:layout_marginStart="5dp"
                     android:justificationMode="inter_word"
                     android:text="Câu hỏi 13: Nên ăn gì vào buổi sáng trước ngày thi?"
-                    android:textColor="#FAED7D7D"
+                    android:textColor="#FA645787"
                     android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
@@ -453,7 +467,8 @@
                     android:layout_marginBottom="10dp"
                     android:text="Đáp án: Ăn bữa sáng đầy đủ với các thực phẩm dễ tiêu hóa như trứng, bánh mì ngũ cốc, chuối và uống nước hoặc sữa. Không nên uống quá nhiều caffeine."
                     android:layout_marginStart="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="#C7C5C5"
+                    android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="17sp"/>
 
@@ -463,24 +478,25 @@
 
     </ScrollView>
 
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/back_guide_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.04"/>
+        app:layout_constraintGuide_percent="0.05"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/back_guide_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.93"/>
+        app:layout_constraintGuide_percent="0.03"/>
 
     <Button
         android:id="@+id/back_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:background="@drawable/back_to_home_button"
         android:textSize="20dp"
         app:backgroundTint="@null"
@@ -494,14 +510,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.14"/>
+        app:layout_constraintGuide_percent="0.1"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/back_guide_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="1"/>
+        app:layout_constraintGuide_percent="0.06"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

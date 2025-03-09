@@ -30,6 +30,8 @@ public class RecommendMenu extends AppCompatActivity {
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         menu1 = findViewById(R.id.menu_1);
         menu2 = findViewById(R.id.menu_2);
         menu3 = findViewById(R.id.menu_3);

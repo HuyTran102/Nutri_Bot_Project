@@ -10,19 +10,6 @@
     android:layout_gravity="center"
     android:keepScreenOn="true">
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="592dp"
-        android:layout_height="389dp"
-        android:background="@drawable/wave"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/name_guide_1"
         android:layout_width="wrap_content"
@@ -35,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.063"/>
+        app:layout_constraintGuide_percent="0.043"/>
 
     <TextView
         android:id="@+id/textView3"
@@ -43,7 +30,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:text="Thừa cân béo phì"
-        android:textColor="#FFFFFF"
+        android:textColor="#00725E"
         android:textSize="27sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/name_guide_4"
@@ -64,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.12"/>
+        app:layout_constraintGuide_percent="0.1"/>
 
     <ScrollView
         android:layout_width="356dp"
@@ -75,7 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.669">
+        app:layout_constraintVertical_bias="0.655">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -86,6 +73,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/custom_button"
                 android:orientation="vertical">
 
                 <TextView
@@ -94,7 +82,7 @@
                     android:layout_marginStart="5dp"
                     android:gravity="center_vertical"
                     android:text="Câu hỏi 1: Thừa cân và béo phì khác nhau như thế nào?"
-                    android:textColor="#FAED7D7D"
+                    android:textColor="#FA645787"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
@@ -104,7 +92,8 @@
                     android:layout_marginStart="5dp"
                     android:gravity="center_vertical"
                     android:text="Đáp án: Thừa cân là tình trạng trọng lượng cơ thể cao hơn mức bình thường so với chiều cao, còn béo phì là tình trạng tích lũy mỡ quá mức, ảnh hưởng đến sức khỏe."
-                    android:textColor="@color/black"
+                    android:textColor="#C7C5C5"
+                    android:textStyle="bold"
                     android:textSize="17sp" />
 
             </LinearLayout>
@@ -112,7 +101,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_button"
                 android:orientation="vertical">
 
                 <TextView
@@ -122,7 +112,7 @@
                     android:gravity="center_vertical"
                     android:justificationMode="inter_word"
                     android:text="Câu hỏi 2: Nguyên nhân nào dẫn đến béo phì ở học sinh?"
-                    android:textColor="#FAED7D7D"
+                    android:textColor="#FA645787"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
@@ -133,7 +123,8 @@
                     android:gravity="center_vertical"
                     android:justificationMode="inter_word"
                     android:text="Đáp án: Nguyên nhân bao gồm ăn quá nhiều thực phẩm giàu calo, ít vận động, uống nước ngọt thường xuyên, và thói quen sinh hoạt không lành mạnh."
-                    android:textColor="@color/black"
+                    android:textColor="#C7C5C5"
+                    android:textStyle="bold"
                     android:textSize="17sp" />
 
             </LinearLayout>
@@ -141,7 +132,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_button"
                 android:orientation="vertical">
 
                 <TextView
@@ -151,7 +143,7 @@
                     android:gravity="center_vertical"
                     android:justificationMode="inter_word"
                     android:text="Câu hỏi 3: Béo phì có thể gây ra những bệnh gì?"
-                    android:textColor="#FAED7D7D"
+                    android:textColor="#FA645787"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
@@ -162,7 +154,8 @@
                     android:gravity="center_vertical"
                     android:justificationMode="inter_word"
                     android:text="Đáp án: Béo phì làm tăng nguy cơ mắc các bệnh như đái tháo đường loại 2, tăng huyết áp, bệnh tim mạch, gan nhiễm mỡ và rối loạn chuyển hóa."
-                    android:textColor="@color/black"
+                    android:textColor="#C7C5C5"
+                    android:textStyle="bold"
                     android:textSize="17sp" />
 
             </LinearLayout>
@@ -170,7 +163,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_button"
                 android:orientation="vertical">
 
                 <TextView
@@ -180,7 +174,7 @@
                     android:gravity="center_vertical"
                     android:justificationMode="inter_word"
                     android:text="Câu hỏi 4: Tại sao học sinh thừa cân thường thiếu tự tin?"
-                    android:textColor="#FAED7D7D"
+                    android:textColor="#FA645787"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
@@ -188,11 +182,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:gravity="center_vertical"
                     android:layout_marginBottom="10dp"
+                    android:gravity="center_vertical"
                     android:justificationMode="inter_word"
                     android:text="Đáp án: Thừa cân có thể làm ảnh hưởng đến ngoại hình, dẫn đến tự ti, bị trêu chọc, hoặc cảm thấy không thoải mái trong các hoạt động thể chất."
-                    android:textColor="@color/black"
+                    android:textColor="#C7C5C5"
+                    android:textStyle="bold"
                     android:textSize="17sp" />
 
             </LinearLayout>
@@ -200,7 +195,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_button"
                 android:layout_marginEnd="10dp"
                 android:orientation="vertical">
 
@@ -211,7 +207,7 @@
                     android:gravity="center_vertical"
                     android:justificationMode="inter_word"
                     android:text="Câu hỏi 5: Làm thế nào để giảm cân an toàn cho học sinh?"
-                    android:textColor="#FAED7D7D"
+                    android:textColor="#FA645787"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
@@ -219,11 +215,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:gravity="center_vertical"
                     android:layout_marginBottom="10dp"
+                    android:gravity="center_vertical"
                     android:justificationMode="inter_word"
                     android:text="Đáp án: Cần áp dụng chế độ ăn uống cân bằng, hạn chế đồ ăn nhanh và nước ngọt, tăng cường tập thể dục, ngủ đủ giấc và tránh nhịn ăn quá mức."
-                    android:textColor="@color/black"
+                    android:textColor="#C7C5C5"
+                    android:textStyle="bold"
                     android:textSize="17sp" />
 
             </LinearLayout>
@@ -237,19 +234,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.04"/>
+        app:layout_constraintGuide_percent="0.05"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/back_guide_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.93"/>
+        app:layout_constraintGuide_percent="0.03"/>
 
     <Button
         android:id="@+id/back_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:background="@drawable/back_to_home_button"
         android:textSize="20dp"
         app:backgroundTint="@null"
@@ -263,14 +260,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.14"/>
+        app:layout_constraintGuide_percent="0.1"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/back_guide_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="1"/>
+        app:layout_constraintGuide_percent="0.06"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
