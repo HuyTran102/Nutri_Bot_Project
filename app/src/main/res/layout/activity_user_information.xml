@@ -10,17 +10,6 @@
     android:layout_gravity="center"
     android:keepScreenOn="true">
 
-    <ImageView
-        android:layout_width="592dp"
-        android:layout_height="360dp"
-        android:background="@drawable/wave"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/item_guide_1"
         android:layout_width="wrap_content"
@@ -57,6 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="5dp"
             android:text=""
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -68,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
+        app:layout_constraintGuide_percent="0.43" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/item_guide_5"
@@ -81,7 +71,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:background="@drawable/custom_button"
         app:layout_constraintBottom_toBottomOf="@id/item_guide_10"
         app:layout_constraintEnd_toEndOf="@id/item_guide_2"
         app:layout_constraintStart_toStartOf="@id/item_guide_1"
@@ -89,6 +78,7 @@
 
         <LinearLayout
             android:layout_marginTop="5dp"
+            android:background="@drawable/cus_val_dis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -96,24 +86,29 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Giới tính:"
-                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Giới tính"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/user_gender"
+                android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+                android:layout_gravity="center"
                 android:text=""
+                android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/cus_val_dis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -121,24 +116,29 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Ngày tháng năm sinh:"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="Ngày tháng năm sinh"
                 android:textSize="20sp"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/user_date_of_birth"
+                android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
                 android:text=""
+                android:layout_gravity="center"
                 android:textSize="20sp"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/cus_val_dis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -146,18 +146,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Email:"
+                android:layout_marginTop="5dp"
+                android:text="Email"
+                android:layout_gravity="center"
                 android:textSize="20sp"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/user_email"
+                android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
                 android:text=""
+                android:layout_gravity="center"
                 android:textSize="20sp"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -197,7 +201,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.77"/>
+        app:layout_constraintGuide_percent="0.9"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/item_guide_2"
@@ -211,19 +215,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.04"/>
+        app:layout_constraintGuide_percent="0.05"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/back_guide_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.93"/>
+        app:layout_constraintGuide_percent="0.03"/>
 
     <Button
         android:id="@+id/back_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:background="@drawable/back_to_home_button"
         android:textSize="20dp"
         app:backgroundTint="@null"
@@ -237,13 +241,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.14"/>
+        app:layout_constraintGuide_percent="0.1"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/back_guide_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="1"/>
+        app:layout_constraintGuide_percent="0.06"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

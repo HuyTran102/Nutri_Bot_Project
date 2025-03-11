@@ -43,6 +43,8 @@ public class UserInformation extends AppCompatActivity {
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         backButton = findViewById(R.id.back_button);
         userName = findViewById(R.id.user_name);
         userGender = findViewById(R.id.user_gender);
