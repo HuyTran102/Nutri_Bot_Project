@@ -34,6 +34,8 @@ public class AppRanking extends AppCompatActivity {
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         ratingBar = findViewById(R.id.app_rating);
         message = findViewById(R.id.message);
         ratingIcon = findViewById(R.id.rating_icon);
