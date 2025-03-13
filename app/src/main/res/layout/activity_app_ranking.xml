@@ -172,14 +172,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.62"/>
+        app:layout_constraintGuide_percent="0.67"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/text_guide_8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.67"/>
+        app:layout_constraintGuide_percent="0.72"/>
 
     <TextView
         android:id="@+id/message"
