@@ -10,37 +10,26 @@
     android:layout_gravity="center"
     android:keepScreenOn="true">
 
-    <ImageView
-        android:layout_width="592dp"
-        android:layout_height="360dp"
-        android:background="@drawable/wave"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/name_guide_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1"/>
+        app:layout_constraintGuide_percent="0.17"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/name_guide_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.063"/>
+        app:layout_constraintGuide_percent="0.043"/>
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="Tư vấn với chuyên gia"
-        android:textColor="#FFFFFF"
+        android:textColor="#00725E"
         android:textSize="27sp"
         android:textStyle="bold"
         android:textAlignment="center"
@@ -54,14 +43,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9"/>
+        app:layout_constraintGuide_percent="0.83"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/name_guide_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="104dp" />
+        app:layout_constraintGuide_percent="0.1"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/profile_guide_1"
@@ -106,6 +95,7 @@
             android:text="TS.Vũ Thị Quỳnh Chi"
             android:textSize="22sp"
             android:textStyle="bold"
+            android:textColor="#FA645787"
             android:layout_gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -150,6 +140,7 @@
         android:text="Trường Y Dược - Đại Học Đà Nẵng"
         android:textSize="22sp"
         android:textStyle="bold"
+        android:textColor="#0CA78C"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@id/place_guide_4"
         app:layout_constraintEnd_toEndOf="@id/place_guide_2"
@@ -192,6 +183,7 @@
         android:text="Kinh nghiệm: Hơn 15 năm nghiên cứu chuyên sâu về Dinh dưỡng, và tham gia triển khai các chương trình dinh dưỡng học đường."
         android:textSize="22sp"
         android:textStyle="bold"
+        android:textColor="#0CA78C"
         app:layout_constraintBottom_toBottomOf="@id/exp_guide_4"
         app:layout_constraintEnd_toEndOf="@id/exp_guide_2"
         app:layout_constraintHorizontal_bias="0.508"
@@ -213,19 +205,24 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.8"/>
 
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.904">
+        app:layout_constraintVertical_bias="0.935">
 
         <ImageView
             android:id="@+id/contact_phone"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:src="@drawable/phone" />
 
         <ImageView
@@ -233,6 +230,8 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:src="@drawable/text" />
 
         <ImageView
@@ -240,6 +239,9 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             android:src="@drawable/email" />
 
     </LinearLayout>
@@ -249,19 +251,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.04"/>
+        app:layout_constraintGuide_percent="0.05"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/back_guide_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.93"/>
+        app:layout_constraintGuide_percent="0.03"/>
 
     <Button
         android:id="@+id/back_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:background="@drawable/back_to_home_button"
         android:textSize="20dp"
         app:backgroundTint="@null"
@@ -275,13 +277,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.14"/>
+        app:layout_constraintGuide_percent="0.1"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/back_guide_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="1"/>
+        app:layout_constraintGuide_percent="0.06"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
