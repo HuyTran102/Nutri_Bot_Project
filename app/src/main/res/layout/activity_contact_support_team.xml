@@ -87,10 +87,10 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0"/>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/profile_background"
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/profile_background"
         app:layout_constraintBottom_toBottomOf="@id/img_guide_8"
         app:layout_constraintEnd_toEndOf="@id/img_guide_7"
         app:layout_constraintStart_toStartOf="@id/img_guide_6"
@@ -108,7 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.90"/>
+        app:layout_constraintGuide_percent="0.95"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/item_guide_6"
@@ -184,9 +184,10 @@
         app:layout_constraintVertical_bias="0.176">
 
         <ImageView
-            android:layout_width="280dp"
-            android:layout_height="280dp"
+            android:layout_width="260dp"
+            android:layout_height="260dp"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:src="@drawable/ceo_huy_thu_hai" />
 
         <TextView
@@ -211,7 +212,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="14dp">
+            android:layout_marginTop="30dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
