@@ -43,21 +43,21 @@ public class TemplateMenuView extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycleView);
         backButton = findViewById(R.id.back_button);
 
-        items.add(new TempMenuItem("Thực đơn 1 - 1200 Kcal", R.drawable.tmp_menu_1));
-        items.add(new TempMenuItem("Thực đơn 2 - 1200 Kcal", R.drawable.tmp_menu_2));
-        items.add(new TempMenuItem("Thực đơn 3 - 1200 Kcal", R.drawable.tmp_menu_4));
-        items.add(new TempMenuItem("Thực đơn 4 - 1200 Kcal", R.drawable.tmp_menu_3));
-        items.add(new TempMenuItem("Thực đơn 5 - 1200 Kcal", R.drawable.tmp_menu_5));
-        items.add(new TempMenuItem("Thực đơn 1 - 1400 Kcal", R.drawable.tmp_menu_2));
-        items.add(new TempMenuItem("Thực đơn 2 - 1400 Kcal", R.drawable.tmp_menu_1));
-        items.add(new TempMenuItem("Thực đơn 3 - 1400 Kcal", R.drawable.tmp_menu_3));
-        items.add(new TempMenuItem("Thực đơn 4 - 1400 Kcal", R.drawable.tmp_menu_5));
-        items.add(new TempMenuItem("Thực đơn 5 - 1400 Kcal", R.drawable.tmp_menu_4));
-        items.add(new TempMenuItem("Thực đơn 1 - 1600 Kcal", R.drawable.tmp_menu_1));
-        items.add(new TempMenuItem("Thực đơn 2 - 1600 Kcal", R.drawable.tmp_menu_5));
-        items.add(new TempMenuItem("Thực đơn 3 - 1600 Kcal", R.drawable.tmp_menu_2));
-        items.add(new TempMenuItem("Thực đơn 4 - 1600 Kcal", R.drawable.tmp_menu_4));
-        items.add(new TempMenuItem("Thực đơn 5 - 1600 Kcal", R.drawable.tmp_menu_3));
+        items.add(new TempMenuItem("Thực đơn 1 - 1200 Kcal", R.drawable.tmp_1200_1));
+        items.add(new TempMenuItem("Thực đơn 2 - 1200 Kcal", R.drawable.tmp_1200_2));
+        items.add(new TempMenuItem("Thực đơn 3 - 1200 Kcal", R.drawable.tmp_1200_4));
+        items.add(new TempMenuItem("Thực đơn 4 - 1200 Kcal", R.drawable.tmp_1200_3));
+        items.add(new TempMenuItem("Thực đơn 5 - 1200 Kcal", R.drawable.tmp_1200_2));
+        items.add(new TempMenuItem("Thực đơn 1 - 1400 Kcal", R.drawable.tmp_1400_2));
+        items.add(new TempMenuItem("Thực đơn 2 - 1400 Kcal", R.drawable.tmp_1400_1));
+        items.add(new TempMenuItem("Thực đơn 3 - 1400 Kcal", R.drawable.tmp_1400_3));
+        items.add(new TempMenuItem("Thực đơn 4 - 1400 Kcal", R.drawable.tmp_1400_2));
+        items.add(new TempMenuItem("Thực đơn 5 - 1400 Kcal", R.drawable.tmp_1400_4));
+        items.add(new TempMenuItem("Thực đơn 1 - 1600 Kcal", R.drawable.tmp_1600_1));
+        items.add(new TempMenuItem("Thực đơn 2 - 1600 Kcal", R.drawable.tmp_1600_3));
+        items.add(new TempMenuItem("Thực đơn 3 - 1600 Kcal", R.drawable.tmp_1600_2));
+        items.add(new TempMenuItem("Thực đơn 4 - 1600 Kcal", R.drawable.tmp_1600_4));
+        items.add(new TempMenuItem("Thực đơn 5 - 1600 Kcal", R.drawable.tmp_1600_3));
 
         viewAdapter = new TempMenuViewAdapter(this, items);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
