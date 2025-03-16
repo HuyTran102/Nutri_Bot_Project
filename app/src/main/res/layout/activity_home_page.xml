@@ -362,7 +362,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/firasans_bolditalic"
-            android:text="Good Life"
+            android:text="NutriBot"
             android:textAlignment="center"
             android:textColor="#00725E"
             android:textSize="32sp"
