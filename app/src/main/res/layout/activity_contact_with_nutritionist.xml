@@ -137,7 +137,7 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Trường Y Dược - Đại Học Đà Nẵng"
+        android:text="Trường Y Dược - Đại học Đà Nẵng"
         android:textSize="22sp"
         android:textStyle="bold"
         android:textColor="#0CA78C"
