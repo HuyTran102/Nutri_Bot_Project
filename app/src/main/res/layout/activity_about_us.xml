@@ -108,6 +108,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
+        android:background="@drawable/cus_val_dis"
         app:layout_constraintBottom_toBottomOf="@id/text_guide_4"
         app:layout_constraintEnd_toEndOf="@id/text_guide_2"
         app:layout_constraintHorizontal_bias="0.333"
@@ -123,7 +124,6 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:justificationMode="inter_word"
-            android:background="@drawable/cus_val_dis"
             android:text="Phần mềm Quản lý dinh dưỡng cá nhân được thiết kế dành riêng cho học sinh trung học, giúp các em xây dựng thói quen ăn uống lành mạnh và khoa học."
             android:textSize="20sp"
             android:textColor="#FFFFFF"
@@ -171,7 +171,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.9" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/back_guide_1"
