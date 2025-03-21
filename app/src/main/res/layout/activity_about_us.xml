@@ -123,10 +123,10 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:justificationMode="inter_word"
-            android:background="@drawable/custom_button"
+            android:background="@drawable/cus_val_dis"
             android:text="Phần mềm Quản lý dinh dưỡng cá nhân được thiết kế dành riêng cho học sinh trung học, giúp các em xây dựng thói quen ăn uống lành mạnh và khoa học."
             android:textSize="20sp"
-            android:textColor="#C7C5C5"
+            android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
         <TextView
@@ -137,10 +137,10 @@
             android:justificationMode="inter_word"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:background="@drawable/custom_button"
+            android:background="@drawable/cus_val_dis"
             android:text="Phần mềm có giao diện thân thiện và dễ sử dụng cung cấp các tính năng theo dõi dinh dưỡng hàng ngày, lên kế hoạch bữa ăn cân đối và phân tích sức khỏe dựa trên thông tin cá nhân."
             android:textSize="20sp"
-            android:textColor="#C7C5C5"
+            android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
         <TextView
@@ -151,10 +151,10 @@
             android:justificationMode="inter_word"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:background="@drawable/custom_button"
+            android:background="@drawable/cus_val_dis"
             android:text="Sứ mệnh của chúng tôi là đồng hành cùng học sinh trên hành trình nâng cao sức khỏe thể chất và tinh thần, hỗ trợ các em phát triển toàn diện để có thành tích học tập tốt nhất."
             android:textSize="20sp"
-            android:textColor="#C7C5C5"
+            android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
     </LinearLayout>
