@@ -60,7 +60,7 @@
         app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="@id/img_guide_1"
         app:layout_constraintTop_toTopOf="@id/img_guide_3"
-        app:layout_constraintVertical_bias="0.403" />
+        app:layout_constraintVertical_bias="0.307" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/text_guide_1"
@@ -74,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4"/>
+        app:layout_constraintGuide_percent="0.45"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/img_guide_1"
@@ -171,7 +171,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.95" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/back_guide_1"
