@@ -51,10 +51,10 @@ public class TemplateMenuView extends AppCompatActivity {
         items.add(new TempMenuItem("Thực đơn 3 - 1600 Kcal", R.drawable.tmp_1600_2, R.drawable.menu2_1600));
         items.add(new TempMenuItem("Thực đơn 1 - 1200 Kcal", R.drawable.tmp_1200_3, R.drawable.menu3_1200));
         items.add(new TempMenuItem("Thực đơn 2 - 1400 Kcal", R.drawable.tmp_1400_3, R.drawable.menu3_1400));
-        items.add(new TempMenuItem("Thực đơn 3 - 1600 Kcal", R.drawable.tmp_1600_3, R.drawable.menu3_1600));
+        items.add(new TempMenuItem("Thực đơn 3 - 1600 Kcal", R.drawable.tmp_1600_4, R.drawable.menu3_1600));
         items.add(new TempMenuItem("Thực đơn 1 - 1200 Kcal", R.drawable.tmp_1200_1, R.drawable.menu4_1200));
         items.add(new TempMenuItem("Thực đơn 2 - 1400 Kcal", R.drawable.tmp_1400_4, R.drawable.menu4_1400));
-        items.add(new TempMenuItem("Thực đơn 3 - 1600 Kcal", R.drawable.tmp_1600_4, R.drawable.menu4_1600));
+        items.add(new TempMenuItem("Thực đơn 3 - 1600 Kcal", R.drawable.tmp_1600_3, R.drawable.menu4_1600));
         items.add(new TempMenuItem("Thực đơn 1 - 1200 Kcal", R.drawable.tmp_1200_4, R.drawable.menu5_1200));
         items.add(new TempMenuItem("Thực đơn 2 - 1400 Kcal", R.drawable.tmp_1400_2, R.drawable.menu5_1400));
         items.add(new TempMenuItem("Thực đơn 3 - 1600 Kcal", R.drawable.tmp_1600_2, R.drawable.menu5_1600));
