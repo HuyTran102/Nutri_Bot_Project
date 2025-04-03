@@ -27,9 +27,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.IsoFields;
+import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -76,9 +78,11 @@ public class TrackingDiagram extends AppCompatActivity {
 
         weekFields = WeekFields.of(Locale.getDefault());
 
-        startOfWeek = currentDate.with(weekFields.dayOfWeek(), 1);
+        startOfWeek = currentDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
 
-        endOfWeek = currentDate.with(weekFields.dayOfWeek(), 7);
+        endOfWeek = currentDate.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
+
+        Toast.makeText(this, "" + startOfWeek + " " + endOfWeek, Toast.LENGTH_SHORT).show();
 
         LoadData();
 
@@ -103,13 +107,12 @@ public class TrackingDiagram extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Loop through all documents
                             if (!task.getResult().isEmpty()) {
-                                for (int i = startOfWeek.getDayOfMonth(); i <= endOfWeek.getDayOfMonth(); i++) {
+                                for (int i = startOfWeek.getDayOfWeek().getValue(); i <= endOfWeek.getDayOfWeek().getValue(); i++) {
                                     int sumKcal = 0;
                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                         int day = Integer.parseInt(document.getString("day")), month = Integer.parseInt(document.getString("month")), year = Integer.parseInt(document.getString("year"));
-                                        if ((i == day && day == i)
-                                                && (startOfWeek.getMonthValue() == month && endOfWeek.getMonthValue() == month)
-                                                && (startOfWeek.getYear() == year && endOfWeek.getYear() == year)) {
+                                        if (i == day && (startOfWeek.getYear() == year || endOfWeek.getYear() == year)
+                                                && (month == startOfWeek.getMonthValue() || endOfWeek.getMonthValue() == month)) {
                                             sumKcal += Integer.parseInt(document.getString("kcal"));
                                         }
                                     }
