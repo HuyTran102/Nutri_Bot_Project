@@ -93,7 +93,6 @@ public class NotificationReceiver extends BroadcastReceiver {
 
     // Write Data to Cloud Firestone
     public void WriteDataFireBase(String titleName, String information, String time, String date){
-
         // Create a new item with all of the data like name, amount, ...
         Map<String, Object> item = new HashMap<>();
         item.put("name", titleName);

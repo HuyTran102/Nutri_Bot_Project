@@ -101,7 +101,6 @@ public class DiaryViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     DocumentReference documentReference = firebaseFirestore.collection("GoodLife").document(user_name).collection("Nhật kí").document(itemAtPosition.getName());
 
                     // delete document from database
-
                     firebaseFirestore.collection("GoodLife")
                             .document(user_name)
                             .collection("Nhật kí")

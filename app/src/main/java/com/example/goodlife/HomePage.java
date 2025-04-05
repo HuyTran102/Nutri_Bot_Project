@@ -1,14 +1,10 @@
 package com.example.goodlife;
 
-import static java.security.AccessController.getContext;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -17,7 +13,6 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.RingtoneManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,9 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.android.gms.tasks.Tasks;
@@ -48,19 +41,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import org.apache.poi.xwpf.usermodel.TOC;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HomePage extends AppCompatActivity {
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
@@ -223,8 +208,6 @@ public class HomePage extends AppCompatActivity {
         setNullValue();
 
         LoadDataFireBase();
-
-//        Toast.makeText(HomePage.this, " " + actualEnergy + " " + usedEnergy + " " + addEnergy + " " + recommendEnergy + " ", Toast.LENGTH_SHORT).show();
 
         nutritionalStatusButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -440,11 +423,7 @@ public class HomePage extends AppCompatActivity {
                             }
                             usedEnergy = total_sum;
 
-//                            if (usedEnergy == 0) {
-//                                recommendEnergy = 0;
-//                            } else {
-                                recommendEnergy = recommendWeight * 24 * 1.5 + usedEnergy;
-//                            }
+                            recommendEnergy = recommendWeight * 24 * 1.5 + usedEnergy;
                         }
 
                         // Task 4: Xử lý kết quả của Diary task
@@ -511,8 +490,6 @@ public class HomePage extends AppCompatActivity {
         }
 
         actualEnergy = addEnergy;
-
-//        Toast.makeText(HomePage.this, " " + actualEnergy + " " + usedEnergy + " " + addEnergy + " " + recommendEnergy + " ", Toast.LENGTH_SHORT).show();
 
         if (recommendEnergy == actualEnergy) {
             statusEnergy = 0;
@@ -602,7 +579,6 @@ public class HomePage extends AppCompatActivity {
 
         kcaloView.setText(energy_status);
 
-//       Toast.makeText(HomePage.this, " " + actualEnergy + " " + usedEnergy + " " + addEnergy + " " + recommendEnergy + " ", Toast.LENGTH_SHORT).show();
     }
 
     public void setNullValue() {

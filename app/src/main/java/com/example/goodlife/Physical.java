@@ -136,8 +136,6 @@ public class Physical extends AppCompatActivity {
 
                 double itemUsedEnergy = (Double.parseDouble(itemActivityMET) * userWeight * 3.5 * prac_minute) / 200;
 
-//                Toast.makeText(Physical.this, itemUsedEnergy + " " + itemActivityMET + " " + userWeight + " " + prac_minute, Toast.LENGTH_SHORT).show();
-
                 WriteDataFireBase(itemActivityName, itemActivityLevel, itemActivityMET
                         , itemPracticeTime, String.valueOf(itemUsedEnergy), String.valueOf(year)
                         , String.valueOf(month), String.valueOf(day)

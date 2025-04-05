@@ -88,7 +88,6 @@ public class WaterDemand extends AppCompatActivity {
 
                                 double tmpRecommendWaterAmount = (40 * recommendWeight) / 1000;
 
-                                DecimalFormat decimalFormat = new DecimalFormat("#.#");
                                 recommendWaterAmount = Math.floor(tmpRecommendWaterAmount * 100.0) / 100.0;
 
                                 recommendWaterAmount *= 1000;
@@ -116,8 +115,6 @@ public class WaterDemand extends AppCompatActivity {
                 }
             }
         });
-
-//        Toast.makeText(this, " " + recommendWaterAmount + " " + recommendWeight + " ", Toast.LENGTH_SHORT).show();
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

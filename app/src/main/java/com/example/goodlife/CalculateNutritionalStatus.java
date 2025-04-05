@@ -102,8 +102,6 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
                             gender = snapshot.child(name).child("gender").getValue(String.class);
                             password = snapshot.child(name).child("password").getValue(String.class);
                             date = snapshot.child(name).child("date_of_birth").getValue(String.class);
-//
-//                            Toast.makeText(CalculateNutritionalStatus.this, " " + gender + " ", Toast.LENGTH_SHORT).show();
 
                             int monthAge = calculateMonthAge();
 
@@ -127,8 +125,6 @@ public class CalculateNutritionalStatus extends AppCompatActivity {
 
                                 WriteDataFireBase(String.valueOf(1), String.valueOf(1), String.valueOf(1), String.valueOf(1));
                             }
-                            
-//                            Toast.makeText(CalculateNutritionalStatus.this, " " + monthAge, Toast.LENGTH_SHORT).show();
                         }
 
                         @Override

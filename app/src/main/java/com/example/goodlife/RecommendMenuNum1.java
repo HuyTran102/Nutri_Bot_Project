@@ -78,8 +78,6 @@ public class RecommendMenuNum1 extends AppCompatActivity {
 
         LoadData();
 
-//        Toast.makeText(this, "" + recommendEnergy + "", Toast.LENGTH_SHORT).show();
-
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -174,8 +172,6 @@ public class RecommendMenuNum1 extends AppCompatActivity {
                             tongTrua.setText(String.format("%.0f", trua));
 
                             tongToi.setText(String.format("%.0f", toi));
-
-//                            Toast.makeText(this, "" + recommendEnergy + " " + recommendEnergy * 30 / 100 + " " + trua + " " + toi + "", Toast.LENGTH_SHORT).show();
 
                         }
 

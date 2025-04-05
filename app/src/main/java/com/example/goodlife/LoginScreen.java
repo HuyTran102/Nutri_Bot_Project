@@ -87,8 +87,6 @@ public class LoginScreen extends AppCompatActivity {
         // Login zone
         SharedPreferences sharedPreferences = getSharedPreferences("Data", Context.MODE_PRIVATE);
 
-
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -181,7 +179,6 @@ public class LoginScreen extends AppCompatActivity {
     }
     // Login function
     public void checkUserData(String name, String password) {
-
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("user");
         Query checkUserDatabase = reference.orderByChild("name").equalTo(name);

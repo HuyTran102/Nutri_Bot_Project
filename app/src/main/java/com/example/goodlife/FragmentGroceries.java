@@ -230,8 +230,6 @@ public class FragmentGroceries extends Fragment {
                         items.add(new Item(String.valueOf(name), this.getResources().getIdentifier(i_name, "drawable", getActivity().getPackageName()), kcal, protein, lipid, glucid, unit_type));
                     }
                 }
-
-//                items.add(new Item(String.valueOf(name), R.drawable.noimageavailable, kcal, protein, lipid, glucid, unit_type));
             }
             fileInputStream.close();
 
@@ -248,7 +246,6 @@ public class FragmentGroceries extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-//                findData(query);
                 return true;
             }
 

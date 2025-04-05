@@ -210,7 +210,6 @@ public class FragmentDiary extends Fragment {
                                 if (date.equals(selectedDate)) {
                                     list_items.add(diaryItem);
                                 }
-//                                Toast.makeText(getContext(), document.getString("kcal"), Toast.LENGTH_SHORT).show();
                             }
 
                             String[] date = selectedDate.split("/");

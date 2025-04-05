@@ -154,7 +154,6 @@ public class DiaryItemData extends AppCompatActivity {
             }
         });
 
-        int finalImageId = imageId;
         String finalItemName = itemName;
         String finalUnitType = unitType;
         String finalUnitName = unitName;
@@ -170,9 +169,6 @@ public class DiaryItemData extends AppCompatActivity {
 
                 // Get the current date
                 Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
 
                 // write the data to the database
                 WriteDataFireBase(finalItemName, amount[0], kcalValue, proteinValue, lipidValue, glucidValue

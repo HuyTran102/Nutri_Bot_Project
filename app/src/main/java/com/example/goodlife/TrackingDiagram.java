@@ -134,8 +134,6 @@ public class TrackingDiagram extends AppCompatActivity {
                                     lineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
                                     lineChart.notifyDataSetChanged();
                                     lineChart.invalidate();
-
-//                                if(sumKcal != 0) Toast.makeText(TrackingDiagram.this, "" + sumKcal, Toast.LENGTH_SHORT).show();
                                 }
                             }
                         } else {

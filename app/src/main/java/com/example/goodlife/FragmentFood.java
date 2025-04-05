@@ -141,8 +141,6 @@ public class FragmentFood extends Fragment {
                 } else {
                     items.add(new Item(String.valueOf(name), R.drawable.noimageavailable, kcal, protein, lipid, glucid, unit_type));
                 }
-
-//                items.add(new Item(String.valueOf(name), R.drawable.images, kcal, protein, lipid, glucid, unit_type));
             }
             fileInputStream.close();
 
@@ -159,7 +157,6 @@ public class FragmentFood extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-//                findData(query);
                 return true;
             }
 

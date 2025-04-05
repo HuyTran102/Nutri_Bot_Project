@@ -97,7 +97,7 @@ public class ItemData extends AppCompatActivity {
             unitType = intent.getStringExtra("UnitType");
         }
 
-        // Transfer the unit type to the uint name
+        // Transfer the unit type to the unit name
         if(Objects.equals(unitType, "(g)")) {
             unitName = "Khối lượng";
         } else {

@@ -48,7 +48,6 @@ public class FragmentDrinks extends Fragment {
         recyclerView = view.findViewById(R.id.recycleView);
         searchView = view.findViewById(R.id.search_bar);
 
-
         String path = "Diary.xlsx";
 
         try {
@@ -110,7 +109,6 @@ public class FragmentDrinks extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-//                findData(query);
                 return true;
             }
 
