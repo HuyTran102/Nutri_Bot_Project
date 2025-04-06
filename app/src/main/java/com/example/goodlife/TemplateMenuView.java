@@ -66,7 +66,6 @@ public class TemplateMenuView extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-//                findData(query);
                 return true;
             }
 
