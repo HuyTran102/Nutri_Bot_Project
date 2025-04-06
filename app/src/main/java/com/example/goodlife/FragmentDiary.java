@@ -120,6 +120,7 @@ public class FragmentDiary extends Fragment {
         return month + "/" + day + "/" + year;
     }
 
+    // Date Picker for user to select their date of birth
     public void setDataUI(List<DiaryItem> items){
 
         calories_val = 0;
@@ -151,7 +152,7 @@ public class FragmentDiary extends Fragment {
         recyclerView.addItemDecoration(itemDecoration);
     }
 
-    // Date Picker for user to select their date of birth
+    // Load Data to Recycle Item
     public void LoadDataFireBase () {
         // Create a DatePickerDialog with Holo theme
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -187,7 +188,6 @@ public class FragmentDiary extends Fragment {
         });
     }
 
-    // Load Data to Recycle Item
     public void showListData(String selectedDate){
         List<DiaryItem> list_items = new ArrayList<>();
         firebaseFirestore.collection("GoodLife")
