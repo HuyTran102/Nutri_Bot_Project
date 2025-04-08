@@ -82,7 +82,7 @@ public class TrackingDiagram extends AppCompatActivity {
 
         endOfWeek = currentDate.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
 
-        Toast.makeText(this, "" + startOfWeek + " " + endOfWeek, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "" + startOfWeek + " " + endOfWeek, Toast.LENGTH_SHORT).show();
 
         LoadData();
 
@@ -107,7 +107,7 @@ public class TrackingDiagram extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Loop through all documents
                             if (!task.getResult().isEmpty()) {
-                                for (int i = startOfWeek.getDayOfWeek().getValue(); i <= endOfWeek.getDayOfWeek().getValue(); i++) {
+                                for (int i = startOfWeek.getDayOfMonth(); i <= endOfWeek.getDayOfMonth(); i++) {
                                     int sumKcal = 0;
                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                         int day = Integer.parseInt(document.getString("day")), month = Integer.parseInt(document.getString("month")), year = Integer.parseInt(document.getString("year"));
