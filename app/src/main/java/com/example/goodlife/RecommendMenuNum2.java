@@ -48,6 +48,8 @@ public class RecommendMenuNum2 extends AppCompatActivity {
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         bun = findViewById(R.id.bun_g);
         thitBo1 = findViewById(R.id.thit_bo_1_g);
         chanGio = findViewById(R.id.chan_gio_g);
