@@ -41,14 +41,21 @@ public class FragmentFood extends Fragment {
 
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void loadData() {
+        if (items.isEmpty()) { // Chỉ tải dữ liệu nếu danh sách rỗng
+            new Thread(() -> {
+                // Thực hiện lấy dữ liệu (ví dụ: đọc file Excel)
+                readExcelFile();
+    
+                // Cập nhật giao diện trên luồng chính
+                requireActivity().runOnUiThread(() -> {
+                    viewAdapter.notifyDataSetChanged();
+                });
+            }).start();
+        }
+    }
 
-        recyclerView = view.findViewById(R.id.recycleView);
-        searchView = view.findViewById(R.id.search_bar);
-
-
+    public void readExcelFile() {
         String path = "Diary.xlsx";
 
         try {
@@ -150,10 +157,19 @@ public class FragmentFood extends Fragment {
             Log.e(TAG, Objects.requireNonNull(e.getMessage()));
         }
 
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        recyclerView = view.findViewById(R.id.recycleView);
+        searchView = view.findViewById(R.id.search_bar);
+        loadData();
+
         viewAdapter = new ViewAdapter(getContext(), items);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(viewAdapter);
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

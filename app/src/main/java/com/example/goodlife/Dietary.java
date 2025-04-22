@@ -43,8 +43,8 @@ public class Dietary extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         VPAdapter vpAdapter = new VPAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        vpAdapter.addFragment(new FragmentFood(), "Món ăn");
 
+        vpAdapter.addFragment(new FragmentFood(), "Món ăn");
         vpAdapter.addFragment(new FragmentGroceries(), "Thực phẩm");
         vpAdapter.addFragment(new FragmentDrinks(), "Sữa / Đồ  uống");
         vpAdapter.addFragment(new FragmentDiary(), "Nhật ký");
@@ -52,6 +52,33 @@ public class Dietary extends AppCompatActivity {
         viewPager.setAdapter(vpAdapter);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setOffscreenPageLimit(5);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                // Không cần xử lý
+            }
+        
+            @Override
+            public void onPageSelected(int position) {
+                // Lấy Fragment hiện tại
+                if (position == 0) { // Tab "Món ăn"
+                    FragmentFood fragmentFood = (FragmentFood) vpAdapter.getItem(position);
+                    fragmentFood.loadData();
+                } else if (position == 1) { // Tab "Thực phẩm"
+                    FragmentGroceries fragmentGroceries = (FragmentGroceries) vpAdapter.getItem(position);
+                    fragmentGroceries.loadData();
+                } else if (position == 2) { // Tab "Sữa / Đồ uống"
+                    FragmentDrinks fragmentDrinks = (FragmentDrinks) vpAdapter.getItem(position);
+                    fragmentDrinks.loadData();
+                }
+            }
+        
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                // Không cần xử lý
+            }
+        });
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
